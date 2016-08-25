@@ -1,9 +1,23 @@
 
 // Fonts
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
 
 // Variables
-@import "variables";
+//@import "variables";
 
 // Bootstrap
-@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+.form-group label{
+	width: 140px;
+	display: inline-block;
+}
+.form-group *{
+	vertical-align: top;
+}
+.wideTextField{
+	width: 750px;
+}
+#body{
+	height: 100px;
+}

@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'My Application',
+    'name' => 'The Maneater',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,6 +177,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Indal\Markdown\MarkdownServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
+        Folklore\Image\ImageServiceProvider::class,
 
     ],
 
@@ -225,6 +226,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Markdown' => Indal\Markdown\Facade::class,
+        'Image' => Folklore\Image\Facades\Image::class
 
     ],
 

@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return \App\Story::all();
 });
 
-Route::get('/setup', 'StoriesController@setup');
+//Route::get('/setup', 'StoriesController@setup');
 
 Route::get('/photos', 'PhotosController@show');
 
@@ -25,8 +25,10 @@ Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 
 Route::group(['prefix' => 'admin'], function() {
     Auth::routes();
-    Route::get('/createStory', 'StoriesController@create')->name('create-story');
-    Route::post('/createStory', 'StoriesController@store')->name('store-story');
+    //Route::group(['middleware' => 'auth'], function () {
+		Route::get('/createStory', 'StoriesController@create')->name('create-story');
+    	Route::post('/createStory', 'StoriesController@store')->name('store-story');
+	//});
 });
 
 //Route::get('/home', 'HomeController@index');

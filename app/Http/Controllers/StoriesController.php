@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\CreateStory;
 use App\Story;
 use Illuminate\Http\Request;
 
@@ -34,9 +35,11 @@ class StoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateStory $request)
     {
-        //
+        Story::create($request->all());
+
+        return redirect("/");
     }
 
     /**

@@ -68,5 +68,10 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
         	'slug' => 'blogs'
         ]);
 
+        DB:table('staffers')->insert([
+            'first-name' => 'Michael',
+            'last-name'  => 'Smith Jr'
+        ]);
+
     }
 }
