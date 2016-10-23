@@ -17,6 +17,8 @@ class CreatePositionStafferTable extends Migration
             $table->increments('id');
             $table->integer('position_id')->unsigned();
             $table->integer('staffer_id')->unsigned();
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
             $table->timestamps();
         });
     }

@@ -30,5 +30,3 @@ Route::group(['prefix' => 'admin'], function() {
     	Route::post('/createStory', 'StoriesController@store')->name('store-story');
 	//});
 });
-
-//Route::get('/home', 'HomeController@index');

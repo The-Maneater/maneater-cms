@@ -13,7 +13,7 @@ class Staffer extends Model
 	];
 
     public function staffPositions(){
-        return $this->hasMany("App\Position");
+        return $this->belongsToMany("App\Position")->withPivot('start_date', 'end_date');
     }
 
     public function edBoardPositions(){
