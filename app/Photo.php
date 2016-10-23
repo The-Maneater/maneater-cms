@@ -6,19 +6,23 @@ use Illuminate\Database\Eloquent\Model;
 
 class Photo extends Model
 {
-    private $title;
+	protected $fillable = [
+		'title', 'description', 'dateTaken', 'location', 'subjects'
+	];
 
-    private $description;
+	protected $dates = ['dateTaken'];
 
-    private $photographer;
+    public function photographer(){
+    	return $this->belongsToMany("App\Staffer");
+    }
 
-    private $dateTaken;
+    public function tags(){
+    	return $this->morphToMany('App\Tag', 'taggable');
+    }
 
-    private $tags = [];
+    public function stories(){
+    	return $this->belongsToMany("App\Story");
+    }
 
-    private $storyIds = [];
 
-    private $location;
-
-    private $subject = [];
 }

@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Correction extends Model
 {
-    private $storyId;
+	protected $fillable = [
+		'storyId', 'date', 'content'
+	];
 
-    private $date;
+	protected $dates = ['date'];
 
-    private $content;
+	public function story(){
+		return $this->belongsTo('App\Story');
+	}
 }

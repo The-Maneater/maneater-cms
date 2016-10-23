@@ -6,19 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ad extends Model
 {
-    private $size;
+	protected $dates = ['campaignStart', 'campaignEnd'];
 
-    private $campaignStart;
+	protected $fillable = [
+		'size', 'duration', 'purchaser', 'imageUrl', 'providerUrl', 'timesServed', 'campaignStart', 'campaignEnd'
+	];
 
-    private $campaignEnd;
-
-    private $duration;
-
-    private $purchaser;
-
-    private $imageUrl;
-
-    private $providerUrl;
-
-    private $timesServed;
+    public function serve(){
+    	$this->timesServed++;
+    	$this->save();
+    }
 }

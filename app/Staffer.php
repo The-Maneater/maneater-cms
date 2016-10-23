@@ -12,19 +12,27 @@ class Staffer extends Model
 		'is_active'
 	];
 
-    private $name;
+    public function staffPositions(){
+        return $this->hasMany("App\Position");
+    }
 
-    private $staffPositions = [];
+    public function edBoardPositions(){
+        return $this->staffPositions()->where('isEdBoard', '=', true);
+    }
 
-    private $edBoardPositions = [];
+    public function stories(){
+        return $this->hasMany("App\Story");
+    }
 
-    private $articles = [];
+    public function photos(){
+        return $this->hasMany("App\Photo");
+    }
 
-    private $photos = [];
+    public function layouts(){
+        return $this->hasMany('App\Layout');
+    }
 
-    private $layouts = [];
-
-    private $graphics = [];
-
-    private $isActive;
+    public function graphics(){
+        return $this->hasMany('App\Graphic');
+    }
 }

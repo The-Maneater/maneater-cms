@@ -29,7 +29,18 @@
 		<h5> Photo placeholder </h5>
 		<article class='article'>
 			<section class='articleInfo'>
-				<p>By {{ $story->byline }}</p>
+				@if (count($story->writers) == 1)
+					<p>By {{ $story->writers[0]->first_name }} {{ $story->writers[0]->last_name }}</p>
+				@else
+					<p>By
+					@foreach ($story->writers as $writer)
+						{{ $writer->first_name }} {{ $writer->last_name }}
+						@if (!$loop->last)
+							 and 
+						@endif
+					@endforeach
+					</p>
+				@endif
 				<p> {{ \Carbon\Carbon::parse($story->publish_date)->format('M. d, Y') }} </p>
 			</section>
 			<section class="content">

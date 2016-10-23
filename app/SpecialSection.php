@@ -6,15 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class SpecialSection extends Model
 {
-	private $url;
+	protected $fillable = [
+		'url','slug', 'title', 'site', 'registrationRequired', 'templateLocation'
+	];
 
-    private $slug;
-
-    private $title;
-
-    private $site;
-
-    private $registrationRequired;
-
-    private $templateLocation;
+	public function designer(){
+		return $this->belongsToMany("App\Staffer");
+	}
 }

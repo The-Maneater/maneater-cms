@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTagsTable extends Migration
+class CreateGraphicStafferTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('graphic_staffer', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('graphic_id')->unsigned();
+            $table->integer('staffer_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('tags');
+        Schema::drop('graphic_staffer');
     }
 }

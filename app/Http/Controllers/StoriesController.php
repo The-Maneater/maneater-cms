@@ -90,7 +90,7 @@ class StoriesController extends Controller
         //
     }
 
-    public function setup(){
+    public function setup(Request $request){
         Story::create([
             'slug'          => 'test',
             'runsheet_slug' => 'my-project',

@@ -18,12 +18,11 @@ class CreateStoriesTable extends Migration
             $table->string('slug');
             $table->string('runsheet_slug');
             $table->string('title');
-            $table->string('issue');
+            $table->integer('issue_id')->unsigned();
             $table->dateTime('publish_date');
             $table->string('cDeck');
-            $table->string('byline');
             $table->string('static_byline')->nullable();
-            $table->integer('section')->unsigned();
+            $table->integer('section_id')->unsigned();
             $table->longtext('body');
             $table->integer('priority');
             $table->timestamps();
