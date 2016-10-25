@@ -12,7 +12,7 @@ class Photo extends Model
 
 	protected $dates = ['dateTaken'];
 
-    public function photographer(){
+    public function photographers(){
     	return $this->belongsToMany("App\Staffer");
     }
 

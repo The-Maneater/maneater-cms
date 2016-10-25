@@ -12,19 +12,19 @@ class PositionSeeder extends Seeder
     public function run()
     {
         DB::table('positions')->insert([
-        	'title'     => 'Editor-In-Chief',
-        	'is_editorial_board' => 1,
-        	'is_exec' => 1
+            'title'              => 'Editor-In-Chief',
+            'is_editorial_board' => 1,
+            'is_exec'            => 1
         ]);
         DB::table('positions')->insert([
-        	'title'     => 'Staff Writer',
-        	'is_editorial_board' => 0,
-        	'is_exec' => 0
+            'title'              => 'Staff Writer',
+            'is_editorial_board' => 0,
+            'is_exec'            => 0
         ]);
         DB::table('positions')->insert([
-        	'title'     => 'Senior Staff Writer',
-        	'is_editorial_board' => 0,
-        	'is_exec' => 0
+            'title'              => 'Senior Staff Writer',
+            'is_editorial_board' => 0,
+            'is_exec'            => 0
         ]);
     }
 }

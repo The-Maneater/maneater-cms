@@ -17,8 +17,7 @@ class CreatePhotosTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->longtext('description');
-            $table->integer('staffer_id')->unsigned();
-            $table->dateTime('date_taken');
+            $table->dateTime('dateTaken');
             $table->string('location');
             $table->timestamps();
         });

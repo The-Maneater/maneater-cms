@@ -10,7 +10,7 @@ class Layout extends Model
     	'title', 'link'
     ];
 
-    public function designer(){
+    public function staffer(){
     	return $this->belongsTo('App\Staffer');
     }
 }

@@ -40,5 +40,7 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
 
         $story = App\Story::find(1);
         $story->writers()->attach(1);
+        $story->photos()->attach(1);
+        $story->graphics()->attach(1);
     }
 }

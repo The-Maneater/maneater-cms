@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Photo;
+use Illuminate\Http\Request;
 
 class PhotosController extends Controller
 {
@@ -47,7 +47,9 @@ class PhotosController extends Controller
      */
     public function show($id)
     {
-        //
+        $photo = Photo::find($id);
+
+        return $photo;
     }
 
     /**

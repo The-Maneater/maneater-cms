@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Graphic;
 use App\Http\Requests;
-use App\Http\Requests\CreateStory;
-use App\Story;
 use Illuminate\Http\Request;
 
-class StoriesController extends Controller
+class GraphicsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +25,7 @@ class StoriesController extends Controller
      */
     public function create()
     {
-        return view('admin.create-story');
+        //
     }
 
     /**
@@ -35,11 +34,9 @@ class StoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateStory $request)
+    public function store(Request $request)
     {
-        Story::create($request->all());
-
-        return redirect("/");
+        //
     }
 
     /**
@@ -48,12 +45,10 @@ class StoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($section, $slug)
+    public function show($id)
     {
-        //dd($section);
-        //dd(Story::findBySectionAndSlug($section, $slug));
-        $story = Story::findBySectionAndSlug($section, $slug);
-        return view('stories.show', compact('story'));
+        $graphic = Graphic::find($id);
+        return $graphic;
     }
 
     /**
@@ -87,12 +82,6 @@ class StoriesController extends Controller
      */
     public function destroy($id)
     {
-        $story = App\Story::find($id);
-
-        $story->destroy();
-
-        return response()->json([
-                'status' => 'ok'
-            ]);
+        //
     }
 }

@@ -16,8 +16,8 @@ class CreateLayoutsTable extends Migration
         Schema::create('layouts', function (Blueprint $table) {
             $table->increments('id');
             $table->string("title");
-            $table->string('url');
-            $table->integer('staffer_id')->unsigned();
+            $table->string('link');
+            $table->integer('staffer_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

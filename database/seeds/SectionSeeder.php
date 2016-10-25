@@ -17,11 +17,6 @@ class SectionSeeder extends Seeder
         ]);
 
         DB::table('sections')->insert([
-        	'name' => 'Outlook',
-        	'slug' => 'outlook'
-        ]);
-
-        DB::table('sections')->insert([
         	'name' => 'UNews',
         	'slug' => 'unews'
         ]);
@@ -37,8 +32,8 @@ class SectionSeeder extends Seeder
         ]);
 
         DB::table('sections')->insert([
-        	'name' => 'Blogs',
-        	'slug' => 'blogs'
+        	'name' => 'Projects',
+        	'slug' => 'projects'
         ]);
     }
 }
