@@ -16,7 +16,7 @@ class CreateCorrectionsTable extends Migration
         Schema::create('corrections', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('story_id')->unsigned();
-            $table->dateTime('correction_date');
+            $table->dateTime('date');
             $table->string('content');
             $table->timestamps();
         });

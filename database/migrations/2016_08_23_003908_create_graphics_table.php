@@ -18,6 +18,7 @@ class CreateGraphicsTable extends Migration
             $table->string('title');
             $table->string('description');
             $table->string('link');
+            $table->dateTime('publish_date');
             $table->timestamps();
         });
     }

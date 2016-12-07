@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Section;
+use App\Position;
 use Illuminate\Http\Request;
 
-class SectionsController extends Controller
+class PositionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,9 +34,9 @@ class SectionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateSectionRequest $request)
+    public function store(CreatePositionRequest $request)
     {
-        Section::create($request->input());
+        Position::create($request->input());
 
         return redirect('/');
     }
@@ -47,11 +47,9 @@ class SectionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($slug)
+    public function show($id)
     {
-        $section = Section::findBySlug($slug);
-
-        return $section;
+        //
     }
 
     /**

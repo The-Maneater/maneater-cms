@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotosTable extends Migration
+class CreateVolumesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePhotosTable extends Migration
      */
     public function up()
     {
-        Schema::create('photos', function (Blueprint $table) {
+        Schema::create('volumes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
-            $table->longtext('description');
-            $table->dateTime('dateTaken');
-            $table->dateTime('publish_date');
-            $table->string('location');
+            $table->integer('name');
+            $table->dateTime('first_issue_date');
+            $table->string('period');
+            $table->string('publication');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePhotosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('photos');
+        Schema::drop('volumes');
     }
 }

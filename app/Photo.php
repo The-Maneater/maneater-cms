@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
 	protected $fillable = [
-		'title', 'description', 'dateTaken', 'location', 'subjects'
+		'title', 'description', 'dateTaken', 'location', 'subjects', 'publish_date'
 	];
 
-	protected $dates = ['dateTaken'];
+	protected $dates = ['dateTaken', 'publish_date'];
 
     public function photographers(){
     	return $this->belongsToMany("App\Staffer");

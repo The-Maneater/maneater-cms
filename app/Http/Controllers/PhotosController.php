@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class PhotosController extends Controller
 {
+
+    /*function test(Request $request){
+        // $request->file('fileToUpload')->move('uploads', $request->file('fileToUpload')->getClientOriginalName());
+        // dd($request->file('fileToUpload'));
+        //dd($request);
+        dd($request->input());
+    }*/
     /**
      * Display a listing of the resource.
      *
@@ -34,9 +41,11 @@ class PhotosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePhotoRequest $request)
     {
-        //
+        Photo::create($request->input());
+
+        return redirect('/');
     }
 
     /**

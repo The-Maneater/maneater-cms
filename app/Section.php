@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
+	protected $fillable = [
+		'title', 'slug'
+	];
 
 	protected $with = ['stories'];
     public function stories(){
@@ -14,5 +17,11 @@ class Section extends Model
 
     public static function findBySlug($slug){
     	return Section::where('slug', '=', $slug)->first();
+    }
+
+    public function clearWebFront(){
+        $this->stories()
+        ->whereNotNull('section_webfront_priority')
+        ->update(['section_webfront_priority' => NULL]);
     }
 }

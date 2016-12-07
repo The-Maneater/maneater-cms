@@ -34,9 +34,10 @@ class LayoutsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateLayoutRequest $request)
     {
-        //
+        Layout::create($request->input());
+        return redirect('/');
     }
 
     /**

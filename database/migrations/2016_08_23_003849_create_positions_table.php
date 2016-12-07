@@ -18,6 +18,7 @@ class CreatePositionsTable extends Migration
             $table->string('title');
             $table->boolean('is_exec');
             $table->boolean('is_editorial_board');
+            $table->integer('priority');
             $table->timestamps();
         });
     }

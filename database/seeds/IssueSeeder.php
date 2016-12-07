@@ -1,5 +1,7 @@
 <?php
 
+use App\Issue;
+use App\Volume;
 use Illuminate\Database\Seeder;
 
 class IssueSeeder extends Seeder
@@ -11,9 +13,10 @@ class IssueSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('issues')->insert([
-            'issue_number'  => 5,
-            'volume_number' => 10
+       $issue = new Issue([
+            'issue_number' => 12
         ]);
+       $volume = Volume::first();
+       $volume->issues()->save($issue);
     }
 }

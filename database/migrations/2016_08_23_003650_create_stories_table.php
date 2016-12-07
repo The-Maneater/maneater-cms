@@ -25,6 +25,8 @@ class CreateStoriesTable extends Migration
             $table->integer('section_id')->unsigned();
             $table->longtext('body');
             $table->integer('priority');
+            $table->integer('section_webfront_priority')->nullable();
+            $table->integer('front_page_webfront_priority')->nullable();
             $table->timestamps();
         });
     }

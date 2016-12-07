@@ -14,11 +14,12 @@ class Story extends Model
 		'issue',
 		'publish_date',
 		'cDeck',
-		'byline',
 		'static_byline',
 		'section',
 		'body',
-		'priority'
+		'priority',
+        'section_webfront_priority',
+        'front_page_webfront_priority'
 	];
 
 	protected $with = ['photos', 'corrections', 'graphics', 'tags', 'writers', 'issue'];
@@ -52,5 +53,15 @@ class Story extends Model
 
     public function issue(){
     	return $this->belongsTo('App\Issue');
+    }
+
+    public function addToSectionWebfront($priority){
+        $this->section_webfront_priority = $priority;
+        $this->save();
+    }
+
+    public function addToFrontPage($priority){
+        $this->front_page_webfront_priority = $priority;
+        $this->save();
     }
 }

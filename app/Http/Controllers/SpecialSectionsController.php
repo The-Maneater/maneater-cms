@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\SpecialSection;
+use Illuminate\Http\Request;
 
 class SpecialSectionsController extends Controller
 {
@@ -34,9 +34,11 @@ class SpecialSectionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateSpeicalSectionRequest $request)
     {
-        //
+        SpecialSection::create($request->input());
+
+        return redirect('/');
     }
 
     /**
