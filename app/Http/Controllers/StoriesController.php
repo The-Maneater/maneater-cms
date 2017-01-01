@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Http\Requests\CreateStoryRequest;
 use App\Story;
 use Illuminate\Http\Request;
@@ -32,7 +31,7 @@ class StoriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\CreateStoryRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateStoryRequest $request)
@@ -45,7 +44,8 @@ class StoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $section
+     * @param  int  $slug
      * @return \Illuminate\Http\Response
      */
     public function show($section, $slug)

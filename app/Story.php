@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
+use Spatie\Tags\HasTags;
 
 class Story extends Model
 {
+    use HasTags;
 	protected $fillable = [
 		'slug',
 		'runsheet_slug',
@@ -27,7 +31,6 @@ class Story extends Model
     static function findBySectionAndSlug($sectionSlug, $slug){
     	$section = Section::where('slug', '=', $sectionSlug)->first();
     	$sectionID = $section->id;
-    	//dd($section);
     	return Story::where('section_id', '=', $sectionID)->where('slug', '=', $slug)->first();
     }
 
@@ -43,12 +46,8 @@ class Story extends Model
     	return $this->belongsToMany('App\Graphic');
     }
 
-    public function tags(){
-    	return $this->morphToMany('App\Tag', 'taggable');
-    }
-
     public function writers(){
-    	return $this->belongsToMany("App\Staffer");
+    	return $this->belongsToMany('App\Staffer');
     }
 
     public function issue(){

@@ -27,7 +27,9 @@ Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 Route::group(['prefix' => 'admin'], function() {
     Auth::routes();
     //Route::group(['middleware' => 'auth'], function () {
-		Route::get('/createStory', 'StoriesController@create')->name('create-story');
-    	Route::post('/createStory', 'StoriesController@store')->name('store-story');
+    Route::group(['prefix' => 'core'], function(){
+        Route::get('/createStory', 'StoriesController@create')->name('create-story');
+        Route::post('/createStory', 'StoriesController@store')->name('store-story');
+    });
 	//});
 });

@@ -10,11 +10,13 @@ class Issue extends Model
     	'issue_number'
     ];
 
+    protected $with = ['volume'];
+
     public function stories(){
-    	return $this->hasMany("App\Story");
+    	return $this->hasMany('App\Story');
     }
 
     public function volume(){
-    	return $this->belongsTo("App\Volume");
+    	return $this->belongsTo('App\Volume');
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 use App\Story;
-use App\Tag;
+use Spatie\Tags\Tag;
 use Illuminate\Database\Seeder;
 
 class TagSeeder extends Seeder
@@ -13,10 +13,7 @@ class TagSeeder extends Seeder
      */
     public function run()
     {
-       $tag = new Tag([
-       		'name' => 'Homecoming'
-       	]);
-       $tag->save();
-       Story::first()->tags()->attach($tag);
+       //$tag = new Tag();
+       Story::first()->attachTag('Homecoming');
     }
 }

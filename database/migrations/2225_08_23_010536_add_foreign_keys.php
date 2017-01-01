@@ -51,9 +51,6 @@ class AddForeignKeys extends Migration
             $table->foreign('graphic_id')->references('id')->on('graphics');
             $table->foreign('story_id')->references('id')->on('stories');
         });
-        Schema::table('taggables', function($table){
-            $table->foreign('tag_id')->references('id')->on('tags');
-        });
         Schema::table('issues', function($table){
             $table->foreign('volume_id')->references('id')->on('volumes');
         });

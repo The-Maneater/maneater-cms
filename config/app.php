@@ -166,7 +166,8 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Spatie\Tags\TagsServiceProvider::class,
+        Spatie\Menu\Laravel\MenuServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -226,8 +227,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Markdown' => Indal\Markdown\Facade::class,
-        'Image' => Folklore\Image\Facades\Image::class
-
+        'Image' => Folklore\Image\Facades\Image::class,
+        'Menu' => Spatie\Menu\Laravel\MenuFacade::class,
     ],
 
 ];

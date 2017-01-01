@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ad;
-use App\Http\Requests;
+use App\Http\Requests\CreateAdRequest;
 use Illuminate\Http\Request;
 
 class AdsController extends Controller
@@ -31,7 +31,7 @@ class AdsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\CreateAdRequest $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateAdRequest $request)

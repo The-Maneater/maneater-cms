@@ -20,7 +20,7 @@ class CreatePhotosTable extends Migration
             $table->dateTime('dateTaken');
             $table->dateTime('publish_date');
             $table->string('location');
-            $table->timestamps();
+            $table->nullableTimestamps();
         });
     }
 
