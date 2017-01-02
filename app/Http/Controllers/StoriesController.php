@@ -17,7 +17,7 @@ class StoriesController extends Controller
     {
         $articles = Story::orderBy('publish_date')->paginate(25);
 
-        return view('admin.article-list', compact('articles'));
+        return view('admin.articles.list', compact('articles'));
     }
 
     /**
@@ -27,7 +27,7 @@ class StoriesController extends Controller
      */
     public function create()
     {
-        return view('admin.create-story');
+        return view('admin.articles.create');
     }
 
     /**
@@ -40,7 +40,7 @@ class StoriesController extends Controller
     {
         Story::create($request->input());
 
-        return redirect("/");
+        return redirect('/admin/core/stories');
     }
 
     /**

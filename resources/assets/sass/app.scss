@@ -77,3 +77,23 @@ ul{
 .black-icon{
   color:black;
 }
+.pagination li{
+  display: inline-block;
+}
+
+.theader{
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination-links{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pagination li.active{
+  @extend .btn-success;
+}
+.pagination li{
+  @extend .btn;
+}

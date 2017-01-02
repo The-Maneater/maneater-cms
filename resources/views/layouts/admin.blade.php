@@ -8,10 +8,14 @@
     <link rel="stylesheet" type="text/css" href="/css/app.css">
 </head>
 <body>
-    @include('admin.top-nav')
+    @include('admin.navigation.top')
     <div class="form-container f-row">
-        @include('admin.admin-navigation')
+        @include('admin.navigation.side-bar')
         @yield('content')
     </div>
-
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/js/tether.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="/js/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    @yield('scripts')
 </body>

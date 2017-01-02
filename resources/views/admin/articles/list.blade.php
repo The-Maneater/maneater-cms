@@ -6,7 +6,11 @@
 
 @section('content')
     <div>
-       <h2>Articles</h2>
+        <div class="theader">
+            <h2>Articles</h2>
+            <a href="{{ route('create-story') }}" class="btn btn-success">Add Article</a>
+        </div>
+
        <table class="table table-striped table-bordered">
            <thead>
            <tr>
@@ -23,7 +27,7 @@
               <tr>
                 <td><a href="{{ route('edit-story', [$article->section->slug, $article->slug]) }}">{{ $article->title }}</a></td>
                 <td>{{ $article->runsheet_slug }}</td>
-                <td>{{ $article->publish_date }}</td>
+                <td>{{ $article->publish_date->format('M j, Y g:i A') }}</td>
                 <td>{{ $article->issue->issueName }}</td>
                 <td>{{ $article->priority }}</td>
                 <td>{{ $article->section->name }}</td>
@@ -31,5 +35,9 @@
            @endforeach
            </tbody>
        </table>
+        <div class="pagination-links">
+            {{ $articles->links() }}
+        </div>
+
    </div>
 @endsection

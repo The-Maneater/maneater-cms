@@ -26,6 +26,8 @@ class Story extends Model
         'front_page_webfront_priority'
 	];
 
+    protected $dates = ['publish_date'];
+
 	protected $with = ['photos', 'corrections', 'graphics', 'tags', 'writers', 'issue', 'section'];
 
     static function findBySectionAndSlug($sectionSlug, $slug){

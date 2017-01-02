@@ -2,6 +2,7 @@
     @section('title')
         Create Story
     @endsection
+
     @section('content')
         <div class="page-content">
 		@if (count($errors) > 0)
@@ -126,10 +127,8 @@
 	<div class="sticky-footer">
 		<button class="btn btn-info" onclick="submitForm()">Save</button>
 	</div>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/js/tether.min.js"></script>
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-    <script src="/js/all.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+    @section('scripts')
     <script>
         function createSlug(){
             var slug = document.getElementById("title").value;
@@ -146,4 +145,5 @@
         })
 
     </script>
+    @endsection
 @endsection
