@@ -26,7 +26,7 @@ class Story extends Model
         'front_page_webfront_priority'
 	];
 
-	protected $with = ['photos', 'corrections', 'graphics', 'tags', 'writers', 'issue'];
+	protected $with = ['photos', 'corrections', 'graphics', 'tags', 'writers', 'issue', 'section'];
 
     static function findBySectionAndSlug($sectionSlug, $slug){
     	$section = Section::where('slug', '=', $sectionSlug)->first();
@@ -52,6 +52,11 @@ class Story extends Model
 
     public function issue(){
     	return $this->belongsTo('App\Issue');
+    }
+
+    public function section()
+    {
+       return $this->belongsTo('App\Section');
     }
 
     public function addToSectionWebfront($priority){

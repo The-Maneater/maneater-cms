@@ -30,6 +30,9 @@ Route::group(['prefix' => 'admin'], function() {
     Route::group(['prefix' => 'core'], function(){
         Route::get('/createStory', 'StoriesController@create')->name('create-story');
         Route::post('/createStory', 'StoriesController@store')->name('store-story');
+        Route::get('/stories', 'StoriesController@index');
+        Route::get('/editStory/{section}/{slug}', 'StoriesController@edit')->name('edit-story');
+        Route::patch('/editStory/{section}/{slug}', 'StoriesController@update')->name('update-story');
     });
 	//});
 });

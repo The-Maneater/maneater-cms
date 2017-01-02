@@ -15,7 +15,9 @@ class StoriesController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Story::orderBy('publish_date')->paginate(25);
+
+        return view('admin.article-list', compact('articles'));
     }
 
     /**
@@ -59,37 +61,52 @@ class StoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param $section
+     * @param $slug
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function edit($id)
+    public function edit($section, $slug)
     {
-        //
+        $article = Story::findBySectionAndSlug($section, $slug);
+        return view('admin.articles.edit', compact(['article', 'section', 'slug']));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param CreateStoryRequest|Request $request
+     * @param $section
+     * @param $slug
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function update(Request $request, $id)
+    public function update(CreateStoryRequest $request, $section, $slug)
     {
-        //
+        $article = Story::findBySectionAndSlug($section, $slug);
+        $article->update($request->except(['issue', 'byline', 'photos', 'graphics', 'section']));
+        $article->writers()->sync($request->input('byline'));
+        $article->issue()->associate($request->input('issue'));
+        $article->photos()->sync($request->input('photos', []));
+        $article->graphics()->sync($request->input('graphics', []));
+        $article->section()->associate($request->input('section'));
+
+        return redirect('/admin/core/stories');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $section
+     * @param $slug
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function destroy($id)
+    public function destroy($section, $slug)
     {
-        $story = App\Story::find($id);
+        $story = Story::findBySectionAndSlug($section, $slug);
 
-        $story->destroy();
+        $story->delete();
 
         return response()->json([
                 'status' => 'ok'

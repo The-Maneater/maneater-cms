@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <select name="issue" id="issue">
                                 @foreach (\App\Issue::all() as $issue)
-                                    <option value="{{ $issue->id }}">Maneaver v.{{ $issue->issue_number }}, Issue {{ $issue->volume->name }}</option>
+                                    <option value="{{ $issue->id }}">{{ $issue->issueName }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -92,7 +92,7 @@
                     <p>The Story:</p>
                     <div class="form-group">
                         <label for="body">Body:</label>
-                        <textarea name="body" id="body" class="wideTextField form-control" value="{{ old('body') }}"></textarea>
+                        <textarea name="body" id="body" class="wideTextField form-control">{{ old('body') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="issue">Photos:</label>
@@ -134,7 +134,7 @@
         function createSlug(){
             var slug = document.getElementById("title").value;
             slug = slug.toLowerCase();
-            slug = slug.replace(" ", "-");
+            slug = slug.replace(/ /g, "-");
             document.getElementById("slug").value = slug;
         }
         function submitForm(){

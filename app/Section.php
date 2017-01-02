@@ -10,9 +10,8 @@ class Section extends Model
 		'title', 'slug'
 	];
 
-	protected $with = ['stories'];
     public function stories(){
-    	return $this->hasMany("App\Story");
+    	return $this->hasMany('App\Story');
     }
 
     public static function findBySlug($slug){

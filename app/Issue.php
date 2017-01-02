@@ -12,6 +12,11 @@ class Issue extends Model
 
     protected $with = ['volume'];
 
+    public function getIssueNameAttribute()
+    {
+        return 'Maneater v. ' . $this->volume->name . ', Issue ' . $this->issue_number;
+    }
+
     public function stories(){
     	return $this->hasMany('App\Story');
     }
