@@ -3,18 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\CreatePhotoRequest;
 use App\Photo;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PhotosController extends Controller
 {
 
-    /*function test(Request $request){
-        // $request->file('fileToUpload')->move('uploads', $request->file('fileToUpload')->getClientOriginalName());
-        // dd($request->file('fileToUpload'));
-        //dd($request);
-        dd($request->input());
-    }*/
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +18,9 @@ class PhotosController extends Controller
      */
     public function index()
     {
-        //
+        $photos = Photo::with(['section', 'issue'])->orderBy('publish_date')->paginate(25);
+
+        return view('admin.photos.list', compact('photos'));
     }
 
     /**
@@ -32,20 +30,33 @@ class PhotosController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.photos.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreatePhotoRequest|Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreatePhotoRequest $request)
     {
-        Photo::create($request->input());
+        $photo = new Photo;
+        $photo->fill($request->except(['byline', 'photo']));
+        $image = $request->file('photo')->move(public_path('images/'), $request->file('photo')->getClientOriginalName());
+        $photo->location = '/images/' . $image->getFilename();
+        $photo->dateTaken = Carbon::now();
+        $photo->save();
+        $photo->photographers()->attach($request->input('byline'));
 
-        return redirect('/');
+        $photographers = collect($request->input('byline'));
+        $photographers->each(function($staffer, $key){
+           if($staffer->photos()->count() > 10 && $staffer->isA('Photographer')){
+               $staffer->makeA('Staff Photographer', 'Photographer');
+           }
+        });
+
+        return redirect('/admin/core/photos');
     }
 
     /**

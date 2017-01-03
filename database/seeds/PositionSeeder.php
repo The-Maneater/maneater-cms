@@ -29,5 +29,29 @@ class PositionSeeder extends Seeder
             'is_exec'            => 0,
             'priority'           => 0
         ]);
+        DB::table('positions')->insert([
+            'title'              => 'Reporter',
+            'is_editorial_board' => 0,
+            'is_exec'            => 0,
+            'priority'           => 0
+        ]);
+        DB::table('positions')->insert([
+            'title'              => 'Photographer',
+            'is_editorial_board' => 0,
+            'is_exec'            => 0,
+            'priority'           => 0
+        ]);
+        DB::table('positions')->insert([
+            'title'              => 'Senior Staff Photographer',
+            'is_editorial_board' => 0,
+            'is_exec'            => 0,
+            'priority'           => 0
+        ]);
+        DB::table('positions')->insert([
+            'title'              => 'Staff Photographer',
+            'is_editorial_board' => 0,
+            'is_exec'            => 0,
+            'priority'           => 0
+        ]);
     }
 }

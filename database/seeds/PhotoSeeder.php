@@ -17,7 +17,10 @@ class PhotoSeeder extends Seeder
             'description' => 'Redshirt senior Michael Scherer watches the game on Oct. 22 after leaving the game with a knee injury.',
             'dateTaken'   => \Carbon\Carbon::now(),
             'location'    => '/images/scherer.jpg',
-            'publish_date' => \Carbon\Carbon::now()
+            'publish_date' => \Carbon\Carbon::now(),
+            'section_id' => 1,
+            'issue_id' => 1,
+            'staffer_id' => 1
         	]);
         $photo->save();
         $photo->photographers()->attach(1);

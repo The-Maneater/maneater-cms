@@ -20,6 +20,9 @@ class CreatePhotosTable extends Migration
             $table->dateTime('dateTaken');
             $table->dateTime('publish_date');
             $table->string('location');
+            $table->integer('section_id');
+            $table->integer('issue_id');
+            $table->integer('staffer_id');
             $table->nullableTimestamps();
         });
     }

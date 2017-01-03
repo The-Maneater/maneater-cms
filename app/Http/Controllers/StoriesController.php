@@ -39,6 +39,12 @@ class StoriesController extends Controller
     public function store(CreateStoryRequest $request)
     {
         Story::create($request->input());
+        $writers = collect($request->input('byline'));
+        $writers->each(function($staffer, $key){
+            if($staffer->stories()->count() > 10 && $staffer->isA('Reporter')){
+                $staffer->makeA('Staff Writer', 'Reporter');
+            }
+        });
 
         return redirect('/admin/core/stories');
     }

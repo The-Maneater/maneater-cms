@@ -9,7 +9,7 @@ class Photo extends Model
 {
     use HasTags;
 	protected $fillable = [
-		'title', 'description', 'dateTaken', 'location', 'subjects', 'publish_date'
+		'title', 'description', 'dateTaken', 'location', 'subjects', 'publish_date', 'section_id', 'issue_id', 'staffer_id'
 	];
 
 	protected $dates = ['dateTaken', 'publish_date'];
@@ -18,13 +18,18 @@ class Photo extends Model
     	return $this->belongsToMany('App\Staffer');
     }
 
-//    public function tags(){
-//    	return $this->morphToMany('App\Tag', 'taggable');
-//    }
-
     public function stories(){
     	return $this->belongsToMany('App\Story');
     }
 
+    public function section()
+    {
+        return $this->belongsTo('App\Section');
+    }
+
+    public function issue()
+    {
+        return $this->belongsTo('App\Issue');
+    }
 
 }

@@ -127,8 +127,9 @@
 	<div class="sticky-footer">
 		<button class="btn btn-info" onclick="submitForm()">Save</button>
 	</div>
+@endsection
 
-    @section('scripts')
+@section('scripts')
     <script>
         function createSlug(){
             var slug = document.getElementById("title").value;
@@ -145,5 +146,4 @@
         })
 
     </script>
-    @endsection
 @endsection

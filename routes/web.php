@@ -33,6 +33,17 @@ Route::group(['prefix' => 'admin'], function() {
         Route::get('/stories', 'StoriesController@index');
         Route::get('/editStory/{section}/{slug}', 'StoriesController@edit')->name('edit-story');
         Route::patch('/editStory/{section}/{slug}', 'StoriesController@update')->name('update-story');
+
+        Route::group(['prefix' => 'web-front'], function(){
+           Route::get('/', 'WebFrontController@index');
+           Route::get('/{section}', 'WebFrontController@show')->name('edit-web-front');
+        });
+
+        Route::group(['prefix' => 'photos'], function(){
+           Route::get('/', 'PhotosController@index');
+           Route::get('/create', 'PhotosController@create')->name('create-photo');
+           Route::post('/create', 'PhotosController@store')->name('store-photo');
+        });
     });
 	//});
 });

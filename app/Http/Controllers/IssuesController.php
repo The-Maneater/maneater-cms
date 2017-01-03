@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Http\Requests\CreateIssueRequest;
 use App\Issue;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class IssuesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateIssueRequest|Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateIssueRequest $request)
