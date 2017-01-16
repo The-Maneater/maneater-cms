@@ -23,7 +23,7 @@
             <tbody>
             @foreach($photos as $photo)
                 <tr>
-                    <td><a href="#">{{ $photo->title }}</a></td>
+                    <td><a href="{{ route('edit-photo', [$photo->id]) }}">{{ $photo->title }}</a></td>
                     <td>{{ $photo->publish_date->format('M j, Y g:i A') }}</td>
                     <td>{{ $photo->issue->issueName }}</td>
                     <td>{{ $photo->section->name }}</td>

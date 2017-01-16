@@ -17,6 +17,10 @@ class Staffer extends Model
 
     protected $appends = array('fullname');
 
+    /**
+     * Formats the full name of the staffer
+     * @return string
+     */
     public function getFullnameAttribute(){
         return $this->first_name . " " . $this->last_name;
     }
@@ -30,6 +34,7 @@ class Staffer extends Model
     }
 
     /**
+     * Checks to see if a staffer has the specified title
      * @param $positionTitle
      * @return bool
      */
@@ -42,6 +47,12 @@ class Staffer extends Model
         return $position->title == $positionTitle;
     }
 
+    /**
+     * Adds a position to a staffer. Also swaps out positions if they are moving up
+     * @param $newPosition
+     * @param null $oldPosition
+     * @return $this
+     */
     public function makeA($newPosition, $oldPosition = null)
     {
         if($oldPosition != null){
@@ -60,29 +71,64 @@ class Staffer extends Model
         ];
     }
 
-    public function staffPositions(){
+    /**
+     * Returns all positions
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function positions()
+    {
         return $this->belongsToMany('App\Position')
             ->withPivot('start_date', 'end_date');
     }
 
-    public function edBoardPositions(){
-        return $this->staffPositions()
-            ->where('isEdBoard', '=', true)
+    /**
+     * Returns the associated non Ed Board positions
+     * @return mixed
+     */
+    public function staffPositions(){
+        return $this->positions()
+            ->where('is_editorial_board', '=', false)
             ->get();
     }
 
+    /**
+     * Returns the associated Ed Board Positions
+     * @return mixed
+     */
+    public function edBoardPositions(){
+        return $this->positions()
+            ->where('is_editorial_board', '=', true)
+            ->get();
+    }
+
+    /**
+     * Returns the stories the staffer has written
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function stories(){
         return $this->hasMany('App\Story');
     }
 
+    /**
+     * Returns the photos the staffer has taken
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function photos(){
         return $this->hasMany('App\Photo');
     }
 
+    /**
+     * Returns the layouts the user has designed
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function layouts(){
         return $this->hasMany('App\Layout');
     }
 
+    /**
+     * Returns the graphics the user has designed
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function graphics(){
         return $this->hasMany('App\Graphic');
     }

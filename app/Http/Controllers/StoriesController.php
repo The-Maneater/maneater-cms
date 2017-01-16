@@ -41,6 +41,7 @@ class StoriesController extends Controller
         Story::create($request->input());
         $writers = collect($request->input('byline'));
         $writers->each(function($staffer, $key){
+            /** @var \App\Staffer $staffer  */
             if($staffer->stories()->count() > 10 && $staffer->isA('Reporter')){
                 $staffer->makeA('Staff Writer', 'Reporter');
             }

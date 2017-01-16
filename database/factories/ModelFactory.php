@@ -21,3 +21,16 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Ad::class, function (Faker\Generator $faker) {
+    return [
+        'size' => $faker->word,
+        'duration' => $faker->word,
+        'purchaser' => $faker->company,
+        'image_url' => $faker->imageUrl(),
+        'provider_url' => $faker->url,
+        'times_served' => 0,
+        'campaign_start' => $faker->date(),
+        'campaign_end' => $faker->date()
+    ];
+});

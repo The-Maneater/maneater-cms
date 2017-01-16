@@ -12,6 +12,10 @@ class Correction extends Model
 
 	protected $dates = ['date'];
 
+    /**
+     * Returns the associated story
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
 	public function story(){
 		return $this->belongsTo('App\Story');
 	}

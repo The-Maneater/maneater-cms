@@ -43,6 +43,8 @@ Route::group(['prefix' => 'admin'], function() {
            Route::get('/', 'PhotosController@index');
            Route::get('/create', 'PhotosController@create')->name('create-photo');
            Route::post('/create', 'PhotosController@store')->name('store-photo');
+           Route::patch('/edit/{id}', 'PhotosController@update')->name('update-photo');
+           Route::get('/edit/{id}', 'PhotosController@edit')->name('edit-photo');
         });
     });
 	//});

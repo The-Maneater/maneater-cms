@@ -10,7 +10,11 @@ class SpecialSection extends Model
 		'url','slug', 'title', 'site', 'registrationRequired', 'templateLocation'
 	];
 
-	public function designer(){
-		return $this->belongsToMany("App\Staffer");
+    /**
+     * Returns the associated staffer
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+	public function staffer(){
+		return $this->belongsToMany('App\Staffer');
 	}
 }

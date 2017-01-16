@@ -10,6 +10,10 @@ class Volume extends Model
     	'name', 'first_issue_date', 'period', 'publication'
     ];
 
+    /**
+     * Returns the associated issues
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function issues(){
     	return $this->hasMany('App\Issue');
     }

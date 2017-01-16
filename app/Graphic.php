@@ -7,12 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 class Graphic extends Model
 {
     protected $fillable = [
-    	'title', 'description', 'link', 'publish_date'
+    	'title', 'description', 'link', 'publish_date', 'static_byline'
     ];
 
     protected $dates = ['publish_date'];
 
-    public function designer(){
-    	return $this->belongsToMany("App\Staffer");
+    /**
+     * Returns the associated staffers
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function staffers(){
+    	return $this->belongsToMany(Staffer::class);
+    }
+
+    /**
+     * Returns the associated issue
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function issue()
+    {
+        return $this->belongsTo(Issue::class);
+    }
+
+    /**
+     * Returns the associated section
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
     }
 }

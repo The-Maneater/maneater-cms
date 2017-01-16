@@ -50,7 +50,9 @@ class PhotosController extends Controller
         $photo->photographers()->attach($request->input('byline'));
 
         $photographers = collect($request->input('byline'));
+
         $photographers->each(function($staffer, $key){
+            /** @var \App\Staffer $staffer  */
            if($staffer->photos()->count() > 10 && $staffer->isA('Photographer')){
                $staffer->makeA('Staff Photographer', 'Photographer');
            }
@@ -63,7 +65,7 @@ class PhotosController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|\App\Photo
      */
     public function show($id)
     {
@@ -80,7 +82,9 @@ class PhotosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $photo = Photo::find($id);
+
+        return view('admin.photos.edit', compact('photo'));
     }
 
     /**
@@ -92,7 +96,11 @@ class PhotosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $photo = Photo::find($id);
+        $photo->update($request->except(['byline', 'photo']));
+        $photo->photographers()->sync($request->input('byline'));
+
+        return redirect('/admin/core/photos');
     }
 
     /**
