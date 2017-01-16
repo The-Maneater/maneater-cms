@@ -67,12 +67,11 @@ class LayoutsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Layout  $layout
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Layout $layout)
     {
-        $layout = Layout::find($id);
         return view('admin.layouts.edit', compact('layout'));
     }
 
@@ -80,12 +79,11 @@ class LayoutsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Layout  $layout
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Layout $layout)
     {
-        $layout = Layout::find($id);
         $layout->update($request->except(['section', 'issue', 'staffer']));
         $layout->staffer()->associate($request->input('staffer'));
         $layout->section()->associate($request->input('section'));

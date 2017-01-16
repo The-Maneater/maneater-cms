@@ -77,13 +77,11 @@ class PhotosController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Photo $photo
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Photo $photo)
     {
-        $photo = Photo::find($id);
-
         return view('admin.photos.edit', compact('photo'));
     }
 
@@ -91,12 +89,11 @@ class PhotosController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Photo $photo)
     {
-        $photo = Photo::find($id);
         $photo->update($request->except(['byline', 'photo']));
         $photo->photographers()->sync($request->input('byline'));
 
