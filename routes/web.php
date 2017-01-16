@@ -26,13 +26,14 @@ Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 
 Route::group(['prefix' => 'admin'], function() {
     Auth::routes();
-    //Route::group(['middleware' => 'auth'], function () {
     Route::group(['prefix' => 'core'], function(){
-        Route::get('/createStory', 'StoriesController@create')->name('create-story');
-        Route::post('/createStory', 'StoriesController@store')->name('store-story');
-        Route::get('/stories', 'StoriesController@index');
-        Route::get('/editStory/{section}/{slug}', 'StoriesController@edit')->name('edit-story');
-        Route::patch('/editStory/{section}/{slug}', 'StoriesController@update')->name('update-story');
+        Route::group(['prefix' => 'stories'], function(){
+            Route::get('/create', 'StoriesController@create')->name('create-story');
+            Route::post('/create', 'StoriesController@store')->name('store-story');
+            Route::get('/', 'StoriesController@index');
+            Route::get('/edit/{section}/{slug}', 'StoriesController@edit')->name('edit-story');
+            Route::patch('/edit/{section}/{slug}', 'StoriesController@update')->name('update-story');
+        });
 
         Route::group(['prefix' => 'web-front'], function(){
            Route::get('/', 'WebFrontController@index');
@@ -54,6 +55,13 @@ Route::group(['prefix' => 'admin'], function() {
            Route::patch('/edit/{id}', 'EventController@update@update')->name('update-event');
            Route::get('/edit/{id}', 'EventController@edit')->name('edit-event');
         });
+
+        Route::group(['prefix' => 'layouts'], function(){
+           Route::get('/', 'LayoutsController@index');
+           Route::get('/create', 'LayoutsController@create')->name('create-layout');
+           Route::post('/create', 'LayoutsController@store')->name('store-layout');
+           Route::patch('/edit/{id}', 'LayoutsController@update')->name('update-layout');
+           Route::get('/edit/{id}', 'LayoutsController@edit')->name('edit-layout');
+        });
     });
-	//});
 });

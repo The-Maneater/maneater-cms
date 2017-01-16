@@ -18,6 +18,8 @@ class LayoutSeeder extends Seeder
             'date_published' => \Carbon\Carbon::now()
         	]);
         $layout->staffer()->associate(\App\Staffer::find(2));
+        $layout->issue()->associate(\App\Issue::first());
+        $layout->section()->associate(\App\Section::first());
         $layout->save();
     }
 }
