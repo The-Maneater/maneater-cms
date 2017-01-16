@@ -15,6 +15,7 @@ class LayoutSeeder extends Seeder
         $layout = new Layout([
             'title'      => 'Maneater Front from Oct. 19, 2016',
             'link'       => '/images/layout1.jpg',
+            'date_published' => \Carbon\Carbon::now()
         	]);
         $layout->staffer()->associate(\App\Staffer::find(2));
         $layout->save();

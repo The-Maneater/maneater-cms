@@ -26,7 +26,7 @@ class StafferSeeder extends Seeder
 
         $michael->save();
         $reiker->save();
-        $michael->staffPositions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
-        $reiker->staffPositions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+        $michael->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+        $reiker->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
     }
 }

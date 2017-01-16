@@ -46,6 +46,14 @@ Route::group(['prefix' => 'admin'], function() {
            Route::patch('/edit/{id}', 'PhotosController@update')->name('update-photo');
            Route::get('/edit/{id}', 'PhotosController@edit')->name('edit-photo');
         });
+
+        Route::group(['prefix' => 'events'], function(){
+           Route::get('/', 'EventController@index');
+           Route::get('/create', 'EventController@create')->name('create-event');
+           Route::post('/create', 'EventController@store')->name('store-photo');
+           Route::patch('/edit/{id}', 'EventController@update@update')->name('update-event');
+           Route::get('/edit/{id}', 'EventController@edit')->name('edit-event');
+        });
     });
 	//});
 });

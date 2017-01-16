@@ -19,6 +19,6 @@ class GraphicSeeder extends Seeder
             'publish_date' => \Carbon\Carbon::now()
         	]);
         $graphic->save();
-        $graphic->designer()->attach(2);
+        $graphic->staffers()->attach(2);
     }
 }

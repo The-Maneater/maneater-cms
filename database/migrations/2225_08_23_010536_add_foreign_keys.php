@@ -54,6 +54,18 @@ class AddForeignKeys extends Migration
         Schema::table('issues', function($table){
             $table->foreign('volume_id')->references('id')->on('volumes');
         });
+        Schema::table('layout_photo', function($table){
+            $table->foreign('layout_id')->references('id')->on('layouts');
+            $table->foreign('photo_id')->references('id')->on('photos');
+        });
+        Schema::table('layout_story', function($table){
+            $table->foreign('layout_id')->references('id')->on('layouts');
+            $table->foreign('story_id')->references('id')->on('stories');
+        });
+        Schema::table('layout_graphic', function($table){
+            $table->foreign('layout_id')->references('id')->on('layouts');
+            $table->foreign('graphic_id')->references('id')->on('graphics');
+        });
     }
 
     /**
