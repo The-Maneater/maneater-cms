@@ -63,5 +63,13 @@ Route::group(['prefix' => 'admin'], function() {
            Route::patch('/edit/{id}', 'LayoutsController@update')->name('update-layout');
            Route::get('/edit/{id}', 'LayoutsController@edit')->name('edit-layout');
         });
+
+        Route::group(['prefix' => 'graphics'], function(){
+            Route::get('/', 'GraphicsController@index');
+            Route::get('/create', 'GraphicsController@create')->name('create-graphic');
+            Route::post('/create', 'GraphicsController@store')->name('store-graphic');
+            Route::patch('/edit/{id}', 'GraphicsController@update')->name('update-graphic');
+            Route::get('/edit/{id}', 'GraphicsController@edit')->name('edit-graphic');
+        });
     });
 });

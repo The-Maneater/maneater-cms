@@ -18,7 +18,10 @@ class GraphicSeeder extends Seeder
 			'link'        => '/images/protests.jpg',
             'publish_date' => \Carbon\Carbon::now()
         	]);
+
+        $graphic->staffer()->associate(2);
+        $graphic->issue()->associate(\App\Issue::first());
+        $graphic->section()->associate(\App\Section::first());
         $graphic->save();
-        $graphic->staffers()->attach(2);
     }
 }

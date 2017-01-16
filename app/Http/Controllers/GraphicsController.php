@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Graphic;
 use App\Http\Requests;
+use App\Http\Requests\CreateGraphicRequest;
 use Illuminate\Http\Request;
 
 class GraphicsController extends Controller
@@ -15,7 +16,8 @@ class GraphicsController extends Controller
      */
     public function index()
     {
-        //
+        $graphics = Graphic::with(['section', 'issue'])->orderBy('publish_date')->paginate(25);
+        return view('admin.graphics.list', compact('graphics'));
     }
 
     /**
@@ -25,19 +27,27 @@ class GraphicsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.graphics.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param CreateGraphicRequest|Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateGraphicRequest $request)
     {
-        Graphic::create($request->input());
-        return redirect('/');
+        $graphic = new Graphic();
+        $graphic->fill($request->except(['issue', 'section', 'byline', 'graphic']));
+        $image = $request->file('graphic')->move(public_path('graphics/'), $request->file('graphic')->getClientOriginalName());
+        $graphic->link = "/graphics/" . $image->getFilename();
+        $graphic->issue()->associate($request->input('issue'));
+        $graphic->section()->associate($request->input('section'));
+        $graphic->staffer()->associate($request->input('byline'));
+        $graphic->save();
+
+        return redirect('/admin/core/graphics');
     }
 
     /**
@@ -60,7 +70,8 @@ class GraphicsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $graphic = Graphic::find($id);
+        return view('admin.graphics.edit', compact('graphic'));
     }
 
     /**
@@ -72,7 +83,13 @@ class GraphicsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $graphic = Graphic::find($id);
+        $graphic->fill($request->except(['issue', 'section', 'byline']));
+        $graphic->issue()->associate($request->input('issue'));
+        $graphic->section()->associate($request->input('section'));
+        $graphic->staffer()->associate($request->input('byline'));
+        $graphic->save();
+        return redirect('/admin/core/graphics');
     }
 
     /**

@@ -7,3 +7,4 @@ Homestead.yaml
 .env
 /storage/framework
 public/layouts
+public/graphics

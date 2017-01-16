@@ -19,6 +19,10 @@ class CreateGraphicsTable extends Migration
             $table->string('description');
             $table->string('link');
             $table->dateTime('publish_date');
+            $table->string('static_byline')->nullable();
+            $table->integer('staffer_id')->unsigned()->nullable();
+            $table->integer('issue_id')->unsigned();
+            $table->integer('section_id')->unsigned();
             $table->timestamps();
         });
     }

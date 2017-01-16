@@ -14,10 +14,10 @@ class Graphic extends Model
 
     /**
      * Returns the associated staffers
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function staffers(){
-    	return $this->belongsToMany(Staffer::class);
+    public function staffer(){
+    	return $this->belongsTo(Staffer::class);
     }
 
     /**
