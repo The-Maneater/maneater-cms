@@ -168,6 +168,7 @@ return [
          */
         Spatie\Tags\TagsServiceProvider::class,
         Spatie\Menu\Laravel\MenuServiceProvider::class,
+        Laratrust\LaratrustServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -229,6 +230,7 @@ return [
         'Markdown' => Indal\Markdown\Facade::class,
         'Image' => Folklore\Image\Facades\Image::class,
         'Menu' => Spatie\Menu\Laravel\MenuFacade::class,
+        'Laratrust'   => Laratrust\LaratrustFacade::class,
     ],
 
 ];
