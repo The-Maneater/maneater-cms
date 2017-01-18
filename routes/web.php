@@ -73,6 +73,14 @@ Route::group(['prefix' => 'admin'], function() {
             Route::get('/edit/{graphic}', 'GraphicsController@edit')->name('edit-graphic');
         });
 
+        Route::group(['prefix' => 'issues'], function(){
+           Route::get('/', 'IssuesController@index');
+           Route::get('/create', 'IssuesController@create')->name('create-issue');
+           Route::post('/create', 'IssuesController@store')->name('store-issue');
+           Route::patch('/edit/{issue}', 'IssuesController@update')->name('update-issue');
+           Route::get('/edit/{issue}', 'IssuesController@edit')->name('edit-issue');
+        });
+
         Route::group(['prefix' => 'volumes'], function(){
             Route::get('/', 'VolumesController@index');
             Route::get('/create', 'VolumesController@create')->name('create-volume');

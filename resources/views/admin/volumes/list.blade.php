@@ -8,7 +8,7 @@
     <div>
         <div class="theader">
             <h2>Volumes</h2>
-            <a href="{{ route('create-volume') }}" class="btn btn-success">Add Layout</a>
+            <a href="{{ route('create-volume') }}" class="btn btn-success">Add Volume</a>
         </div>
 
         <table class="table table-striped table-bordered">

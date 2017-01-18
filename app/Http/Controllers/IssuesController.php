@@ -16,7 +16,8 @@ class IssuesController extends Controller
      */
     public function index()
     {
-        //
+        $issues = Issue::orderBy('created_at')->paginate(15);
+        return view('admin.issues.list', compact('issues'));
     }
 
     /**
@@ -26,7 +27,7 @@ class IssuesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.issues.create');
     }
 
     /**
@@ -37,9 +38,12 @@ class IssuesController extends Controller
      */
     public function store(CreateIssueRequest $request)
     {
-        Issue::create($request->input());
+        $issue = new Issue;
+        $issue->issue_number = $request->input('name');
+        $issue->volume()->associate($request->input('volume'));
+        $issue->save();
 
-        return redirect('/');
+        return redirect('/admin/core/issues');
     }
 
     /**
@@ -56,24 +60,28 @@ class IssuesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Issue $issue
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Issue $issue)
     {
-        //
+        return view('admin.issues.edit', compact('issue'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Issue $issue
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Issue $issue)
     {
-        //
+        $issue->issue_number = $request->input('name');
+        $issue->volume()->associate($request->input('volume'));
+        $issue->save();
+
+        return redirect('/admin/core/issues');
     }
 
     /**

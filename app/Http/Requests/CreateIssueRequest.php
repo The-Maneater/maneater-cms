@@ -24,7 +24,7 @@ class CreateIssueRequest extends FormRequest
     public function rules()
     {
         return [
-            'issueNumber'  => 'required|numeric',
+            'name'  => 'required|numeric',
         ];
     }
 }
