@@ -54,7 +54,8 @@ class AppServiceProvider extends ServiceProvider
                       ->setAttributes(['id' => 'staffSubMenu'])
                       ->addClass('collapse')
                       ->link('/admin/staff/positions', 'Positions')
-                      ->link('/admin/staff/staffers', 'Staffers'))
+                      ->link('/admin/staff/staffers', 'Staffers')
+                      ->link('/admin/staff/users', 'Users'))
                   ->add(Link::to('/admin/advertising', '<i class="fa fa-usd black-icon" aria-hidden="true"></i> Advertising'))
                   ->add(Link::to('/admin/newsletter', '<i class="fa fa-newspaper-o black-icon" aria-hidden="true"></i> Newsletter'));
         });

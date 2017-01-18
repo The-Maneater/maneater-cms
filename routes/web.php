@@ -106,5 +106,13 @@ Route::group(['prefix' => 'admin'], function() {
            Route::patch('/edit/{staffer}', 'StafferController@update')->name('update-staffer');
            Route::get('/edit/{staffer}', 'StafferController@edit')->name('edit-staffer');
        });
+
+       Route::group(['prefix' => 'users'], function(){
+          Route::get('/', 'UsersController@index');
+          Route::get('/create', 'UsersController@create')->name('create-user');
+          Route::post('/create', 'UsersController@store')->name('store-user');
+          Route::patch('/edit/{user}', 'UsersController@update')->name('update-user');
+          Route::get('/edit/{user}', 'UsersController@edit')->name('edit-user');
+       });
     });
 });
