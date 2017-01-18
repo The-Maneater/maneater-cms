@@ -15,6 +15,8 @@ class Staffer extends Model
 		'is_active'
 	];
 
+	protected $casts = ['is_active' => 'boolean'];
+
     protected $appends = array('fullname');
 
     /**
@@ -23,6 +25,20 @@ class Staffer extends Model
      */
     public function getFullnameAttribute(){
         return $this->first_name . " " . $this->last_name;
+    }
+
+    public function getWriterPositionAttribute()
+    {
+        return $this->positions()->get()->first(function($value, $key){
+           return collect(['Reporter', 'Staff Writer', 'Senior Staff Writer'])->contains($value->title);
+        })->title;
+    }
+
+    public function getPhotographerPositionAttribute()
+    {
+        return $this->positions()->get()->first(function($value, $key){
+            return collect(['Photographer', 'Staff Photographer', 'Senior Staff Photographer'])->contains($value->title);
+        })->title;
     }
 
     /**
@@ -56,9 +72,9 @@ class Staffer extends Model
     public function makeA($newPosition, $oldPosition = null)
     {
         if($oldPosition != null){
-            $this->staffPositions()->detach(Position::findByTitle($oldPosition));
+            $this->positions()->detach(Position::findByTitle($oldPosition));
         }
-        $this->staffPositions()->attach(Position::findByTitle($newPosition));
+        $this->positions()->attach(Position::findByTitle($newPosition));
 
         return $this;
     }

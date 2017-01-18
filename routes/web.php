@@ -89,4 +89,22 @@ Route::group(['prefix' => 'admin'], function() {
             Route::get('/edit/{volume}', 'VolumesController@edit')->name('edit-volume');
         });
     });
+
+    Route::group(['prefix' => 'staff'], function(){
+       Route::group(['prefix' => 'positions'], function(){
+            Route::get('/', 'PositionsController@index');
+            Route::get('/create', 'PositionsController@create')->name('create-position');
+            Route::post('/create', 'PositionsController@store')->name('store-position');
+            Route::patch('/edit/{position}', 'PositionsController@update')->name('update-position');
+            Route::get('/edit/{position}', 'PositionsController@edit')->name('edit-position');
+       });
+
+       Route::group(['prefix' => 'staffers'], function(){
+           Route::get('/', 'StafferController@index');
+           Route::get('/create', 'StafferController@create')->name('create-staffer');
+           Route::post('/create', 'StafferController@store')->name('store-staffer');
+           Route::patch('/edit/{staffer}', 'StafferController@update')->name('update-staffer');
+           Route::get('/edit/{staffer}', 'StafferController@edit')->name('edit-staffer');
+       });
+    });
 });

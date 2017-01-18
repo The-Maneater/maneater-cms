@@ -25,8 +25,7 @@ class CreatePositionRequest extends FormRequest
     {
         return [
             'title'              => 'required',
-            'is_editorial_board' => 'required|boolean',
-            'is_exec'            => 'required|boolean'
+            'priority'           => 'required'
         ];
     }
 }

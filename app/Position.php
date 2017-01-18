@@ -8,7 +8,7 @@ class Position extends Model
 {
     protected $fillable = ['title', 'is_editorial_board', 'is_exec', 'priority'];
 
-    protected $casts = ['is_editorial_board' => 'boolean'];
+    protected $casts = ['is_editorial_board' => 'boolean', 'is_exec' => 'boolean'];
 
     /**
      * Returns the associated staff

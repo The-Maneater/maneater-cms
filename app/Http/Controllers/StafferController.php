@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Position;
+use App\Http\Requests\CreateStafferRequest;
 use App\Staffer;
 use Illuminate\Http\Request;
 
@@ -15,7 +17,8 @@ class StafferController extends Controller
      */
     public function index()
     {
-        //
+        $staffers = Staffer::with('positions')->orderBy('first_name')->paginate(15);
+        return view('admin.staffers.list', compact('staffers'));
     }
 
     /**
@@ -25,19 +28,25 @@ class StafferController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.staffers.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CreateStafferRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateStafferRequest $request)
     {
-        Staffer::create($request->input());
+        $staffer = new Staffer;
+        $staffer->fill($request->all());
+        $staffer->is_active = true;
+        $staffer->save();
+        $staffer->positions()->attach(Position::findByTitle('Reporter'), ['start_date' => \Carbon\Carbon::now()]);
+        $staffer->positions()->attach(Position::findByTitle('Photographer'), ['start_date' => \Carbon\Carbon::now()]);
 
+        return redirect('/admin/staff/staffers');
     }
 
     /**
@@ -54,24 +63,29 @@ class StafferController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param Staffer $staffer
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Staffer $staffer)
     {
-        //
+        return view('admin.staffers.edit', compact('staffer'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Staffer $staffer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Staffer $staffer)
     {
-        //
+        $staffer->fill($request->except('active'));
+        $staffer->is_active = $request->input('active') !== null;
+
+        $staffer->save();
+
+        return redirect('/admin/staff/staffers');
     }
 
     /**
