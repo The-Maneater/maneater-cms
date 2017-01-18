@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateVolumeRequest;
+use App\Volume;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +17,8 @@ class VolumesController extends Controller
      */
     public function index()
     {
-        //
+        $volumes = Volume::orderBy('first_issue_date')->paginate(15);
+        return view('admin.volumes.list', compact('volumes'));
     }
 
     /**
@@ -25,29 +28,29 @@ class VolumesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.volumes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CreateVolumeRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CreateVolumeRequest $request)
     {
         Volume::create($request->input());
 
-        return redirect('/');
+        return redirect('/admin/core/volumes');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Volume  $volume
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Volume $volume)
     {
         //
     }
@@ -55,24 +58,25 @@ class VolumesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Volume  $volume
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Volume $volume)
     {
-        //
+        return view('admin.volumes.edit', compact('volume'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Volume  $volume
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Volume $volume)
     {
-        //
+        $volume->update($request->all());
+        return redirect('/admin/core/volumes');
     }
 
     /**

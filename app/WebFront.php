@@ -32,4 +32,17 @@ class WebFront extends Model
             ->keyBy('front_page_webfront_priority');
     }
 
+    public static function clearWebFront($section)
+    {
+        $frontPage = ($section == 0);
+        $articles = ($section == 0) ? WebFront::frontPage(): WebFront::bySection($section);
+        $articles->each(function($item, $key) use($frontPage){
+            /** @var \App\Story $item  */
+           if($frontPage){
+               $item->addToFrontPage(null);
+           }else{
+               $item->addToSectionWebfront(null);
+           }
+        });
+    }
 }

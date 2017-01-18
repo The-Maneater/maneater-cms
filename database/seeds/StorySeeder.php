@@ -1,6 +1,7 @@
 <?php
 
 use App\Story;
+use Faker\Factory as Faker;
 use Illuminate\Database\Seeder;
 
 class StorySeeder extends Seeder
@@ -42,5 +43,23 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
         $story->writers()->attach(1);
         $story->photos()->attach(1);
         $story->graphics()->attach(1);
+
+        $faker = Faker::create();
+        foreach(range(1,5) as $index){
+            $s = new Story([
+                'slug' => $faker->slug,
+                'runsheet_slug' => $faker->slug,
+                'title' => $faker->words(5, true),
+                'publish_date' => \Carbon\Carbon::now(),
+                'cDeck' => $faker->sentence,
+                'body' => $faker->paragraphs(2, true),
+                'priority' => 10
+            ]);
+            $s->section()->associate(1);
+            $s->issue()->associate(1);
+
+            $s->save();
+            $s->writers()->attach(1);
+        }
     }
 }

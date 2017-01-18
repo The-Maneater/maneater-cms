@@ -25,7 +25,6 @@ class CreateIssueRequest extends FormRequest
     {
         return [
             'issueNumber'  => 'required|numeric',
-            'volumeNumber' => 'required|numeric'
         ];
     }
 }

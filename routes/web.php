@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin'], function() {
         Route::group(['prefix' => 'web-front'], function(){
            Route::get('/', 'WebFrontController@index');
            Route::get('/{section}', 'WebFrontController@show')->name('edit-web-front');
+           Route::post('/{section}', 'WebFrontController@update')->name('update-web-front');
         });
 
         Route::group(['prefix' => 'photos'], function(){
@@ -70,6 +71,14 @@ Route::group(['prefix' => 'admin'], function() {
             Route::post('/create', 'GraphicsController@store')->name('store-graphic');
             Route::patch('/edit/{graphic}', 'GraphicsController@update')->name('update-graphic');
             Route::get('/edit/{graphic}', 'GraphicsController@edit')->name('edit-graphic');
+        });
+
+        Route::group(['prefix' => 'volumes'], function(){
+            Route::get('/', 'VolumesController@index');
+            Route::get('/create', 'VolumesController@create')->name('create-volume');
+            Route::post('/create', 'VolumesController@store')->name('store-volume');
+            Route::patch('/edit/{volume}', 'VolumesController@update')->name('update-volume');
+            Route::get('/edit/{volume}', 'VolumesController@edit')->name('edit-volume');
         });
     });
 });
