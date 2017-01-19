@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Laravel\Scout\Searchable;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Spatie\Tags\HasTags;
@@ -11,6 +12,7 @@ use Spatie\Tags\HasTags;
 class Story extends Model
 {
     use HasTags;
+    use Searchable;
 	protected $fillable = [
 		'slug',
 		'runsheet_slug',
@@ -108,4 +110,14 @@ class Story extends Model
         $this->front_page_webfront_priority = $priority;
         $this->save();
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        unset($array['runsheet_slug']);
+
+        return $array;
+    }
+
+
 }

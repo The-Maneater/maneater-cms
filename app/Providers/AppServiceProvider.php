@@ -46,7 +46,8 @@ class AppServiceProvider extends ServiceProvider
                       ->link('/admin/core/graphics', 'Graphics')
                       ->link('/admin/core/polls', 'Polls')
                       ->link('/admin/core/issues', 'Issues')
-                      ->link('/admin/core/volumes', 'Volume'))
+                      ->link('/admin/core/volumes', 'Volumes')
+                      ->link('/admin/core/sections', 'Sections'))
                   ->add(Link::to('/admin/move', "MOVE"))
                   ->submenu(Link::to('#', '<i class="fa fa-user-o black-icon" aria-hidden="true"></i> Staff')->setAttributes(['data-toggle' => 'collapse','data-target'=>'#staffSubMenu', 'role' => 'button']),
                       Menu::new()
@@ -56,7 +57,13 @@ class AppServiceProvider extends ServiceProvider
                       ->link('/admin/staff/positions', 'Positions')
                       ->link('/admin/staff/staffers', 'Staffers')
                       ->link('/admin/staff/users', 'Users'))
-                  ->add(Link::to('/admin/advertising', '<i class="fa fa-usd black-icon" aria-hidden="true"></i> Advertising'))
+                  ->submenu(Link::to('#', '<i class="fa fa-usd black-icon" aria-hidden="true"></i> Advertising')->setAttributes(['data-toggle' => 'collapse','data-target'=>'#adSubMenu', 'role' => 'button']),
+                      Menu::new()
+                      ->addItemParentClass('sub-admin-link')
+                      ->setAttributes(['id' => 'adSubMenu'])
+                      ->addClass('collapse')
+                      ->link('/admin/advertising/ads', 'Ads')
+                      ->link('/admin/advertising/classified', 'Classified'))
                   ->add(Link::to('/admin/newsletter', '<i class="fa fa-newspaper-o black-icon" aria-hidden="true"></i> Newsletter'));
         });
     }

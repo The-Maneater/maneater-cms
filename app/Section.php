@@ -2,12 +2,15 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 class Section extends Model
 {
+    use Sluggable;
+
 	protected $fillable = [
-		'title', 'slug'
+		'name', 'slug'
 	];
 
     /**
@@ -16,6 +19,11 @@ class Section extends Model
      */
     public function stories(){
     	return $this->hasMany('App\Story');
+    }
+
+    public function publication()
+    {
+        return $this->belongsTo(Publication::class);
     }
 
     /**
@@ -34,5 +42,14 @@ class Section extends Model
         $this->stories()
         ->whereNotNull('section_webfront_priority')
         ->update(['section_webfront_priority' => NULL]);
+    }
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }

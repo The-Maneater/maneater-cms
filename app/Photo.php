@@ -3,13 +3,23 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 use Spatie\Tags\HasTags;
 
 class Photo extends Model
 {
     use HasTags;
+    use Searchable;
 	protected $fillable = [
-		'title', 'description', 'dateTaken', 'location', 'subjects', 'publish_date', 'section_id', 'issue_id', 'staffer_id'
+		'title',
+        'description',
+        'dateTaken',
+        'location',
+        'subjects',
+        'publish_date',
+        'section_id',
+        'issue_id',
+        'staffer_id'
 	];
 
 	protected $dates = ['dateTaken', 'publish_date'];

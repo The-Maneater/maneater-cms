@@ -23,9 +23,9 @@ Route::get('/staff/{slug}', 'StafferController@show');
 Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 
-
+Auth::routes();
 Route::group(['prefix' => 'admin'], function() {
-    Auth::routes();
+
     Route::group(['prefix' => 'core'], function(){
         Route::group(['prefix' => 'stories'], function(){
             Route::get('/create', 'StoriesController@create')->name('create-story');
@@ -88,6 +88,14 @@ Route::group(['prefix' => 'admin'], function() {
             Route::patch('/edit/{volume}', 'VolumesController@update')->name('update-volume');
             Route::get('/edit/{volume}', 'VolumesController@edit')->name('edit-volume');
         });
+
+        Route::group(['prefix' => 'sections'], function(){
+           Route::get('/', 'SectionsController@index');
+           Route::get('/create', 'SectionsController@create')->name('create-section');
+           Route::post('/create', 'SectionsController@store')->name('store-section');
+           Route::patch('/edit/{section}', 'SectionsController@update')->name('update-section');
+           Route::get('/edit/{section}', 'SectionsController@edit')->name('edit-section');
+        });
     });
 
     Route::group(['prefix' => 'staff'], function(){
@@ -113,6 +121,24 @@ Route::group(['prefix' => 'admin'], function() {
           Route::post('/create', 'UsersController@store')->name('store-user');
           Route::patch('/edit/{user}', 'UsersController@update')->name('update-user');
           Route::get('/edit/{user}', 'UsersController@edit')->name('edit-user');
+       });
+    });
+
+    Route::group(['prefix' => 'advertising'], function(){
+       Route::group(['prefix' => 'ads'], function(){
+          Route::get('/', 'AdsController@index');
+          Route::get('/create', 'AdsController@create')->name('create-ad');
+          Route::post('/create', 'AdsController@store')->name('store-ad');
+          Route::patch('/edit/{ad}', 'AdsController@update')->name('update-ad');
+          Route::get('/edit/{ad}', 'AdsController@edit')->name('edit-ad');
+       });
+
+       Route::group(['prefix' => 'classifieds'], function(){
+          Route::get('/', 'ClassifiedsController@index');
+          Route::get('/create', 'ClassifiedsController@create')->name('create-classified');
+          Route::post('/create', 'ClassifiedsController@store')->name('store-classified');
+          Route::patch('/edit/{classified}', 'ClassifiedsController@update')->name('update-classified');
+          Route::get('/edit/{classified}', 'ClassifiedsController@edit')->name('edit-classified');
        });
     });
 });

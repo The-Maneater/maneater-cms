@@ -13,27 +13,48 @@ class SectionSeeder extends Seeder
     {
         DB::table('sections')->insert([
         	'name' => 'Campus',
-        	'slug' => 'campus'
+        	'slug' => 'campus',
+            'publication_id' => 1
         ]);
 
         DB::table('sections')->insert([
         	'name' => 'UNews',
-        	'slug' => 'unews'
+        	'slug' => 'unews',
+            'publication_id' => 1
         ]);
 
         DB::table('sections')->insert([
         	'name' => 'Sports',
-        	'slug' => 'sports'
+        	'slug' => 'sports',
+            'publication_id' => 1
         ]);
 
         DB::table('sections')->insert([
         	'name' => 'Opinion',
-        	'slug' => 'opinion'
+        	'slug' => 'opinion',
+            'publication_id' => 1
         ]);
 
         DB::table('sections')->insert([
         	'name' => 'Projects',
-        	'slug' => 'projects'
+        	'slug' => 'projects',
+            'publication_id' => 1
+        ]);
+
+        DB::table('sections')->insert([
+            'name' => 'Angles',
+            'slug' => 'angles',
+            'publication_id' => 2
+        ]);
+        DB::table('sections')->insert([
+            'name' => 'Features',
+            'slug' => 'features',
+            'publication_id' => 2
+        ]);
+        DB::table('sections')->insert([
+            'name' => 'Culture',
+            'slug' => 'culture',
+            'publication_id' => 2
         ]);
     }
 }

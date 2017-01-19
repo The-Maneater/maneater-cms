@@ -4,10 +4,12 @@ namespace App;
 
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Staffer extends Model
 {
     use Sluggable;
+    use Searchable;
 
 	protected $fillable = [
 		'first_name',
@@ -18,6 +20,15 @@ class Staffer extends Model
 	protected $casts = ['is_active' => 'boolean'];
 
     protected $appends = array('fullname');
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        unset($array['fullname']);
+        unset($array['is_active']);
+
+        return $array;
+    }
 
     /**
      * Formats the full name of the staffer

@@ -47,7 +47,7 @@ class EventController extends Controller
         }
         $event->save();
 
-        return redirect('/admin/core/events');
+        return redirect('/admin/core/events')->with('status', 'The event was successfully created.');
     }
 
     /**
@@ -85,7 +85,7 @@ class EventController extends Controller
             $event->allday = false;
         }
         $event->update($request->all());
-        return redirect('/admin/core/events');
+        return redirect('/admin/core/events')->with('status', 'The event was successfully updated.');
     }
 
     /**

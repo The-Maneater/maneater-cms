@@ -15,8 +15,8 @@ class CreatePhotoStafferTable extends Migration
     {
         Schema::create('photo_staffer', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('photo_id');
-            $table->integer('staffer_id');
+            $table->integer('photo_id')->unsigned();
+            $table->integer('staffer_id')->unsigned();
             $table->timestamps();
         });
     }

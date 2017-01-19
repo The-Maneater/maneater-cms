@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Graphic extends Model
 {
+    use Searchable;
     protected $fillable = [
     	'title', 'description', 'link', 'publish_date', 'static_byline'
     ];

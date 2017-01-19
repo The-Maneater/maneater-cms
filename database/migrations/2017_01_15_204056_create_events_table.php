@@ -19,8 +19,8 @@ class CreateEventsTable extends Migration
             $table->string('summary');
             $table->string('description');
             $table->integer('calendar_id')->unsigned()->nullable();
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->timestamp('start_date')->nullable();
+            $table->timestamp('end_date')->nullable();
             $table->boolean('allday');
             $table->string('location');
             $table->timestamps();

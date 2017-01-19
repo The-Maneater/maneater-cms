@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePhotoStoryTable extends Migration
+class CreatePublicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreatePhotoStoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('photo_story', function (Blueprint $table) {
+        Schema::create('publications', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('photo_id')->unsigned();
-            $table->integer('story_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreatePhotoStoryTable extends Migration
      */
     public function down()
     {
-        Schema::drop('photo_story');
+        Schema::drop('publications');
     }
 }

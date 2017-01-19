@@ -169,6 +169,8 @@ return [
         Spatie\Tags\TagsServiceProvider::class,
         Spatie\Menu\Laravel\MenuServiceProvider::class,
         Laratrust\LaratrustServiceProvider::class,
+        DamianTW\MySQLScout\Providers\MySQLScoutServiceProvider::class,
+        Laravel\Scout\ScoutServiceProvider::class,
         /*
          * Application Service Providers...
          */

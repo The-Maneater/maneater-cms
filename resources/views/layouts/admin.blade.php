@@ -11,7 +11,14 @@
     @include('admin.navigation.top')
     <div class="form-container f-row">
         @include('admin.navigation.side-bar')
-        @yield('content')
+        <div>
+            @if(Session::has('status'))
+            <div class="alert alert-success">
+               <p>{{ session('status') }}</p>
+            </div>
+            @endif
+            @yield('content')
+        </div>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/js/tether.min.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>

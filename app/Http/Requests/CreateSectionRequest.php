@@ -24,8 +24,7 @@ class CreateSectionRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'slug'  => 'required|unique:sections'
+            'name' => 'required',
         ];
     }
 }
