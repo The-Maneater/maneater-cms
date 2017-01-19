@@ -66,7 +66,7 @@ class AddForeignKeys extends Migration
             $table->foreign('layout_id')->references('id')->on('layouts');
             $table->foreign('graphic_id')->references('id')->on('graphics');
         });
-        Schema::table('publications', function($table){
+        Schema::table('sections', function($table){
             $table->foreign('publication_id')->references('id')->on('publications');
         });
     }
@@ -78,6 +78,61 @@ class AddForeignKeys extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('stories', function (Blueprint $table) {
+            $table->dropForeign(['section_id']);
+            $table->dropForeign(['issue_id']);
+        });
+        Schema::table('corrections', function(Blueprint $table){
+            $table->dropForeign(['story_id']);
+        });
+        Schema::table('layouts', function(Blueprint $table){
+            $table->dropForeign(['staffer_id']);
+        });
+        Schema::table('graphic_staffer', function(Blueprint $table){
+            $table->dropForeign(['graphic_id']);
+            $table->dropForeign(['staffer_id']);
+        });
+        Schema::table('photo_staffer', function(Blueprint $table){
+            $table->dropForeign(['photo_id']);
+            $table->dropForeign(['staffer_id']);
+        });
+        Schema::table('photo_story', function(Blueprint $table){
+            $table->dropForeign(['photo_id']);
+            $table->dropForeign(['story_id']);
+        });
+        Schema::table('position_staffer', function(Blueprint $table){
+            $table->dropForeign(['position_id']);
+            $table->dropForeign(['staffer_id']);
+        });
+        Schema::table('special_section_staffer', function(Blueprint $table){
+            $table->dropForeign(['special_section_id']);
+            $table->dropForeign(['staffer_id']);
+        });
+        Schema::table('staffer_story', function(Blueprint $table){
+            $table->dropForeign(['staffer_id']);
+            $table->dropForeign(['story_id']);
+        });
+        Schema::table('graphic_story', function(Blueprint $table){
+            $table->dropForeign(['graphic_id']);
+            $table->dropForeign(['story_id']);
+        });
+        Schema::table('issues', function(Blueprint $table){
+            $table->dropForeign(['volume_id']);
+        });
+        Schema::table('layout_photo', function(Blueprint $table){
+            $table->dropForeign(['layout_id']);
+            $table->dropForeign(['photo_id']);
+        });
+        Schema::table('layout_story', function(Blueprint $table){
+            $table->dropForeign(['layout_id']);
+            $table->dropForeign(['story_id']);
+        });
+        Schema::table('layout_graphic', function(Blueprint $table){
+            $table->dropForeign(['layout_id']);
+            $table->dropForeign(['graphic_id']);
+        });
+        Schema::table('sections', function(Blueprint $table){
+            $table->dropForeign(['publication_id']);
+        });
     }
 }

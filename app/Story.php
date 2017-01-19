@@ -119,5 +119,13 @@ class Story extends Model
         return $array;
     }
 
+    public function tagExists($tag)
+    {
+        $exists = $this->tags->contains(function($value, $key) use ($tag){
+            return $value->name == $tag;
+        });
+        return $exists ? "selected" : "";
+    }
+
 
 }

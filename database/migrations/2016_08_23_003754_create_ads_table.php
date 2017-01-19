@@ -18,7 +18,7 @@ class CreateAdsTable extends Migration
             $table->string('size');
             $table->dateTime('campaign_start');
             $table->dateTime('campaign_end');
-            $table->integer('duration');
+            $table->string('duration');
             $table->string('purchaser');
             $table->string('image_url');
             $table->string('provider_url');

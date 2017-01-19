@@ -15,7 +15,8 @@ class AdsController extends Controller
      */
     public function index()
     {
-        //
+        $ads = Ad::orderBy('campaign_start')->paginate(15);
+        return view('admin.ads.list', compact('ads'));
     }
 
     /**
@@ -25,7 +26,7 @@ class AdsController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.ads.create');
     }
 
     /**
@@ -36,9 +37,15 @@ class AdsController extends Controller
      */
     public function store(CreateAdRequest $request)
     {
-        Ad::create($request->input());
+        $ad = new Ad;
+        $ad->fill($request->except('adFile'));
+        $image = $request->file('adFile')
+            ->move(public_path('ads/'), $request->file('adFile')->getClientOriginalName());
+        $ad->image_url = '/ads/' . $image->getFilename();
+        $ad->times_served = 0;
+        $ad->save();
 
-        return redirect('/');
+        return redirect('/admin/advertising/ads');
     }
 
     /**
@@ -55,24 +62,27 @@ class AdsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Ad  $ad
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Ad $ad)
     {
-        //
+        return view('admin.ads.edit', compact('ad'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Ad  $ad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Ad $ad)
     {
-        //
+        $ad->fill($request->all());
+        $ad->save();
+
+        return redirect('/admin/advertising/ads');
     }
 
     /**

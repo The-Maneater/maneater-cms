@@ -130,10 +130,10 @@ class Staffer extends Model
 
     /**
      * Returns the stories the staffer has written
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function stories(){
-        return $this->hasMany('App\Story');
+        return $this->belongsToMany('App\Story');
     }
 
     /**

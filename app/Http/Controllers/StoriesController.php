@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateStoryRequest;
+use App\Staffer;
 use App\Story;
 use Illuminate\Http\Request;
 
@@ -38,14 +39,25 @@ class StoriesController extends Controller
      */
     public function store(CreateStoryRequest $request)
     {
-        Story::create($request->input());
+        $story = new Story($request->except(['tags', 'issue', 'section', 'byline', 'photos', 'graphics']));
+        $story->issue()->associate($request->input('issue'));
+        $story->section()->associate($request->input('section'));
+        $story->save();
+
         $writers = collect($request->input('byline'));
         $writers->each(function($staffer, $key){
             /** @var \App\Staffer $staffer  */
+            $staffer = Staffer::find($staffer);
             if($staffer->stories()->count() > 10 && $staffer->isA('Reporter')){
                 $staffer->makeA('Staff Writer', 'Reporter');
             }
         });
+        //$tags = array_map('intval', $request->input('tags'));
+        $tags = $request->input('tags');
+        $story->attachTags($tags);
+        $story->writers()->attach($writers->toArray());
+        $story->photos()->sync($request->input('photos', []));
+        $story->graphics()->sync($request->input('graphics', []));
 
         return redirect('/admin/core/stories');
     }
@@ -91,12 +103,13 @@ class StoriesController extends Controller
     public function update(CreateStoryRequest $request, $section, $slug)
     {
         $article = Story::findBySectionAndSlug($section, $slug);
-        $article->update($request->except(['issue', 'byline', 'photos', 'graphics', 'section']));
+        $article->update($request->except(['issue', 'byline', 'photos', 'graphics', 'section', 'tags']));
         $article->writers()->sync($request->input('byline'));
         $article->issue()->associate($request->input('issue'));
         $article->photos()->sync($request->input('photos', []));
         $article->graphics()->sync($request->input('graphics', []));
         $article->section()->associate($request->input('section'));
+        $article->syncTags($request->input('tags'));
 
         return redirect('/admin/core/stories');
     }

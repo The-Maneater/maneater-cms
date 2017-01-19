@@ -63,7 +63,7 @@ class AppServiceProvider extends ServiceProvider
                       ->setAttributes(['id' => 'adSubMenu'])
                       ->addClass('collapse')
                       ->link('/admin/advertising/ads', 'Ads')
-                      ->link('/admin/advertising/classified', 'Classified'))
+                      ->link('/admin/advertising/classifieds', 'Classified'))
                   ->add(Link::to('/admin/newsletter', '<i class="fa fa-newspaper-o black-icon" aria-hidden="true"></i> Newsletter'));
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Requests\CreatePhotoRequest;
 use App\Photo;
+use App\Staffer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -42,17 +43,19 @@ class PhotosController extends Controller
     public function store(CreatePhotoRequest $request)
     {
         $photo = new Photo;
-        $photo->fill($request->except(['byline', 'photo']));
+        $photo->fill($request->except(['byline', 'photo', 'tags']));
         $image = $request->file('photo')->move(public_path('images/'), $request->file('photo')->getClientOriginalName());
         $photo->location = '/images/' . $image->getFilename();
         $photo->dateTaken = Carbon::now();
         $photo->save();
         $photo->photographers()->attach($request->input('byline'));
+        $photo->attachTags($request->input('tags'));
 
         $photographers = collect($request->input('byline'));
 
         $photographers->each(function($staffer, $key){
             /** @var \App\Staffer $staffer  */
+            $staffer = Staffer::find($staffer);
            if($staffer->photos()->count() > 10 && $staffer->isA('Photographer')){
                $staffer->makeA('Staff Photographer', 'Photographer');
            }
@@ -94,8 +97,9 @@ class PhotosController extends Controller
      */
     public function update(Request $request, Photo $photo)
     {
-        $photo->update($request->except(['byline', 'photo']));
+        $photo->update($request->except(['byline', 'photo', 'tags']));
         $photo->photographers()->sync($request->input('byline'));
+        $photo->syncTags($request->input('tags'));
 
         return redirect('/admin/core/photos');
     }

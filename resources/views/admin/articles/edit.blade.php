@@ -118,6 +118,17 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="tags">Tags:</label>
+                    {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
+                    <div class="form-group">
+                        <select name="tags[]" id="tags" multiple>
+                            @foreach (\Spatie\Tags\Tag::all() as $tag)
+                                <option value="{{ $tag->name }}" {{ $article->tagExists($tag->name) }}>{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="slug">Slug:</label>
                     <input type="text" name="slug" id="slug" class="wideTextField form-control" value="{{ $article->slug }}">
                 </div>

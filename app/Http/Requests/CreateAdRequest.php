@@ -27,10 +27,9 @@ class CreateAdRequest extends FormRequest
             'size'          => 'required',
             'duration'      => 'required',
             'purchaser'     => 'required',
-            'imageUrl'      => 'required',
-            'providerUrl'   => 'required',
-            'campaignStart' => 'required|date',
-            'campaignEnd'   => 'required|date'
+            'provider_url'   => 'required',
+            'campaign_start' => 'required|date',
+            'campaign_end'   => 'required|date'
         ];
     }
 }

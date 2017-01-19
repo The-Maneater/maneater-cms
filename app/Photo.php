@@ -58,4 +58,12 @@ class Photo extends Model
         return $this->belongsTo('App\Issue');
     }
 
+    public function tagExists($tag)
+    {
+        $exists = $this->tags->contains(function($value, $key) use ($tag){
+            return $value->name == $tag;
+        });
+        return $exists ? "selected" : "";
+    }
+
 }

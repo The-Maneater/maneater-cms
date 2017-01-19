@@ -96,10 +96,10 @@
                         <textarea name="body" id="body" class="wideTextField form-control">{{ old('body') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="issue">Photos:</label>
+                        <label for="photos">Photos:</label>
                         {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
                         <div class="form-group">
-                            <select name="photo" id="photo" multiple>
+                            <select name="photos[]" id="photos" multiple>
                                 @foreach (\App\Photo::all() as $photo)
                                     <option value="{{ $photo->id }}">{{ $photo->title }}</option>
                                 @endforeach
@@ -107,12 +107,23 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="issue">Graphics:</label>
+                        <label for="graphics">Graphics:</label>
                         {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
                         <div class="form-group">
-                            <select name="graphics" id="graphics" multiple>
+                            <select name="graphics[]" id="graphics" multiple>
                                 @foreach (\App\Graphic::all() as $graphic)
                                     <option value="{{ $graphic->id }}">{{ $graphic->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tags">Tags:</label>
+                        {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
+                        <div class="form-group">
+                            <select name="tags[]" id="tags" multiple>
+                                @foreach (\Spatie\Tags\Tag::all() as $tag)
+                                    <option value="{{ $tag->name }}">{{ $tag->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -145,6 +156,9 @@
             $('select').select2({
                 placeholder: 'Select an option',
                 allowClear: true
+            });
+            $('#tags').select2({
+                tags: true
             });
         })
 

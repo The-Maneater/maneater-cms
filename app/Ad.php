@@ -11,7 +11,14 @@ class Ad extends Model
 	protected $dates = ['campaign_start', 'campaign_end'];
 
 	protected $fillable = [
-		'size', 'duration', 'purchaser', 'image_url', 'provider_url', 'times_served', 'campaign_start', 'campaign_end'
+		'size',
+        'duration',
+        'purchaser',
+        'image_url',
+        'provider_url',
+        'times_served',
+        'campaign_start',
+        'campaign_end'
 	];
 
     /**
