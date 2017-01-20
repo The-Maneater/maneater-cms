@@ -29,6 +29,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Returns the associated staffer
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function staffer()
     {
         return $this->hasOne(Staffer::class);

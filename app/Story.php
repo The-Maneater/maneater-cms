@@ -111,6 +111,10 @@ class Story extends Model
         $this->save();
     }
 
+    /**
+     * Generates the searchable attributes for the mysql scout driver
+     * @return array
+     */
     public function toSearchableArray()
     {
         $array = $this->toArray();
@@ -119,6 +123,11 @@ class Story extends Model
         return $array;
     }
 
+    /**
+     * Checks to see if the specified tag exists
+     * @param $tag
+     * @return string
+     */
     public function tagExists($tag)
     {
         $exists = $this->tags->contains(function($value, $key) use ($tag){
@@ -127,6 +136,10 @@ class Story extends Model
         return $exists ? "selected" : "";
     }
 
+    /**
+     * Returns the associated header photos
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function headerPhotos()
     {
         return $this->photos()
@@ -134,6 +147,10 @@ class Story extends Model
             ->get();
     }
 
+    /**
+     * Returns the associated inline photos
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function inlinePhotos()
     {
         return $this->photos()

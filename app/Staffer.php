@@ -21,6 +21,10 @@ class Staffer extends Model
 
     protected $appends = array('fullname');
 
+    /**
+     * Generates the array for the mysql scout driver
+     * @return array
+     */
     public function toSearchableArray()
     {
         $array = $this->toArray();
@@ -38,6 +42,10 @@ class Staffer extends Model
         return $this->first_name . " " . $this->last_name;
     }
 
+    /**
+     * Returns the staffer's associated writer position
+     * @return mixed
+     */
     public function getWriterPositionAttribute()
     {
         return $this->positions()->get()->first(function($value, $key){
@@ -45,6 +53,10 @@ class Staffer extends Model
         })->title;
     }
 
+    /**
+     * Returns the staffer's associated photographer position
+     * @return mixed
+     */
     public function getPhotographerPositionAttribute()
     {
         return $this->positions()->get()->first(function($value, $key){
@@ -53,6 +65,7 @@ class Staffer extends Model
     }
 
     /**
+     * Finds the staffer by slug
      * @param $slug
      * @return Model|null|static
      */
@@ -90,6 +103,10 @@ class Staffer extends Model
         return $this;
     }
 
+    /**
+     * Generates the slug for the staffer's name
+     * @return array
+     */
     public function sluggable(){
         return [
             'slug' => [
@@ -160,6 +177,10 @@ class Staffer extends Model
         return $this->hasMany(Graphic::class);
     }
 
+    /**
+     * Returns the associated user account
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

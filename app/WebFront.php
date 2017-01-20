@@ -21,15 +21,11 @@ class WebFront extends Model
     }
 
     /**
-     * Returns the stories for the front page
+     * Returns the stories for the front page for the maneater
      * @return mixed
      */
     public static function frontPage()
     {
-//        return Story::whereNotNull('front_page_webfront_priority')
-//            ->orderBy('front_page_webfront_priority')
-//            ->get()
-//            ->keyBy('front_page_webfront_priority');
         return Story::whereHas('section', function($query){
             $publication = Publication::findByString('The Maneater');
             $query->where('publication_id', $publication->id);
@@ -39,6 +35,10 @@ class WebFront extends Model
             ->keyBy('front_page_webfront_priority');
     }
 
+    /**
+     * Returns the stories for the move front page
+     * @return \Illuminate\Support\Collection
+     */
     public static function moveFrontPage()
     {
         return Story::whereHas('section', function($query){
@@ -50,10 +50,26 @@ class WebFront extends Model
             ->keyBy('front_page_webfront_priority');
     }
 
+    /**
+     * Clears all stories from the specified web front
+     * @param $section
+     */
     public static function clearWebFront($section)
     {
-        $frontPage = ($section == 0);
-        $articles = ($section == 0) ? WebFront::frontPage(): WebFront::bySection($section);
+        $frontPage = ($section == 0) || ($section == -1);
+        switch ($section){
+            case -1:
+                $articles = Webfront::moveFrontPage();
+                break;
+
+            case 0:
+                $articles = WebFront::frontPage();
+                break;
+
+            default:
+                $articles = WebFront::bySection($section);
+                break;
+        }
         $articles->each(function($item, $key) use($frontPage){
             /** @var \App\Story $item  */
            if($frontPage){

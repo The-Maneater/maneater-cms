@@ -58,6 +58,11 @@ class Photo extends Model
         return $this->belongsTo('App\Issue');
     }
 
+    /**
+     * Checks to see if the photo has the specified tag
+     * @param $tag
+     * @return string
+     */
     public function tagExists($tag)
     {
         $exists = $this->tags->contains(function($value, $key) use ($tag){

@@ -21,6 +21,10 @@ class Section extends Model
     	return $this->hasMany('App\Story');
     }
 
+    /**
+     * Returns the associated publication
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function publication()
     {
         return $this->belongsTo(Publication::class);
@@ -44,6 +48,10 @@ class Section extends Model
         ->update(['section_webfront_priority' => NULL]);
     }
 
+    /**
+     * Generates the slug
+     * @return array
+     */
     public function sluggable()
     {
         return [
