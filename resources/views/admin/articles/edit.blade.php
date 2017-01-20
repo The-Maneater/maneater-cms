@@ -96,15 +96,60 @@
                     <textarea name="body" id="body" class="wideTextField form-control">{{ $article->body }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="issue">Photos:</label>
+                    <label for="photo">Photos:</label>
                     {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
                     <div class="form-group">
-                        <select name="photos[]" id="photo" multiple>
+                        <select name="topPhotos[]" id="photo" multiple>
                             @foreach (\App\Photo::all() as $photo)
-                                <option value="{{ $photo->id }}" {{ ($article->photos->contains($photo->id) ? "selected":"") }}>{{ $photo->title }}</option>
+                                <option value="{{ $photo->id }}" {{ ($article->headerPhotos()->contains($photo->id) ? "selected":"") }}>{{ $photo->title }}</option>
                             @endforeach
                         </select>
                     </div>
+                </div>
+                <div class="form-group">
+                    <label>Inline Photos:</label>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Reference</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @if(count($article->inlinePhotos()) > 0)
+                            @foreach($article->inlinePhotos() as $inlinePhoto)
+                                <tr class="firstRow" id="firstRow">
+                                    <td class="photoSelect">
+                                        <select name="inlinePhotos[{{$loop->index}}][photo]" class="inline-photo">
+                                            <option></option>
+                                            @foreach (\App\Photo::all() as $photo)
+                                                <option value="{{ $photo->id }}" {{ $inlinePhoto->id == $photo->id ? "selected" : "" }}>{{ $photo->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td class="reference">
+                                        <input type="text" name="inlinePhotos[{{$loop->index}}][reference]" value="{{ $inlinePhoto->pivot->reference }}">
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr class="firstRow" id="firstRow">
+                                <td class="photoSelect">
+                                    <select name="inlinePhotos[0][photo]" class="inline-photo">
+                                        <option></option>
+                                        @foreach (\App\Photo::all() as $photo)
+                                            <option value="{{ $photo->id }}" >{{ $photo->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td class="reference">
+                                    <input type="text" name="inlinePhotos[0][reference]" value="">
+                                </td>
+                            </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                    <a onclick="addTableRow()" class="btn btn-info">Add Row</a>
                 </div>
                 <div class="form-group">
                     <label for="issue">Graphics:</label>
@@ -143,12 +188,29 @@
     <script src="/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     <script>
+        let inlineIndex = {{ count($article->inlinePhotos()) }} + 1;
         function createSlug(){
             var slug = document.getElementById("title").value;
             slug = slug.toLowerCase();
             slug = slug.replace(/ /g, "-");
             document.getElementById("slug").value = slug;
         }
+
+        function addTableRow(){
+            $(".inline-photo").select2("destroy");
+            let el = $("#firstRow").clone();
+            $(el).find('td.photoSelect select').attr("name", "inlinePhotos[" + inlineIndex + "][photo]").val([]);
+            $(el).find('td.reference input').attr("name", "inlinePhotos[" + inlineIndex + "][reference]").val("");
+            $(el).attr('id', '');
+            $("tbody").append(el);
+            $('.inline-photo').select2({
+                placeholder: 'Select an option',
+                allowClear: true
+            });
+            inlineIndex++;
+            console.log("hi");
+        }
+
         function submitForm(){
             $("#storyForm").submit();
         }

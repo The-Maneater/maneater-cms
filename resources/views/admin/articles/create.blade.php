@@ -96,15 +96,42 @@
                         <textarea name="body" id="body" class="wideTextField form-control">{{ old('body') }}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="photos">Photos:</label>
+                        <label for="topPhotos">Header Photos:</label>
                         {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
                         <div class="form-group">
-                            <select name="photos[]" id="photos" multiple>
+                            <select name="topPhotos[]" id="topPhotos" multiple>
                                 @foreach (\App\Photo::all() as $photo)
                                     <option value="{{ $photo->id }}">{{ $photo->title }}</option>
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Inline Photos:</label>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Reference</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="firstRow">
+                                    <td class="photoSelect">
+                                        <select name="inlinePhotos[0][photo]" class="inline-photo">
+                                            <option></option>
+                                            @foreach (\App\Photo::all() as $photo)
+                                                <option value="{{ $photo->id }}">{{ $photo->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td class="reference">
+                                        <input type="text" name="inlinePhotos[0][reference]">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <a onclick="addTableRow()" class="btn btn-info">Add Row</a>
                     </div>
                     <div class="form-group">
                         <label for="graphics">Graphics:</label>
@@ -142,6 +169,7 @@
 
 @section('scripts')
     <script>
+        let inlineIndex = 1;
         function createSlug(){
             var slug = document.getElementById("title").value;
             slug = slug.toLowerCase();
@@ -150,6 +178,21 @@
         }
         function submitForm(){
             $("#storyForm").submit();
+        }
+
+        function addTableRow(){
+            $(".inline-photo").select2("destroy");
+            let el = $(".firstRow").clone();
+            $(el).find('td.photoSelect select').attr("name", "inlinePhotos[" + inlineIndex + "][photo]").val([]);
+            $(el).find('td.reference input').attr("name", "inlinePhotos[" + inlineIndex + "][reference]").val("");
+            $(el).removeClass('firstRow');
+            $("tbody").append(el);
+            $('.inline-photo').select2({
+                placeholder: 'Select an option',
+                allowClear: true
+            });
+            inlineIndex++;
+            console.log("hi");
         }
 
         $(document).ready(function(){

@@ -39,9 +39,25 @@ class StoriesController extends Controller
      */
     public function store(CreateStoryRequest $request)
     {
-        $story = new Story($request->except(['tags', 'issue', 'section', 'byline', 'photos', 'graphics']));
+        //dd($request);
+        $story = new Story($request->except(['tags', 'issue', 'section', 'byline', 'topPhotos', 'inlinePhotos', 'graphics']));
         $story->issue()->associate($request->input('issue'));
         $story->section()->associate($request->input('section'));
+
+        $topPhotos = collect($request->input('topPhotos', []))
+            ->flip()
+            ->map(function($item, $key){
+                return ['type' => 'header'];
+            });
+        $inlinePhotos = collect($request->input('inlinePhotos'));
+        $ids = $inlinePhotos->pluck('photo');
+        $references = $inlinePhotos->pluck('reference');
+        $ids = $ids->flip()
+            ->map(function($item, $key) use($references){
+                return ['type' => 'inline', 'reference' => $references[$item]];
+            });
+        $photos = $topPhotos->toArray() + $ids->toArray();
+
         $story->save();
 
         $writers = collect($request->input('byline'));
@@ -52,11 +68,11 @@ class StoriesController extends Controller
                 $staffer->makeA('Staff Writer', 'Reporter');
             }
         });
-        //$tags = array_map('intval', $request->input('tags'));
         $tags = $request->input('tags');
         $story->attachTags($tags);
         $story->writers()->attach($writers->toArray());
-        $story->photos()->sync($request->input('photos', []));
+
+        $story->photos()->sync($photos);
         $story->graphics()->sync($request->input('graphics', []));
 
         return redirect('/admin/core/stories');
@@ -71,9 +87,13 @@ class StoriesController extends Controller
      */
     public function show($section, $slug)
     {
-        //dd($section);
-        //dd(Story::findBySectionAndSlug($section, $slug));
         $story = Story::findBySectionAndSlug($section, $slug);
+        $inlinePhotos = $story->inlinePhotos();
+        $append = "";
+        $inlinePhotos->each(function($item, $key) use(&$append){
+            $append .= "\n [" . $item->pivot->reference . "]: " . env('APP_URL') . $item->location;
+        });
+        $story->body .= $append;
         return view('stories.show', compact('story'));
     }
 
@@ -88,7 +108,7 @@ class StoriesController extends Controller
     public function edit($section, $slug)
     {
         $article = Story::findBySectionAndSlug($section, $slug);
-        return view('admin.articles.edit', compact(['article', 'section', 'slug']));
+        return view('admin.articles.edit', compact('article', 'section', 'slug'));
     }
 
     /**
@@ -103,10 +123,25 @@ class StoriesController extends Controller
     public function update(CreateStoryRequest $request, $section, $slug)
     {
         $article = Story::findBySectionAndSlug($section, $slug);
-        $article->update($request->except(['issue', 'byline', 'photos', 'graphics', 'section', 'tags']));
+        $article->update($request->except(['issue', 'byline', 'topPhotos', 'inlinePhotos' , 'graphics', 'section', 'tags']));
         $article->writers()->sync($request->input('byline'));
         $article->issue()->associate($request->input('issue'));
-        $article->photos()->sync($request->input('photos', []));
+
+        $topPhotos = collect($request->input('topPhotos', []))
+            ->flip()
+            ->map(function($item, $key){
+                return ['type' => 'header'];
+            });
+        $inlinePhotos = collect($request->input('inlinePhotos'));
+        $ids = $inlinePhotos->pluck('photo');
+        $references = $inlinePhotos->pluck('reference');
+        $ids = $ids->flip()
+            ->map(function($item, $key) use($references){
+                return ['type' => 'inline', 'reference' => $references[$item]];
+            });
+        $photos = $topPhotos->toArray() + $ids->toArray();
+
+        $article->photos()->sync($photos);
         $article->graphics()->sync($request->input('graphics', []));
         $article->section()->associate($request->input('section'));
         $article->syncTags($request->input('tags'));

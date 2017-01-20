@@ -41,7 +41,7 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
 
         $story = App\Story::find(1);
         $story->writers()->attach(1);
-        $story->photos()->attach(1);
+        $story->photos()->attach([1 => ['type' => 'header']]);
         $story->graphics()->attach(1);
 
         $faker = Faker::create();

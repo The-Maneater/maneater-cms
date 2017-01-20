@@ -29,6 +29,15 @@
                     <label for="last_name">Last Name:</label>
                     <input type="text" name="last_name" id="last_name" class="wideTextField form-control" value="{{ old('last_name') }}">
                 </div>
+                <div class="form-group">
+                    <label for="user">Associated user account</label>
+                    <select name="user" id="user">
+                        <option></option>
+                        @foreach(\App\User::all() as $user)
+                            <option value="{{ $user->id }}">{{ $user->username }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         </form>
     </div>

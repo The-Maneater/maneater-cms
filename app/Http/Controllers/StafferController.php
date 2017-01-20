@@ -40,11 +40,15 @@ class StafferController extends Controller
     public function store(CreateStafferRequest $request)
     {
         $staffer = new Staffer;
-        $staffer->fill($request->all());
+        $staffer->fill($request->except('user'));
         $staffer->is_active = true;
+        if($request->input('user') !== null){
+            $staffer->user()->associate($request->input('user'));
+        }
         $staffer->save();
         $staffer->positions()->attach(Position::findByTitle('Reporter'), ['start_date' => \Carbon\Carbon::now()]);
         $staffer->positions()->attach(Position::findByTitle('Photographer'), ['start_date' => \Carbon\Carbon::now()]);
+
 
         return redirect('/admin/staff/staffers');
     }
@@ -80,8 +84,11 @@ class StafferController extends Controller
      */
     public function update(Request $request, Staffer $staffer)
     {
-        $staffer->fill($request->except('active'));
+        $staffer->fill($request->except(['active', 'user']));
         $staffer->is_active = $request->input('active') !== null;
+        if($request->input('user') !== null){
+            $staffer->user()->associate($request->input('user'));
+        }
 
         $staffer->save();
 

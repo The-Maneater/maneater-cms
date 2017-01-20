@@ -16,6 +16,8 @@ class CreatePhotoStoryTable extends Migration
         Schema::create('photo_story', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('photo_id')->unsigned();
+            $table->string('type');
+            $table->string('reference')->nullable();
             $table->integer('story_id')->unsigned();
             $table->timestamps();
         });

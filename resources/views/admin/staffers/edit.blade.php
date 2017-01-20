@@ -34,6 +34,15 @@
                     <label for="active">Is Active:</label>
                     <input type="checkbox" name="active" id="active" class="wideTextField form-control" {{ $staffer->is_active ? "checked" : "" }}>
                 </div>
+                <div class="form-group">
+                    <label for="user">Associated user account</label>
+                    <select name="user" id="user">
+                        <option></option>
+                        @foreach(\App\User::all() as $user)
+                            <option value="{{ $user->id }}" {{ $staffer->user !== null && $staffer->user->id == $user->id ? "selected" : "" }}>{{ $user->username }}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
         </form>
     </div>
@@ -47,5 +56,12 @@
         function submitForm(){
             $("#storyForm").submit();
         }
+
+        $(document).ready(function(){
+            $('select').select2({
+                placeholder: 'Select an option',
+                allowClear: true
+            });
+        })
     </script>
 @endsection

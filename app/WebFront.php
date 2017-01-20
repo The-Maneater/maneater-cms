@@ -26,7 +26,25 @@ class WebFront extends Model
      */
     public static function frontPage()
     {
-        return Story::whereNotNull('front_page_webfront_priority')
+//        return Story::whereNotNull('front_page_webfront_priority')
+//            ->orderBy('front_page_webfront_priority')
+//            ->get()
+//            ->keyBy('front_page_webfront_priority');
+        return Story::whereHas('section', function($query){
+            $publication = Publication::findByString('The Maneater');
+            $query->where('publication_id', $publication->id);
+        })->whereNotNull('front_page_webfront_priority')
+            ->orderBy('front_page_webfront_priority')
+            ->get()
+            ->keyBy('front_page_webfront_priority');
+    }
+
+    public static function moveFrontPage()
+    {
+        return Story::whereHas('section', function($query){
+            $publication = Publication::findByString('MOVE');
+            $query->where('publication_id', $publication->id);
+        })->whereNotNull('front_page_webfront_priority')
             ->orderBy('front_page_webfront_priority')
             ->get()
             ->keyBy('front_page_webfront_priority');

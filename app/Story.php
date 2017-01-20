@@ -127,5 +127,20 @@ class Story extends Model
         return $exists ? "selected" : "";
     }
 
+    public function headerPhotos()
+    {
+        return $this->photos()
+            ->wherePivot('type', 'header')
+            ->get();
+    }
+
+    public function inlinePhotos()
+    {
+        return $this->photos()
+            ->wherePivot('type', 'inline')
+            ->withPivot('reference')
+            ->get();
+    }
+
 
 }

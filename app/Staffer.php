@@ -104,7 +104,7 @@ class Staffer extends Model
      */
     public function positions()
     {
-        return $this->belongsToMany('App\Position')
+        return $this->belongsToMany(Position::class)
             ->withPivot('start_date', 'end_date');
     }
 
@@ -133,7 +133,7 @@ class Staffer extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function stories(){
-        return $this->belongsToMany('App\Story');
+        return $this->belongsToMany(Story::class);
     }
 
     /**
@@ -141,7 +141,7 @@ class Staffer extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function photos(){
-        return $this->hasMany('App\Photo');
+        return $this->hasMany(Photo::class);
     }
 
     /**
@@ -149,7 +149,7 @@ class Staffer extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function layouts(){
-        return $this->hasMany('App\Layout');
+        return $this->hasMany(Layout::class);
     }
 
     /**
@@ -157,6 +157,11 @@ class Staffer extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function graphics(){
-        return $this->hasMany('App\Graphic');
+        return $this->hasMany(Graphic::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
