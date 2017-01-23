@@ -96,6 +96,14 @@ Route::group(['prefix' => 'admin'], function() {
            Route::patch('/edit/{section}', 'SectionsController@update')->name('update-section');
            Route::get('/edit/{section}', 'SectionsController@edit')->name('edit-section');
         });
+
+        Route::group(['prefix' => 'polls'], function(){
+           Route::get('/', 'PollsController@index');
+           Route::get('/create', 'PollsController@create')->name('create-poll');
+           Route::post('/create', 'PollsController@store')->name('store-poll');
+           Route::patch('/edit/{poll}', 'PollsController@update')->name('update-poll');
+           Route::get('/edit/{poll}', 'PollsController@edit')->name('edit-poll');
+        });
     });
 
     Route::group(['prefix' => 'staff'], function(){

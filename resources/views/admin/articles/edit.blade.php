@@ -118,7 +118,11 @@
                         <tbody>
                         @if(count($article->inlinePhotos()) > 0)
                             @foreach($article->inlinePhotos() as $inlinePhoto)
+                                @if($loop->first)
                                 <tr class="firstRow" id="firstRow">
+                                @else
+                                <tr class="firstRow">
+                                @endif
                                     <td class="photoSelect">
                                         <select name="inlinePhotos[{{$loop->index}}][photo]" class="inline-photo">
                                             <option></option>
