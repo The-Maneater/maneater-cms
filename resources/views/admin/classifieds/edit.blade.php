@@ -30,13 +30,13 @@
             <div class="form-group">
                 <div class="form-group">
                     <label for="start_date">Start Date:</label>
-                    <input type="text" name="start_date" id="start_date" class="wideTextField form-control" value="{{ $classified->start_date }}">
+                    <input type="text" name="start_date" id="start_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('start_date') === null ? $classified->start_date : old('start_date')}}">
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-group">
                     <label for="end_date">End Date:</label>
-                    <input type="text" name="end_date" id="end_date" class="wideTextField form-control" value="{{ $classified->end_date }}">
+                    <input type="text" name="end_date" id="end_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('end_date') === null ? $classified->end_date : old('end_date')}}">
                 </div>
             </div>
             <div class="form-group">

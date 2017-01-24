@@ -42,11 +42,11 @@
                 </div>
                 <div class="form-group">
                     <label for="start_date">Start Date:</label>
-                    <input type="text" name="start_date" id="start_date" class="wideTextField form-control" value="{{ $event->start_date }}">
+                    <input type="text" name="start_date" id="start_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('start_date') === null ? $event->start_date : old('start_date')}}">
                 </div>
                 <div class="form-group">
                     <label for="end_date">End Date:</label>
-                    <input type="text" name="end_date" id="end_date" class="wideTextField form-control" value="{{ $event->end_date }}">
+                    <input type="text" name="end_date" id="end_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('end_date') === null ? $event->end_date : old('end_date')}}">
                 </div>
                 <div class="form-group">
                     <label for="allday">All day:</label>
@@ -65,5 +65,7 @@
         function submitForm(){
             $("#storyForm").submit();
         }
+        $(document).ready(function () {
+        })
     </script>
 @endsection

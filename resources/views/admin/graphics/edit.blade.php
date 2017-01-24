@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label for="publish_date">Publish Date:</label>
-                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control" value="{{ $graphic->publish_date }}">
+                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('publish_date') === null ? $graphic->publish_date : old('publish_date')}}">
                 </div>
                 <div class="form-group">
                     <label for="issue">Issue</label>
@@ -90,6 +90,7 @@
                 placeholder: 'Select an option',
                 allowClear: true
             });
+            setInputDate("input[name=publish_date]", "{{ $graphic->publish_date }}");
         })
 
     </script>

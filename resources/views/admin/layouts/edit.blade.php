@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label for="date_published">Date Published:</label>
-                    <input type="text" name="date_published" id="date_published" class="wideTextField form-control" value="{{ $layout->date_published }}">
+                    <input type="text" name="date_published" id="date_published" class="wideTextField form-control flatpickr" data-default-date="{{ old('date_published') === null ? $layout->date_published : old('date_published')}}">
                 </div>
             </div>
             <div class="field-group">

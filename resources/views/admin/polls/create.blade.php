@@ -27,11 +27,11 @@
                 </div>
                 <div class="form-group">
                     <label for="start_date">Start Date:</label>
-                    <input type="text" name="start_date" id="start_date" class="wideTextField form-control" value="{{ \Carbon\Carbon::now()->addDays(-2) }}">
+                    <input type="text" name="start_date" id="start_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('start_date') === null ? \Carbon\Carbon::now() : old('start_date')}}">
                 </div>
                 <div class="form-group">
                     <label for="end_date">End Date:</label>
-                    <input type="text" name="end_date" id="end_date" class="wideTextField form-control" value="{{ \Carbon\Carbon::now()->addDays(2) }}">
+                    <input type="text" name="end_date" id="end_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('end_date') === null ? \Carbon\Carbon::now() : old('end_date')}}">
                 </div>
                 <div class="form-group">
                     <label for="publication">Publication:</label>

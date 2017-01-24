@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="first_issue_date">First Issue Date:</label>
-                    <input type="text" name="first_issue_date" id="first_issue_date" class="wideTextField form-control" value="{{ \Carbon\Carbon::now() }}">
+                    <input type="text" name="first_issue_date" id="first_issue_date" class="wideTextField form-control flatpickr">
                 </div>
                 <div class="form-group">
                     <label for="period">Period:</label>

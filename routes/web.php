@@ -24,8 +24,14 @@ Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 
 Auth::routes();
-Route::group(['prefix' => 'admin'], function() {
-
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    Route::get('/dashboard', 'PagesController@dashboard');
+    Route::get('/move', function(){
+        return redirect('/admin/dashboard');
+    });
+    Route::get('/newsletter', function(){
+        return redirect('/admin/dashboard');
+    });
     Route::group(['prefix' => 'core'], function(){
         Route::group(['prefix' => 'stories'], function(){
             Route::get('/create', 'StoriesController@create')->name('create-story');

@@ -28,7 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label for="first_issue_date">First Issue Date:</label>
-                    <input type="text" name="first_issue_date" id="first_issue_date" class="wideTextField form-control" value="{{ $volume->first_issue_date }}">
+                    <input type="text" name="first_issue_date" id="first_issue_date" class="wideTextField form-control flatpickr" value="">
                 </div>
                 <div class="form-group">
                     <label for="period">Period:</label>
@@ -51,5 +51,8 @@
         function submitForm(){
             $("#storyForm").submit();
         }
+        $(document).ready(function(){
+            setInputDate("input[name=campaign_start]", "{{ $volume->first_issue_date }}");
+        })
     </script>
 @endsection

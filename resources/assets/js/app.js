@@ -6,7 +6,14 @@
  */
 
 require('./bootstrap');
-
+const Flatpickr = require("flatpickr");
+$(".flatpickr").flatpickr({
+    enableTime: true,
+    altInput: true,
+    altFormat: "F j, Y h:i K",
+    defaultDate: new Date(),
+    enableSeconds: true
+});
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the body of the page. From here, you may begin adding components to

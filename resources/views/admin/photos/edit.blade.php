@@ -24,7 +24,7 @@
             <div class="field-group">
                 <div class="form-group">
                     <label for="publish_date">Publish Date:</label>
-                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control" value="{{ $photo->publish_date }}">
+                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('publish_date') === null ? $photo->publish_date : old('publish_date')}}">
                 </div>
                 <div class="form-group">
                     <label for="issue">Issue</label>

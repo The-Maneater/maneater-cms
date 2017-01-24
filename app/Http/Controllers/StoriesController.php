@@ -53,6 +53,9 @@ class StoriesController extends Controller
         $ids = $inlinePhotos->pluck('photo');
         $references = $inlinePhotos->pluck('reference');
         $ids = $ids->flip()
+            ->reject(function($item){
+                return $item == '' || $item === null;
+            })
             ->map(function($item, $key) use($references){
                 return ['type' => 'inline', 'reference' => $references[$item]];
             });
@@ -136,6 +139,9 @@ class StoriesController extends Controller
         $ids = $inlinePhotos->pluck('photo');
         $references = $inlinePhotos->pluck('reference');
         $ids = $ids->flip()
+            ->reject(function($item){
+                return $item == '' || $item === null;
+            })
             ->map(function($item, $key) use($references){
                 return ['type' => 'inline', 'reference' => $references[$item]];
             });

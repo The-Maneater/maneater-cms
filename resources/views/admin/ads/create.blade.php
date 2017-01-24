@@ -28,11 +28,11 @@
                 </div>
                 <div class="form-group">
                     <label for="campaign_start">Campaign Start:</label>
-                    <input type="text" name="campaign_start" id="campaign_start" class="wideTextField form-control" value="{{ \Carbon\Carbon::now()->addDays(-2) }}">
+                    <input type="text" name="campaign_start" id="campaign_start" class="wideTextField form-control flatpickr" data-default-date="{{ old('campaign_start') === null ? \Carbon\Carbon::now() : old('campaign_start')}}">
                 </div>
                 <div class="form-group">
                     <label for="campaign_end">Campaign End:</label>
-                    <input type="text" name="campaign_end" id="campaign_end" class="wideTextField form-control" value="{{ \Carbon\Carbon::now()->addDays(2) }}">
+                    <input type="text" name="campaign_end" id="campaign_end" class="wideTextField form-control flatpickr" data-default-date="{{ old('campaign_end') === null ? \Carbon\Carbon::now() : old('campaign_end')}}">
                 </div>
                 <div class="form-group">
                     <label for="size">Size</label>
@@ -74,7 +74,7 @@
                 placeholder: 'Select an option',
                 allowClear: true
             });
-        })
+        });
 
     </script>
 @endsection

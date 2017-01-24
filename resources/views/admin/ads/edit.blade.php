@@ -29,11 +29,11 @@
                 </div>
                 <div class="form-group">
                     <label for="campaign_start">Campaign Start:</label>
-                    <input type="text" name="campaign_start" id="campaign_start" class="wideTextField form-control" value="{{ $ad->campaign_start }}">
+                    <input type="text" name="campaign_start" id="campaign_start" class="wideTextField form-control flatpickr" data-default-date="{{ old('campaign_start') === null ? $ad->campaign_start : old('campaign_start')}}">
                 </div>
                 <div class="form-group">
                     <label for="campaign_end">Campaign End:</label>
-                    <input type="text" name="campaign_end" id="campaign_end" class="wideTextField form-control" value="{{ $ad->campaign_end }}">
+                    <input type="text" name="campaign_end" id="campaign_end" class="wideTextField form-control flatpickr" data-default-date="{{ old('campaign_end') === null ? $ad->campaign_end : old('campaign_end')}}">
                 </div>
                 <div class="form-group">
                     <label for="size">Size</label>

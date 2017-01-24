@@ -27,7 +27,7 @@
                 </div>
                 <div class="form-group">
                     <label for="publish_date">Publish Date:</label>
-                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control" value="2016-08-22 12:00:00">
+                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date')}}">
                 </div>
                 <div class="form-group">
                     <label for="issue">Issue</label>

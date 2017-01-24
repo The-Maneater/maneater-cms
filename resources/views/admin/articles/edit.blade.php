@@ -48,7 +48,7 @@
                 <p>Publication Information:</p>
                 <div class="form-group">
                     <label for="publish_date">Publish Date</label>
-                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control" value="{{ $article->publish_date }}">
+                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('publish_date') === null ? $article->publish_date : old('publish_date')}}">
                 </div>
                 <div class="form-check">
                     <label class="form-check-label">
@@ -221,6 +221,7 @@
 
         $(document).ready(function(){
             $('select').select2();
+            setInputDate("input[name=publish_date]", "{{ $article->publish_date }}");
         })
 
     </script>
