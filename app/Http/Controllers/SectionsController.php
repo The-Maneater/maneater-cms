@@ -55,8 +55,9 @@ class SectionsController extends Controller
     public function show($slug)
     {
         $section = Section::findBySlug($slug);
-
-        return $section;
+        $stories = $section->stories()->latest()->take(10)->get();
+        $priorityStories = $section->webFrontStories()->get();
+        return view('sections.index', compact('stories', 'priorityStories'));
     }
 
     /**

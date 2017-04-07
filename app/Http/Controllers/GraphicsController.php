@@ -82,7 +82,6 @@ class GraphicsController extends Controller
      */
     public function update(Request $request, Graphic $graphic)
     {
-        $graphic = Graphic::find($id);
         $graphic->fill($request->except(['issue', 'section', 'byline']));
         $graphic->issue()->associate($request->input('issue'));
         $graphic->section()->associate($request->input('section'));

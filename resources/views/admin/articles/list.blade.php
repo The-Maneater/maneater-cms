@@ -5,13 +5,13 @@
 @endsection
 
 @section('content')
-    <div>
+    <div class="content">
         <div class="theader">
-            <h2>Articles</h2>
-            <a href="{{ route('create-story') }}" class="btn btn-success">Add Article</a>
+            <h2 class="">Articles</h2>
+            <a href="{{ route('create-story') }}" class="button">Add Article</a>
         </div>
 
-       <table class="table table-striped table-bordered">
+       <table class="table is-striped is-bordered">
            <thead>
            <tr>
                <th>Title</th>

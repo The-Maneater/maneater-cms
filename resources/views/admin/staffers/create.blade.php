@@ -21,15 +21,15 @@
         <form action="{{ route('create-staffer') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name" id="first_name" class="wideTextField form-control" value="{{ old('first_name') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="last_name">Last Name:</label>
                     <input type="text" name="last_name" id="last_name" class="wideTextField form-control" value="{{ old('last_name') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="user">Associated user account</label>
                     <select name="user" id="user">
                         <option></option>

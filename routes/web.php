@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return \App\Story::all();
-});
+//Route::get('/', function () {
+//    return view('stories.index');
+//    //return \App\Story::all();
+//});
+Route::get('/', 'PagesController@frontpage');
 
 Route::get('/photos/{id}', 'PhotosController@show');
 Route::get('/graphics/{slug}', 'GraphicsController@show');
@@ -25,6 +27,9 @@ Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 
 Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+    Route::get('/', function(){
+       return redirect('/admin/dashboard');
+    });
     Route::get('/dashboard', 'PagesController@dashboard');
     Route::get('/move', function(){
         return redirect('/admin/dashboard');
@@ -41,7 +46,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
             Route::patch('/edit/{section}/{slug}', 'StoriesController@update')->name('update-story');
         });
 
-        Route::group(['prefix' => 'web-front'], function(){
+        Route::group(['prefix' => 'web-fronts'], function(){
            Route::get('/', 'WebFrontController@index');
            Route::get('/{section}', 'WebFrontController@show')->name('edit-web-front');
            Route::post('/{section}', 'WebFrontController@update')->name('update-web-front');

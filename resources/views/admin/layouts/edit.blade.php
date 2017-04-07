@@ -22,20 +22,20 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="title">Title:</label>
                     <input type="text" name="title" id="title" class="wideTextField form-control" value="{{ $layout->title }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="date_published">Date Published:</label>
                     <input type="text" name="date_published" id="date_published" class="wideTextField form-control flatpickr" data-default-date="{{ old('date_published') === null ? $layout->date_published : old('date_published')}}">
                 </div>
             </div>
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="section" >Section:</label>
                     <!-- <input type="text" name="section" id="section" class="wideTextField"> -->
-                    <div class="form-group">
+                    <div class="field">
                         <select name="section" id="section">
                             @foreach (\App\Section::all() as $section)
                                 <option value="{{ $section->id }}" {{ $layout->section->id == $section->id ? "selected" : ""  }}>{{ $section->name }}</option>
@@ -43,7 +43,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="issue">Issue</label>
                     <select name="issue" id="issue">
                         @foreach(\App\Issue::all() as $issue)
@@ -51,7 +51,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="staffer">Designer:</label>
                     <select name="staffer" id="staffer">
                         @foreach (\App\Staffer::all() as $staffer)
@@ -59,7 +59,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <a href="{{ $layout->link }}" target="_blank">Layout Link</a>
                 </div>
             </div>

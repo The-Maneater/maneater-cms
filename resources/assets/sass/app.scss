@@ -11,11 +11,11 @@
 //Bootstrap v-4
 @import "node_modules/bootstrap/scss/bootstrap-flex";
 
-.form-group label{
+.field label{
 	width: 140px;
 	display: inline-block;
 }
-.form-group *{
+.field *{
 	vertical-align: top;
 }
 .wideTextField{

@@ -22,25 +22,25 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="section">Title:</label>
                     <input type="text" name="section" id="section" class="wideTextField form-control" value="{{ $classified->section }}">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="form-group">
+            <div class="field">
+                <div class="field">
                     <label for="start_date">Start Date:</label>
                     <input type="text" name="start_date" id="start_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('start_date') === null ? $classified->start_date : old('start_date')}}">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="form-group">
+            <div class="field">
+                <div class="field">
                     <label for="end_date">End Date:</label>
                     <input type="text" name="end_date" id="end_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('end_date') === null ? $classified->end_date : old('end_date')}}">
                 </div>
             </div>
-            <div class="form-group">
-                <div class="form-group">
+            <div class="field">
+                <div class="field">
                     <label for="content">Content:</label>
                     <textarea name="content" id="content" cols="30" rows="10">{{ $classified->content }}</textarea>
                 </div>

@@ -22,13 +22,13 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="name">Issue Number:</label>
                     <input type="number" name="name" id="name" class="wideTextField form-control" value="{{ $issue->issue_number }}">
                 </div>
             </div>
             <label for="volume">Volume:</label>
-            <div class="form-group">
+            <div class="field">
                 <select name="volume" id="volume">
                     @foreach (\App\Volume::all() as $volume)
                         <option value="{{ $volume->id }}" {{ ($issue->volume->id === $volume->id ? "selected":"") }}>Volume {{ $volume->name }}</option>

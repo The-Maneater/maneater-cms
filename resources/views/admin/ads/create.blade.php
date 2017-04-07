@@ -22,19 +22,19 @@
         <form action="{{ route('store-ad') }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="purchaser">Purchaser:</label>
                     <input type="text" name="purchaser" id="purchaser" class="wideTextField form-control" value="{{ old('purchaser') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="campaign_start">Campaign Start:</label>
                     <input type="text" name="campaign_start" id="campaign_start" class="wideTextField form-control flatpickr" data-default-date="{{ old('campaign_start') === null ? \Carbon\Carbon::now() : old('campaign_start')}}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="campaign_end">Campaign End:</label>
                     <input type="text" name="campaign_end" id="campaign_end" class="wideTextField form-control flatpickr" data-default-date="{{ old('campaign_end') === null ? \Carbon\Carbon::now() : old('campaign_end')}}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="size">Size</label>
                     <select name="size" id="size">
                         <option value="banner">Banner</option>
@@ -43,15 +43,15 @@
                 </div>
             </div>
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="provider_url">Provider URL:</label>
                     <input type="text" name="provider_url" id="provider_url" class="wideTextField form-control" value="{{ old('provider_url') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="duration">Duration:</label>
                     <input type="text" name="duration" id="duration" class="wideTextField form-control" value="{{ old('duration') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="adFile">Ad</label>
                     <input type="file" name="adFile" id="adFile">
                 </div>

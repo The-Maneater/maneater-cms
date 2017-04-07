@@ -22,19 +22,19 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="first_name">First Name:</label>
                     <input type="text" name="first_name" id="first_name" class="wideTextField form-control" value="{{ $staffer->first_name }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="last_name">Last Name:</label>
                     <input type="text" name="last_name" id="last_name" class="wideTextField form-control" value="{{ $staffer->last_name }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="active">Is Active:</label>
                     <input type="checkbox" name="active" id="active" class="wideTextField form-control" {{ $staffer->is_active ? "checked" : "" }}>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="user">Associated user account</label>
                     <select name="user" id="user">
                         <option></option>

@@ -22,19 +22,19 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="question">Question:</label>
                     <input type="text" name="question" id="question" class="wideTextField form-control" value="{{ $poll->question }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="start_date">Start Date:</label>
                     <input type="text" name="start_date" id="start_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('start_date') === null ? $poll->start_date : old('start_date')}}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="end_date">End Date:</label>
                     <input type="text" name="end_date" id="end_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('end_date') === null ? $poll->end_date : old('end_date')}}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="publication">Publication:</label>
                     <select name="publication" id="publication">
                         <option></option>
@@ -43,7 +43,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group answer-container">
+                <div class="field answer-container">
                     <label for="question">Answers:</label>
                     @foreach($poll->questions as $answer)
                         <input type="text" name="answers[{{ $loop->index }}][answer]" class="wideTextField form-control {{ $loop->first ? "firstAnswer" : "" }}" value="{{ $answer->answer }}">

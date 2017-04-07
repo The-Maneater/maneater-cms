@@ -22,15 +22,15 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="title">Title:</label>
                     <input type="text" name="title" id="title" class="wideTextField form-control" value="{{ $graphic->title }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="publish_date">Publish Date:</label>
                     <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('publish_date') === null ? $graphic->publish_date : old('publish_date')}}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="issue">Issue</label>
                     <select name="issue" id="issue">
                         @foreach(\App\Issue::all() as $issue)
@@ -38,10 +38,10 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="section" >Section:</label>
                     <!-- <input type="text" name="section" id="section" class="wideTextField"> -->
-                    <div class="form-group">
+                    <div class="field">
                         <select name="section" id="section">
                             @foreach (\App\Section::all() as $section)
                                 <option value="{{ $section->id }}" {{ $graphic->section_id == $section->id ? "selected" : "" }}>{{ $section->name }}</option>
@@ -51,7 +51,7 @@
                 </div>
             </div>
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="byline">Byline:</label>
                     {{--<input type="text" name="byline" id="byline" class="wideTextField form-control" value="{{ old('byline') }}">--}}
                     <select name="byline" id="byline">
@@ -60,14 +60,14 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="static_byline">Static Byline:</label>
                     <input type="text" name="static_byline" id="static_byline" class="wideTextField form-control" value="{{ $graphic->static_byline }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <a href="{{ $graphic->link }}" target="_blank">Graphic Link</a>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="description">Description:</label>
                     <textarea name="description" id="description" class="wideTextField form-control">{{ $graphic->description }}</textarea>
                 </div>

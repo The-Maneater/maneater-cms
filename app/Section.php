@@ -39,6 +39,13 @@ class Section extends Model
     	return Section::where('slug', '=', $slug)->first();
     }
 
+    public function latestStories()
+    {
+        return $this->stories()
+            ->with('section')
+            ->latest();
+    }
+
     /**
      * Clears all stories from the web front
      */
@@ -46,6 +53,13 @@ class Section extends Model
         $this->stories()
         ->whereNotNull('section_webfront_priority')
         ->update(['section_webfront_priority' => NULL]);
+    }
+
+    public function webFrontStories()
+    {
+        return $this->stories()
+            ->whereNotNull('section_webfront_priority')
+            ->orderBy('section_webfront_priority');
     }
 
     /**

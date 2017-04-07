@@ -22,19 +22,19 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="name">Volume Number:</label>
                     <input type="number" name="name" id="name" class="wideTextField form-control" value="{{ $volume->name }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="first_issue_date">First Issue Date:</label>
                     <input type="text" name="first_issue_date" id="first_issue_date" class="wideTextField form-control flatpickr" value="">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="period">Period:</label>
                     <input type="text" name="period" id="period" class="wideTextField form-control" value="{{ $volume->period }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="publication">Publication:</label>
                     <input type="text" name="publication" id="publication" class="wideTextField form-control" value="{{ $volume->publication }}">
                 </div>

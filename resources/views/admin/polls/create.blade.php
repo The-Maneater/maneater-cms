@@ -21,19 +21,19 @@
         <form action="{{ route('create-poll') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="question">Question:</label>
                     <input type="text" name="question" id="question" class="wideTextField form-control" value="{{ old('question') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="start_date">Start Date:</label>
                     <input type="text" name="start_date" id="start_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('start_date') === null ? \Carbon\Carbon::now() : old('start_date')}}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="end_date">End Date:</label>
                     <input type="text" name="end_date" id="end_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('end_date') === null ? \Carbon\Carbon::now() : old('end_date')}}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="publication">Publication:</label>
                     <select name="publication" id="publication">
                         @foreach (\App\Publication::all() as $publication)
@@ -41,7 +41,7 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group answer-container">
+                <div class="field answer-container">
                     <label for="question">Answers:</label>
                     <input type="text" name="answers[][answer]" class="wideTextField form-control firstAnswer" value="">
                 </div>

@@ -1,7 +1,7 @@
 <?php
 
 use App\Story;
-use Faker\Factory as Faker;
+use App\Section;
 use Illuminate\Database\Seeder;
 
 class StorySeeder extends Seeder
@@ -44,22 +44,54 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
         $story->photos()->attach([1 => ['type' => 'header']]);
         $story->graphics()->attach(1);
 
-        $faker = Faker::create();
-        foreach(range(1,5) as $index){
-            $s = new Story([
-                'slug' => $faker->slug,
-                'runsheet_slug' => $faker->slug,
-                'title' => $faker->words(5, true),
-                'publish_date' => \Carbon\Carbon::now(),
-                'cDeck' => $faker->sentence,
-                'body' => $faker->paragraphs(2, true),
-                'priority' => 10
+        $sections = Section::all();
+        $sections->each(function($item){
+            /* @var $item App\Section */
+           $stories = factory('App\Story', 5)->make([
+               'section_id' => $item->id
+           ]);
+           $firstStory = factory('App\Story')->make([
+              'section_id' => $item->id,
+              'section_webfront_priority' => 1
+           ]);
+            $secondStory = factory('App\Story')->make([
+                'section_id' => $item->id,
+                'section_webfront_priority' => 2
             ]);
-            $s->section()->associate(1);
-            $s->issue()->associate(1);
+            $thirdStory = factory('App\Story')->make([
+                'section_id' => $item->id,
+                'section_webfront_priority' => 3
+            ]);
+            $fourthStory = factory('App\Story')->make([
+                'section_id' => $item->id,
+                'section_webfront_priority' => 4
+            ]);
+            $fifthStory = factory('App\Story')->make([
+                'section_id' => $item->id,
+                'section_webfront_priority' => 5
+            ]);
+            $s = [$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory];
+           $item->stories()->saveMany($stories);
+           $item->stories()->saveMany($s);
+        });
 
-            $s->save();
-            $s->writers()->attach(1);
-        }
+
+//        $faker = Faker::create();
+//        foreach(range(1,5) as $index){
+//            $s = new Story([
+//                'slug' => $faker->slug,
+//                'runsheet_slug' => $faker->slug,
+//                'title' => $faker->words(5, true),
+//                'publish_date' => \Carbon\Carbon::now(),
+//                'cDeck' => $faker->sentence,
+//                'body' => $faker->paragraphs(2, true),
+//                'priority' => 10
+//            ]);
+//            $s->section()->associate(1);
+//            $s->issue()->associate(1);
+//
+//            $s->save();
+//            $s->writers()->attach(1);
+//        }
     }
 }

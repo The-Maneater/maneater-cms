@@ -1,5 +1,6 @@
 <?php
 
+use App\Section;
 use Illuminate\Database\Seeder;
 
 class SectionSeeder extends Seeder
@@ -11,50 +12,51 @@ class SectionSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('sections')->insert([
-        	'name' => 'Campus',
-        	'slug' => 'campus',
+        $campus = Section::create([
+            'name' => 'Campus',
+            'slug' => 'campus',
+            'publication_id' => 1
+        ]);
+        $unews = Section::create([
+            'name' => 'UNews',
+            'slug' => 'unews',
+            'publication_id' => 1
+        ]);
+        $sports = Section::create([
+            'name' => 'Sports',
+            'slug' => 'sports',
+            'publication_id' => 1
+        ]);
+        $opinion = Section::create([
+            'name' => 'Opinion',
+            'slug' => 'opinion',
+            'publication_id' => 1
+        ]);
+        $projects = Section::create([
+            'name' => 'Projects',
+            'slug' => 'projects',
+            'publication_id' => 1
+        ]);
+        $blogs = Section::create([
+            'name' => 'Blogs',
+            'slug' => 'blogs',
             'publication_id' => 1
         ]);
 
-        DB::table('sections')->insert([
-        	'name' => 'UNews',
-        	'slug' => 'unews',
-            'publication_id' => 1
-        ]);
-
-        DB::table('sections')->insert([
-        	'name' => 'Sports',
-        	'slug' => 'sports',
-            'publication_id' => 1
-        ]);
-
-        DB::table('sections')->insert([
-        	'name' => 'Opinion',
-        	'slug' => 'opinion',
-            'publication_id' => 1
-        ]);
-
-        DB::table('sections')->insert([
-        	'name' => 'Projects',
-        	'slug' => 'projects',
-            'publication_id' => 1
-        ]);
-
-        DB::table('sections')->insert([
+        $angles = Section::create([
             'name' => 'Angles',
             'slug' => 'angles',
             'publication_id' => 2
         ]);
-        DB::table('sections')->insert([
+        $features = Section::create([
             'name' => 'Features',
             'slug' => 'features',
             'publication_id' => 2
         ]);
-        DB::table('sections')->insert([
+        $culture = Section::create([
             'name' => 'Culture',
             'slug' => 'culture',
-            'publication_id' => 2
+            'publication_id' => 1
         ]);
     }
 }

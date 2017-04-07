@@ -21,13 +21,13 @@
         <form action="{{ route('create-section') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="name">Name:</label>
                     <input type="text" name="name" id="name" class="wideTextField form-control" value="{{ old('name') }}">
                 </div>
             </div>
             <label for="publication">Publication:</label>
-            <div class="form-group">
+            <div class="field">
                 <select name="publication" id="publication">
                     @foreach (\App\Publication::all() as $publication)
                         <option value="{{ $publication->id }}">{{ $publication->name }}</option>

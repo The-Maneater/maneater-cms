@@ -21,19 +21,19 @@
         <form action="{{ route('create-position') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="title">Title:</label>
                     <input type="text" name="title" id="title" class="wideTextField form-control" value="{{ old('title') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="is_editorial_board">Is Editorial Board:</label>
                     <input type="checkbox" name="is_editorial_board" id="is_editorial_board" class="wideTextField form-control" value="{{ old('is_editorial_board') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="is_exec">Is Exec:</label>
                     <input type="checkbox" name="is_exec" id="is_exec" class="wideTextField form-control" value="{{ old('is_exec') }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="priority">Priority:</label>
                     <input type="number" name="priority" id="priority" class="wideTextField form-control" value="{{ old('priority') }}">
                 </div>

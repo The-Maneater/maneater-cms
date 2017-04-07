@@ -4,7 +4,6 @@
     @endsection
 
     @section('content')
-        <div class="page-content">
 		@if (count($errors) > 0)
 		    <div class="alert alert-danger">
 		        <ul>
@@ -14,157 +13,188 @@
 		        </ul>
 		    </div>
 		@endif
-            <form method="POST" enctype="multipart/form-data" action={{ route('store-story') }} id="storyForm">
-                {{ csrf_field() }}
-                <div class="field-group">
-                    <p>Article Information:</p>
-                    <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" name="title" id="title" class="wideTextField form-control" onchange="createSlug()" value="{{ old('title') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="cDeck">C-deck:</label>
-                        <input type="text" name="cDeck" id="cDeck" class="wideTextField form-control" value="{{ old('cDeck') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="runsheet_slug">Runsheet Slug:</label>
-                        <input type="text" name="runsheet_slug" id="runsheet_slug" class="wideTextField form-control" value="{{ old('runsheet_slug') }}">
-                    </div>
-                    <div class="form-group">
-                        <label for="byline">Byline:</label>
-                        {{--<input type="text" name="byline" id="byline" class="wideTextField form-control" value="{{ old('byline') }}">--}}
-                        <select name="byline" id="byline" multiple="multiple">
+        <form method="POST" enctype="multipart/form-data" action={{ route('store-story') }} id="storyForm">
+            {{ csrf_field() }}
+            <div class="field-group">
+                <h4>Article Information:</h4>
+                <div class="field">
+                    <label for="title" class="label">Title:</label>
+                    <p class="control">
+                        <input type="text" name="title" id="title" class="wideTextField input" onchange="createSlug()" value="{{ old('title') }}">
+                    </p>
+                </div>
+                <div class="field">
+                    <label for="cDeck" class="label">C-deck:</label>
+                    <p>
+                        <input type="text" name="cDeck" id="cDeck" class="wideTextField input" value="{{ old('cDeck') }}">
+                    </p>
+                </div>
+                <div class="field">
+                    <label for="runsheet_slug" class="label">Runsheet Slug:</label>
+                    <p><input type="text" name="runsheet_slug" id="runsheet_slug" class="wideTextField input" value="{{ old('runsheet_slug') }}"></p>
+                </div>
+                <div class="field">
+                    <label for="byline" class="label">Byline:</label>
+                    <p class="control">
+                        <select name="byline" id="byline" class="select" multiple="multiple">
                             @foreach (\App\Staffer::all() as $staffer)
                                 <option value="{{ $staffer->id }}">{{ $staffer->fullname }}</option>
                             @endforeach
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="static_byline">Static Byline:</label>
-                        <input type="text" name="static_byline" id="static_byline" class="wideTextField form-control" value="{{ old('static_byline') }}">
-                    </div>
+                    </p>
                 </div>
-                <div class="field-group">
-                    <p>Publication Information:</p>
-                    <div class="form-group">
-                        <label for="publish_date">Publish Date</label>
-                        <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date')}}">
-                    </div>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input">
+                <div class="field">
+                    <label for="static_byline" class="label">Static Byline:</label>
+                    <p class="control">
+                        <input type="text" name="static_byline" id="static_byline" class="wideTextField input" value="{{ old('static_byline') }}">
+                    </p>
+                </div>
+            </div>
+            <div class="field-group">
+                <h4>Publication Information:</h4>
+                <div class="field">
+                    <label for="publish_date" class="label">Publish Date</label>
+                    <p class="control">
+                        <input type="text" name="publish_date" id="publish_date" class="wideTextField input flatpickr" data-default-date="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date')}}">
+                    </p>
+                </div>
+                <div class="field">
+                    <p class="control">
+                        <label class="checkbox">
+                            <input type="checkbox" class="checkbox">
                             Published
                         </label>
-                     </div>
-                     <div class="form-check">
-                        <label class="form-check-label">
-                          <input type="checkbox" class="form-check-input">
-                          Updated
+                    </p>
+                </div>
+                 <div class="field">
+                   <p class="control">
+                       <label class="checkbox">
+                           <input type="checkbox" class="checkbox">
+                           Updated
                         </label>
-                     </div>
-                    <div class="form-group">
-                        <label for="issue">Issue:</label>
-                        {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
-                        <div class="form-group">
-                            <select name="issue" id="issue">
+                   </p>
+                 </div>
+                <div class="field">
+                    <label for="issue" class="label">Issue:</label>
+                    {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
+                    <div class="field">
+                       <p class="control">
+                           <select name="issue" class="select" id="issue">
                                 @foreach (\App\Issue::all() as $issue)
-                                    <option value="{{ $issue->id }}">{{ $issue->issueName }}</option>
-                                @endforeach
+                                   <option value="{{ $issue->id }}">{{ $issue->issueName }}</option>
+                               @endforeach
                             </select>
-                        </div>
+                       </p>
                     </div>
-                    <div class="form-group">
-                        <label for="section" >Section:</label>
-                        <!-- <input type="text" name="section" id="section" class="wideTextField"> -->
-                        <div class="form-group">
-                            <select name="section" id="section">
+                </div>
+                <div class="field">
+                    <label for="section" class="label">Section:</label>
+                    <!-- <input type="text" name="section" id="section" class="wideTextField"> -->
+                    <div class="field">
+                        <p class="control">
+                            <select name="section" class="select" id="section">
                                 @foreach (\App\Section::all() as $section)
                                     <option value="{{ $section->id }}">{{ $section->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="priority">Priority:</label>
-                        <input type="number" name="priority" id="priority" class="wideTextField form-control" value="{{ old('priority') }}">
+                        </p>
                     </div>
                 </div>
-                <div class="field-group">
-                    <p>The Story:</p>
-                    <div class="form-group">
-                        <label for="body">Body:</label>
-                        <textarea name="body" id="body" class="wideTextField form-control">{{ old('body') }}</textarea>
+                <div class="field">
+                    <label for="priority" class="label">Priority:</label>
+                    <p class="control">
+                        <input type="number" name="priority" id="priority" class="wideTextField input" value="{{ old('priority') }}">
+                    </p>
+                </div>
+            </div>
+            <div class="field-group">
+                <h4>The Story:</h4>
+                <div class="field">
+                    <label for="body" class="label">Body:</label>
+                    <p class="control">
+                        <textarea name="body" id="body" class="wideTextField textarea">{{ old('body') }}</textarea>
+                    </p>
+                </div>
+                <div class="field">
+                    <label for="topPhotos" class="label">Header Photos:</label>
+                    {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
+                    <div class="field">
+                       <p class="control">
+                           <select name="topPhotos[]" id="topPhotos" class="select" multiple>
+                            @foreach (\App\Photo::all() as $photo)
+                                <option value="{{ $photo->id }}">{{ $photo->title }}</option>
+                            @endforeach
+                        </select>
+                       </p>
                     </div>
-                    <div class="form-group">
-                        <label for="topPhotos">Header Photos:</label>
-                        {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
-                        <div class="form-group">
-                            <select name="topPhotos[]" id="topPhotos" multiple>
-                                @foreach (\App\Photo::all() as $photo)
-                                    <option value="{{ $photo->id }}">{{ $photo->title }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Inline Photos:</label>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Image</th>
-                                    <th>Reference</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="firstRow">
-                                    <td class="photoSelect">
-                                        <select name="inlinePhotos[0][photo]" class="inline-photo">
-                                            <option></option>
-                                            @foreach (\App\Photo::all() as $photo)
-                                                <option value="{{ $photo->id }}">{{ $photo->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td class="reference">
-                                        <input type="text" name="inlinePhotos[0][reference]">
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <a onclick="addTableRow()" class="btn btn-info">Add Row</a>
-                    </div>
-                    <div class="form-group">
-                        <label for="graphics">Graphics:</label>
-                        {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
-                        <div class="form-group">
-                            <select name="graphics[]" id="graphics" multiple>
+                </div>
+                <div class="field">
+                    <label class="label">Inline Photos:</label>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Reference</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="firstRow">
+                                <td class="photoSelect">
+                                    <select name="inlinePhotos[0][photo]" class="inline-photo">
+                                        <option></option>
+                                        @foreach (\App\Photo::all() as $photo)
+                                            <option value="{{ $photo->id }}">{{ $photo->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td class="reference">
+                                    <input type="text" class="input" name="inlinePhotos[0][reference]">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a onclick="addTableRow()" class="button">Add Row</a>
+                </div>
+                <div class="field">
+                    <label for="graphics" class="label">Graphics:</label>
+                    {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
+                    <div class="field">
+                       <p class="control">
+                           <select name="graphics[]" id="graphics" multiple>
                                 @foreach (\App\Graphic::all() as $graphic)
                                     <option value="{{ $graphic->id }}">{{ $graphic->title }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                       </p>
                     </div>
-                    <div class="form-group">
-                        <label for="tags">Tags:</label>
-                        {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
-                        <div class="form-group">
+                </div>
+                <div class="field">
+                    <label for="tags" class="label">Tags:</label>
+                    {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
+                    <div class="field">
+                        <p class="control">
                             <select name="tags[]" id="tags" multiple>
                                 @foreach (\Spatie\Tags\Tag::all() as $tag)
                                     <option value="{{ $tag->name }}">{{ $tag->name }}</option>
                                 @endforeach
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="slug">Slug:</label>
-                        <input type="text" name="slug" id="slug" class="wideTextField form-control" value="{{ old('slug') }}">
+                        </p>
                     </div>
                 </div>
-            </form>
-        </div>
-	<div class="sticky-footer">
-		<button class="btn btn-info" onclick="submitForm()">Save</button>
-	</div>
+                <div class="field">
+                    <label for="slug" class="label">Slug:</label>
+                    <p class="control">
+                        <input type="text" name="slug" id="slug" class="wideTextField input" value="{{ old('slug') }}">
+                    </p>
+                </div>
+            </div>
+        </form>
+@endsection
+
+@section('footer')
+    <div class="sticky-footer">
+        <button class="button is-success" onclick="submitForm()">Save</button>
+    </div>
 @endsection
 
 @section('scripts')
@@ -192,7 +222,6 @@
                 allowClear: true
             });
             inlineIndex++;
-            console.log("hi");
         }
 
         $(document).ready(function(){

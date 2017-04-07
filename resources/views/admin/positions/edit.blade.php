@@ -22,19 +22,19 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="form-group">
+                <div class="field">
                     <label for="title">Title:</label>
                     <input type="text" name="title" id="title" class="wideTextField form-control" value="{{ $position->title }}">
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="is_editorial_board">Is Editorial Board:</label>
                     <input type="checkbox" name="is_editorial_board" id="is_editorial_board" class="wideTextField form-control" {{ $position->is_editorial_board ? "checked" : "" }}>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="is_exec">Is Exec:</label>
                     <input type="checkbox" name="is_exec" id="is_exec" class="wideTextField form-control" {{ $position->is_exec ? "checked" : "" }}>
                 </div>
-                <div class="form-group">
+                <div class="field">
                     <label for="priority">Priority:</label>
                     <input type="number" name="priority" id="priority" class="wideTextField form-control" value="{{ $position->priority }}">
                 </div>

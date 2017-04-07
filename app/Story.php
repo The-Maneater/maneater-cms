@@ -25,12 +25,19 @@ class Story extends Model
 		'body',
 		'priority',
         'section_webfront_priority',
-        'front_page_webfront_priority'
+        'front_page_webfront_priority',
+        'section_id',
+        'issue_id'
 	];
 
     protected $dates = ['publish_date'];
 
-	protected $with = ['photos', 'corrections', 'graphics', 'tags', 'writers', 'issue', 'section'];
+	//protected $with = ['photos', 'corrections', 'graphics', 'tags', 'writers', 'issue', 'section'];
+
+    public function path()
+    {
+        return '/stories/' . $this->section->slug . '/' . $this->slug;
+    }
 
     /**
      * Finds the story with the associated story slug and section slug
