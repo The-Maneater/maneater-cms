@@ -8,7 +8,7 @@
  */
 
 //window.$ = window.jQuery = require('jquery');
-require('bootstrap');
+require('bootstrap-sass');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces

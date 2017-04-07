@@ -171,6 +171,7 @@ return [
         Laratrust\LaratrustServiceProvider::class,
         DamianTW\MySQLScout\Providers\MySQLScoutServiceProvider::class,
         Laravel\Scout\ScoutServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
         /*
          * Application Service Providers...
          */
