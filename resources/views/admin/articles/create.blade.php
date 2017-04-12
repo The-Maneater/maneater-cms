@@ -55,7 +55,7 @@
                 <div class="field">
                     <label for="publish_date" class="label">Publish Date</label>
                     <p class="control">
-                        <input type="text" name="publish_date" id="publish_date" class="wideTextField input flatpickr" data-default-date="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date')}}">
+                        <input type="text" name="publish_date" id="publish_date" class="input flatpickr" data-default-date="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date')}}">
                     </p>
                 </div>
                 <div class="field">

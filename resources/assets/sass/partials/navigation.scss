@@ -1,0 +1,69 @@
+#topNav .nav-left a.nav-item{
+  color:white;
+  background: #474747;
+  border-bottom: 2px solid #474747;
+  border-top: 2px solid #474747;
+  display: block;
+  font-weight: bold;
+  font-family: "Roboto Condensed";
+  font-size: 26px;
+  line-height: 1em;
+  padding: 4px 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+#topNav .nav-left a.nav-item:hover{
+  color: white;
+  background: #2F7A32;
+}
+#topNav .nav-left a.nav-item.is-tab:hover{
+  border-bottom-color: #2F7A32;
+}
+#topNav .nav-left a.nav-item.is-tab.is-active{
+  color: white;
+  background: #2F7A32;
+  border-bottom-color: #2F7A32;
+}
+#topNav{
+  min-height: 38px;
+  padding: 0 2.5%;
+  background-color: #474747;
+}
+#topNav .container{
+  min-height: 38px;
+}
+#topNav .nav-left{
+  height:38px;
+  overflow-x: visible;
+  overflow-y: visible;
+}
+#topNav .nav-left a.nav-item.is-tab{
+  padding: 4px 10px;
+}
+#subNav{
+  background: #2F7A32;
+  margin-bottom: 20px;
+  min-height: 19px;
+}
+
+#subNav .container{
+  min-height: 19px;
+}
+
+#subNav .nav-right{
+  height: 19px;
+}
+
+#subNav .nav-right a.nav-item{
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 0 5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+#subNav .nav-right a.nav-item:hover{
+  background: #fff;
+  color:#2F7A32;
+  border-bottom-color: transparent;
+}

@@ -11,13 +11,21 @@
 //Bootstrap v-4
 @import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
-.field label{
-	width: 140px;
-	display: inline-block;
-}
-.field *{
-	vertical-align: top;
-}
+@import "partials/content";
+@import "partials/forms";
+@import "partials/images";
+@import "partials/layout";
+@import "partials/navigation";
+@import "partials/stories";
+@import "partials/pagination";
+
+//.field label{
+//	width: 140px;
+//	display: inline-block;
+//}
+//.field *{
+//	vertical-align: top;
+//}
 .wideTextField{
 	width: 750px;
 }
@@ -78,30 +86,31 @@ ul{
 .black-icon{
   color:black;
 }
-.pagination li{
-  display: inline-block;
-}
+//.pagination li{
+//  display: inline-block;
+//}
 
 .theader{
   display: flex;
   justify-content: space-between;
 }
 
-.pagination-links{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.pagination li.active{
-  @extend .btn-success;
-}
-.pagination li{
-  @extend .btn;
-}
+//.pagination-links{
+//  display: flex;
+//  justify-content: center;
+//  align-items: center;
+//}
+//.pagination li.active{
+//  @extend .btn-success;
+//}
+//.pagination li{
+//  @extend .btn;
+//}
 
-.is-flex-end{
-  justify-content: flex-end;
+body{
+  font-family: Roboto, Helvetica, Tahoma, Arial, sans-serif;
 }
-.is-flex-justify-center{
-  align-items: center;
+#main{
+  width:100%;
+  max-width: 1440px;
 }

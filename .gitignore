@@ -8,3 +8,5 @@ Homestead.yaml
 /storage/framework
 public/layouts
 public/graphics
+
+npm-debug\.log

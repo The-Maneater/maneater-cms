@@ -1,0 +1,49 @@
+.articleInfo{
+  justify-content: flex-end;
+  flex-flow:column;
+  text-align: right;
+}
+.story a {
+  color: #000;
+}
+.story h2{
+  font-family: Lora;
+  font-size: 1.75em;
+  color: #474747;
+  margin: 0;
+  padding: 0;
+}
+.story{
+  border-bottom: 1px solid #e6e6e6;
+  padding-bottom: 1em;
+  margin-bottom: 1em;
+}
+.substory h1 a{
+  color: black;
+}
+.substory{
+  padding-bottom: 20px;
+}
+
+h2.sectionlabel {
+  background: #474747;
+  border-bottom: 2px solid #2F7A32;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  letter-spacing: 1px;
+  padding: 3px 7px;
+  text-transform: uppercase;
+}
+.sectionbox {
+  background: #f1f1f1;
+  padding: 10px;
+}
+.issu{
+  display: flex;
+  justify-content: space-between;
+}
+
+.sectionlist li{
+  padding: 0.75em 0 0;
+}
