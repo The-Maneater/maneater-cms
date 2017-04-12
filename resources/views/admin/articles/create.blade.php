@@ -17,22 +17,15 @@
             {{ csrf_field() }}
             <div class="field-group">
                 <h4>Article Information:</h4>
-                <div class="field">
-                    <label for="title" class="label">Title:</label>
-                    <p class="control">
-                        <input type="text" name="title" id="title" class="wideTextField input" onchange="createSlug()" value="{{ old('title') }}">
-                    </p>
-                </div>
-                <div class="field">
-                    <label for="cDeck" class="label">C-deck:</label>
-                    <p>
-                        <input type="text" name="cDeck" id="cDeck" class="wideTextField input" value="{{ old('cDeck') }}">
-                    </p>
-                </div>
-                <div class="field">
-                    <label for="runsheet_slug" class="label">Runsheet Slug:</label>
-                    <p><input type="text" name="runsheet_slug" id="runsheet_slug" class="wideTextField input" value="{{ old('runsheet_slug') }}"></p>
-                </div>
+                <b-field label="Title">
+                    <b-input name="title" id="title" value="{{ old('title') }}" v-on:change="createSlug"></b-input>
+                </b-field>
+                <b-field label="C-Deck:">
+                    <b-input name="cDeck" id="cDeck" value="{{ old('title') }}"></b-input>
+                </b-field>
+                <b-field label="Runsheet Slug:">
+                    <b-input name="runsheet_slug" id="runsheet_slug" value="{{ old('runsheet_slug') }}"></b-input>
+                </b-field>
                 <div class="field">
                     <label for="byline" class="label">Byline:</label>
                     <p class="control">
@@ -43,12 +36,9 @@
                         </select>
                     </p>
                 </div>
-                <div class="field">
-                    <label for="static_byline" class="label">Static Byline:</label>
-                    <p class="control">
-                        <input type="text" name="static_byline" id="static_byline" class="wideTextField input" value="{{ old('static_byline') }}">
-                    </p>
-                </div>
+                <b-field label="Static Byline:">
+                    <b-input name="static_byline" id="static_byline" value="{{ old('static_byline') }}"></b-input>
+                </b-field>
             </div>
             <div class="field-group">
                 <h4>Publication Information:</h4>
@@ -59,21 +49,11 @@
                     </p>
                 </div>
                 <div class="field">
-                    <p class="control">
-                        <label class="checkbox">
-                            <input type="checkbox" class="checkbox">
-                            Published
-                        </label>
-                    </p>
+                    <b-checkbox>Published</b-checkbox>
                 </div>
-                 <div class="field">
-                   <p class="control">
-                       <label class="checkbox">
-                           <input type="checkbox" class="checkbox">
-                           Updated
-                        </label>
-                   </p>
-                 </div>
+                <div class="field">
+                    <b-checkbox>Updated</b-checkbox>
+                </div>
                 <div class="field">
                     <label for="issue" class="label">Issue:</label>
                     {{--<input type="text" name="issue" id="issue" class="wideTextField form-control" value="{{ old('issue') }}">--}}
@@ -100,12 +80,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="field">
-                    <label for="priority" class="label">Priority:</label>
-                    <p class="control">
-                        <input type="number" name="priority" id="priority" class="wideTextField input" value="{{ old('priority') }}">
-                    </p>
-                </div>
+                <b-field label="Priority:">
+                    <b-input name="priority" type="number" id="priority" value="{{ old('priority') }}"></b-input>
+                </b-field>
             </div>
             <div class="field-group">
                 <h4>The Story:</h4>
@@ -200,12 +177,6 @@
 @section('scripts')
     <script>
         let inlineIndex = 1;
-        function createSlug(){
-            var slug = document.getElementById("title").value;
-            slug = slug.toLowerCase();
-            slug = slug.replace(/ /g, "-");
-            document.getElementById("slug").value = slug;
-        }
         function submitForm(){
             $("#storyForm").submit();
         }

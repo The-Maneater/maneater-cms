@@ -6,18 +6,18 @@
  */
 
 require('./bootstrap');
-const Flatpickr = require("flatpickr");
+
 $(document).ready(()=>{
-    new Flatpickr('.flatpickr', {
-        enableTime: true,
-    });
-    // $(".flatpickr").flatpickr({
+    // new Flatpickr('.flatpickr', {
     //     enableTime: true,
-    //     altInput: true,
-    //     altFormat: "F j, Y h:i K",
-    //     defaultDate: new Date(),
-    //     enableSeconds: true
     // });
+    $(".flatpickr").flatpickr({
+        enableTime: true,
+        altInput: true,
+        altFormat: "F j, Y h:i K",
+        defaultDate: new Date(),
+        enableSeconds: true
+    });
 });
 
 /**
@@ -28,6 +28,18 @@ $(document).ready(()=>{
 
 // Vue.component('example', require('./components/Example.vue'));
 //
-// const app = new Vue({
-//     el: 'body'
-// });
+import Buefy from 'buefy'
+//import 'buefy/lib/buefy.css'
+Vue.use(Buefy);
+const app = new Vue({
+    el: '.content',
+    methods:{
+        createSlug(event){
+            //console.log(event);
+            // var slug = document.getElementById("title").value;
+            var slug = event.toLowerCase();
+            slug = slug.replace(/ /g, "-");
+            document.getElementById("slug").value = slug;
+        }
+    }
+});
