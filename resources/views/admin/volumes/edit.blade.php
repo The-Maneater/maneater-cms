@@ -7,52 +7,36 @@
 @section('content')
     <div>
         <div class="theader">
-            <h2>Add New Volume</h2>
+            <h2>Edit Volume</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include("admin.shared.errors")
         <form action="{{ route('update-volume', [$volume->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="field">
-                    <label for="name">Volume Number:</label>
-                    <input type="number" name="name" id="name" class="wideTextField form-control" value="{{ $volume->name }}">
-                </div>
-                <div class="field">
-                    <label for="first_issue_date">First Issue Date:</label>
-                    <input type="text" name="first_issue_date" id="first_issue_date" class="wideTextField form-control flatpickr" value="">
-                </div>
-                <div class="field">
-                    <label for="period">Period:</label>
-                    <input type="text" name="period" id="period" class="wideTextField form-control" value="{{ $volume->period }}">
-                </div>
-                <div class="field">
-                    <label for="publication">Publication:</label>
-                    <input type="text" name="publication" id="publication" class="wideTextField form-control" value="{{ $volume->publication }}">
-                </div>
+                <b-field label="Volume Number:">
+                    <b-input type="number" name="name" id="name" value="{{ $volume->name }}"></b-input>
+                </b-field>
+                <b-field label="First Issue Date:">
+                    <flatpickr name="first_issue_date" default-value="{{ old('first_issue_date') === null ? $volume->first_issue_date : old('first_issue_date') }}"></flatpickr>
+                </b-field>
+                <b-field label="Period:">
+                    <b-input name="period" value="{{ $volume->period }}"></b-input>
+                </b-field>
+                <b-field label="Publication:">
+                    <b-input name="publication" value="{{ $volume->publication }}"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>
         function submitForm(){
             $("#storyForm").submit();
         }
-        $(document).ready(function(){
-            setInputDate("input[name=campaign_start]", "{{ $volume->first_issue_date }}");
-        })
     </script>
 @endsection

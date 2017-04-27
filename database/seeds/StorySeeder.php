@@ -76,6 +76,40 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
         });
 
 
+        $section = Section::findBySlug("unews");
+
+        $firstStory = factory('App\Story')->make([
+            'section_id' => $section->id,
+            'front_page_webfront_priority' => 1
+        ]);
+
+        $secondStory = factory('App\Story')->make([
+            'section_id' => $section->id,
+            'front_page_webfront_priority' => 2
+        ]);
+
+        $thirdStory = factory('App\Story')->make([
+            'section_id' => $section->id,
+            'front_page_webfront_priority' => 3
+        ]);
+
+        $fourthStory = factory('App\Story')->make([
+            'section_id' => $section->id,
+            'front_page_webfront_priority' => 4
+        ]);
+
+        $fifthStory = factory('App\Story')->make([
+            'section_id' => $section->id,
+            'front_page_webfront_priority' => 5
+        ]);
+
+        $stories = [$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory];
+        $section->stories()->saveMany($stories);
+        $firstStory->photos()->attach([6 => ['type' => 'header']]);
+        $secondStory->photos()->attach([7 => ['type' => 'header']]);
+        $fourthStory->photos()->attach([7 => ['type' => 'header']]);
+        $fifthStory->photos()->attach([7 => ['type' => 'header']]);
+
 //        $faker = Faker::create();
 //        foreach(range(1,5) as $index){
 //            $s = new Story([

@@ -11,19 +11,16 @@
 |
 */
 
-//Route::get('/', function () {
-//    return view('stories.index');
-//    //return \App\Story::all();
-//});
 Route::get('/', 'PagesController@frontpage');
 
 Route::get('/photos/{id}', 'PhotosController@show');
 Route::get('/graphics/{slug}', 'GraphicsController@show');
 Route::get('/layouts/{id}', 'LayoutsController@show');
-Route::get('/section/{slug}', 'SectionsController@show');
+Route::get('/sections/{slug}', 'SectionsController@show');
 Route::get('/staff/{slug}', 'StafferController@show');
 Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
+Route::get('/test/test', 'PagesController@test');
 
 Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {

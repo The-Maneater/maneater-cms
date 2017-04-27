@@ -8,10 +8,10 @@
     <div>
         <div class="theader">
             <h2>Staffers</h2>
-            <a href="{{ route('create-staffer') }}" class="btn btn-success">Add Staffer</a>
+            <a href="{{ route('create-staffer') }}" class="button">Add Staffer</a>
         </div>
 
-        <table class="table table-striped table-bordered">
+        <table class="table is-striped is-bordered">
             <thead>
             <tr>
                 <th>Staffer</th>

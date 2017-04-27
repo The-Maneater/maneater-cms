@@ -9,41 +9,28 @@
         <div class="theader">
             <h2>Add New Volume</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include("admin.shared.errors")
         <form action="{{ route('create-volume') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="field">
-                    <label for="name">Volume Number:</label>
-                    <input type="number" name="name" id="name" class="wideTextField form-control" value="{{ old('name') }}">
-                </div>
-                <div class="field">
-                    <label for="first_issue_date">First Issue Date:</label>
-                    <input type="text" name="first_issue_date" id="first_issue_date" class="wideTextField form-control flatpickr">
-                </div>
-                <div class="field">
-                    <label for="period">Period:</label>
-                    <input type="text" name="period" id="period" class="wideTextField form-control" value="{{ old('period') }}">
-                </div>
-                <div class="field">
-                    <label for="publication">Publication:</label>
-                    <input type="text" name="publication" id="publication" class="wideTextField form-control" value="{{ old('publication') }}">
-                </div>
+                <b-field label="Volume Number:">
+                    <b-input type="number" name="name" id="name" value="{{ old('name') }}"></b-input>
+                </b-field>
+                <b-field label="First Issue Date:">
+                    <flatpickr name="first_issue_date" default-value="{{ old('first_issue_date') == null ? \Carbon\Carbon::now() : old('first_issue_date') }}"></flatpickr>
+                </b-field>
+                <b-field label="Period:">
+                    <b-input name="period" id="period" value="{{ old('period') }}"></b-input>
+                </b-field>
+                <b-field label="Publication:">
+                    <b-input name="publication" id="publication" value="{{ old('publication') }}"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

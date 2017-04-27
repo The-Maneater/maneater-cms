@@ -16,7 +16,7 @@ class StoriesController extends Controller
      */
     public function index()
     {
-        $articles = Story::orderBy('publish_date')->paginate(25);
+        $articles = Story::orderBy('publish_date', "DESC")->paginate(25);
 
         return view('admin.articles.list', compact('articles'));
     }
@@ -91,7 +91,7 @@ class StoriesController extends Controller
     public function show($section, $slug)
     {
         $story = Story::findBySectionAndSlug($section, $slug);
-        $inlinePhotos = $story->inlinePhotos();
+        $inlinePhotos = $story->inlinePhotos()->get();
         $append = "";
         $inlinePhotos->each(function($item, $key) use(&$append){
             $append .= "\n [" . $item->pivot->reference . "]: " . env('APP_URL') . $item->location;

@@ -9,56 +9,40 @@
         <div class="theader">
             <h2>Edit Event</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include("admin.shared.errors")
         <form action="{{ route('update-event', [$event->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="field">
-                    <label for="name">Name:</label>
-                    <input type="text" name="name" id="name" class="wideTextField form-control" value="{{ $event->name }}">
-                </div>
-                <div class="field">
-                    <label for="summary">Summary:</label>
-                    <input type="text" name="summary" id="summary" class="wideTextField form-control" value="{{ $event->summary }}">
-                </div>
-                <div class="field">
-                    <label for="location">Location:</label>
-                    <input type="text" name="location" id="location" class="wideTextField form-control" value="{{ $event->location }}">
-                </div>
+                <b-field label="Name:">
+                    <b-input name="name" id="name" value="{{ $event->name }}"></b-input>
+                </b-field>
+                <b-field label="Summary:">
+                    <b-input name="summary" id="summary" value="{{ $event->name }}"></b-input>
+                </b-field>
+                <b-field label="Location">
+                    <b-input name="location" id="location" value="{{ $event->location }}"></b-input>
+                </b-field>
             </div>
             <div class="field-group">
+                <b-field label="Description:">
+                    <b-input name="description" id="description" value="{{ $event->description }}"></b-input>
+                </b-field>
+                <b-field label="Start Date:">
+                    <flatpickr name="start_date" default-value="{{ $event->start_date === null ?  \Carbon\Carbon::now() : $event->start_date }}"></flatpickr>
+                </b-field>
+                <b-field label="End Date:">
+                    <flatpickr name="end_date" default-value="{{ $event->end_date === null ? \Carbon\Carbon::now() : $event->end_date }}"></flatpickr>
+                </b-field>
                 <div class="field">
-                    <label for="description">Description:</label>
-                    <input type="text" name="description" id="description" class="wideTextField form-control" value="{{ $event->description }}">
-                </div>
-                <div class="field">
-                    <label for="start_date">Start Date:</label>
-                    <input type="text" name="start_date" id="start_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('start_date') === null ? $event->start_date : old('start_date')}}">
-                </div>
-                <div class="field">
-                    <label for="end_date">End Date:</label>
-                    <input type="text" name="end_date" id="end_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('end_date') === null ? $event->end_date : old('end_date')}}">
-                </div>
-                <div class="field">
-                    <label for="allday">All day:</label>
-                    <input type="checkbox" name="allday" id="allday" class="wideTextField form-control" {{ $event->allday ? "checked":"" }}>
+                    <b-checkbox name="allday" id="allday" {{ $event->allday ? "checked":"" }}>All day</b-checkbox>
                 </div>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

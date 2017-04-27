@@ -26,7 +26,7 @@ class WebFront extends Model
      */
     public static function frontPage()
     {
-        return Story::whereHas('section', function($query){
+        return Story::with('headerPhotos')->whereHas('section', function($query){
             $publication = Publication::findByString('The Maneater');
             $query->where('publication_id', $publication->id);
         })->whereNotNull('front_page_webfront_priority')

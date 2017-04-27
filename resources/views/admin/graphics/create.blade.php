@@ -9,75 +9,54 @@
         <div class="theader">
             <h2>Add New Graphic</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include("admin.shared.errors")
         <form action="{{ route('store-graphic') }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="field">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" class="wideTextField form-control" value="{{ old('title') }}">
-                </div>
-                <div class="field">
-                    <label for="publish_date">Publish Date:</label>
-                    <input type="text" name="publish_date" id="publish_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date')}}">
-                </div>
-                <div class="field">
-                    <label for="issue">Issue</label>
-                    <select name="issue" id="issue">
+                <b-field label="Title">
+                    <b-input name="title" id="title" value="{{ old('title') }}"></b-input>
+                </b-field>
+                <b-field label="Publish Date:">
+                    <flatpickr name="publish_date" default-value="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date') }}"></flatpickr>
+                </b-field>
+                <b-field label="Issue:">
+                    <select2 name="issue" id="issue">
                         @foreach(\App\Issue::all() as $issue)
                             <option value="{{ $issue->id }}">{{ $issue->issueName }}</option>
                         @endforeach
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="section" >Section:</label>
-                    <!-- <input type="text" name="section" id="section" class="wideTextField"> -->
-                    <div class="field">
-                        <select name="section" id="section">
-                            @foreach (\App\Section::all() as $section)
-                                <option value="{{ $section->id }}">{{ $section->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
+                    </select2>
+                </b-field>
+                <b-field label="Section:">
+                    <select2 name="section" id="section">
+                        @foreach (\App\Section::all() as $section)
+                            <option value="{{ $section->id }}">{{ $section->name }}</option>
+                        @endforeach
+                    </select2>
+                </b-field>
             </div>
             <div class="field-group">
-                <div class="field">
-                    <label for="byline">Byline:</label>
-                    {{--<input type="text" name="byline" id="byline" class="wideTextField form-control" value="{{ old('byline') }}">--}}
-                    <select name="byline" id="byline">
+                <b-field label="BylineL">
+                    <select2 name="byline" id="byline">
                         @foreach (\App\Staffer::all() as $staffer)
                             <option value="{{ $staffer->id }}">{{ $staffer->fullname }}</option>
                         @endforeach
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="static_byline">Static Byline:</label>
-                    <input type="text" name="static_byline" id="static_byline" class="wideTextField form-control" value="{{ old('static_byline') }}">
-                </div>
-                <div class="field">
-                    <label for="graphic">Graphic</label>
-                    <input type="file" name="graphic" id="graphic">
-                </div>
-                <div class="field">
-                    <label for="description">Description:</label>
-                    <textarea name="description" id="description" class="wideTextField form-control">{{ old('description') }}</textarea>
-                </div>
+                    </select2>
+                </b-field>
+                <b-field label="Static Byline:">
+                    <b-input name="static_byline" id="static_byline" value="{{ old('static_byline') }}"></b-input>
+                </b-field>
+                <b-field label="Graphic:">
+                    <b-input type="file" name="graphic" id="graphic"></b-input>
+                </b-field>
+                <b-field label="Description:">
+                    <b-input type="textarea" name="description" id="description" value="{{ old('description') }}"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

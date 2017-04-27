@@ -9,41 +9,28 @@
         <div class="theader">
             <h2>Add New User</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+       @include("admin.shared.errors")
         <form action="{{ route('create-user') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="field">
-                    <label for="username">Username:</label>
-                    <input type="text" name="username" id="username" class="wideTextField form-control" value="{{ old('username') }}">
-                </div>
-                <div class="field">
-                    <label for="email">Email:</label>
-                    <input type="text" name="email" id="email" class="wideTextField form-control" value="{{ old('email') }}">
-                </div>
-                <div class="field">
-                    <label for="password">Password:</label>
-                    <input type="password" name="password" id="password" class="wideTextField form-control">
-                </div>
-                <div class="field">
-                    <label for="password_confirmation">Password Confirmation:</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="wideTextField form-control">
-                </div>
+                <b-field label="Username:">
+                    <b-input name="username" value="{{ old('username') }}"></b-input>
+                </b-field>
+                <b-field label="Email:">
+                    <b-input type="email" name="email" value="{{ old('email') }}"></b-input>
+                </b-field>
+                <b-field label="Password:">
+                    <b-input type="password" name="password"></b-input>
+                </b-field>
+                <b-field label="Password Confirmation">
+                    <b-input type="password" name="password_confirmation"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

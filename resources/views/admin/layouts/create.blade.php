@@ -9,66 +9,51 @@
         <div class="theader">
             <h2>Add New Layout</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include("admin.shared.errors")
         <form action="{{ route('create-layout') }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="field">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" class="wideTextField form-control" value="{{ old('title') }}">
-                </div>
-                <div class="field">
-                    <label for="date_published">Date Published:</label>
-                    <input type="text" name="date_published" id="date_published" class="wideTextField form-control flatpickr" data-default-date="{{ old('date_published') === null ? \Carbon\Carbon::now() : old('date_published')}}">
-                </div>
+                <b-field label="Title:">
+                    <b-input name="title" id="title" value="{{ old('title') }}"></b-input>
+                </b-field>
+                <b-field label="Date Published:">
+                    <flatpickr name="date_published" id="date_published" defaultValue="{{ old('date_published') === null ? \Carbon\Carbon::now() : old('date_published')}}"></flatpickr>
+                </b-field>
             </div>
             <div class="field-group">
-                <div class="field">
-                    <label for="section" >Section:</label>
-                    <!-- <input type="text" name="section" id="section" class="wideTextField"> -->
-                    <div class="field">
-                        <select name="section" id="section">
-                            @foreach (\App\Section::all() as $section)
-                                <option value="{{ $section->id }}">{{ $section->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="field">
-                    <label for="issue">Issue</label>
-                    <select name="issue" id="issue">
+                <b-field label="Section:">
+                    <select2 name="section" id="section">
+                        @foreach (\App\Section::all() as $section)
+                            <option></option>
+                            <option value="{{ $section->id }}">{{ $section->name }}</option>
+                        @endforeach
+                    </select2>
+                </b-field>
+                <b-field label="Issue:">
+                    <select2 name="issue" id="issue">
                         @foreach(\App\Issue::all() as $issue)
+                            <option></option>
                             <option value="{{ $issue->id }}">{{ $issue->issueName }}</option>
                         @endforeach
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="staffer">Designer:</label>
-                    <select name="staffer" id="staffer">
+                    </select2>
+                </b-field>
+                <b-field label="Designer:">
+                    <select2 name="staffer" id="staffer">
                         @foreach (\App\Staffer::all() as $staffer)
+                            <option></option>
                             <option value="{{ $staffer->id }}">{{ $staffer->fullname }}</option>
                         @endforeach
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="layout">Layout</label>
-                    <input type="file" name="layout" id="layout">
-                </div>
+                    </select2>
+                </b-field>
+                <b-field label="Layout:">
+                    <b-input type="file" name="layout" id="layout"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

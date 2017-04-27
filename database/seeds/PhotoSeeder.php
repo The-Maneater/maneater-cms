@@ -26,5 +26,28 @@ class PhotoSeeder extends Seeder
             $photo->save();
             $photo->photographers()->attach(1);
         }
+
+        /* http://placehold.it/350x150*/
+        $photo = Photo::create([
+            'title'       => '350 * 150 Placeholder',
+            'description' => "This doesn't actually do anything.",
+            'dateTaken'   => \Carbon\Carbon::now(),
+            'location'    => 'http://placehold.it/350x150',
+            'publish_date' => \Carbon\Carbon::now(),
+            'section_id' => 1,
+            'issue_id' => 1,
+            'staffer_id' => 1
+        ]);
+
+        $photo = Photo::create([
+            'title'       => '350 * 150 Placeholder',
+            'description' => "This doesn't actually do anything.",
+            'dateTaken'   => \Carbon\Carbon::now(),
+            'location'    => 'http://placehold.it/250x100',
+            'publish_date' => \Carbon\Carbon::now(),
+            'section_id' => 1,
+            'issue_id' => 1,
+            'staffer_id' => 1
+        ]);
     }
 }

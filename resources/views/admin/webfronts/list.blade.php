@@ -7,10 +7,10 @@
 @section('content')
     <div>
         <div class="theader">
-            <h2>Articles</h2>
+            <h2>Web Fronts</h2>
         </div>
 
-        <table class="table table-striped table-bordered">
+        <table class="table is-striped is-bordered">
             <thead>
             <tr>
                 <th>Webfront Name</th>

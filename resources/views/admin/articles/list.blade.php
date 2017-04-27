@@ -11,7 +11,7 @@
             <a href="{{ route('create-story') }}" class="button">Add Article</a>
         </div>
 
-       <table class="table is-striped is-bordered">
+       <table class="table is-bordered is-striped">
            <thead>
            <tr>
                <th>Title</th>

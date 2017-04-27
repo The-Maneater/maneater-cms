@@ -9,47 +9,34 @@
         <div class="theader">
             <h2>Edit Staffer</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include("admin.shared.errors")
         <form action="{{ route('update-staffer', [$staffer->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="field">
-                    <label for="first_name">First Name:</label>
-                    <input type="text" name="first_name" id="first_name" class="wideTextField form-control" value="{{ $staffer->first_name }}">
-                </div>
-                <div class="field">
-                    <label for="last_name">Last Name:</label>
-                    <input type="text" name="last_name" id="last_name" class="wideTextField form-control" value="{{ $staffer->last_name }}">
-                </div>
-                <div class="field">
-                    <label for="active">Is Active:</label>
-                    <input type="checkbox" name="active" id="active" class="wideTextField form-control" {{ $staffer->is_active ? "checked" : "" }}>
-                </div>
-                <div class="field">
-                    <label for="user">Associated user account</label>
-                    <select name="user" id="user">
+                <b-field label="First Name:">
+                    <b-input name="first_name" value="{{ $staffer->first_name }}"></b-input>
+                </b-field>
+                <b-field label="Last Name:">
+                    <b-input name="last_name" value="{{ $staffer->last_name }}"></b-input>
+                </b-field>
+                <b-field label="Is Active:">
+                    <b-checkbox name="active" {{ $staffer->is_active ? "checked" : "" }}></b-checkbox>
+                </b-field>
+                <b-field label="Associated user account:">
+                    <select2 name="user">
                         <option></option>
                         @foreach(\App\User::all() as $user)
                             <option value="{{ $user->id }}" {{ $staffer->user !== null && $staffer->user->id == $user->id ? "selected" : "" }}>{{ $user->username }}</option>
                         @endforeach
-                    </select>
-                </div>
+                    </select2>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

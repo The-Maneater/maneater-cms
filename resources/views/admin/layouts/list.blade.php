@@ -8,10 +8,10 @@
     <div>
         <div class="theader">
             <h2>Layouts</h2>
-            <a href="{{ route('create-layout') }}" class="btn btn-success">Add Layout</a>
+            <a href="{{ route('create-layout') }}" class="button">Add Layout</a>
         </div>
 
-        <table class="table table-striped table-bordered">
+        <table class="table is-bordered is-striped">
             <thead>
             <tr>
                 <th>Title</th>

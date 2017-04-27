@@ -9,41 +9,28 @@
         <div class="theader">
             <h2>Add New Position</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include("admin.shared.errors")
         <form action="{{ route('create-position') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="field">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" class="wideTextField form-control" value="{{ old('title') }}">
-                </div>
-                <div class="field">
-                    <label for="is_editorial_board">Is Editorial Board:</label>
-                    <input type="checkbox" name="is_editorial_board" id="is_editorial_board" class="wideTextField form-control" value="{{ old('is_editorial_board') }}">
-                </div>
-                <div class="field">
-                    <label for="is_exec">Is Exec:</label>
-                    <input type="checkbox" name="is_exec" id="is_exec" class="wideTextField form-control" value="{{ old('is_exec') }}">
-                </div>
-                <div class="field">
-                    <label for="priority">Priority:</label>
-                    <input type="number" name="priority" id="priority" class="wideTextField form-control" value="{{ old('priority') }}">
-                </div>
+                <b-field label="Title">
+                    <b-input name="title" id="title" value="{{ old('title') }}"></b-input>
+                </b-field>
+                <b-field label="Is Editorial Board:">
+                    <b-checkbox name="is_editorial_board" {{ old('is_editorial_board') ? "checked" : "" }}></b-checkbox>
+                </b-field>
+                <b-field label="Is an Executive Position:">
+                    <b-checkbox name="is_exec" id="is_exec" {{ old('is_exec') ? "checked" : "" }}></b-checkbox>
+                </b-field>
+                <b-field label="Priority">
+                    <b-input type="number" name="priority" id="priority" value="{{ old('priority') }}"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

@@ -34,6 +34,7 @@ class WebFrontController extends Controller
         switch ($section){
             case -1:
                 $articles = Webfront::moveFrontPage();
+                $sectionTitle = "MOVE";
                 $sectionArticles = Story::whereHas('section', function($query){
                     $publication = Publication::findByString('MOVE');
                     $query->where('publication_id', $publication->id);
@@ -42,6 +43,7 @@ class WebFrontController extends Controller
 
             case 0:
                 $articles = WebFront::frontPage();
+                $sectionTitle = "Front Page";
                 $sectionArticles = Story::whereHas('section', function($query){
                     $publication = Publication::findByString('The Maneater');
                     $query->where('publication_id', $publication->id);
@@ -50,16 +52,19 @@ class WebFrontController extends Controller
 
             default:
                 $articles = WebFront::bySection($section);
-                $sectionArticles = Section::find($section)
+                $section = Section::find($section);
+                $sectionTitle = $section->name;
+                $sectionArticles = $section
                     ->stories()
                     ->orderBy('publish_date')
                     ->limit(15)
                     ->get();
                 break;
         }
+
         //$articles = ($section == 0) ? WebFront::frontPage(): WebFront::bySection($section);
         //$sectionArticles = ($section == 0) ? Story::orderBy('publish_date')->limit(15)->get() : Section::find($section)->stories()->orderBy('publish_date')->limit(15)->get();
-        return view('admin.webfronts.show', compact('articles', 'sectionArticles'));
+        return view('admin.webfronts.show', compact('articles', 'sectionArticles', 'sectionTitle'));
     }
 
     /**

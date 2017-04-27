@@ -8,10 +8,10 @@
     <div>
         <div class="theader">
             <h2>Positions</h2>
-            <a href="{{ route('create-position') }}" class="btn btn-success">Add Position</a>
+            <a href="{{ route('create-position') }}" class="button">Add Position</a>
         </div>
 
-        <table class="table table-striped table-bordered">
+        <table class="table is-striped is-bordered">
             <thead>
             <tr>
                 <th>Title</th>

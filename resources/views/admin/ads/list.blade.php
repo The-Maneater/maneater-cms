@@ -8,10 +8,10 @@
     <div>
         <div class="theader">
             <h2>Ads</h2>
-            <a href="{{ route('create-ad') }}" class="btn btn-success">Add Ad</a>
+            <a href="{{ route('create-ad') }}" class="button">Add Ad</a>
         </div>
 
-        <table class="table table-striped table-bordered">
+        <table class="table is-striped is-bordered">
             <thead>
             <tr>
                 <th>Purchaser</th>

@@ -32,6 +32,14 @@ class Photo extends Model
     	return $this->belongsToMany('App\Staffer');
     }
 
+    public function path()
+    {
+        if(preg_match('/^(http|https)/', $this->location)){
+            return $this->location;
+        }
+        return $this->location;
+    }
+
     /**
      * Returns the associated stories
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

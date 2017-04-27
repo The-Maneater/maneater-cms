@@ -7,7 +7,7 @@
 @section('content')
     <div>
         <div class="theader">
-            <h2>Articles</h2>
+            <h2>{{ $sectionTitle }} Web Front</h2>
         </div>
         <form action="" method="POST" id="webfrontForm">
             {{ csrf_field() }}
@@ -29,11 +29,11 @@
                         <td> None </td>
                   @endif
                         <td>
-                            <select name="articles[{{ $i }}]">
+                            <select2 name="articles[{{ $i }}]">
                                 @foreach ($sectionArticles as $sArticle)
                                     <option value="{{ $sArticle->id }}">{{ $sArticle->title }}</option>
                                 @endforeach
-                            </select>
+                            </select2>
                         </td>
                     </tr>
                 @endfor
@@ -41,10 +41,9 @@
             </table>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

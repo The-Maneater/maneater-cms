@@ -5,8 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
 use Laravel\Scout\Searchable;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
-use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 use Spatie\Tags\HasTags;
 
 class Story extends Model
@@ -145,25 +143,23 @@ class Story extends Model
 
     /**
      * Returns the associated header photos
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function headerPhotos()
     {
         return $this->photos()
-            ->wherePivot('type', 'header')
-            ->get();
+            ->wherePivot('type', 'header');
     }
 
     /**
      * Returns the associated inline photos
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function inlinePhotos()
     {
         return $this->photos()
             ->wherePivot('type', 'inline')
-            ->withPivot('reference')
-            ->get();
+            ->withPivot('reference');
     }
 
 

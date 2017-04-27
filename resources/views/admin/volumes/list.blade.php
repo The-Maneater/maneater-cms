@@ -8,10 +8,10 @@
     <div>
         <div class="theader">
             <h2>Volumes</h2>
-            <a href="{{ route('create-volume') }}" class="btn btn-success">Add Volume</a>
+            <a href="{{ route('create-volume') }}" class="button">Add Volume</a>
         </div>
 
-        <table class="table table-striped table-bordered">
+        <table class="table is-striped is-bordered">
             <thead>
             <tr>
                 <th>Name</th>

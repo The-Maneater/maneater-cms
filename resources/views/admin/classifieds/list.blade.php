@@ -8,10 +8,10 @@
     <div>
         <div class="theader">
             <h2>Classifieds</h2>
-            <a href="{{ route('create-classified') }}" class="btn btn-success">Add Classified</a>
+            <a href="{{ route('create-classified') }}" class="button">Add Classified</a>
         </div>
 
-        <table class="table table-striped table-bordered">
+        <table class="table is-striped is-bordered">
             <thead>
             <tr>
                 <th>Title</th>

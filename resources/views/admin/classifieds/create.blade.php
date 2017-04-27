@@ -9,47 +9,28 @@
         <div class="theader">
             <h2>Add New Classified</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include("admin.shared.errors")
         <form action="{{ route('create-classified') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">
-                <div class="field">
-                    <label for="section">Title:</label>
-                    <input type="text" name="section" id="section" class="wideTextField form-control" value="{{ old('section') }}">
-                </div>
-            </div>
-            <div class="field">
-                <div class="field">
-                    <label for="start_date">Start Date:</label>
-                    <input type="text" name="start_date" id="start_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('start_date') === null ? \Carbon\Carbon::now() : old('start_date')}}">
-                </div>
-            </div>
-            <div class="field">
-                <div class="field">
-                    <label for="end_date">End Date:</label>
-                    <input type="text" name="end_date" id="end_date" class="wideTextField form-control flatpickr" data-default-date="{{ old('end_date') === null ? \Carbon\Carbon::now() : old('end_date')}}">
-                </div>
-            </div>
-            <div class="field">
-                <div class="field">
-                    <label for="content">Content:</label>
-                    <textarea name="content" id="content" cols="30" rows="10">{{ old('content') }}</textarea>
-                </div>
+                <b-field label="Title">
+                    <b-input name="section" value="{{ old('section') }}"></b-input>
+                </b-field>
+                <b-field label="Start Date:">
+                    <flatpickr name="start_date" default-value="{{ old('start_date') === null ? \Carbon\Carbon::now() : old('start_date') }}"></flatpickr>
+                </b-field>
+                <b-field label="End Date:">
+                    <flatpickr name="end_date" default-value="{{ old('end_date') === null ? \Carbon\Carbon::now() : old('end_date')}}"></flatpickr>
+                </b-field>
+                <b-field label="Content:">
+                    <b-input type="textarea" name="content" value="{{ old('content') }}"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include("admin.shared.form-footer")
 
 @section('scripts')
     <script>

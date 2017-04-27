@@ -28,9 +28,15 @@ $(document).ready(()=>{
 
 // Vue.component('example', require('./components/Example.vue'));
 //
-import Buefy from 'buefy'
-//import 'buefy/lib/buefy.css'
-Vue.use(Buefy);
+import Buefy from 'buefy';
+import 'buefy/lib/buefy.css';
+import FlatpickrV from './components/Flatpickr.vue';
+import Select2 from './components/Select2.vue';
+Vue.component("flatpickr", FlatpickrV);
+Vue.component("select2", Select2);
+Vue.use(Buefy, {
+    defaultIconPack: 'fa',
+});
 const app = new Vue({
     el: '.content',
     methods:{

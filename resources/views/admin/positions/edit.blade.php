@@ -9,42 +9,29 @@
         <div class="theader">
             <h2>Edit Position</h2>
         </div>
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        @include('admin.shared.errors')
         <form action="{{ route('update-position', [$position->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="field-group">
-                <div class="field">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" class="wideTextField form-control" value="{{ $position->title }}">
-                </div>
-                <div class="field">
-                    <label for="is_editorial_board">Is Editorial Board:</label>
-                    <input type="checkbox" name="is_editorial_board" id="is_editorial_board" class="wideTextField form-control" {{ $position->is_editorial_board ? "checked" : "" }}>
-                </div>
-                <div class="field">
-                    <label for="is_exec">Is Exec:</label>
-                    <input type="checkbox" name="is_exec" id="is_exec" class="wideTextField form-control" {{ $position->is_exec ? "checked" : "" }}>
-                </div>
-                <div class="field">
-                    <label for="priority">Priority:</label>
-                    <input type="number" name="priority" id="priority" class="wideTextField form-control" value="{{ $position->priority }}">
-                </div>
+                <b-field label="Title:">
+                    <b-input name="title" value="{{ $position->title }}"></b-input>
+                </b-field>
+                <b-field label="Is Editorial Board">
+                    <b-checkbox name="is_editorial_board" {{ $position->is_editorial_board ? "checked" : "" }}></b-checkbox>
+                </b-field>
+                <b-field label="Is an Executive Position:">
+                    <b-checkbox name="is_exec" {{ $position->is_exec ? "checked" : "" }}></b-checkbox>
+                </b-field>
+                <b-field label="Priority">
+                    <b-input type="number" name="priority" value="{{ $position->priority }}"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
-    <div class="sticky-footer">
-        <button class="btn btn-info" onclick="submitForm()">Save</button>
-    </div>
 @endsection
+
+@include('admin.shared.form-footer')
 
 @section('scripts')
     <script>
