@@ -67,3 +67,17 @@
   color:#2F7A32;
   border-bottom-color: transparent;
 }
+
+.top-admin-link{
+  padding-left: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.navigation{
+  width: 15%;
+}
+
+.menu-list li a:hover{
+  color: $m-green;
+}

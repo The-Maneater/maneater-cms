@@ -5,17 +5,17 @@
         <div class="column is-5">
             <div id="top_story_0" class="ui-tabs-panel">
                 <img src="{{ $frontPageStories[1]->headerPhotos[0]->path() }}" alt="">
-                <h1><a href="{{ $frontPageStories[1]->path() }}}">{{ $frontPageStories[1]->title }}</a></h1>
+                <h1><a href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h1>
                 <div class="topcaption">{{ $frontPageStories[1]->cDeck }}</div>
             </div>
             <div id="top_story_3" class="ui-tabs-panel">
                 <img src="{{ $frontPageStories[4]->headerPhotos[0]->path() }}" alt="">
-                <h1><a href="{{ $frontPageStories[4]->path() }}}">{{ $frontPageStories[4]->title }}</a></h1>
+                <h1><a href="{{ $frontPageStories[4]->path() }}">{{ $frontPageStories[4]->title }}</a></h1>
                 <div class="topcaption">{{ $frontPageStories[4]->cDeck }}</div>
             </div>
             <div id="top_story_4" class="ui-tabs-panel">
                 <img src="{{ $frontPageStories[5]->headerPhotos[0]->path() }}" alt="">
-                <h1><a href="{{ $frontPageStories[5]->path() }}}">{{ $frontPageStories[5]->title }}</a></h1>
+                <h1><a href="{{ $frontPageStories[5]->path() }}">{{ $frontPageStories[5]->title }}</a></h1>
                 <div class="topcaption">{{ $frontPageStories[5]->cDeck }}</div>
             </div>
             {{--<div id="top_story_0" class="ui-tabs-panel">--}}
@@ -37,11 +37,11 @@
         <div class="column is-3">
             <div id="top_story_1" class="ui-tabs-panel">
                 <img src="{{ $frontPageStories[2]->headerPhotos[0]->path() }}" alt="">
-                <h1><a href="{{ $frontPageStories[2]->path() }}}">{{ $frontPageStories[2]->title }}</a></h1>
+                <h1><a href="{{ $frontPageStories[2]->path() }}">{{ $frontPageStories[2]->title }}</a></h1>
                 <div class="topcaption">{{ $frontPageStories[2]->cDeck }}</div>
             </div>
             <div id="top_story_2" class="ui-tabs-panel">
-                <h1><a href="{{ $frontPageStories[3]->path() }}}">{{ $frontPageStories[3]->title }}</a></h1>
+                <h1><a href="{{ $frontPageStories[3]->path() }}">{{ $frontPageStories[3]->title }}</a></h1>
                 <div class="topcaption">{{ $frontPageStories[3]->cDeck }}</div>
             </div>
             {{--<div id="top_story_1" class="ui-tabs-panel">--}}
@@ -59,7 +59,7 @@
             <a class="sectionlabel" href="/stories/">Latest</a>
             <ul class="sectionlist">
                 @foreach($latest as $story)
-                    <li><a href="{{ $story->path() }}">{{ $story->title }}</a></li>
+                    <li><a class="is-m-green" href="{{ $story->path() }}">{{ $story->title }}</a></li>
                 @endforeach
             </ul>
             <div class="clippingfade"></div>
@@ -86,7 +86,7 @@
                     <a class="sectionlabel" href="/section/campus/">Campus</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections[0]->latestStories[$i]->path() }}">{{ $sections[0]->latestStories[$i]->title }}</a></li>
+                            <li class="is-black"><a href="{{ $sections[0]->latestStories[$i]->path() }}" class="is-info">{{ $sections[0]->latestStories[$i]->title }}</a></li>
                         @endfor
                     </ul>
                 </div>
@@ -135,7 +135,7 @@
             </div>
         </div>
         <div class="column is-4">
-            <h2 class="sectionlabel">Current issue</h2>
+            <h2 class="sectionlabel is-primary">Current issue</h2>
             <div class="sectionbox issu">
                 <div id="issue-link">
                     <a href="http://issuu.com/themaneater/docs/vol83issue24"><img src="http://www.themaneater.com/media/2017/0322/pages/01page01_pdf_250x500_q85.jpg" alt="Maneater front page"></a>

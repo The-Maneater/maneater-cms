@@ -4,3 +4,29 @@ label.checkbox{
 label{
   text-align: left !important;
 }
+
+.wideTextField{
+  width: 750px;
+}
+
+
+.field-group{
+  border: .2rem solid #f7f7f9;
+  display:inline-block;
+  margin-bottom: 1rem;
+}
+
+
+.form-container{
+  margin-bottom:60px;
+}
+.select2{
+  width:100% !important;
+}
+
+#storyForm{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-flow: column;
+}

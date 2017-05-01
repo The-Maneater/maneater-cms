@@ -12,7 +12,7 @@
                 <div class="column is-2">
                     <section class='articleInfo is-flex'>
                         @if (count($story->writers) == 1)
-                            <p class="byline">By {{ $story->writers[0]->first_name }} {{ $story->writers[0]->last_name }}</p>
+                            <p class="byline">By <a href="{{ $story->writers[0]->path() }}" class="is-m-green">{{ $story->writers[0]->first_name }} {{ $story->writers[0]->last_name }}</a></p>
                             @else
                                 <p class="byline">By
                                     @foreach ($story->writers as $writer)

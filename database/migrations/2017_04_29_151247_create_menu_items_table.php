@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePositionStafferTable extends Migration
+class CreateMenuItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePositionStafferTable extends Migration
      */
     public function up()
     {
-        Schema::create('position_staffer', function (Blueprint $table) {
+        Schema::create('menu_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('position_id')->unsigned();
-            $table->integer('staffer_id')->unsigned();
-            $table->string("period")->nullable();
-            $table->dateTime('start_date')->nullable();
-            $table->dateTime('end_date')->nullable();
+            $table->string('title');
+            $table->string('path');
+            $table->unsignedInteger('publication_id');
+            $table->string('type');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePositionStafferTable extends Migration
      */
     public function down()
     {
-        Schema::drop('position_staffer');
+        Schema::dropIfExists('menu_items');
     }
 }

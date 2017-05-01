@@ -12,6 +12,10 @@
         </span>
         <div class="nav-right nav-menu">
             <a class="nav-item is-tab is-hidden-tablet is-active">Home</a>
+            <form id="logout-form" action="{{ url('/logout') }}" method="POST">
+                {{ csrf_field() }}
+                <a class="nav-item is-tab is-hidden-mobile" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+            </form>
         </div>
 </nav>
 

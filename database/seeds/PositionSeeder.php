@@ -53,5 +53,12 @@ class PositionSeeder extends Seeder
             'is_exec'            => 0,
             'priority'           => 0
         ]);
+
+        DB::table('positions')->insert([
+            'title'              => 'Online Development Editor',
+            'is_editorial_board' => 1,
+            'is_exec'            => 0,
+            'priority'           => 5
+        ]);
     }
 }

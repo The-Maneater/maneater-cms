@@ -14,9 +14,13 @@
 Route::get('/', 'PagesController@frontpage');
 
 Route::get('/photos/{id}', 'PhotosController@show');
+Route::get('/graphics', function(){
+    return "Graphics";
+});
 Route::get('/graphics/{slug}', 'GraphicsController@show');
 Route::get('/layouts/{id}', 'LayoutsController@show');
-Route::get('/sections/{slug}', 'SectionsController@show');
+Route::get('/section/{slug}', 'SectionsController@show');
+Route::get('/staff/editors', 'PagesController@editorialBoard');
 Route::get('/staff/{slug}', 'StafferController@show');
 Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
@@ -112,6 +116,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
            Route::patch('/edit/{poll}', 'PollsController@update')->name('update-poll');
            Route::get('/edit/{poll}', 'PollsController@edit')->name('edit-poll');
         });
+
     });
 
     Route::group(['prefix' => 'staff'], function(){
@@ -157,4 +162,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
           Route::get('/edit/{classified}', 'ClassifiedsController@edit')->name('edit-classified');
        });
     });
+
+    Route::group(['prefix' => 'site'], function(){
+        Route::group(['prefix' => 'flatpages'], function(){
+            Route::get('/', 'FlatpageController@index');
+            Route::get('/create', 'FlatpageController@create')->name('create-flatpage');
+            Route::post('/create', 'FlatpageController@store')->name('store-flatpage');
+            Route::patch('/edit/{flatpage}', 'FlatpageController@update')->name('update-flatpage');
+            Route::get('/edit/{flatpage}', 'FlatpageController@edit')->name('edit-flatpage');
+        });
+    });
 });
+
+Route::get('/{param?}', 'FlatpageController@show')->where(['param' => '.*']);;

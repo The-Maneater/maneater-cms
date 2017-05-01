@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Section;
+use App\Staffer;
 use App\Story;
 use App\WebFront;
 use Illuminate\Http\Request;
@@ -25,5 +26,17 @@ class PagesController extends Controller
         //dd($latest);
         //dd($sections);
         return view('stories.index', compact('sections', 'latest', 'frontPageStories'));
+    }
+
+    public function editorialBoard()
+    {
+        $staffers = Staffer::whereHas('edBoardPositions', function($p){
+            $p->where('end_date', null);
+        })->get();
+        $titles = $staffers->map(function($item,$key){
+            return $item->edBoardPositions->where('end_date', null)->first()->title;
+        });
+
+        return view('staff.list', compact('staffers', 'titles'));
     }
 }

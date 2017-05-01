@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Laravel</title>
+    <title>The Maneater</title>
 
     <!-- Styles -->
 
@@ -28,7 +28,7 @@
 <div class="container" id="main">
     <div class="centerImage is-flex">
         <div class="nameplate">
-            <a href="{{ env('APP_URL') }}">
+            <a href="{{ config('app.url') }}">
                 <img src="http://themaneater.com/media/style/2012-08/images/namplates/themaneater-hr.png">
             </a>
         </div>
@@ -36,13 +36,13 @@
     <nav class="nav has-shadow" id="topNav">
         <div class="container">
             <div class="nav-left">
-                <a class="nav-item is-tab is-hidden-mobile" href="/sections/campus">CAMPUS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/sections/projects">PROJECTS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/sections/unews">UNEWS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/sections/sports">SPORTS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/sections/opinion">OPINION</a>
+                <a class="nav-item is-tab is-hidden-mobile" href="/section/campus">CAMPUS</a>
+                <a class="nav-item is-tab is-hidden-mobile" href="/section/projects">PROJECTS</a>
+                <a class="nav-item is-tab is-hidden-mobile" href="/section/unews">UNEWS</a>
+                <a class="nav-item is-tab is-hidden-mobile" href="/section/sports">SPORTS</a>
+                <a class="nav-item is-tab is-hidden-mobile" href="/section/opinion">OPINION</a>
                 <a class="nav-item is-tab is-hidden-mobile">MOVE</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/sections/blogs">BLOGS</a>
+                <a class="nav-item is-tab is-hidden-mobile" href="/section/blogs">BLOGS</a>
                 <a class="nav-item is-tab is-hidden-mobile">CLASSIFIEDS</a>
             </div>
             <span class="nav-toggle">
@@ -76,7 +76,7 @@
         <div class="container">
             <div class="nav-right">
                 <a class="nav-item is-tab is-hidden-mobile">FEEDBACK</a>
-                <a class="nav-item is-tab is-hidden-mobile">EDITORIAL STAFF</a>
+                <a class="nav-item is-tab is-hidden-mobile" href="{{ url('/staff/editors') }}">EDITORIAL STAFF</a>
                 <a class="nav-item is-tab is-hidden-mobile">WORK FOR US</a>
                 <a class="nav-item is-tab is-hidden-mobile">ADVERTISING INFORMATION</a>
             </div>
@@ -87,8 +87,8 @@
         </span>
         </div>
     </nav>
-    @yield('content')
-
+        @yield('content')
+    @include('shared.footer')
 </div>
     <!-- Scripts -->
     <script src="/js/manifest.js"></script>

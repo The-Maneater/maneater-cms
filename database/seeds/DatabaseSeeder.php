@@ -27,5 +27,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(AdSeeder::class);
         $this->call(PollSeeder::class);
+        $this->call(PermissionSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(FlatpageSeeder::class);
     }
 }

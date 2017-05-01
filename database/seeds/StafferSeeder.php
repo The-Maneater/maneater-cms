@@ -30,5 +30,9 @@ class StafferSeeder extends Seeder
         $reiker->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
         $michael->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
         $reiker->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+        $michael->positions()->attach(\App\Position::findByTitle('Online Development Editor'), ['start_date' => \Carbon\Carbon::now(), 'period' => 'Summer 2017 - Current']);
+
+
+        $reiker->positions()->attach(\App\Position::findByTitle('Online Development Editor'),  ['start_date' => \Carbon\Carbon::now(), 'end_date' => \Carbon\Carbon::now()]);
     }
 }

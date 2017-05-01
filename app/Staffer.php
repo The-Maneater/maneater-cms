@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
@@ -32,6 +33,11 @@ class Staffer extends Model
         unset($array['is_active']);
 
         return $array;
+    }
+
+    public function path()
+    {
+        return "/staff/" . $this->slug;
     }
 
     /**
@@ -98,7 +104,7 @@ class Staffer extends Model
         if($oldPosition != null){
             $this->positions()->detach(Position::findByTitle($oldPosition));
         }
-        $this->positions()->attach(Position::findByTitle($newPosition));
+        $this->positions()->attach(Position::findByTitle($newPosition), ['start_date' => Carbon::now()]);
 
         return $this;
     }
@@ -131,8 +137,7 @@ class Staffer extends Model
      */
     public function staffPositions(){
         return $this->positions()
-            ->where('is_editorial_board', '=', false)
-            ->get();
+            ->where('is_editorial_board', '=', false);
     }
 
     /**
@@ -141,8 +146,7 @@ class Staffer extends Model
      */
     public function edBoardPositions(){
         return $this->positions()
-            ->where('is_editorial_board', '=', true)
-            ->get();
+            ->where('is_editorial_board', '=', true);
     }
 
     /**

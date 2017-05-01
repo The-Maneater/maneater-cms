@@ -29,7 +29,6 @@ $(document).ready(()=>{
 // Vue.component('example', require('./components/Example.vue'));
 //
 import Buefy from 'buefy';
-import 'buefy/lib/buefy.css';
 import FlatpickrV from './components/Flatpickr.vue';
 import Select2 from './components/Select2.vue';
 Vue.component("flatpickr", FlatpickrV);

@@ -42,7 +42,7 @@ $factory->define(App\Story::class, function (Faker\Generator $faker) {
         'title' => $faker->words(5, true),
         'publish_date' => \Carbon\Carbon::now(),
         'cDeck' => $faker->sentence,
-        'body' => $faker->paragraphs(2, true),
+        'body' => $faker->paragraphs(5, true),
         'priority' => 10,
         'section_id' => 1,
         'issue_id' => 1
