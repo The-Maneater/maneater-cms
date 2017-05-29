@@ -44,11 +44,14 @@ class PhotosController extends Controller
     {
         $photo = new Photo;
         $photo->fill($request->except(['byline', 'photo', 'tags']));
-        $image = $request->file('photo')->move(public_path('images/'), $request->file('photo')->getClientOriginalName());
-        $photo->location = '/images/' . $image->getFilename();
+        //$image = $request->file('photo')->move(public_path('images/'), $request->file('photo')->getClientOriginalName());
+        $image = $request->file('photo')
+            ->storeAs('images', $request->file('photo')->getClientOriginalName(), 'media');
+        $photo->location = $image;
         $photo->dateTaken = Carbon::now();
+        $photo->staffer_id = request('byline');
         $photo->save();
-        $photo->photographers()->attach($request->input('byline'));
+//        $photo->photographer()->associate($request->input('byline'));
         $photo->attachTags($request->input('tags'));
 
         $photographers = collect($request->input('byline'));
@@ -98,7 +101,7 @@ class PhotosController extends Controller
     public function update(Request $request, Photo $photo)
     {
         $photo->update($request->except(['byline', 'photo', 'tags']));
-        $photo->photographers()->sync($request->input('byline'));
+        $photo->photographer()->sync($request->input('byline'));
         $photo->syncTags($request->input('tags'));
 
         return redirect('/admin/core/photos');

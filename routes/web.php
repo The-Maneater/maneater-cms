@@ -14,9 +14,9 @@
 Route::get('/', 'PagesController@frontpage');
 
 Route::get('/photos/{id}', 'PhotosController@show');
-Route::get('/graphics', function(){
-    return "Graphics";
-});
+//Route::get('/graphics', function(){
+//    return "Graphics";
+//});
 Route::get('/graphics/{slug}', 'GraphicsController@show');
 Route::get('/layouts/{id}', 'LayoutsController@show');
 Route::get('/section/{slug}', 'SectionsController@show');
@@ -28,16 +28,10 @@ Route::get('/test/test', 'PagesController@test');
 
 Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-    Route::get('/', function(){
-       return redirect('/admin/dashboard');
-    });
+    Route::get('/', 'PagesController@dashboard');
     Route::get('/dashboard', 'PagesController@dashboard');
-    Route::get('/move', function(){
-        return redirect('/admin/dashboard');
-    });
-    Route::get('/newsletter', function(){
-        return redirect('/admin/dashboard');
-    });
+    Route::get('/move', 'PagesController@dashboard');
+    Route::get('/newsletter', 'PagesController@dashboard');
     Route::group(['prefix' => 'core'], function(){
         Route::group(['prefix' => 'stories'], function(){
             Route::get('/create', 'StoriesController@create')->name('create-story');
@@ -45,6 +39,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
             Route::get('/', 'StoriesController@index');
             Route::get('/edit/{section}/{slug}', 'StoriesController@edit')->name('edit-story');
             Route::patch('/edit/{section}/{slug}', 'StoriesController@update')->name('update-story');
+            Route::delete('/{section}/{slug}', 'StoriesController@destroy')->name('story.delete');
         });
 
         Route::group(['prefix' => 'web-fronts'], function(){
@@ -64,8 +59,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         Route::group(['prefix' => 'events'], function(){
            Route::get('/', 'EventController@index');
            Route::get('/create', 'EventController@create')->name('create-event');
-           Route::post('/create', 'EventController@store')->name('store-photo');
-           Route::patch('/edit/{event}', 'EventController@update@update')->name('update-event');
+           Route::post('/create', 'EventController@store')->name('store-event');
+           Route::patch('/edit/{event}', 'EventController@update')->name('update-event');
            Route::get('/edit/{event}', 'EventController@edit')->name('edit-event');
         });
 
@@ -173,5 +168,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         });
     });
 });
-
+Route::get('{image_pattern}', 'Folklore\Image\ImageController@serve')->name('image.serve');
 Route::get('/{param?}', 'FlatpageController@show')->where(['param' => '.*']);;

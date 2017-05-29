@@ -26,10 +26,10 @@ class Photo extends Model
 
     /**
      * Returns the associated photographers
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function photographers(){
-    	return $this->belongsToMany('App\Staffer');
+    public function photographer(){
+    	return $this->belongsTo('App\Staffer', 'staffer_id');
     }
 
     public function path()
@@ -37,7 +37,7 @@ class Photo extends Model
         if(preg_match('/^(http|https)/', $this->location)){
             return $this->location;
         }
-        return $this->location;
+        return 'media/'.$this->location;
     }
 
     /**

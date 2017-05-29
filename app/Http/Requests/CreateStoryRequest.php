@@ -13,7 +13,10 @@ class CreateStoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if(auth()->user()->can('manage-stories')){
+            return true;
+        }
+        return false;
     }
 
     /**

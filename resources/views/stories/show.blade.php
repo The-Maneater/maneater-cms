@@ -6,7 +6,9 @@
             <h1 class="h1-content">{{ $story->title }}</h1>
             <h3 class="h3-content">{{ $story->cDeck }}</h3>
             <div class="main-picture">
-                <p>This is where pictures will go</p>
+                @if(count($story->headerPhotos) > 0)
+                    <img src="{{ $story->headerPhotos[0]->path() }}" alt="">
+                @endif
             </div>
             <div class="columns">
                 <div class="column is-2">

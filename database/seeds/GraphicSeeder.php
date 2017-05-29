@@ -15,7 +15,7 @@ class GraphicSeeder extends Seeder
         $graphic = new Graphic([
 			'title'       => 'The Difference of a Year',
 			'description' => ' ',
-			'link'        => '/images/protests.jpg',
+			'link'        => '/media/images/protests.jpg',
             'publish_date' => \Carbon\Carbon::now()
         	]);
 

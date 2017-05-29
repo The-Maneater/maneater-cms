@@ -10,3 +10,4 @@ public/layouts
 public/graphics
 
 npm-debug\.log
+/public/media/

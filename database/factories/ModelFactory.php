@@ -15,10 +15,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
+        'username' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Section::class, function(Faker\Generator $faker){
+    return [
+        'name' => $faker->word,
+        'slug' => strtolower($faker->word),
+        'publication_id' => 1
     ];
 });
 
@@ -35,6 +43,32 @@ $factory->define(App\Ad::class, function (Faker\Generator $faker) {
     ];
 });
 
+$factory->define(App\Volume::class, function(Faker\Generator $faker){
+   return [
+       'name' => $faker->numberBetween(0, 50),
+       'first_issue_date' => \Carbon\Carbon::now(),
+       'period' => 'August 2016 - May 2017',
+       'publication' => 'Maneater'
+   ];
+});
+
+$factory->define(App\Issue::class, function(Faker\Generator $faker){
+   return [
+       'issue_number' => $faker->numberBetween(0, 50),
+       'volume_id' => function(){
+           return create('App\Section')->id;
+       }
+   ];
+});
+
+$factory->define(App\Staffer::class, function(Faker\Generator $faker){
+    return [
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'is_active' => 1
+    ];
+});
+
 $factory->define(App\Story::class, function (Faker\Generator $faker) {
     return [
         'slug' => $faker->slug,
@@ -44,7 +78,35 @@ $factory->define(App\Story::class, function (Faker\Generator $faker) {
         'cDeck' => $faker->sentence,
         'body' => $faker->paragraphs(5, true),
         'priority' => 10,
-        'section_id' => 1,
-        'issue_id' => 1
+        'issue_id' => function(){
+            return create('App\Issue')->id;
+        },
+        'section_id' => function(){
+            return create('App\Section')->id;
+        }
     ];
 });
+
+$factory->define(App\Photo::class, function (Faker\Generator $faker){
+   $name = strtolower($faker->word);
+   $path = \Illuminate\Http\UploadedFile::fake()->image($name . '.jpg')
+       ->storeAs('images', $name . '.jpg', 'media');
+
+   return [
+       'title' => $name,
+       'description' => $faker->sentence,
+       'dateTaken' => \Carbon\Carbon::now(),
+       'location' => '/media' . $path,
+       'publish_date' => \Carbon\Carbon::now(),
+       'section_id' => function(){
+            return create('App\Section')->id;
+       },
+       'issue_id' => function(){
+           return create('App\Issue')->id;
+       },
+       'staffer_id' => function(){
+           return create('App\Staffer')->id;
+       }
+   ];
+});
+

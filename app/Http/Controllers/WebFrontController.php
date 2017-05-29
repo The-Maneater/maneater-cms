@@ -86,6 +86,6 @@ class WebFrontController extends Controller
                 $story->addToSectionWebfront($priority);
             }
         });
-        return redirect("/admin/core/web-front");
+        return redirect("/admin/core/web-fronts");
     }
 }

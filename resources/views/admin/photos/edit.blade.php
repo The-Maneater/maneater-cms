@@ -39,7 +39,7 @@
                 <b-field label="Byline:">
                     <select2 name="byline" id="byline">
                         @foreach (\App\Staffer::all() as $staffer)
-                            <option value="{{ $staffer->id }}" {{ ($photo->photographers->contains($staffer->id) ? "selected":"") }}>{{ $staffer->fullname }}</option>
+                            <option value="{{ $staffer->id }}" {{ ($photo->photographer->id == $staffer->id ? "selected":"") }}>{{ $staffer->fullname }}</option>
                         @endforeach
                     </select2>
                 </b-field>

@@ -9,7 +9,7 @@
         <div class="theader">
             <h2>Add New Photo</h2>
         </div>
-        @include("admin.shared.form-footer")
+        @include("admin.shared.errors")
         <form action="{{ route('store-photo') }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
             <div class="field-group">

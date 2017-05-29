@@ -16,6 +16,7 @@ class StoriesController extends Controller
      */
     public function index()
     {
+        $this->authorize('index', Story::class);
         $articles = Story::orderBy('publish_date', "DESC")->paginate(25);
 
         return view('admin.articles.list', compact('articles'));
@@ -39,7 +40,6 @@ class StoriesController extends Controller
      */
     public function store(CreateStoryRequest $request)
     {
-        //dd($request);
         $story = new Story($request->except(['tags', 'issue', 'section', 'byline', 'topPhotos', 'inlinePhotos', 'graphics']));
         $story->issue()->associate($request->input('issue'));
         $story->section()->associate($request->input('section'));
@@ -52,13 +52,7 @@ class StoriesController extends Controller
         $inlinePhotos = collect($request->input('inlinePhotos'));
         $ids = $inlinePhotos->pluck('photo');
         $references = $inlinePhotos->pluck('reference');
-        $ids = $ids->flip()
-            ->reject(function($item){
-                return $item == '' || $item === null;
-            })
-            ->map(function($item, $key) use($references){
-                return ['type' => 'inline', 'reference' => $references[$item]];
-            });
+        $ids = $this->getInlinePhotos($ids, $references);
         $photos = $topPhotos->toArray() + $ids->toArray();
 
         $story->save();
@@ -138,13 +132,7 @@ class StoriesController extends Controller
         $inlinePhotos = collect($request->input('inlinePhotos'));
         $ids = $inlinePhotos->pluck('photo');
         $references = $inlinePhotos->pluck('reference');
-        $ids = $ids->flip()
-            ->reject(function($item){
-                return $item == '' || $item === null;
-            })
-            ->map(function($item, $key) use($references){
-                return ['type' => 'inline', 'reference' => $references[$item]];
-            });
+        $ids = $this->getInlinePhotos($ids, $references);
         $photos = $topPhotos->toArray() + $ids->toArray();
 
         $article->photos()->sync($photos);
@@ -166,11 +154,29 @@ class StoriesController extends Controller
     public function destroy($section, $slug)
     {
         $story = Story::findBySectionAndSlug($section, $slug);
+        $this->authorize('delete', $story);
 
         $story->delete();
 
-        return response()->json([
-                'status' => 'ok'
-            ]);
+        return redirect('/admin/core/stories');
+    }
+
+    /**
+     * Manipulates the list of inline photo ids and
+     * transforms it to the format needed.
+     * @param $ids
+     * @param $references
+     * @return mixed
+     */
+    private function getInlinePhotos($ids, $references)
+    {
+        $ids = $ids->flip()
+            ->reject(function ($item) {
+                return $item === '' || $item === null;
+            })
+            ->map(function ($item, $key) use ($references) {
+                return ['type' => 'inline', 'reference' => $references[$item]];
+            });
+        return $ids;
     }
 }
