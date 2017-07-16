@@ -39,10 +39,7 @@
                         </div>
                         <div class="field">
                             <p class="control">
-                                <label class="checkbox">
-                                    <input type="checkbox" name="remember">
-                                    Remember me
-                                </label>
+                                <b-checkbox name="remember">Remember Me</b-checkbox>
                             </p>
                         </div>
                         <div class="field">

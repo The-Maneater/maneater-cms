@@ -150,5 +150,8 @@ class RoleSeeder extends Seeder
         ]);
 
         User::first()->attachRole($super);
+        User::find(2)->attachRole($edBoard);
+        User::find(3)->attachRole($exec);
+        User::find(4)->attachRole($businessManager);
     }
 }

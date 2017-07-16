@@ -100,7 +100,7 @@ class StafferController extends Controller
         $ids = $positions->pluck('position');
         $periods = $positions->pluck('period');
         $ids = $this->getPositions($ids, $periods);
-        dd($ids);
+        //dd($ids);
         $staffer->positions()->sync($ids);
 
         $staffer->save();

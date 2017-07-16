@@ -20,8 +20,8 @@
                 <b-field label="Last Name:">
                     <b-input name="last_name" value="{{ $staffer->last_name }}"></b-input>
                 </b-field>
-                <b-field label="Is Active:">
-                    <b-checkbox name="active" {{ $staffer->is_active ? "checked" : "" }}></b-checkbox>
+                <b-field>
+                    <b-checkbox name="active" {{ $staffer->is_active ? "checked" : "" }}>Is Active</b-checkbox>
                 </b-field>
                 <b-field label="Associated user account:">
                     <select2 name="user">
@@ -58,7 +58,7 @@
                                             </select>
                                         </td>
                                         <td class="reference">
-                                            <input type="text" name="positions[{{$loop->index}}][period]" value="{{ $stafferPosition->pivot->period }}">
+                                            <input type="text" class="input" name="positions[{{$loop->index}}][period]" value="{{ $stafferPosition->pivot->period }}">
                                         </td>
                                         <td><a class="button is-link" onclick="removeTableRow(this)"><b-icon icon="close"></b-icon></a></td>
                                     </tr>
