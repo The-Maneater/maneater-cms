@@ -11,11 +11,11 @@
 |
 */
 
-Route::domain('move.' . config('app.base'))->group(function(){
-    Route::get('/', function(){
-        return Route::current()->domain();
-    });
-});
+//Route::domain('move.' . config('app.base'))->group(function(){
+//    Route::get('/', function(){
+//        return Route::current()->domain();
+//    });
+//});
 
 Route::get('/', 'PagesController@frontpage');
 Route::get('/search', 'SearchController@show');
