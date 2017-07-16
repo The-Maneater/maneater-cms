@@ -16,7 +16,10 @@ class SectionsController extends Controller
      */
     public function index()
     {
-        $sections = Section::with('publication')->orderBy('name')->paginate(15);
+        $sections = request()->has('search') ?
+            Section::search(request('search'))->paginate(15) :
+            Section::orderBy('name')->paginate(15);
+        $sections->load('publication');
         return view('admin.sections.list', compact('sections'));
     }
 

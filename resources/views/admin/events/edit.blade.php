@@ -13,7 +13,7 @@
         <form action="{{ route('update-event', [$event->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Name:">
                     <b-input name="name" id="name" value="{{ $event->name }}"></b-input>
                 </b-field>
@@ -24,7 +24,7 @@
                     <b-input name="location" id="location" value="{{ $event->location }}"></b-input>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Description:">
                     <b-input name="description" id="description" value="{{ $event->description }}"></b-input>
                 </b-field>

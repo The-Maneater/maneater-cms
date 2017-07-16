@@ -1,11 +1,11 @@
-.infopage{
-  p{
+.infopage {
+  p {
     font-size: 16px;
     line-height: 1.5em;
     color: #000000;
     margin: 16px 0;
   }
-  h2{
+  h2 {
     border-bottom: 2px solid #f1f1f1;
     font-size: 20px;
     margin-bottom: 1em;
@@ -15,7 +15,7 @@
     word-spacing: 2px;
     font-weight: bold;
   }
-  h4{
+  h4 {
     border-bottom: 2px solid #f1f1f1;
     color: #474747;
     font-size: 18px;
@@ -23,6 +23,139 @@
     margin-bottom: 0;
     text-transform: uppercase;
     word-spacing: 2px;
-    font-weight:bold;
+    font-weight: bold;
+  }
+
+  ul.students{
+    display:flex;
+    flex-wrap: wrap;
+  }
+
+  li.students{
+    display: flex;
+    flex-flow: column;
+    padding-right: 10px;
+  }
+
+  #inputfields {
+    float: left;
+    width: 20%;
+  }
+
+  input[type=text], input[type=password] {
+    background: #F1F1F1;
+    border: 0;
+    font-size: 13px;
+    height: 20px;
+    padding: 0;
+    width: 100%;
+  }
+
+  #selectfields {
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 50px;
+  }
+
+  #textareafields {
+    float: left;
+    margin-left: 4%;
+    width: 76%;
+  }
+
+  textarea {
+    background: #f1f1f1;
+    border: 0;
+    font-size: 13px;
+    height: 8em;
+    padding: 0;
+    resize: none;
+    width: 100%;
+  }
+
+  label.textarea {
+    border-top: 2px solid #959595;
+    border-left: 0;
+    border-bottom: 0;
+    border-right: 0;
+    color: #474747;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 0;
+    text-align: left;
+    text-transform: uppercase;
+    width: 100%;
+    box-shadow: none;
+    height:17px !important;
+    min-height: 17px;
+    max-height: 17px;
+  }
+
+  label.input {
+    border-top: 2px solid #959595;
+    border-left: 0;
+    border-bottom: 0;
+    border-right: 0;
+    color: #474747;
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 0;
+    text-align: right;
+    text-transform: uppercase;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  label.input:before {
+    color: #2F7A32;
+    content: "\00BB";
+    font-size: 16px;
+    line-height: 10px;
+    padding-right: 3px;
+  }
+
+  label.textarea:before {
+    color: #2F7A32;
+    content: "\00BB";
+    font-size: 16px;
+    line-height: 10px;
+    padding-right: 3px;
+  }
+
+  p.send {
+    margin-top: 25px;
+    text-align: right;
+  }
+
+  p.send input[type=submit] {
+    margin-left: 20px;
+  }
+  input[type=submit] {
+    background: #2F7A32;
+    border: 0;
+    color: #fff;
+    font-size: 13px;
+    font-family: Roboto, Helvetica, Tahoma, Arial, sans-serif;
+    font-weight: bold;
+    margin-right: 5px;
+    margin-top: 20px;
+    opacity: 0.9;
+    padding: 5px 20px;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    width: 0;
+    height: 0;
   }
 }
+

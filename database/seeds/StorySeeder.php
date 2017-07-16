@@ -18,7 +18,7 @@ class StorySeeder extends Seeder
             'runsheet_slug' => 'my-project',
             'title'         => 'Five steps to transform your dorm',
             'issue_id'      => 1,
-            'publish_date'  => '2016-08-08 12:00:00',
+            'publish_date'  => '2017-07-15 12:00:00',
             'cDeck'         => 'You’ll make it the new home you never want to leave.',
             'section_id'    => 1,
             'body'          => "There’s no place like home. Dorothy really hit the nail on the head with that one. For most of us, moving away from home and into a new space is a jarring and unnerving experience. But there are several steps you can take to transform your dorm or apartment into a bona fide home away from home.
@@ -70,9 +70,15 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
                 'section_id' => $item->id,
                 'section_webfront_priority' => 5
             ]);
-            $s = [$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory];
+            $s = collect([$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory]);
            $item->stories()->saveMany($stories);
            $item->stories()->saveMany($s);
+           $stories->each(function($story){
+               $story->writers()->attach(\App\Staffer::inRandomOrder()->first());
+           });
+           $s->each(function($story){
+               $story->writers()->attach(\App\Staffer::inRandomOrder()->first());
+           });
         });
 
 
@@ -103,29 +109,15 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
             'front_page_webfront_priority' => 5
         ]);
 
-        $stories = [$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory];
+        $stories = collect([$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory]);
         $section->stories()->saveMany($stories);
+        $stories->each(function($story){
+            $story->writers()->attach(\App\Staffer::inRandomOrder()->first());
+        });
         $firstStory->photos()->attach([6 => ['type' => 'header']]);
         $secondStory->photos()->attach([7 => ['type' => 'header']]);
         $fourthStory->photos()->attach([7 => ['type' => 'header']]);
         $fifthStory->photos()->attach([7 => ['type' => 'header']]);
 
-//        $faker = Faker::create();
-//        foreach(range(1,5) as $index){
-//            $s = new Story([
-//                'slug' => $faker->slug,
-//                'runsheet_slug' => $faker->slug,
-//                'title' => $faker->words(5, true),
-//                'publish_date' => \Carbon\Carbon::now(),
-//                'cDeck' => $faker->sentence,
-//                'body' => $faker->paragraphs(2, true),
-//                'priority' => 10
-//            ]);
-//            $s->section()->associate(1);
-//            $s->issue()->associate(1);
-//
-//            $s->save();
-//            $s->writers()->attach(1);
-//        }
     }
 }

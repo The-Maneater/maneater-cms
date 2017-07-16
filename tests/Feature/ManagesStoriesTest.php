@@ -12,7 +12,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ManagesArticlesTest extends TestCase
+class ManagesStoriesTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -144,7 +144,6 @@ class ManagesArticlesTest extends TestCase
         Storage::disk('media')->assertExists('images/'.$photo->title . '.jpg');
         $story->inlinePhotos = [['photo' => $photo->id, 'reference'=>'test']];
         $story->byline = [create('App\Staffer')->id];
-
         $this->signIn($this->getUserWithPermission())
             ->post('/admin/core/stories/create', $this->getStoryArray($story));
 
@@ -164,21 +163,5 @@ class ManagesArticlesTest extends TestCase
         $storyArray["section"] = $story->section_id;
         $storyArray["issue"] = $story->issue_id;
         return $storyArray;
-    }
-
-    /**
-     * @return mixed
-     */
-    private function getUserWithPermission()
-    {
-        $user = create('App\User');
-
-        $permission = Permission::create([
-            'name'         => 'manage-stories',
-            'display_name' => 'Story: Create/Edit/Delete/List'
-        ]);
-
-        $user->attachPermission($permission);
-        return $user;
     }
 }

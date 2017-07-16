@@ -3,6 +3,7 @@
 namespace Tests;
 
 use App\Exceptions\Handler;
+use App\Permission;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
@@ -42,5 +43,21 @@ abstract class TestCase extends BaseTestCase
     {
         $this->app->instance(ExceptionHandler::class, $this->oldExceptionHandler);
         return $this;
+    }
+
+    protected function getUserWithPermission()
+    {
+        $user = create('App\User');
+        $class = explode("\\",get_class($this));
+        $parts = preg_split('/(?=[A-Z])/', $class[2]);
+        $permissionName = strtolower($parts[2]);
+
+        $permission = Permission::create([
+            'name'         => "manage-$permissionName",
+            'display_name' => "$permissionName: Create/Edit/Delete/List"
+        ]);
+
+        $user->attachPermission($permission);
+        return $user;
     }
 }

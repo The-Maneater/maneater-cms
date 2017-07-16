@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Position extends Model
 {
+    use Searchable;
+
     protected $fillable = ['title', 'is_editorial_board', 'is_exec', 'priority'];
 
     protected $casts = ['is_editorial_board' => 'boolean', 'is_exec' => 'boolean'];

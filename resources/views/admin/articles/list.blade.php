@@ -8,7 +8,21 @@
     <div class="content">
         <div class="theader">
             <h2 class="">Articles</h2>
-            <a href="{{ route('create-story') }}" class="button">Add Article</a>
+            <div class="is-flex is-flex-row">
+                <form method="GET" class="search-form">
+                    <div class="field has-addons">
+                        <p class="control">
+                            <input class="input" name="search" type="text" placeholder="Find an article" value="{{ request('search') }}">
+                        </p>
+                        <p class="control">
+                            <button class="button is-info" type="submit">
+                                Search
+                            </button>
+                        </p>
+                    </div>
+                </form>
+                <a href="{{ route('create-story') }}" class="button">Add Article</a>
+            </div>
         </div>
 
        <table class="table is-bordered is-striped">

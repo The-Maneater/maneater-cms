@@ -12,7 +12,7 @@
         @include("admin.shared.errors")
         <form action="{{ route('store-flatpage') }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Title:">
                     <b-input name="title" value="{{ old('title') }}"></b-input>
                 </b-field>

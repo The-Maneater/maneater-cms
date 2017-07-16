@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-    use LaratrustUserTrait;
+    use LaratrustUserTrait, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -37,4 +38,14 @@ class User extends Authenticatable
     {
         return $this->hasOne(Staffer::class);
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        unset($array['password']);
+
+        return $array;
+    }
+
+
 }

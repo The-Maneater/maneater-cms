@@ -16,7 +16,9 @@ class ClassifiedsController extends Controller
      */
     public function index()
     {
-        $classifieds = Classified::orderBy('start_date')->paginate(15);
+        $classifieds = request()->has('search') ?
+            Classified::search(\request('search'))->paginate(15) :
+            Classified::orderBy('start_date')->paginate(15);
         return view('admin.classifieds.list', compact('classifieds'));
     }
 

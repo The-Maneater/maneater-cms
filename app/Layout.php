@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Layout extends Model
 {
+    use Searchable;
+
     protected $fillable = [
     	'title', 'link', 'date_published'
     ];
@@ -64,4 +67,14 @@ class Layout extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        unset($array['link']);
+
+        return $array;
+    }
+
+
 }

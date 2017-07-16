@@ -10,7 +10,7 @@
         @include("admin.shared.errors")
         <form method="POST" enctype="multipart/form-data" action={{ route('store-story') }} id="storyForm">
             {{ csrf_field() }}
-            <div class="field-group">
+            <div class="box">
                 <h4>Article Information:</h4>
                 <b-field label="Title">
                     <b-input name="title" id="title" value="{{ old('title') }}" v-on:change="createSlug"></b-input>
@@ -32,7 +32,7 @@
                     <b-input name="static_byline" id="static_byline" value="{{ old('static_byline') }}"></b-input>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <h4>Publication Information:</h4>
                 <b-field label="Publish Date:">
                     <flatpickr name="publish_date" default-date="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date')}}"></flatpickr>
@@ -61,7 +61,7 @@
                     <b-input name="priority" type="number" id="priority" value="{{ old('priority') }}"></b-input>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <h4>The Story:</h4>
                 <b-field label="Body:">
                     <b-input name="body" id="priority" type="textarea" value="{{ old('body') }}"></b-input>

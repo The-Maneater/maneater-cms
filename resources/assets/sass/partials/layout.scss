@@ -9,6 +9,18 @@ body{
   align-items: center;
 }
 
+.search-form{
+  padding-right: 15px;
+}
+
+.main-search-form{
+  display:inherit;
+}
+
+.is-flex-row{
+  flex-flow: row;
+}
+
 .answer-container{
   flex-direction:column;
 }
@@ -79,5 +91,15 @@ footer{
   }
   ul li {
     padding: 3px 0;
+  }
+
+  #f1 {
+    background: url(http://themaneater.com/media/style/2012-08/images/namplates/footer.png) no-repeat left top;
+    background-size: 100%;
+    padding-top: 120px;
+    margin-left: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
   }
 }

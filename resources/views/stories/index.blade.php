@@ -63,6 +63,7 @@
                 @endforeach
             </ul>
             <div class="clippingfade"></div>
+            <img src="{{ $ads[0]->image_url }}" alt="" class="bottom-ad">
         </div>
         <div class="column is-2">
             <div id="followus">
@@ -77,6 +78,7 @@
                 </div>
             </div>
         </div>
+
     </div>
     <hr>
     <div class="columns">
@@ -133,8 +135,10 @@
                     </ul>
                 </div>
             </div>
+
         </div>
         <div class="column is-4">
+
             <h2 class="sectionlabel is-primary">Current issue</h2>
             <div class="sectionbox issu">
                 <div id="issue-link">
@@ -146,6 +150,7 @@
                     <li class="bullet"><a href="http://themaneater.com/games/">Game Answers</a></li>
                 </ul>
             </div>
+            <img src="{{ $ads[1]->image_url }}" alt="" class="top-ad">
         </div>
     </div>
 @endsection

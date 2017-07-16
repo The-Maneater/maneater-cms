@@ -12,7 +12,7 @@
         @include("admin.shared.errors")
         <form action="{{ route('store-graphic') }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Title">
                     <b-input name="title" id="title" value="{{ old('title') }}"></b-input>
                 </b-field>
@@ -34,7 +34,7 @@
                     </select2>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <b-field label="BylineL">
                     <select2 name="byline" id="byline">
                         @foreach (\App\Staffer::all() as $staffer)

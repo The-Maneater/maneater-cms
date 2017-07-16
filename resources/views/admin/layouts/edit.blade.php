@@ -14,7 +14,7 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
 
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Title:">
                     <b-input name="title" id="title" value="{{ $layout->title }}"></b-input>
                 </b-field>
@@ -22,7 +22,7 @@
                     <flatpickr name="date_published" id="date_published" default-value="{{ $layout->date_published === null ? \Carbon\Carbon::now() : $layout->date_published }}"></flatpickr>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Section:">
                     <select2 name="section" id="section">
                         @foreach (\App\Section::all() as $section)

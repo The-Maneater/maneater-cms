@@ -1,0 +1,25 @@
+.search-header{
+  background-color: $m-green;
+  margin-bottom: 0.75em;
+  color: #fff;
+  display: block;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: "Roboto Condensed";
+  padding: 0.1em 0.5em;
+  text-transform: uppercase;
+}
+
+.resultset{
+  border-bottom: 2px solid #F1F1F1;
+}
+
+h5.search-results-header{
+  margin-bottom: 0.5em;
+  font-size: 18px;
+  background: #474747;
+  color: #fff;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  margin-top:10px;
+}

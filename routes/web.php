@@ -11,19 +11,27 @@
 |
 */
 
+Route::domain('move.' . config('app.base'))->group(function(){
+    Route::get('/', function(){
+        return Route::current()->domain();
+    });
+});
+
 Route::get('/', 'PagesController@frontpage');
+Route::get('/search', 'SearchController@show');
 
 Route::get('/photos/{id}', 'PhotosController@show');
 //Route::get('/graphics', function(){
 //    return "Graphics";
 //});
-Route::get('/graphics/{slug}', 'GraphicsController@show');
+Route::get('/graphics/{graphic}', 'GraphicsController@show');
 Route::get('/layouts/{id}', 'LayoutsController@show');
 Route::get('/section/{slug}', 'SectionsController@show');
 Route::get('/staff/editors', 'PagesController@editorialBoard');
 Route::get('/staff/{slug}', 'StafferController@show');
 Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
+Route::get('/classifieds', 'PagesController@classifieds');
 Route::get('/test/test', 'PagesController@test');
 
 Auth::routes();
@@ -147,6 +155,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
           Route::post('/create', 'AdsController@store')->name('store-ad');
           Route::patch('/edit/{ad}', 'AdsController@update')->name('update-ad');
           Route::get('/edit/{ad}', 'AdsController@edit')->name('edit-ad');
+          Route::delete('/{ad}', 'AdsController@destroy')->name('ad.delete');
        });
 
        Route::group(['prefix' => 'classifieds'], function(){

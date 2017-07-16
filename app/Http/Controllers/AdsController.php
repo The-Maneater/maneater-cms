@@ -15,7 +15,10 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ad::orderBy('campaign_start')->paginate(15);
+        $this->authorize('index', Ad::class);
+        $ads = request()->has('search') ?
+            Ad::search(request('search'))->paginate(15) :
+            Ad::orderBy('campaign_start')->paginate(15);
         return view('admin.ads.list', compact('ads'));
     }
 
@@ -40,8 +43,8 @@ class AdsController extends Controller
         $ad = new Ad;
         $ad->fill($request->except('adFile'));
         $image = $request->file('adFile')
-            ->move(public_path('ads/'), $request->file('adFile')->getClientOriginalName());
-        $ad->image_url = '/ads/' . $image->getFilename();
+            ->storeAs('ads', $request->file('adFile')->getClientOriginalName(), 'media');
+        $ad->image_url = '/media' . $image;
         $ad->times_served = 0;
         $ad->save();
 
@@ -79,6 +82,7 @@ class AdsController extends Controller
      */
     public function update(Request $request, Ad $ad)
     {
+        $this->authorize('update', $ad);
         $ad->fill($request->all());
         $ad->save();
 
@@ -88,11 +92,13 @@ class AdsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Ad $ad
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Ad $ad)
     {
-        //
+        $this->authorize('delete', $ad);
+        $ad->delete();
+        return redirect('/admin/advertising/ads');
     }
 }

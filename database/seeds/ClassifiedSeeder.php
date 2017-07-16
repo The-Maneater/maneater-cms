@@ -15,7 +15,7 @@ class ClassifiedSeeder extends Seeder
         $classified = new Classified([
 				'section'    => 'Help Wanted',
 				'start_date' => \Carbon\Carbon::now(),
-				'end_date'   => \Carbon\Carbon::tomorrow(),
+				'end_date'   => \Carbon\Carbon::now()->addWeeks(2),
 				'content'    => 'Need new developer'
         	]);
         $classified->save();

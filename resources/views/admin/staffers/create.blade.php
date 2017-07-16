@@ -12,7 +12,7 @@
         @include("admin.shared.errors")
         <form action="{{ route('create-staffer') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="First Name:">
                     <b-input name="first_name" value="{{ old('first_name') }}"></b-input>
                 </b-field>

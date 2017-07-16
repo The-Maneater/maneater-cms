@@ -5,9 +5,12 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Ad extends Model
 {
+    use Searchable;
+
 	protected $dates = ['campaign_start', 'campaign_end'];
 
 	protected $fillable = [
@@ -28,6 +31,17 @@ class Ad extends Model
     	$this->times_served++;
     	$this->save();
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        unset($array['duration']);
+        unset($array['image_url']);
+        unset($array['provider_url']);
+
+        return $array;
+    }
+
 
     /**
      * Creates a query to retrieve only active ads

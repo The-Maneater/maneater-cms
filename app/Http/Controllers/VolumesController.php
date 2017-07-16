@@ -17,7 +17,9 @@ class VolumesController extends Controller
      */
     public function index()
     {
-        $volumes = Volume::orderBy('first_issue_date')->paginate(15);
+        $volumes = request()->has('search') ?
+            Volume::search(request('search'))->orderBy('first_issue_date')->paginate(15) :
+            Volume::orderBy('first_issue_date')->paginate(15);
         return view('admin.volumes.list', compact('volumes'));
     }
 

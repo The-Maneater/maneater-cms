@@ -13,7 +13,7 @@
         <form action="{{ route('update-position', [$position->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Title:">
                     <b-input name="title" value="{{ $position->title }}"></b-input>
                 </b-field>

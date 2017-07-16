@@ -40,7 +40,7 @@ class PhotoSeeder extends Seeder
         ]);
 
         $photo = Photo::create([
-            'title'       => '350 * 150 Placeholder',
+            'title'       => '250 * 150 Placeholder',
             'description' => "This doesn't actually do anything.",
             'dateTaken'   => \Carbon\Carbon::now(),
             'location'    => 'http://placehold.it/250x100',

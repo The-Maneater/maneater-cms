@@ -31,15 +31,36 @@ $factory->define(App\Section::class, function(Faker\Generator $faker){
 });
 
 $factory->define(App\Ad::class, function (Faker\Generator $faker) {
+    $name = strtolower($faker->word);
+    $image = \Illuminate\Http\UploadedFile::fake()->image($name . '.jpg');
+
     return [
         'size' => $faker->word,
         'duration' => $faker->word,
         'purchaser' => $faker->company,
-        'image_url' => $faker->imageUrl(),
         'provider_url' => $faker->url,
         'times_served' => 0,
         'campaign_start' => $faker->date(),
         'campaign_end' => $faker->date()
+    ];
+});
+
+$factory->state(App\Ad::class, 'withExistingPhoto', function(Faker\Generator $faker){
+    $name = strtolower($faker->word);
+    $imageUrl = \Illuminate\Http\UploadedFile::fake()->image($name . '.jpg')
+        ->storeAs('ads', $name . 'jpg', 'media');
+
+    return [
+        'image_url' => '/media' . $imageUrl
+    ];
+});
+
+$factory->state(App\Ad::class, 'withoutExistingPhoto', function (Faker\Generator $faker){
+    $name = strtolower($faker->word);
+    $image = \Illuminate\Http\UploadedFile::fake()->image($name . '.jpg');
+
+    return [
+        'adFile' => $image
     ];
 });
 
@@ -56,7 +77,7 @@ $factory->define(App\Issue::class, function(Faker\Generator $faker){
    return [
        'issue_number' => $faker->numberBetween(0, 50),
        'volume_id' => function(){
-           return create('App\Section')->id;
+           return create('App\Volume')->id;
        }
    ];
 });

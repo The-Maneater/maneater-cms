@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Volume extends Model
 {
+    use Searchable;
+
     protected $fillable = [
     	'name', 'first_issue_date', 'period', 'publication'
     ];
@@ -19,4 +22,14 @@ class Volume extends Model
     public function issues(){
     	return $this->hasMany('App\Issue');
     }
+
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        unset($array['period']);
+
+        return $array;
+    }
+
+
 }

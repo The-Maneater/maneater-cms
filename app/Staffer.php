@@ -128,7 +128,7 @@ class Staffer extends Model
     public function positions()
     {
         return $this->belongsToMany(Position::class)
-            ->withPivot('start_date', 'end_date');
+            ->withPivot('start_date', 'end_date', 'period');
     }
 
     /**

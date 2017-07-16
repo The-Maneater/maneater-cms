@@ -9,7 +9,7 @@
 //@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
 //Bootstrap v-4
-@import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+//@import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 @import "~bulma/sass/utilities/_all";
 
 
@@ -67,4 +67,6 @@ a.is-m-green:hover{
 @import "partials/pagination";
 @import "partials/typography";
 @import "partials/flatpages";
+@import "partials/search";
+@import "partials/classified";
 

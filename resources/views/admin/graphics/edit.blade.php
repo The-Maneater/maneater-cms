@@ -13,7 +13,7 @@
         <form action="{{ route('update-graphic', [$graphic->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Title:">
                     <b-input name="title" id="title" value="{{ $graphic->title }}"></b-input>
                 </b-field>
@@ -35,7 +35,7 @@
                     </select2>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Byline:">
                     <select2 name="byline" id="byline">
                         @foreach (\App\Staffer::all() as $staffer)

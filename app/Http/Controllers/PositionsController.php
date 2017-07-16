@@ -16,7 +16,9 @@ class PositionsController extends Controller
      */
     public function index()
     {
-        $positions = Position::orderBy('priority', 'DESC')->paginate(15);
+        $positions = request()->has('search') ?
+            Position::search(request('search'))->paginate(15) :
+            Position::orderBy('priority', 'DESC')->paginate(15);
         return view('admin.positions.list', compact('positions'));
     }
 

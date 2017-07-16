@@ -13,7 +13,7 @@
         <form action="{{ route('update-photo', [$photo->id]) }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Publish Date:">
                     <flatpickr name="publish_date" default-value="{{ old('publish_date') === null ? $photo->publish_date : old('publish_date') }}"></flatpickr>
                 </b-field>
@@ -32,7 +32,7 @@
                     </select2>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Title:">
                     <b-input name="title" id="title" value="{{ $photo->title }}"></b-input>
                 </b-field>

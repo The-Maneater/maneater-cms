@@ -24,12 +24,30 @@ class StafferSeeder extends Seeder
             'is_active'  => 1
         ]);
 
+        $jd = new Staffer([
+            'first_name' => 'John',
+            'last_name'  => 'Doe',
+            'is_active'  => 1
+        ]);
+
+        $jad = new Staffer([
+            'first_name' => 'Jane',
+            'last_name'  => 'Doe',
+            'is_active'  => 1
+        ]);
+
         $michael->save();
         $reiker->save();
+        $jd->save();
+        $jad->save();
         $michael->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
         $reiker->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+        $jad->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+        $jd->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
         $michael->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
         $reiker->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+        $jad->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+        $jd->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
         $michael->positions()->attach(\App\Position::findByTitle('Online Development Editor'), ['start_date' => \Carbon\Carbon::now(), 'period' => 'Summer 2017 - Current']);
 
 

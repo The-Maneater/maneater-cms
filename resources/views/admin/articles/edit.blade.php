@@ -11,7 +11,7 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
 
-            <div class="field-group">
+            <div class="box">
                 <h4>Article Information:</h4>
                 <b-field label="Title">
                     <b-input name="title" id="title" value="{{ $article->title }}" v-on:change="createSlug"></b-input>
@@ -33,7 +33,7 @@
                     <b-input name="static_byline" id="static_byline" value="{{ $article->static_byline }}"></b-input>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <h4>Publication Information:</h4>
                 <b-field label="Publish Date:">
                     <flatpickr name="publish_date" default-value="{{ old('publish_date') === null ? $article->publish_date : old('publish_date') }}"></flatpickr>
@@ -62,7 +62,7 @@
                     <b-input name="priority" type="number" id="priority" value="{{ $article->priority }}"></b-input>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <h4>The Story:</h4>
                 <b-field label="Body:">
                     <b-input name="body" id="priority" type="textarea" value="{{ $article->body }}"></b-input>
@@ -84,7 +84,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(count($article->inlinePhotos()) > 0)
+                        @if(count($article->inlinePhotos) > 0)
                             @foreach($article->inlinePhotos as $inlinePhoto)
                                 @if($loop->first)
                                     <tr class="firstRow" id="firstRow">
@@ -109,7 +109,7 @@
                                             <td class="photoSelect">
                                                 <select name="inlinePhotos[0][photo]" class="inline-photo">
                                                     <option></option>
-                                                    @foreach (\App\Photo::all() as $photo)
+                                                    @foreach (\App\Photo::latest()->take(30)->get() as $photo)
                                                         <option value="{{ $photo->id }}" >{{ $photo->title }}</option>
                                                     @endforeach
                                                 </select>

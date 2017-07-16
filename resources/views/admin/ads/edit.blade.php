@@ -13,7 +13,7 @@
         <form action="{{ route('update-ad', [$ad->id]) }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Purchaser:">
                     <b-input name="purchaser" value="{{ $ad->purchaser }}"></b-input>
                 </b-field>
@@ -30,7 +30,7 @@
                     </select2>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Provider URL:">
                     <b-input name="provider_url" value="{{ $ad->provider_url }}"></b-input>
                 </b-field>

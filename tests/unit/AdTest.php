@@ -9,7 +9,7 @@ use App\Ad;
 
 class AdTest extends TestCase
 {
-    use DatabaseTransactions;
+    use DatabaseMigrations;
 
     public function testAnAdCanBeServed()
     {

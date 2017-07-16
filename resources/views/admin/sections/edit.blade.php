@@ -13,7 +13,7 @@
         <form action="{{ route('update-section', [$section->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Name:">
                     <b-input name="name" id="name" value="{{ $section->name }}"></b-input>
                 </b-field>

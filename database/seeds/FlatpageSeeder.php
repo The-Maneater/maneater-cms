@@ -67,5 +67,19 @@ class FlatpageSeeder extends Seeder
             'publication_id' => 1,
             'content' => file_get_contents(storage_path('/flatpage_initial/colophon.php'))
         ]);
+
+        Flatpage::create([
+            'title' => "Work for Us",
+            'path' => 'workforus',
+            'publication_id' => 1,
+            'content' => file_get_contents(storage_path('/flatpage_initial/work-for-us.php'))
+        ]);
+
+        Flatpage::create([
+            'title' => "Feedback",
+            'path' => 'feedback',
+            'publication_id' => 1,
+            'content' => file_get_contents(storage_path('/flatpage_initial/feedback.php'))
+        ]);
     }
 }

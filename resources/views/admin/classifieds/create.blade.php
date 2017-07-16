@@ -12,7 +12,7 @@
         @include("admin.shared.errors")
         <form action="{{ route('create-classified') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Title">
                     <b-input name="section" value="{{ old('section') }}"></b-input>
                 </b-field>

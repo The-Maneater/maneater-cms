@@ -13,7 +13,7 @@
         <form action="{{ route('update-poll', [$poll->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Question:">
                     <b-input name="question" id="question" value="{{ $poll->question }}"></b-input>
                 </b-field>

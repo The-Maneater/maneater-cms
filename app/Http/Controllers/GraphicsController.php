@@ -16,7 +16,10 @@ class GraphicsController extends Controller
      */
     public function index()
     {
-        $graphics = Graphic::with(['section', 'issue'])->orderBy('publish_date')->paginate(25);
+        $graphics = request()->has('search') ?
+            Graphic::search(request('search'))->paginate(25) :
+            Graphic::orderBy('publish_date')->paginate(25);
+        $graphics->load(['section', 'issue']);
         return view('admin.graphics.list', compact('graphics'));
     }
 

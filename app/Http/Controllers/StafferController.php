@@ -17,7 +17,10 @@ class StafferController extends Controller
      */
     public function index()
     {
-        $staffers = Staffer::with('positions')->orderBy('first_name')->paginate(15);
+        $staffers = request()->has('search') ?
+            Staffer::search(request('search'))->orderBy('first_name')->paginate(15) :
+            Staffer::orderBy('first_name')->paginate(15);
+        $staffers->load('positions');
         return view('admin.staffers.list', compact('staffers'));
     }
 
@@ -84,11 +87,19 @@ class StafferController extends Controller
      */
     public function update(Request $request, Staffer $staffer)
     {
+        //dd(request()->all());
         $staffer->fill($request->except(['active', 'user']));
         $staffer->is_active = $request->input('active') !== null;
-        if($request->input('user') !== null){
+        if($request->input('user') !== null && request('user') !== ''){
             $staffer->user()->associate($request->input('user'));
         }
+
+        $positions = collect(request('positions'));
+        $ids = $positions->pluck('position');
+        $periods = $positions->pluck('period');
+        $ids = $this->getPositions($ids, $periods);
+        dd($ids);
+        $staffer->positions()->sync($ids);
 
         $staffer->save();
 
@@ -104,5 +115,24 @@ class StafferController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Manipulates the list of inline photo ids and
+     * transforms it to the format needed.
+     * @param $ids
+     * @param $periods
+     * @return mixed
+     */
+    private function getPositions($ids, $periods)
+    {
+        $ids = $ids->reject(function ($item) {
+                return $item === '' || $item === null;
+            })
+            ->flip()
+            ->map(function ($item, $key) use ($periods) {
+                return ['period' => $periods[$item]];
+            });
+        return $ids;
     }
 }

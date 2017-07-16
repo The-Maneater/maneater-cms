@@ -19,8 +19,10 @@ class PhotosController extends Controller
      */
     public function index()
     {
-        $photos = Photo::with(['section', 'issue'])->orderBy('publish_date')->paginate(25);
-
+        $photos = request()->has('search') ?
+            Photo::search(request('search'))->orderBy('publish_date')->paginate(15) :
+            Photo::orderBy('publish_date')->paginate(25);
+        $photos->load(['section', 'issue']);
         return view('admin.photos.list', compact('photos'));
     }
 

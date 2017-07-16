@@ -13,7 +13,7 @@
         <form action="{{ route('update-volume', [$volume->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Volume Number:">
                     <b-input type="number" name="name" id="name" value="{{ $volume->name }}"></b-input>
                 </b-field>

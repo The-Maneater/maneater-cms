@@ -13,7 +13,10 @@ class CreateAdRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if(auth()->user()->can('manage-ads')){
+            return true;
+        }
+        return false;
     }
 
     /**

@@ -123,7 +123,6 @@ class Story extends Model
     public function toSearchableArray()
     {
         $array = $this->toArray();
-        unset($array['runsheet_slug']);
 
         return $array;
     }

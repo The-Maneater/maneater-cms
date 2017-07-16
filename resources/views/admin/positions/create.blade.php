@@ -12,7 +12,7 @@
         @include("admin.shared.errors")
         <form action="{{ route('create-position') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Title">
                     <b-input name="title" id="title" value="{{ old('title') }}"></b-input>
                 </b-field>

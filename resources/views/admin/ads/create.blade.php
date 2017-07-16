@@ -12,7 +12,7 @@
        @include("admin.shared.errors")
         <form action="{{ route('store-ad') }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Purchaser:">
                     <b-input name="purchaser" value="{{ old('purchaser') }}"></b-input>
                 </b-field>
@@ -29,7 +29,7 @@
                     </select2>
                 </b-field>
             </div>
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Provider URL:">
                     <b-input name="provider_url" value="{{ old('provider_url') }}"></b-input>
                 </b-field>

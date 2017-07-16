@@ -17,8 +17,9 @@ class PollsController extends Controller
      */
     public function index()
     {
-        $polls = Poll::orderBy('start_date')->paginate(15);
-
+        $polls = request()->has('search') ?
+            Poll::search(request('search'))->paginate(15) :
+            Poll::orderBy('start_date')->paginate(15);
         return view('admin.polls.list', compact('polls'));
     }
 

@@ -17,8 +17,11 @@ class StoriesController extends Controller
     public function index()
     {
         $this->authorize('index', Story::class);
-        $articles = Story::orderBy('publish_date', "DESC")->paginate(25);
-
+        if(request()->has('search')){
+            $articles = Story::search(request('search'))->paginate(25);
+        }else{
+            $articles = Story::orderBy('publish_date', "DESC")->paginate(25);
+        }
         return view('admin.articles.list', compact('articles'));
     }
 
@@ -170,10 +173,10 @@ class StoriesController extends Controller
      */
     private function getInlinePhotos($ids, $references)
     {
-        $ids = $ids->flip()
-            ->reject(function ($item) {
+        $ids = $ids->reject(function ($item) {
                 return $item === '' || $item === null;
             })
+            ->flip()
             ->map(function ($item, $key) use ($references) {
                 return ['type' => 'inline', 'reference' => $references[$item]];
             });

@@ -5,9 +5,12 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Classified extends Model
 {
+    use Searchable;
+
     protected $fillable = [
     	'section', 'start_date', 'end_date', 'content'
     ];
@@ -16,6 +19,7 @@ class Classified extends Model
     	'start_date', 'end_date'
     ];
 
+
     /**
      * Updates the query to return only active classifieds
      * @param Builder $query
@@ -23,7 +27,7 @@ class Classified extends Model
      */
     public function scopeActive(Builder $query)
     {
-        return $query->where('start_date', '>=', Carbon::now())
-            ->where('end_date', '<=', Carbon::now());
+        return $query->where('start_date', '<=', Carbon::now())
+            ->where('end_date', '>=', Carbon::now());
     }
 }

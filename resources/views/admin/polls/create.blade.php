@@ -12,7 +12,7 @@
         @include("admin.shared.errors")
         <form action="{{ route('create-poll') }}" method="POST" id="storyForm">
             {{ csrf_field() }}
-            <div class="field-group">
+            <div class="box">
                 <b-field label="Question:">
                     <b-input name="question" id="question" value="{{ old('question') }}"></b-input>
                 </b-field>

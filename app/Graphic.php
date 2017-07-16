@@ -14,6 +14,11 @@ class Graphic extends Model
 
     protected $dates = ['publish_date'];
 
+    public function path()
+    {
+        return '/graphics/' . $this->id;
+    }
+
     /**
      * Returns the associated staffers
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -39,4 +44,18 @@ class Graphic extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+    /**
+     * Generates the searchable attributes for the mysql scout driver
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        unset($array['link']);
+
+        return $array;
+    }
+
+
 }

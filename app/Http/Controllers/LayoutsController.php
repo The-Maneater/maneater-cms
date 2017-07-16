@@ -16,9 +16,10 @@ class LayoutsController extends Controller
      */
     public function index()
     {
-        $layouts = Layout::with(['staffer', 'issue', 'section'])
-            ->orderBy('date_published')
-            ->paginate(25);
+        $layouts = request()->has('search') ?
+            Layout::search(request('search'))->paginate(25) :
+            Layout::orderBy('date_published')->paginate(25);
+        $layouts->load(['staffer', 'issue', 'section']);
         return view('admin.layouts.list', compact('layouts'));
     }
 
