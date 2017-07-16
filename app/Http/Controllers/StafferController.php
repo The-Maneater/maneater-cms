@@ -64,7 +64,9 @@ class StafferController extends Controller
      */
     public function show($slug)
     {
-        return Staffer::findBySlug($slug);
+        $staffer = Staffer::findBySlug($slug)->load(['staffPositions', 'edBoardPositions', 'stories']);
+        $currentPosition = $staffer->edBoardPositions()->wherePivot('end_date', null)->first();
+        return view('staff.show', compact('staffer', 'currentPosition'));
     }
 
     /**
