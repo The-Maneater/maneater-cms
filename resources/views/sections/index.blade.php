@@ -4,7 +4,7 @@
     <div class="columns">
         <div class="column is-5">
             <div class="substory">
-                <h1><a href="#">{{ $priorityStories[0]->title }}</a></h1>
+                <h1><a href="{{ $priorityStories[0]->path() }}">{{ $priorityStories[0]->title }}</a></h1>
                 <p>{{ $priorityStories[0]->title }}</p>
             </div>
         </div>
@@ -12,21 +12,21 @@
             <div class="columns">
                 <div class="column is-6">
                     <div class="substory">
-                        <h1><a href="#">{{ $priorityStories[1]->title }}</a></h1>
+                        <h1><a href="{{ $priorityStories[1]->path() }}">{{ $priorityStories[1]->title }}</a></h1>
                         <p>{{ $priorityStories[1]->title }}</p>
                     </div>
                     <div class="substory">
-                        <h1><a href="#">{{ $priorityStories[3]->title }}</a></h1>
+                        <h1><a href="{{ $priorityStories[3]->path() }}">{{ $priorityStories[3]->title }}</a></h1>
                         <p>{{ $priorityStories[3]->title }}</p>
                     </div>
                 </div>
                 <div class="column is-6">
                     <div class="substory">
-                        <h1><a href="#">{{ $priorityStories[2]->title }}</a></h1>
+                        <h1><a href="{{ $priorityStories[2]->path() }}">{{ $priorityStories[2]->title }}</a></h1>
                         <p>{{ $priorityStories[2]->title }}</p>
                     </div>
                     <div class="substory">
-                        <h1><a href="#">{{ $priorityStories[4]->title }}</a></h1>
+                        <h1><a href="{{ $priorityStories[4]->path() }}">{{ $priorityStories[4]->title }}</a></h1>
                         <p>{{ $priorityStories[4]->title }}</p>
                     </div>
                 </div>
