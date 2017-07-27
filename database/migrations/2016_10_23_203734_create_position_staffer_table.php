@@ -20,6 +20,7 @@ class CreatePositionStafferTable extends Migration
             $table->string("period")->nullable();
             $table->dateTime('start_date')->nullable();
             $table->dateTime('end_date')->nullable();
+            $table->boolean('current')->nullable();
             $table->timestamps();
         });
     }

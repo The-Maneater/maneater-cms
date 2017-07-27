@@ -26,6 +26,20 @@
                 <b-field label="Password Confirmation">
                     <b-input type="password" name="password_confirmation"></b-input>
                 </b-field>
+                <b-field label="Roles:">
+                    <select2 name="roles[]" id="roles" multiple="true">
+                        @foreach (\App\Role::all() as $role)
+                            <option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? "selected" : "" }}>{{ $role->display_name }}</option>
+                        @endforeach
+                    </select2>
+                </b-field>
+                {{--<b-field label="Permissions:">--}}
+                    {{--<select2 name="roles" id="roles" multiple="true">--}}
+                        {{--@foreach (\App\Permission::all() as $permission)--}}
+                            {{--<option value="{{ $permission->id }}" {{ $user->hasPermission($permission->name) ? "selected" : "" }}>{{ $permission->display_name }}</option>--}}
+                        {{--@endforeach--}}
+                    {{--</select2>--}}
+                {{--</b-field>--}}
             </div>
         </form>
     </div>
@@ -38,5 +52,12 @@
         function submitForm(){
             $("#storyForm").submit();
         }
+
+        $(document).ready(function(){
+            $('select').select2({
+                placeholder: 'Select an option',
+                allowClear: true
+            });
+        })
     </script>
 @endsection

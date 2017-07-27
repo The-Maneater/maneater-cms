@@ -21,7 +21,7 @@
                     <b-input name="last_name" value="{{ $staffer->last_name }}"></b-input>
                 </b-field>
                 <b-field>
-                    <b-checkbox name="active" {{ $staffer->is_active ? "checked" : "" }}>Is Active</b-checkbox>
+                    <b-checkbox :true-value="1" :false-value="0" name="active" {{ $staffer->is_active ? "checked" : "" }}>Is Active</b-checkbox>
                 </b-field>
                 <b-field label="Associated user account:">
                     <select2 name="user">
@@ -38,6 +38,7 @@
                         <tr>
                             <th>Position</th>
                             <th>Period</th>
+                            <th></th>
                             <th></th>
                         </tr>
                         </thead>
@@ -60,6 +61,11 @@
                                         <td class="reference">
                                             <input type="text" class="input" name="positions[{{$loop->index}}][period]" value="{{ $stafferPosition->pivot->period }}">
                                         </td>
+                                        <td class="current">
+                                            <b-field>
+                                                <b-checkbox :true-value="1" :false-value="0" name="positions[{{$loop->index}}][current]" {{ $stafferPosition->pivot->current ? "checked" : "" }} >Current</b-checkbox>
+                                            </b-field>
+                                        </td>
                                         <td><a class="button is-link" onclick="removeTableRow(this)"><b-icon icon="close"></b-icon></a></td>
                                     </tr>
                                     @endforeach
@@ -75,6 +81,11 @@
                                             </td>
                                             <td class="reference">
                                                 <input type="text" class="input" name="positions[0][period]" value="">
+                                            </td>
+                                            <td class="current">
+                                                <b-field>
+                                                    <b-checkbox name="positions[0][current]" >Current</b-checkbox>
+                                                </b-field>
                                             </td>
                                             <td><a class="button is-link" onclick="removeTableRow(this)"><b-icon icon="close"></b-icon></a></td>
                                         </tr>
@@ -103,6 +114,7 @@
             let el = $("#firstRow").clone();
             $(el).find('td.photoSelect select').attr("name", "positions[" + inlineIndex + "][position]").val([]);
             $(el).find('td.reference input').attr("name", "positions[" + inlineIndex + "][period]").val("");
+            $(el).find('td.current input').attr("name", "positions[" + inlineIndex + "][current]").val("");
             $(el).attr('id', '');
             $("tbody").append(el);
             $('.inline-photo').select2({

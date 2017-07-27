@@ -65,7 +65,8 @@ class StafferController extends Controller
     public function show($slug)
     {
         $staffer = Staffer::findBySlug($slug)->load(['staffPositions', 'edBoardPositions', 'stories']);
-        $currentPosition = $staffer->edBoardPositions()->wherePivot('end_date', null)->first();
+        //dd($staffer);
+        $currentPosition = $staffer->edBoardPositions()->wherePivot('current', true)->first();
         return view('staff.show', compact('staffer', 'currentPosition'));
     }
 
@@ -99,7 +100,8 @@ class StafferController extends Controller
         $positions = collect(request('positions'));
         $ids = $positions->pluck('position');
         $periods = $positions->pluck('period');
-        $ids = $this->getPositions($ids, $periods);
+        $current = $positions->pluck('current');
+        $ids = $this->getPositions($ids, $periods, $current);
         //dd($ids);
         $staffer->positions()->sync($ids);
 
@@ -120,20 +122,22 @@ class StafferController extends Controller
     }
 
     /**
-     * Manipulates the list of inline photo ids and
+     * Manipulates the list of positions and
      * transforms it to the format needed.
      * @param $ids
      * @param $periods
+     * @param $current
      * @return mixed
      */
-    private function getPositions($ids, $periods)
+    private function getPositions($ids, $periods, $current)
     {
+        //dd($current);
         $ids = $ids->reject(function ($item) {
                 return $item === '' || $item === null;
             })
             ->flip()
-            ->map(function ($item, $key) use ($periods) {
-                return ['period' => $periods[$item]];
+            ->map(function ($item, $key) use ($periods, $current) {
+                return ['period' => $periods[$item], 'current' => $current[$item] !== null];
             });
         return $ids;
     }

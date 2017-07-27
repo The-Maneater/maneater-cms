@@ -27,12 +27,13 @@ Route::get('/photos/{id}', 'PhotosController@show');
 Route::get('/graphics/{graphic}', 'GraphicsController@show');
 Route::get('/layouts/{id}', 'LayoutsController@show');
 Route::get('/section/{slug}', 'SectionsController@show');
+Route::get('/section/{slug}/archives', 'SectionArchivesController@show');
 Route::get('/staff/editors', 'PagesController@editorialBoard');
 Route::get('/staff/{slug}', 'StafferController@show');
 Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 Route::get('/classifieds', 'PagesController@classifieds');
-Route::get('/test/test', 'PagesController@test');
+Route::get('/test/test', 'PagesController@allStaff');
 
 Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {

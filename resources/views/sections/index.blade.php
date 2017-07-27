@@ -37,10 +37,12 @@
         <div class="column is-8">
             @foreach($stories as $story)
                 <div class="story">
-                    <h2><a href="#">{{ $story->title }}</a></h2>
+                    <h2><a href="{{ $story->path() }}">{{ $story->title }}</a></h2>
                     <p>{{ $story->cDeck }}</p>
                 </div>
             @endforeach
+
+                <a href="{{ url()->current() . '/archives' }}" class="button is-m-green">Archives</a>
         </div>
         <div class="column is-4">
             <p>Extra stuff and ads</p>

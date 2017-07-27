@@ -128,7 +128,7 @@ class Staffer extends Model
     public function positions()
     {
         return $this->belongsToMany(Position::class)
-            ->withPivot('start_date', 'end_date', 'period');
+            ->withPivot('start_date', 'end_date', 'period', 'current');
     }
 
     /**
@@ -146,7 +146,8 @@ class Staffer extends Model
      */
     public function edBoardPositions(){
         return $this->positions()
-            ->where('is_editorial_board', '=', true);
+            ->where('is_editorial_board', '=', true)
+            ->orderBy('pivot_start_date', 'DESC');
     }
 
     /**
@@ -154,7 +155,8 @@ class Staffer extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function stories(){
-        return $this->belongsToMany(Story::class);
+        return $this->belongsToMany(Story::class)
+            ->orderBy('publish_date', 'DESC');
     }
 
     /**

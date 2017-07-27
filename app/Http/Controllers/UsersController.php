@@ -39,7 +39,9 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->all());
+        dd($request->all());
+        $user = User::create($request->except('roles'));
+        $user->roles()->sync(request('roles'));
 
         return redirect('/admin/staff/users');
     }
@@ -75,7 +77,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->all());
+        $user->update($request->except('roles'));
+        $user->roles()->sync(request('roles'));
 
         return redirect('/admin/staff/users');
     }

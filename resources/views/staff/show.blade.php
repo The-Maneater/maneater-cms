@@ -36,7 +36,7 @@
                 <h5 class="search-results-header">ARTICLES ({{ count($staffer->stories) }})</h5>
                 @foreach($staffer->stories as $story)
                     <div class="resultset">
-                        <a href="{{ $story->path() }}">{{ $story->title }}</a> ({{ $story->publish_date->format('M. d, Y') }})
+                        <a href="{{ $story->path() }}">{{ $story->title }}</a> ({{ $story->formattedPublishDate->format('M. d, Y') }})
                     </div>
                 @endforeach
             </div>

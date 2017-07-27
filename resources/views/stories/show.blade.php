@@ -25,7 +25,7 @@
                                     @endforeach
                                 </p>
                             @endif
-                        <p class="published"> {{ \Carbon\Carbon::parse($story->publish_date)->format('M. d, Y') }} </p>
+                        <p class="published"> {{ $story->formattedPublishDate->format('M. d, Y') }} </p>
                     </section>
                 </div>
                 <div class="column is-10">

@@ -37,10 +37,10 @@ class PagesController extends Controller
     public function editorialBoard()
     {
         $staffers = Staffer::whereHas('edBoardPositions', function($p){
-            $p->where('end_date', null);
+            $p->where('current', true);
         })->get();
         $titles = $staffers->map(function($item,$key){
-            return $item->edBoardPositions->where('end_date', null)->first()->title;
+            return $item->edBoardPositions->where('current', true)->first()->title;
         });
 
         return view('staff.list', compact('staffers', 'titles'));
@@ -51,5 +51,12 @@ class PagesController extends Controller
         $classifieds = Classified::active()->paginate(25);
         //dd($classifieds);
         return view('classifieds.index', compact('classifieds'));
+    }
+
+    public function allStaff()
+    {
+        $staff = Staffer::orderBy('first_name')->paginate(1);
+        //dd($staff);
+        return view('staff.all', compact('staff'));
     }
 }

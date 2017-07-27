@@ -41,7 +41,7 @@
               <tr>
                 <td><a href="{{ route('edit-story', [$article->section->slug, $article->slug]) }}">{{ $article->title }}</a></td>
                 <td>{{ $article->runsheet_slug }}</td>
-                <td>{{ $article->publish_date->format('M j, Y g:i A') }}</td>
+                <td>{{ $article->formattedPublishDate->format('M j, Y g:i A') }}</td>
                 <td>{{ $article->issue->issueName }}</td>
                 <td>{{ $article->priority }}</td>
                 <td>{{ $article->section->name }}</td>

@@ -28,13 +28,20 @@ class Story extends Model
         'issue_id'
 	];
 
-    protected $dates = ['publish_date'];
+    protected $dates = [];
+
+    protected $appends = ['formattedPublishDate'];
 
 	//protected $with = ['photos', 'corrections', 'graphics', 'tags', 'writers', 'issue', 'section'];
 
     public function path()
     {
         return '/stories/' . $this->section->slug . '/' . $this->slug;
+    }
+
+    public function getFormattedPublishDateAttribute()
+    {
+        return Carbon::parse($this->publish_date);
     }
 
     /**
