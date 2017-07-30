@@ -3,7 +3,7 @@ node {
         // Run `composer update` as a shell script
         sh 'composer install'
     }
-    stage("build_artifacts)"{
+    stage("build_artifacts"){
     	sh 'npm install'
     	sh 'npm build production'
     }
