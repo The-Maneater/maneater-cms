@@ -8,6 +8,8 @@ Homestead.yaml
 /storage/framework
 public/layouts
 public/graphics
+.travis.yml
+deploy_rsa.enc
 
 npm-debug\.log
 /public/media/
