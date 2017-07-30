@@ -4,16 +4,23 @@ pipeline {
 	}
 	stages{
 		stage("composer_install") {
-			// Run `composer update` as a shell script
+			steps{
 			sh 'composer install'
+			}
+			// Run `composer update` as a shell script
+
 		}
 		stage("build_artifacts"){
-			sh 'npm install'
-			sh 'npm build production'
+			steps{
+				sh 'npm install'
+                sh 'npm build production'
+			}
 		}
 		stage("phpunit") {
+			steps{
+				sh 'vendor/bin/phpunit'
+			}
 			// Run PHPUnit
-			sh 'vendor/bin/phpunit'
 		}
 	}
 }
