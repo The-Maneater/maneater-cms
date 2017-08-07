@@ -43,9 +43,9 @@ class SectionSeeder extends Seeder
             'publication_id' => 1
         ]);
 
-        $angles = Section::create([
-            'name' => 'Angles',
-            'slug' => 'angles',
+        $aroundComo = Section::create([
+            'name' => 'Around Como',
+            'slug' => 'around-como',
             'publication_id' => 2
         ]);
         $features = Section::create([
@@ -53,10 +53,16 @@ class SectionSeeder extends Seeder
             'slug' => 'features',
             'publication_id' => 2
         ]);
-        $culture = Section::create([
-            'name' => 'Culture',
-            'slug' => 'culture',
-            'publication_id' => 1
+        $onCampus = Section::create([
+            'name' => 'On Campus',
+            'slug' => 'on-campus',
+            'publication_id' => 2
+        ]);
+
+        $insight = Section::create([
+            'name' => 'Insight',
+            'slug' => 'insight',
+            'publication_id' => 2
         ]);
     }
 }

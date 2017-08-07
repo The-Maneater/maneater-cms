@@ -40,7 +40,7 @@ class PagesController extends Controller
             $p->where('current', true);
         })->get();
         $titles = $staffers->map(function($item,$key){
-            return $item->edBoardPositions->where('current', true)->first()->title;
+            return $item->edBoardPositions()->where('current', true)->first()->title;
         });
 
         return view('staff.list', compact('staffers', 'titles'));

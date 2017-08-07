@@ -28,6 +28,13 @@
   min-height: 38px;
   padding: 0 2.5%;
   background-color: #474747;
+
+  .nav-left a.move:hover{
+    background: #990033;
+    border-bottom: 2px solid #990033;
+    border-top: 2px solid #990033;
+    border-bottom-color: #990033 !important;
+  }
 }
 #topNav .container{
   min-height: 38px;

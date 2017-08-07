@@ -1,0 +1,34 @@
+nav#menu{
+  width: 100%;
+  padding: 10px 20px;
+  margin-left: -20px;
+  clear: both;
+  border-bottom: 4px solid $move-red;
+  .item{
+    border:none;
+    padding: 0;
+    margin: 0 2em 0 0;
+    color:black;
+    font-size: 23px;
+    //display:inline;
+    //height:auto;
+  }
+
+  .item:hover{
+    color: $move-red;
+    border: none;
+  }
+
+  .maneater:hover{
+    color: $m-green;
+  }
+
+  .nav-left{
+    align-items: flex-end;
+    overflow: visible;
+  }
+
+  .nav-right{
+    align-items: flex-end;
+  }
+}

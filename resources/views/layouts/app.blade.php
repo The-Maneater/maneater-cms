@@ -42,7 +42,7 @@
                 <a class="nav-item is-tab is-hidden-mobile" href="/section/unews">UNEWS</a>
                 <a class="nav-item is-tab is-hidden-mobile" href="/section/sports">SPORTS</a>
                 <a class="nav-item is-tab is-hidden-mobile" href="/section/opinion">OPINION</a>
-                <a class="nav-item is-tab is-hidden-mobile">MOVE</a>
+                <a class="nav-item is-tab is-hidden-mobile move" href="{{ config('app.move_url') }}">MOVE</a>
                 <a class="nav-item is-tab is-hidden-mobile" href="/section/blogs">BLOGS</a>
                 <a class="nav-item is-tab is-hidden-mobile" href="/classifieds">CLASSIFIEDS</a>
             </div>

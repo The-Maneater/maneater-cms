@@ -1,0 +1,72 @@
+// Fonts
+//@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+// Variables
+//@import "variables";
+
+// Bootstrap
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+//Bootstrap v-4
+//@import "node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import "~bulma/sass/utilities/_all";
+
+
+
+// Set your colors
+$primary: #8c67ef;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099FF;
+$twitter-invert: findColorInvert($twitter);
+$m-green: #2F7A32;
+$m-green-invert: findColorInvert($m-green);
+$move-red: #8c001a;
+$move-red-invert: findColorInvert($move-red);
+
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+        "white": ($white, $black),
+        "black": ($black, $white),
+        "light": ($light, $light-invert),
+        "dark": ($dark, $dark-invert),
+        "primary": ($primary, $primary-invert),
+        "info": ($info, $info-invert),
+        "success": ($success, $success-invert),
+        "warning": ($warning, $warning-invert),
+        "danger": ($danger, $danger-invert),
+        "twitter": ($twitter, $twitter-invert),
+        "m-green": ($m-green, $m-green-invert),
+        "move-red": ($move-red, $move-red-invert)
+);
+
+// Links
+$link: $move-red;
+$link-invert: $white;
+$link-focus-border: $primary;
+
+body {
+  font-family: Roboto, Helvetica, Tahoma, Arial, sans-serif;
+}
+
+.is-m-green{
+  color: $m-green;
+}
+
+a.is-m-green:hover{
+  color: #29672c;
+}
+
+
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+@import "partials/navigation";
+@import "partials/staff";
+@import "partials/search";
+@import "partials/content";
+@import "partials/layout";
+@import "move_partials/content";
+@import "move_partials/header";
+@import "move_partials/footer";
