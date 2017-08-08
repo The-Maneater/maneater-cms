@@ -75,8 +75,9 @@
 <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/js/tether.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<script src="/js/manifest.js"></script>
-<script src="/js/vendor.js"></script>
-<script src="/js/app.js"></script>
+@yield('scripts')
+{{--<script src="/js/manifest.js"></script>--}}
+{{--<script src="/js/vendor.js"></script>--}}
+{{--<script src="/js/app.js"></script>--}}
 </body>
 </html>

@@ -1,0 +1,23 @@
+.search-results-header{
+  border-bottom: 8px solid #990033;
+  padding: 0.25em 0;
+  font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2em;
+  letter-spacing: 1px;
+  margin-bottom: 0.25em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.resultset{
+  border-bottom: 2px solid #F1F1F1;
+}
+
+.searchbar{
+  padding: 1em;
+  background: #eee;
+}
+
+.content li + li {
+  margin-top: 0;
+}

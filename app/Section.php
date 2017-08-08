@@ -22,6 +22,11 @@ class Section extends Model
     	return $this->hasMany('App\Story');
     }
 
+    public function path()
+    {
+        return '/section/' . $this->slug;
+    }
+
     /**
      * Returns the associated publication
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

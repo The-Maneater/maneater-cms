@@ -1,0 +1,23 @@
+.navigation{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+li{
+  list-style-type: none;
+}
+
+.allStaff{
+  h1 {
+    font-size: 32px;
+    font-family: Montserrat, Georgia, sans-serif;
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    line-height: 1.25em;
+  }
+  ul{
+    margin-left: 0;
+  }
+}

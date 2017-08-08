@@ -2,8 +2,8 @@
 /**
  * Created by PhpStorm.
  * User: Michael
- * Date: 7/13/17
- * Time: 10:30 PM
+ * Date: 8/7/17
+ * Time: 8:00 PM
  */
 
 namespace App\Repositories;
@@ -14,7 +14,7 @@ use App\Photo;
 use App\Staffer;
 use App\Story;
 
-class SearchRepository
+class MoveSearchRepository
 {
     public function articles($search)
     {
@@ -22,7 +22,7 @@ class SearchRepository
             ->get()
             ->load(['section'])
             ->filter(function ($story){
-                return $story->section->publication_id === 1;
+                return $story->section->publication_id === 2;
             });
     }
 
@@ -31,7 +31,7 @@ class SearchRepository
         return Photo::search($search)->get()
             ->load(['section'])
             ->filter(function ($story){
-                return $story->section->publication_id === 1;
+                return $story->section->publication_id === 2;
             });
     }
 
@@ -42,10 +42,10 @@ class SearchRepository
 
     public function graphics($search)
     {
-        return Graphic::search($search)->get()
-            ->load(['section'])
+        return Graphic::search($search)->load(['section'])
+            ->get()
             ->filter(function ($story){
-                return $story->section->publication_id === 1;
+                return $story->section->publication_id === 2;
             });
     }
 }

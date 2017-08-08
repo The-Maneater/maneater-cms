@@ -14,6 +14,10 @@
 Route::domain('move.' . config('app.base'))->group(function(){
     Route::get('/', 'MoveController@index');
     Route::get('/section/{slug}', 'MoveController@section');
+    Route::get('/staff', 'MoveController@allStaff');
+    Route::get('/staff/{slug}', 'MoveController@staffShow');
+    Route::get('/stories/{section}/{slug}', 'MoveController@storyShow');
+    Route::get('/search', 'MoveController@search');
 });
 
 Route::get('/', 'PagesController@frontpage');

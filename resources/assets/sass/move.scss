@@ -1,7 +1,8 @@
 // Fonts
 //@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates|Muli|Questrial');
 
 // Variables
 //@import "variables";
@@ -54,6 +55,10 @@ body {
   color: $m-green;
 }
 
+.is-move-red{
+  color: $move-red;
+}
+
 a.is-m-green:hover{
   color: #29672c;
 }
@@ -64,9 +69,15 @@ a.is-m-green:hover{
 
 @import "partials/navigation";
 @import "partials/staff";
-@import "partials/search";
 @import "partials/content";
 @import "partials/layout";
 @import "move_partials/content";
 @import "move_partials/header";
 @import "move_partials/footer";
+@import "move_partials/pagination";
+@import "move_partials/staff";
+@import "move_partials/search";
+
+a{
+  color: $move-red
+}

@@ -10,27 +10,27 @@
 
             </div>
             <div class="column footer-middle">
-                <a href="http://move.themaneater.com"><img id="footer-logo" src="http://move.themaneater.com/media/style/move-new/Images/moveFooter.png"></a>
+                <a href="{{ config('app.move_url') }}"><img id="footer-logo" src="http://move.themaneater.com/media/style/move-new/Images/moveFooter.png"></a>
             </div>
             <div class="column footer-column">
                 <ul id="footer-nav">
                     <li class="navlink-title red"><h3>Sections</h3></li>
-                    <li><a href="http://move.themaneater.com/section/insight/">Insight</a></li>
-                    <li><a href="http://move.themaneater.com/section/around-como/">Around CoMo</a></li>
-                    <li><a href="http://move.themaneater.com/section/on-campus/">On Campus</a></li>
-                    <li><a href="http://move.themaneater.com/section/guide/">Guide</a></li>
-                    <li><a href="http://move.themaneater.com/section/features/">Features</a></li>
+                    <li><a href="{{ config('app.move_url') }}/section/insight/">Insight</a></li>
+                    <li><a href="{{ config('app.move_url') }}/section/around-como/">Around CoMo</a></li>
+                    <li><a href="{{ config('app.move_url') }}/section/on-campus/">On Campus</a></li>
+                    <li><a href="{{ config('app.move_url') }}/section/guide/">Guide</a></li>
+                    <li><a href="{{ config('app.move_url') }}/section/features/">Features</a></li>
                 </ul>
             </div>
             <div class="column footer-column">
                 <ul>
                     <li class="navlink-title red"><h3>Information</h3></li>
-                    <li><a href="http://www.themaneater.com/about/advertising/">Advertising</a></li>
-                    <li><a href="http://www.themaneater.com/about/">About</a></li>
-                    <li><a href="http://move.themaneater.com/staff/">Staff</a></li>
-                    <li><a href="http://www.themaneater.com/about/contact/">Contact Us</a></li>
-                    <li><a href="http://www.themaneater.com/workforus/">Work for Us</a></li>
-                    <li><a href="http://www.themaneater.com/about/accuracy/">Accuracy</a></li>
+                    <li><a href="{{ config('app.maneater_url') }}/about/advertising/">Advertising</a></li>
+                    <li><a href="{{ config('app.maneater_url') }}/about/">About</a></li>
+                    <li><a href="{{ config('app.move_url')}}/staff">Staff</a></li>
+                    <li><a href="{{ config('app.maneater_url') }}/about/contact/">Contact Us</a></li>
+                    <li><a href="{{ config('app.maneater_url') }}/workforus/">Work for Us</a></li>
+                    <li><a href="{{ config('app.maneater_url') }} /about/accuracy/">Accuracy</a></li>
                 </ul>
             </div>
         </div>

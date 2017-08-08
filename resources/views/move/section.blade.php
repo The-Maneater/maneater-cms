@@ -25,7 +25,7 @@
             @endforeach
         </div>
         <div class="navigation">
-            {{ $stories->links('staff.paginator') }}
+            {{ $stories->links('move.paginator') }}
         </div>
     </div>
 @endsection
