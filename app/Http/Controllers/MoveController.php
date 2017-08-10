@@ -7,6 +7,7 @@ use App\Repositories\SearchRepository;
 use App\Section;
 use App\Staffer;
 use App\Story;
+use App\WebFront;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -15,7 +16,15 @@ class MoveController extends Controller
 {
     public function index()
     {
-        return view('move.index');
+        $articles = Webfront::moveFrontPage();
+        $latestStories = Story::orderBy('publish_date', 'DESC')
+            ->get()
+            ->load(['section'])
+            ->filter(function ($story){
+                return $story->section->publication_id === 2;
+            })
+            ->take(10);
+        return view('move.index', compact('articles', 'latestStories'));
     }
 
     public function section($slug)

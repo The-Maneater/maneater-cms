@@ -31,6 +31,7 @@ class WebFrontController extends Controller
      */
     public function show($section)
     {
+        $spots = 5;
         switch ($section){
             case -1:
                 $articles = Webfront::moveFrontPage();
@@ -38,7 +39,8 @@ class WebFrontController extends Controller
                 $sectionArticles = Story::whereHas('section', function($query){
                     $publication = Publication::findByString('MOVE');
                     $query->where('publication_id', $publication->id);
-                })->orderBy('publish_date')->limit(15)->get();
+                })->orderBy('publish_date')->limit(25)->get();
+                $spots = 4;
                 break;
 
             case 0:
@@ -47,7 +49,7 @@ class WebFrontController extends Controller
                 $sectionArticles = Story::whereHas('section', function($query){
                     $publication = Publication::findByString('The Maneater');
                     $query->where('publication_id', $publication->id);
-                })->orderBy('publish_date')->limit(15)->get();
+                })->orderBy('publish_date')->limit(25)->get();
                 break;
 
             default:
@@ -57,14 +59,11 @@ class WebFrontController extends Controller
                 $sectionArticles = $section
                     ->stories()
                     ->orderBy('publish_date')
-                    ->limit(15)
+                    ->limit(25)
                     ->get();
                 break;
         }
-
-        //$articles = ($section == 0) ? WebFront::frontPage(): WebFront::bySection($section);
-        //$sectionArticles = ($section == 0) ? Story::orderBy('publish_date')->limit(15)->get() : Section::find($section)->stories()->orderBy('publish_date')->limit(15)->get();
-        return view('admin.webfronts.show', compact('articles', 'sectionArticles', 'sectionTitle'));
+        return view('admin.webfronts.show', compact('articles', 'sectionArticles', 'sectionTitle', 'spots'));
     }
 
     /**
@@ -74,7 +73,7 @@ class WebFrontController extends Controller
      */
     public function update(Request $request, $section)
     {
-        $frontPage = $section == 0;
+        $frontPage = ($section == 0 || $section == -1);
         WebFront::clearWebFront($section);
         $articles = collect($request->input('articles'));
         $articles->each(function($story, $priority) use($frontPage){

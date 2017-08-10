@@ -20,14 +20,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                @for($i = 1; $i<=5; $i++)
+                @for($i = 1; $i<=$spots; $i++)
                     <tr>
                         <td>{{ $i }}</td>
                   @if($articles->get($i) !== null)
                         <td>{{ $articles->get($i)->title }}</td>
-                  @else
-                        <td> None </td>
-                  @endif
                         <td>
                             <select2 name="articles[{{ $i }}]">
                                 <option></option>
@@ -36,6 +33,17 @@
                                 @endforeach
                             </select2>
                         </td>
+                  @else
+                        <td> None </td>
+                        <td>
+                            <select2 name="articles[{{ $i }}]">
+                                <option></option>
+                                @foreach ($sectionArticles as $sArticle)
+                                    <option value="{{ $sArticle->id }}">{{ $sArticle->title }}</option>
+                                @endforeach
+                            </select2>
+                        </td>
+                  @endif
                     </tr>
                 @endfor
                 </tbody>
