@@ -11,7 +11,7 @@ class AdSeeder extends Seeder
      */
     public function run()
     {
-        foreach(range(1,5) as $index) {
+        foreach(range(1,10) as $index) {
             $ad = new \App\Ad([
                 'size'           => 'banner',
                 'duration'       => '2 weeks',

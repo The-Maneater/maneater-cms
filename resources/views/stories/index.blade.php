@@ -3,6 +3,7 @@
 @section('content')
     <div class="columns">
         <div class="column is-5">
+            {{--<img src="{{ $ads[2]->image_url }}" alt="" class="bottom-ad">--}}
             <div id="top_story_0" class="ui-tabs-panel">
                 <img src="{{ $frontPageStories[1]->headerPhotos[0]->path() }}" alt="">
                 <h1><a href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h1>
@@ -149,6 +150,10 @@
                     <li class="bullet"><a href="http://themaneater.com/layouts/">Sort by page</a></li>
                     <li class="bullet"><a href="http://themaneater.com/games/">Game Answers</a></li>
                 </ul>
+            </div>
+            <div class="twitter-box">
+                <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
+                <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
             </div>
             <img src="{{ $ads[1]->image_url }}" alt="" class="top-ad">
         </div>

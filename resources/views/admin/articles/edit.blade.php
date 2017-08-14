@@ -177,6 +177,10 @@
                 placeholder: 'Select an option',
                 allowClear: true
             });
+
+            $('#tags').select2({
+                tags: true
+            });
         })
 
     </script>

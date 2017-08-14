@@ -81,3 +81,36 @@ ul{
 .bottom-ad{
   padding-bottom: 10px;
 }
+
+.related{
+  ol{
+    color: #474747;
+    margin: 1em 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li{
+    list-style-position: inside;
+    margin: 0.5em 0;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0 0 0.5em;
+    line-height: 1.25em;
+  }
+}
+
+#bottomshare {
+  background: #f1f1f1;
+  border-bottom: 2px solid #959595;
+  margin-top: 0.5em;
+
+  p {
+    color: #474747;
+    padding: 0.25em 0.5em;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: Roboto Condensed;
+    font-size: 20px;
+  }
+}

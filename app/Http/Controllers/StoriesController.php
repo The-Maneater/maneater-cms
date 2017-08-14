@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ad;
 use App\Http\Requests\CreateStoryRequest;
 use App\Staffer;
 use App\Story;
@@ -88,13 +89,17 @@ class StoriesController extends Controller
     public function show($section, $slug)
     {
         $story = Story::findBySectionAndSlug($section, $slug);
+        $ads = Ad::active()->inRandomOrder()->take(5)->get();
+        $ads->each(function($ad){
+            $ad->serve();
+        });
         $inlinePhotos = $story->inlinePhotos()->get();
         $append = "";
         $inlinePhotos->each(function($item, $key) use(&$append){
             $append .= "\n [" . $item->pivot->reference . "]: " . env('APP_URL') . $item->location;
         });
         $story->body .= $append;
-        return view('stories.show', compact('story'));
+        return view('stories.show', compact('story', 'ads'));
     }
 
     /**
