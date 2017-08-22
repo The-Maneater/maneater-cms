@@ -45,7 +45,7 @@ class StafferController extends Controller
         $staffer = new Staffer;
         $staffer->fill($request->except('user'));
         $staffer->is_active = true;
-        if($request->input('user') !== null){
+        if($request->input('user') !== null && is_numeric(request('user'))){
             $staffer->user()->associate($request->input('user'));
         }
         $staffer->save();
