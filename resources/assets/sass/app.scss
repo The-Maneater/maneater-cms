@@ -2,6 +2,7 @@
 //@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
 
 // Variables
 //@import "variables";
@@ -53,6 +54,18 @@ body {
 
 a.is-m-green:hover{
   color: #29672c;
+}
+
+.is-black{
+  color: $black;
+}
+
+a.is-black:hover{
+  color: $m-green;
+}
+
+.is-bold{
+  font-weight: bold;
 }
 
 

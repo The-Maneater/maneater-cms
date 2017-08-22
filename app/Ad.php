@@ -53,4 +53,14 @@ class Ad extends Model
         return $builder->where('campaign_start', '<=', Carbon::now()->toDateString())
            ->where('campaign_end', '>=', Carbon::now()->toDateString());
     }
+
+    public function scopeCube(Builder $builder)
+    {
+        return $builder->where('size', 'cube');
+    }
+
+    public function scopeBanner(Builder $builder)
+    {
+        return $builder->where('size', 'banner');
+    }
 }

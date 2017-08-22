@@ -82,42 +82,46 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
         });
 
 
-        $section = Section::findBySlug("unews");
+        //$section = Section::findBySlug("unews");
+        $sections = ['unews', 'on-campus'];
 
-        $firstStory = factory('App\Story')->make([
-            'section_id' => $section->id,
-            'front_page_webfront_priority' => 1
-        ]);
+        foreach($sections as $slug) {
+            $section = Section::findBySlug($slug);
+            $firstStory = factory('App\Story')->make([
+                'section_id'                   => $section->id,
+                'front_page_webfront_priority' => 1
+            ]);
 
-        $secondStory = factory('App\Story')->make([
-            'section_id' => $section->id,
-            'front_page_webfront_priority' => 2
-        ]);
+            $secondStory = factory('App\Story')->make([
+                'section_id'                   => $section->id,
+                'front_page_webfront_priority' => 2
+            ]);
 
-        $thirdStory = factory('App\Story')->make([
-            'section_id' => $section->id,
-            'front_page_webfront_priority' => 3
-        ]);
+            $thirdStory = factory('App\Story')->make([
+                'section_id'                   => $section->id,
+                'front_page_webfront_priority' => 3
+            ]);
 
-        $fourthStory = factory('App\Story')->make([
-            'section_id' => $section->id,
-            'front_page_webfront_priority' => 4
-        ]);
+            $fourthStory = factory('App\Story')->make([
+                'section_id'                   => $section->id,
+                'front_page_webfront_priority' => 4
+            ]);
 
-        $fifthStory = factory('App\Story')->make([
-            'section_id' => $section->id,
-            'front_page_webfront_priority' => 5
-        ]);
+            $fifthStory = factory('App\Story')->make([
+                'section_id'                   => $section->id,
+                'front_page_webfront_priority' => 5
+            ]);
 
-        $stories = collect([$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory]);
-        $section->stories()->saveMany($stories);
-        $stories->each(function($story){
-            $story->writers()->attach(\App\Staffer::inRandomOrder()->first());
-        });
-        $firstStory->photos()->attach([6 => ['type' => 'header']]);
-        $secondStory->photos()->attach([7 => ['type' => 'header']]);
-        $fourthStory->photos()->attach([7 => ['type' => 'header']]);
-        $fifthStory->photos()->attach([7 => ['type' => 'header']]);
+            $stories = collect([$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory]);
+            $section->stories()->saveMany($stories);
+            $stories->each(function ($story) {
+                $story->writers()->attach(\App\Staffer::inRandomOrder()->first());
+            });
+            $firstStory->photos()->attach([6 => ['type' => 'header']]);
+            $secondStory->photos()->attach([7 => ['type' => 'header']]);
+            $fourthStory->photos()->attach([7 => ['type' => 'header']]);
+            $fifthStory->photos()->attach([7 => ['type' => 'header']]);
 
+        }
     }
 }

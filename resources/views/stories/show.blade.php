@@ -51,7 +51,9 @@
                     <div id="bottomshare">
                         <p>Share: <a onclick="fbShare()">Facebook</a> / <a onclick="twShare()">Twitter</a> / <a onclick="gpShare()">Google+</a></p>
                     </div>
-                    <img src="{{ $ads[4]->image_url }}" alt="" class="top-ad">
+                    @if(isset($ads[4]))
+                        <img src="{{ $ads[4]->image_url }}" alt="" class="top-ad">
+                    @endif
                 </div>
             </div>
             <div class="related">
@@ -105,19 +107,23 @@
                     <li><a href="http://move.themaneater.com/stories/2017/2/9/column-cafe-berlin-defined-more-break-/">Column: Cafe Berlin is defined by more than the break-in</a></li>
                 </ol>
             </div>
-
-            <img src="{{ $ads[0]->image_url }}" alt="" class="bottom-ad">
-
-            <img src="{{ $ads[1]->image_url }}" alt="" class="bottom-ad">
-
+            @if(isset($ads[0]))
+                <img src="{{ $ads[0]->image_url }}" alt="" class="bottom-ad">
+            @endif
+            @if(isset($ads[1]))
+                <img src="{{ $ads[1]->image_url }}" alt="" class="bottom-ad">
+            @endif
             <div class="twitter-box">
                 <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
                 <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
             </div>
+            @if(isset($ads[2]))
+                <img src="{{ $ads[2]->image_url }}" alt="" class="bottom-ad">
+            @endif
 
-            <img src="{{ $ads[2]->image_url }}" alt="" class="bottom-ad">
-
-            <img src="{{ $ads[3]->image_url }}" alt="" class="bottom-ad">
+            @if(isset($ads[3]))
+                <img src="{{ $ads[3]->image_url }}" alt="" class="bottom-ad">
+            @endif
         </div>
 	</div>
 @endsection

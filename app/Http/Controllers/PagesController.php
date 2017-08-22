@@ -24,8 +24,8 @@ class PagesController extends Controller
         $sections = Section::with(['latestStories'])->get()->take(6);
         $latest = Story::with(['section'])->latest()->take(10)->get();
         $frontPageStories = WebFront::frontPage();
-        $ads = Ad::active()->inRandomOrder()->take(3)->get();
-        $ads->each(function($ad){
+        $cubes = Ad::cube()->active()->inRandomOrder()->take(2)->get();
+        $cubes->each(function($ad){
             $ad->serve();
         });
         //dd($frontPageStories);
