@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Ad;
 use App\Http\Requests;
 use App\Http\Requests\CreateSectionRequest;
 use App\Section;
@@ -60,7 +61,11 @@ class SectionsController extends Controller
         $section = Section::findBySlug($slug);
         $stories = $section->stories()->latest()->take(10)->get();
         $priorityStories = $section->webFrontStories()->get();
-        return view('sections.index', compact('stories', 'priorityStories'));
+        $tags = $section->latestTags();
+        $cubes = Ad::cube()->active()->inRandomOrder()->take(2)->get();
+        $cubes->each->serve();
+        $ads = collect(["cubes" => $cubes]);
+        return view('sections.index', compact('stories', 'priorityStories', 'tags', 'ads'));
     }
 
     /**

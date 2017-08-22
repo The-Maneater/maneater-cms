@@ -68,6 +68,19 @@ class Section extends Model
             ->orderBy('section_webfront_priority');
     }
 
+    public function latestTags()
+    {
+        return $this->stories
+            ->load(['tags'])
+            ->pluck('tags')
+            ->flatten()
+            ->groupBy('id')
+            ->sortByDesc(function ($item, $key){
+                return count($item);
+            })
+            ->take(10);
+    }
+
     /**
      * Generates the slug
      * @return array

@@ -25,9 +25,16 @@ class PagesController extends Controller
         $latest = Story::with(['section'])->latest()->take(10)->get();
         $frontPageStories = WebFront::frontPage();
         $cubes = Ad::cube()->active()->inRandomOrder()->take(2)->get();
-        $cubes->each(function($ad){
-            $ad->serve();
-        });
+        $cubes->each->serve();
+//        $cubes->each(function($ad){
+//            $ad->serve();
+//        });
+        $banner = Ad::banner()->active()->inRandomOrder()->take(1)->get();
+        $banner->each->serve();
+        $ads = collect();
+        $ads['cubes'] = $cubes;
+        $ads['banner'] = $banner;
+
         //dd($frontPageStories);
         //dd($latest);
         //dd($sections);

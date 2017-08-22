@@ -89,16 +89,17 @@ class StoriesController extends Controller
     public function show($section, $slug)
     {
         $story = Story::findBySectionAndSlug($section, $slug);
-        $ads = Ad::active()->inRandomOrder()->take(5)->get();
-        $ads->each(function($ad){
-            $ad->serve();
-        });
+        $cubes = Ad::cube()->active()->inRandomOrder()->take(4)->get();
+        $cubes->each->serve();
+        $banner = Ad::banner()->active()->inRandomOrder()->take(1)->get();
+        $banner->each->serve();
         $inlinePhotos = $story->inlinePhotos()->get();
         $append = "";
         $inlinePhotos->each(function($item, $key) use(&$append){
             $append .= "\n [" . $item->pivot->reference . "]: " . env('APP_URL') . $item->location;
         });
         $story->body .= $append;
+        $ads = collect(['cubes' => $cubes, 'banner'=>$banner]);
         return view('stories.show', compact('story', 'ads'));
     }
 

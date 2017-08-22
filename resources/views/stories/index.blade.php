@@ -3,7 +3,9 @@
 @section('content')
     <div class="columns">
         <div class="column is-8">
-            {{--<img src="{{ $ads[2]->image_url }}" alt="" class="bottom-ad">--}}
+            @if(isset($ads['banner'][0]))
+                <img src="{{ $ads['banner'][0]->image_url }}" alt="" class="bottom-ad">
+            @endif
             <div class="columns">
                 <div class="column is-8">
                     <div id="top_story_0" class="ui-tabs-panel">
@@ -68,8 +70,8 @@
                 @endforeach
             </ul>
             <div class="clippingfade"></div>
-            @if(isset($ads[0]))
-                <img src="{{ $ads[0]->image_url }}" alt="" class="bottom-ad">
+            @if(isset($ads['cubes'][0]))
+                <img src="{{ $ads['cubes'][0]->image_url }}" alt="" class="bottom-ad">
             @endif
         </div>
         <div class="column is-2">
@@ -161,8 +163,8 @@
                 <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
                 <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
             </div>
-            @if(isset($ads[1]))
-                <img src="{{ $ads[1]->image_url }}" alt="" class="top-ad">
+            @if(isset($ads['cubes'][1]))
+                <img src="{{ $ads['cubes'][1]->image_url }}" alt="" class="top-ad">
             @endif
         </div>
     </div>

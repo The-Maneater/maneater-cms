@@ -45,7 +45,26 @@
                 <a href="{{ url()->current() . '/archives' }}" class="button is-m-green">Archives</a>
         </div>
         <div class="column is-4">
-            <p>Extra stuff and ads</p>
+            <h2 class="sectionlabel">Top tags</h2>
+            <div class="related-blogs">
+                <ul class="top-tags">
+                    @foreach($tags as $tag)
+                        <li><a href="{{ url("/tags/" . $tag[0]->slug) }}">{{ $tag[0]->name }}</a></li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="twitter-box">
+                <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
+                <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
+            </div>
+
+            @if(isset($ads['cubes'][0]))
+                <img src="{{ $ads['cubes'][0]->image_url }}" alt="" class="top-ad">
+            @endif
+
+            @if(isset($ads['cubes'][1]))
+                <img src="{{ $ads['cubes'][1]->image_url }}" alt="" class="top-ad">
+            @endif
         </div>
     </div>
 @endsection

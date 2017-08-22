@@ -84,6 +84,7 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
 
         //$section = Section::findBySlug("unews");
         $sections = ['unews', 'on-campus'];
+        $tags = collect(['Homecoming', 'Mizzou in Review', 'School of Music', 'MSA']);
 
         foreach($sections as $slug) {
             $section = Section::findBySlug($slug);
@@ -114,8 +115,9 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
 
             $stories = collect([$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory]);
             $section->stories()->saveMany($stories);
-            $stories->each(function ($story) {
+            $stories->each(function ($story) use($tags) {
                 $story->writers()->attach(\App\Staffer::inRandomOrder()->first());
+                $story->attachTag($tags->random());
             });
             $firstStory->photos()->attach([6 => ['type' => 'header']]);
             $secondStory->photos()->attach([7 => ['type' => 'header']]);
