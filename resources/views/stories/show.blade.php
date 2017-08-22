@@ -28,10 +28,12 @@
                         <p class="published"> {{ $story->formattedPublishDate->format('M. d, Y') }} </p>
                             <div class="tags">
                                 <ul>
-                                    <li class="sharevia">Tags</li>
-                                    <li><a href="/tags/columbia/">Columbia</a></li>
-                                    <li><a href="/tags/parking/">Parking</a></li>
-                                    <li><a href="/tags/transportation/">transportation</a></li>
+                                    @if(count($story->tags) > 0)
+                                        <li class="sharevia">Tags</li>
+                                        @foreach($story->tags as $tag)
+                                            <li><a href="{{ url("/tags/$tag->slug") }}">{{ $tag->name }}</a></li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
                             <div class="share">
@@ -59,11 +61,9 @@
             <div class="related">
                 <h2 class="sectionlabel">Related articles</h2>
                 <ol>
-                    <li><a href="http://move.themaneater.com/stories/2017/4/20/piss-poor-guide-bathrooms-downtown-como/">A piss-poor guide to the bathrooms of downtown CoMo</a></li>
-                    <li><a href="http://move.themaneater.com/stories/2017/4/20/-campus-exercise-spots-spice-your-workout-routine/">Off-campus exercise spots to spice up your workout routine</a></li>
-                    <li><a href="http://move.themaneater.com/stories/2017/4/6/six-restaurants-every-foodie-should-try-columbia/">Six restaurants every foodie should try in Columbia</a></li>
-                    <li><a href="http://move.themaneater.com/stories/2017/3/21/nearby-obscure-destinations-can-make-interesting-r/">Nearby obscure destinations can make for an interesting road trip</a></li>
-                    <li><a href="http://move.themaneater.com/stories/2017/2/9/column-cafe-berlin-defined-more-break-/">Column: Cafe Berlin is defined by more than the break-in</a></li>
+                    @foreach($relatedArticles as $article)
+                        <li><a href="{{ $article->path() }}">{{ $article->title }}</a></li>
+                    @endforeach
                 </ol>
             </div>
 
@@ -100,11 +100,9 @@
             <div class="related">
                 <h2 class="sectionlabel">Related articles</h2>
                 <ol>
-                    <li><a href="http://move.themaneater.com/stories/2017/4/20/piss-poor-guide-bathrooms-downtown-como/">A piss-poor guide to the bathrooms of downtown CoMo</a></li>
-                    <li><a href="http://move.themaneater.com/stories/2017/4/20/-campus-exercise-spots-spice-your-workout-routine/">Off-campus exercise spots to spice up your workout routine</a></li>
-                    <li><a href="http://move.themaneater.com/stories/2017/4/6/six-restaurants-every-foodie-should-try-columbia/">Six restaurants every foodie should try in Columbia</a></li>
-                    <li><a href="http://move.themaneater.com/stories/2017/3/21/nearby-obscure-destinations-can-make-interesting-r/">Nearby obscure destinations can make for an interesting road trip</a></li>
-                    <li><a href="http://move.themaneater.com/stories/2017/2/9/column-cafe-berlin-defined-more-break-/">Column: Cafe Berlin is defined by more than the break-in</a></li>
+                    @foreach($relatedArticles as $article)
+                        <li><a href="{{ $article->path() }}">{{ $article->title }}</a></li>
+                    @endforeach
                 </ol>
             </div>
             @if(isset($ads['cubes'][0]))

@@ -45,7 +45,20 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
         $story->graphics()->attach(1);
 
         $sections = Section::all();
-        $sections->each(function($item){
+        $tags = collect([
+            'Homecoming',
+            'Mizzou in Review',
+            'School of Music',
+            'MSA',
+            'College of Engineering',
+            'RHA',
+            'UM System',
+            'Greek Life',
+            'Diversity',
+            'Housing',
+            'Football'
+        ]);
+        $sections->each(function($item) use ($tags){
             /* @var $item App\Section */
            $stories = factory('App\Story', 5)->make([
                'section_id' => $item->id
@@ -73,11 +86,13 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
             $s = collect([$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory]);
            $item->stories()->saveMany($stories);
            $item->stories()->saveMany($s);
-           $stories->each(function($story){
+           $stories->each(function($story) use($tags){
                $story->writers()->attach(\App\Staffer::inRandomOrder()->first());
+               $story->attachTags($tags->random(2));
            });
-           $s->each(function($story){
+           $s->each(function($story) use ($tags){
                $story->writers()->attach(\App\Staffer::inRandomOrder()->first());
+               $story->attachTags($tags->random(2));
            });
         });
 

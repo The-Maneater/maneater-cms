@@ -100,7 +100,12 @@ class StoriesController extends Controller
         });
         $story->body .= $append;
         $ads = collect(['cubes' => $cubes, 'banner'=>$banner]);
-        return view('stories.show', compact('story', 'ads'));
+
+        $relatedArticles = Story::withAnyTags($story->tags)
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
+        return view('stories.show', compact('story', 'ads', 'relatedArticles'));
     }
 
     /**
