@@ -51,7 +51,14 @@ class StafferController extends Controller
         $staffer->save();
         $staffer->positions()->attach(Position::findByTitle('Reporter'), ['start_date' => \Carbon\Carbon::now()]);
         $staffer->positions()->attach(Position::findByTitle('Photographer'), ['start_date' => \Carbon\Carbon::now()]);
-
+        if(request('positions') !== null){
+            $positions = collect(request('positions'));
+            $ids = $positions->pluck('position');
+            $periods = $positions->pluck('period');
+            $current = $positions->pluck('current');
+            $ids = $this->getPositions($ids, $periods, $current);
+            $staffer->positions()->attach($ids);
+        }
 
         return redirect('/admin/staff/staffers');
     }

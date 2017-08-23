@@ -26,26 +26,24 @@ class PagesController extends Controller
         $frontPageStories = WebFront::frontPage();
         $cubes = Ad::cube()->active()->inRandomOrder()->take(2)->get();
         $cubes->each->serve();
-//        $cubes->each(function($ad){
-//            $ad->serve();
-//        });
         $banner = Ad::banner()->active()->inRandomOrder()->take(1)->get();
         $banner->each->serve();
         $ads = collect();
         $ads['cubes'] = $cubes;
         $ads['banner'] = $banner;
 
-        //dd($frontPageStories);
-        //dd($latest);
-        //dd($sections);
         return view('stories.index', compact('sections', 'latest', 'frontPageStories', 'ads'));
     }
 
     public function editorialBoard()
     {
-        $staffers = Staffer::whereHas('edBoardPositions', function($p){
+        $staffers = Staffer::with(['edBoardPositions'])->whereHas('edBoardPositions', function($p){
             $p->where('current', true);
-        })->get();
+        })->get()
+            ->sortBy(function($item, $key){
+                return $item->edBoardPositions()->where('current', true)->first()->priority;
+            })
+        ->values();
         $titles = $staffers->map(function($item,$key){
             return $item->edBoardPositions()->where('current', true)->first()->title;
         });
