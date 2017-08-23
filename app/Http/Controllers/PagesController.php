@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ad;
 use App\Classified;
+use App\Repositories\AdRepository;
 use App\Section;
 use App\Staffer;
 use App\Story;
@@ -24,13 +25,7 @@ class PagesController extends Controller
         $sections = Section::with(['latestStories'])->get()->take(6);
         $latest = Story::with(['section'])->latest()->take(10)->get();
         $frontPageStories = WebFront::frontPage();
-        $cubes = Ad::cube()->active()->inRandomOrder()->take(2)->get();
-        $cubes->each->serve();
-        $banner = Ad::banner()->active()->inRandomOrder()->take(1)->get();
-        $banner->each->serve();
-        $ads = collect();
-        $ads['cubes'] = $cubes;
-        $ads['banner'] = $banner;
+        $ads = AdRepository::cubesAndBanner(2,1);
 
         return view('stories.index', compact('sections', 'latest', 'frontPageStories', 'ads'));
     }

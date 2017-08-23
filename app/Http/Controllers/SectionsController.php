@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ad;
 use App\Http\Requests;
 use App\Http\Requests\CreateSectionRequest;
+use App\Repositories\AdRepository;
 use App\Section;
 use Illuminate\Http\Request;
 
@@ -62,9 +63,7 @@ class SectionsController extends Controller
         $stories = $section->stories()->latest()->take(10)->get();
         $priorityStories = $section->webFrontStories()->get();
         $tags = $section->latestTags();
-        $cubes = Ad::cube()->active()->inRandomOrder()->take(2)->get();
-        $cubes->each->serve();
-        $ads = collect(["cubes" => $cubes]);
+        $ads = AdRepository::cubes(2);
         return view('sections.index', compact('stories', 'priorityStories', 'tags', 'ads'));
     }
 

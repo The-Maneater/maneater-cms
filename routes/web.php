@@ -37,6 +37,7 @@ Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 Route::get('/classifieds', 'PagesController@classifieds');
 Route::get('/test/test', 'PagesController@allStaff');
+Route::get('/tags/{slug}', 'TagsController@show');
 
 Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {

@@ -11,3 +11,9 @@
 .p-content{
   width:75%;
 }
+
+.pagination-link.is-current {
+  background-color: #2F7A32;
+  border-color: #2F7A32;
+  color: white;
+}

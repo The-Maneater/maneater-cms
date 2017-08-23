@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ad;
 use App\Http\Requests\CreateStoryRequest;
+use App\Repositories\AdRepository;
 use App\Staffer;
 use App\Story;
 use Illuminate\Http\Request;
@@ -89,17 +90,13 @@ class StoriesController extends Controller
     public function show($section, $slug)
     {
         $story = Story::findBySectionAndSlug($section, $slug);
-        $cubes = Ad::cube()->active()->inRandomOrder()->take(4)->get();
-        $cubes->each->serve();
-        $banner = Ad::banner()->active()->inRandomOrder()->take(1)->get();
-        $banner->each->serve();
         $inlinePhotos = $story->inlinePhotos()->get();
         $append = "";
         $inlinePhotos->each(function($item, $key) use(&$append){
             $append .= "\n [" . $item->pivot->reference . "]: " . env('APP_URL') . $item->location;
         });
         $story->body .= $append;
-        $ads = collect(['cubes' => $cubes, 'banner'=>$banner]);
+        $ads = AdRepository::cubesAndBanner(4,1);
 
         $relatedArticles = Story::withAnyTags($story->tags)
             ->inRandomOrder()

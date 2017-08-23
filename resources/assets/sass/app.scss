@@ -64,6 +64,14 @@ a.is-black:hover{
   color: $m-green;
 }
 
+.is-white{
+  color: $white;
+}
+
+a.is-white:hover{
+  color: $white;
+}
+
 .is-bold{
   font-weight: bold;
 }
