@@ -12,6 +12,7 @@ use App\WebFront;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Cache;
 
 class PagesController extends Controller
 {
@@ -23,7 +24,11 @@ class PagesController extends Controller
     public function frontpage()
     {
         $sections = Section::with(['latestStories'])->get()->take(6);
-        $latest = Story::with(['section'])->latest()->take(10)->get();
+        $minutes = 720;
+        $latest = Cache::remember('latestStories', $minutes, function () {
+            return Story::with(['section'])->latest()->take(10)->get();
+        });
+        //$latest = Story::with(['section'])->latest()->take(10)->get();
         $frontPageStories = WebFront::frontPage();
         $ads = AdRepository::cubesAndBanner(2,1);
 

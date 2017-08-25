@@ -32,11 +32,11 @@ Route::get('/layouts/{id}', 'LayoutsController@show');
 Route::get('/section/{slug}', 'SectionsController@show');
 Route::get('/section/{slug}/archives', 'SectionArchivesController@show');
 Route::get('/staff/editors', 'PagesController@editorialBoard');
+Route::get('/staff', 'PagesController@allStaff');
 Route::get('/staff/{slug}', 'StafferController@show');
 Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 Route::get('/classifieds', 'PagesController@classifieds');
-Route::get('/test/test', 'PagesController@allStaff');
 Route::get('/tags/{slug}', 'TagsController@show');
 
 Auth::routes();

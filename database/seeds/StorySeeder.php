@@ -58,30 +58,37 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
             'Housing',
             'Football'
         ]);
-        $sections->each(function($item) use ($tags){
+        $issues = App\Issue::all();
+        $sections->each(function($item) use ($tags, $issues){
             /* @var $item App\Section */
            $stories = factory('App\Story', 5)->make([
-               'section_id' => $item->id
+               'section_id' => $item->id,
+               'issue_id' => $issues->random(1)->first()->id
            ]);
            $firstStory = factory('App\Story')->make([
               'section_id' => $item->id,
-              'section_webfront_priority' => 1
+              'section_webfront_priority' => 1,
+              'issue_id' => $issues->random(1)->first()->id
            ]);
             $secondStory = factory('App\Story')->make([
                 'section_id' => $item->id,
-                'section_webfront_priority' => 2
+                'section_webfront_priority' => 2,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
             $thirdStory = factory('App\Story')->make([
                 'section_id' => $item->id,
-                'section_webfront_priority' => 3
+                'section_webfront_priority' => 3,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
             $fourthStory = factory('App\Story')->make([
                 'section_id' => $item->id,
-                'section_webfront_priority' => 4
+                'section_webfront_priority' => 4,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
             $fifthStory = factory('App\Story')->make([
                 'section_id' => $item->id,
-                'section_webfront_priority' => 5
+                'section_webfront_priority' => 5,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
             $s = collect([$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory]);
            $item->stories()->saveMany($stories);
@@ -105,27 +112,32 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
             $section = Section::findBySlug($slug);
             $firstStory = factory('App\Story')->make([
                 'section_id'                   => $section->id,
-                'front_page_webfront_priority' => 1
+                'front_page_webfront_priority' => 1,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
 
             $secondStory = factory('App\Story')->make([
                 'section_id'                   => $section->id,
-                'front_page_webfront_priority' => 2
+                'front_page_webfront_priority' => 2,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
 
             $thirdStory = factory('App\Story')->make([
                 'section_id'                   => $section->id,
-                'front_page_webfront_priority' => 3
+                'front_page_webfront_priority' => 3,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
 
             $fourthStory = factory('App\Story')->make([
                 'section_id'                   => $section->id,
-                'front_page_webfront_priority' => 4
+                'front_page_webfront_priority' => 4,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
 
             $fifthStory = factory('App\Story')->make([
                 'section_id'                   => $section->id,
-                'front_page_webfront_priority' => 5
+                'front_page_webfront_priority' => 5,
+                'issue_id' => $issues->random(1)->first()->id
             ]);
 
             $stories = collect([$firstStory, $secondStory, $thirdStory, $fourthStory, $fifthStory]);

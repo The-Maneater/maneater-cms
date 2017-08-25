@@ -30,7 +30,7 @@
                     <li><a href="{{ config('app.move_url')}}/staff">Staff</a></li>
                     <li><a href="{{ config('app.maneater_url') }}/about/contact/">Contact Us</a></li>
                     <li><a href="{{ config('app.maneater_url') }}/workforus/">Work for Us</a></li>
-                    <li><a href="{{ config('app.maneater_url') }} /about/accuracy/">Accuracy</a></li>
+                    <li><a href="{{ config('app.maneater_url') }}/about/accuracy/">Accuracy</a></li>
                 </ul>
             </div>
         </div>

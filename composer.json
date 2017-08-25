@@ -15,7 +15,8 @@
         "santigarcor/laratrust": "3.2.*",
         "laravel/scout": "^3.0",
         "damiantw/laravel-scout-mysql-driver": "^1.0",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

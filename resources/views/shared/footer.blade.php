@@ -11,7 +11,7 @@
                 <li><a class="footer" href="{{env('APP_URL')}}/section/opinion/">Opinion</a></li>
                 <li><a class="footer" href="{{env('APP_URL')}}/section/projects/">Projects</a></li>
                 <li><a class="footer" href="{{env('APP_URL')}}/section/sports/">Sports</a></li>
-                <li><a class="footer" href="{{env('APP_URL')}}/section/uwire/">UWire</a></li>
+                <li><a class="footer" href="{{env('APP_URL')}}/section/unews/">UNews</a></li>
             </ul>
             <br>
             <h3 class="footer">The Maneater</h3>
@@ -21,18 +21,18 @@
                 <li><a class="footer" href="{{env('APP_URL')}}/photos/">Photos</a></li>
             </ul>
         </div>
-        <div id="f3" class="is-2">
-            <h3 class="footer">Blogs</h3>
-            <ul>
-                <li><a class="footer" href="{{env('APP_URL')}}/blogs/city-state-and-nation/">City, State and Nation</a></li>
-                <li><a class="footer" href="{{env('APP_URL')}}/blogs/focus/">In Focus</a></li>
-                <li><a class="footer" href="{{env('APP_URL')}}/blogs/campus/">On Campus</a></li>
-                <li><a class="footer" href="{{env('APP_URL')}}/blogs/crime/">Police Beat</a></li>
-                <li><a class="footer" href="{{env('APP_URL')}}/blogs/sports/">Sports Blog</a></li>
-                <li><a class="footer" href="{{env('APP_URL')}}/blogs/the-newsroom/">The Newsroom</a></li>
-                <li><a class="footer" href="{{env('APP_URL')}}/blogs/uwire/">UWire</a></li>
-            </ul>
-        </div>
+        {{--<div id="f3" class="is-2">--}}
+            {{--<h3 class="footer">Blogs</h3>--}}
+            {{--<ul>--}}
+                {{--<li><a class="footer" href="{{env('APP_URL')}}/blogs/city-state-and-nation/">City, State and Nation</a></li>--}}
+                {{--<li><a class="footer" href="{{env('APP_URL')}}/blogs/focus/">In Focus</a></li>--}}
+                {{--<li><a class="footer" href="{{env('APP_URL')}}/blogs/campus/">On Campus</a></li>--}}
+                {{--<li><a class="footer" href="{{env('APP_URL')}}/blogs/crime/">Police Beat</a></li>--}}
+                {{--<li><a class="footer" href="{{env('APP_URL')}}/blogs/sports/">Sports Blog</a></li>--}}
+                {{--<li><a class="footer" href="{{env('APP_URL')}}/blogs/the-newsroom/">The Newsroom</a></li>--}}
+                {{--<li><a class="footer" href="{{env('APP_URL')}}/blogs/uwire/">UWire</a></li>--}}
+            {{--</ul>--}}
+        {{--</div>--}}
         <div id="f4" class="is-2">
             <h3 class="footer">MOVE Magazine</h3>
             <ul>

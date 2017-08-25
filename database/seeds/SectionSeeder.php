@@ -64,5 +64,11 @@ class SectionSeeder extends Seeder
             'slug' => 'insight',
             'publication_id' => 2
         ]);
+
+        $guide = Section::create([
+            'name' => 'Guide',
+            'slug' => 'guide',
+            'publication_id' => 2
+        ]);
     }
 }

@@ -21,6 +21,13 @@ class FlatpageSeeder extends Seeder
 
         Flatpage::create([
             'title' => 'Accuracy',
+            'path' => 'about/maneater-versus-missourian',
+            'publication_id' => 1,
+            'content' => file_get_contents(storage_path('/flatpage_initial/maneater-vs-missourian.php'))
+        ]);
+
+        Flatpage::create([
+            'title' => 'Missourian',
             'path' => 'about/accuracy',
             'publication_id' => 1,
             'content' => file_get_contents(storage_path('/flatpage_initial/accuracy.php'))
@@ -42,7 +49,7 @@ class FlatpageSeeder extends Seeder
 
         Flatpage::create([
             'title' => 'Order Photo',
-            'path' => 'about/order-photo',
+            'path' => 'order-photo',
             'publication_id' => 1,
             'content' => file_get_contents(storage_path('/flatpage_initial/order-photo.php'))
         ]);

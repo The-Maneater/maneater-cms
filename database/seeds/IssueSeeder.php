@@ -13,10 +13,14 @@ class IssueSeeder extends Seeder
      */
     public function run()
     {
-       $issue = new Issue([
-            'issue_number' => 12
-        ]);
-       $volume = Volume::first();
-       $volume->issues()->save($issue);
+        $volume = Volume::first();
+        foreach(range(1, 12) as $i){
+            $issue = new Issue([
+                'issue_number' => $i,
+                'created_at' => Carbon\Carbon::now()->subMinutes(12 - $i)
+            ]);
+            $volume->issues()->save($issue);
+        }
+
     }
 }
