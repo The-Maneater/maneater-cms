@@ -54,8 +54,12 @@ class MoveController extends Controller
     public function storyShow($section, $slug)
     {
         $story = Story::findBySectionAndSlug($section, $slug);
+        $relatedArticles = Story::withAnyTags($story->tags)
+            ->inRandomOrder()
+            ->take(5)
+            ->get();
 
-        return view('move.story', compact('story'));
+        return view('move.story', compact('story', 'relatedArticles'));
     }
 
     public function search(MoveSearchRepository $repository)

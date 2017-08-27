@@ -43,7 +43,7 @@
                 <a class="nav-item is-tab is-hidden-mobile" href="/section/sports">SPORTS</a>
                 <a class="nav-item is-tab is-hidden-mobile" href="/section/opinion">OPINION</a>
                 <a class="nav-item is-tab is-hidden-mobile move" href="{{ config('app.move_url') }}">MOVE</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/section/blogs">BLOGS</a>
+                <a class="nav-item is-tab is-hidden-mobile" href="/photos">PHOTOS</a>
                 <a class="nav-item is-tab is-hidden-mobile" href="/classifieds">CLASSIFIEDS</a>
             </div>
             <span class="nav-toggle">
@@ -58,7 +58,7 @@
                 <a class="nav-item is-tab is-hidden-tablet">SPORTS</a>
                 <a class="nav-item is-tab is-hidden-tablet">OPINION</a>
                 <a class="nav-item is-tab is-hidden-tablet">MOVE</a>
-                <a class="nav-item is-tab is-hidden-tablet">BLOGS</a>
+                <a class="nav-item is-tab is-hidden-tablet">PHOTOS</a>
                 <a class="nav-item is-tab is-hidden-tablet">CLASSIFIEDS</a>
                 <div class="field has-addons">
                     <form method="GET" action="/search" class="main-search-form">

@@ -25,7 +25,8 @@ class Story extends Model
         'section_webfront_priority',
         'front_page_webfront_priority',
         'section_id',
-        'issue_id'
+        'issue_id',
+        'writers'
 	];
 
     protected $dates = [];

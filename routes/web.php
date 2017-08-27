@@ -23,17 +23,19 @@ Route::domain('move.' . config('app.base'))->group(function(){
 Route::get('/', 'PagesController@frontpage');
 Route::get('/search', 'SearchController@show');
 
+Route::get('/photos', 'PagesController@photos');
 Route::get('/photos/{id}', 'PhotosController@show');
-//Route::get('/graphics', function(){
-//    return "Graphics";
-//});
+
+Route::get('/graphics', 'PagesController@graphics');
 Route::get('/graphics/{graphic}', 'GraphicsController@show');
+Route::get('/layouts', 'PagesController@layouts');
 Route::get('/layouts/{id}', 'LayoutsController@show');
 Route::get('/section/{slug}', 'SectionsController@show');
 Route::get('/section/{slug}/archives', 'SectionArchivesController@show');
 Route::get('/staff/editors', 'PagesController@editorialBoard');
 Route::get('/staff', 'PagesController@allStaff');
 Route::get('/staff/{slug}', 'StafferController@show');
+Route::get('/stories', 'PagesController@latest');
 Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 Route::get('/classifieds', 'PagesController@classifieds');

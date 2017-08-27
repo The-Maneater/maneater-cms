@@ -4,7 +4,7 @@
     <div>
         <div class="columns">
             @if(count($story->headerPhotos) > 0)
-                <div class="column is-8">
+                <div class="column">
                     <img src="{{ $story->headerPhotos[0]->path() }}" alt="">
                 </div>
             @endif
@@ -35,11 +35,25 @@
                 <div class="section-break">
                     <h2>EVENTS</h2>
                 </div>
+                <p>For some reason, there aren't any events to display here.</p>
                 <div class="section-break">
                     <h2>FOLLOW US</h2>
                 </div>
+                <div class="social is-flex">
+                    <div class="is-flex-justify-center is-flex-row is-full-width">
+                        <a class="sm-logos" href="https://www.facebook.com/MOVEManeater" target="_blank"><img src="http://themaneater.com/media/style/2014-redesign/fb-logo.png" height="50px"></a>
+                        <a class="sm-logos" href="https://twitter.com/movemaneater" target="_blank"><img src="http://themaneater.com/media/style/2014-redesign/tw-logo.png" height="50px"></a>
+                    </div>
+                </div>
                 <div class="section-break">
                     <h2>More Stories</h2>
+                </div>
+                <div class="related">
+                    <ol>
+                        @foreach($relatedArticles as $article)
+                            <li><a href="{{ $article->path() }}">{{ $article->title }}</a></li>
+                        @endforeach
+                    </ol>
                 </div>
             </div>
             <div class="column is-8 story-body">
@@ -62,6 +76,13 @@
 
                 <div class="section-break">
                     <h2>More Stories</h2>
+                </div>
+                <div class="related">
+                    <ol>
+                        @foreach($relatedArticles as $article)
+                            <li><a href="{{ $article->path() }}">{{ $article->title }}</a></li>
+                        @endforeach
+                    </ol>
                 </div>
             </div>
         </div>
