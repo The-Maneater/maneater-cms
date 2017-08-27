@@ -97,49 +97,49 @@
                     <a class="sectionlabel" href="/section/campus/">Campus</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li ><a href="{{ $sections[0]->latestStories[$i]->path() }}" class="is-info is-black">{{ $sections[0]->latestStories[$i]->title }}</a></li>
+                            <li ><a href="{{ $sections['campus'][$i]->path() }}" class="is-info is-black">{{ $sections['campus'][$i]->title }}</a></li>
                         @endfor
                     </ul>
                 </div>
                 <div class="column is-4">
-                    <a class="sectionlabel" href="/section/campus/">UWire</a>
+                    <a class="sectionlabel" href="/section/unews/">UWire</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections[1]->latestStories[$i]->path() }}" class="is-black">{{ $sections[1]->latestStories[$i]->title }}</a></li>
+                            <li><a href="{{ $sections['unews'][$i]->path() }}" class="is-black">{{ $sections['unews'][$i]->title }}</a></li>
                         @endfor
                     </ul>
                 </div>
                 <div class="column is-4">
-                    <a class="sectionlabel" href="/section/campus/">Sports</a>
+                    <a class="sectionlabel" href="/section/sports/">Sports</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections[2]->latestStories[$i]->path() }}" class="is-black">{{ $sections[2]->latestStories[$i]->title }}</a></li>
+                            <li><a href="{{ $sections['sports'][$i]->path() }}" class="is-black">{{ $sections['sports'][$i]->title }}</a></li>
                         @endfor
                     </ul>
                 </div>
             </div>
             <div class="columns sectionArticles">
                 <div class="column is-4">
-                    <a class="sectionlabel" href="/section/campus/">Outlook</a>
+                    <a class="sectionlabel" href="/section/projects/">Projects</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections[3]->latestStories[$i]->path() }}" class="is-black">{{ $sections[3]->latestStories[$i]->title }}</a></li>
+                            <li><a href="{{ $sections['projects'][$i]->path() }}" class="is-black">{{ $sections['projects'][$i]->title }}</a></li>
                         @endfor
                     </ul>
                 </div>
                 <div class="column is-4">
-                    <a class="sectionlabel" href="/section/campus/">Opinion</a>
+                    <a class="sectionlabel" href="/section/opinion/">Opinion</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections[4]->latestStories[$i]->path() }}" class="is-black">{{ $sections[4]->latestStories[$i]->title }}</a></li>
+                            <li><a href="{{ $sections['opinion'][$i]->path() }}" class="is-black">{{ $sections['opinion'][$i]->title }}</a></li>
                         @endfor
                     </ul>
                 </div>
                 <div class="column is-4">
-                    <a class="sectionlabel" href="/section/campus/">Blogs</a>
+                    <a class="sectionlabel" href="{{ config('app.move_url') }}">MOVE</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections[5]->latestStories[$i]->path() }}" class="is-black">{{ $sections[5]->latestStories[$i]->title }}</a></li>
+                            <li><a href="{{ config('app.move_url') . $sections['move'][$i]->path() }}" class="is-black">{{ $sections['move'][$i]->title }}</a></li>
                         @endfor
                     </ul>
                 </div>

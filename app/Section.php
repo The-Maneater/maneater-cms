@@ -45,6 +45,9 @@ class Section extends Model
     	return Section::where('slug', '=', $slug)->first();
     }
 
+    /**
+     * @return mixed
+     */
     public function latestStories()
     {
         return $this->stories()

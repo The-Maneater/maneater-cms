@@ -9,6 +9,7 @@ use App\Layout;
 use App\Paginators\PublishDatePaginator;
 use App\Photo;
 use App\Repositories\AdRepository;
+use App\Repositories\StoryRepository;
 use App\Section;
 use App\Staffer;
 use App\Story;
@@ -27,7 +28,8 @@ class PagesController extends Controller
 
     public function frontpage()
     {
-        $sections = Section::with(['latestStories'])->get()->take(6);
+        $sections = StoryRepository::getFrontPageSectionStories();
+        //dd($sections);
         $minutes = 720;
         $latest = Cache::remember('latestStories', $minutes, function () {
             return Story::with(['section'])->latest()->take(10)->get();
