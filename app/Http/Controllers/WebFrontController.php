@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Publication;
+use App\Repositories\CacheRepository;
 use App\WebFront;
 use App\Story;
 use App\Section;
@@ -19,7 +20,8 @@ class WebFrontController extends Controller
      */
     public function index()
     {
-        return view('admin.webfronts.list');
+        $sections = Section::all()->load(['publication']);
+        return view('admin.webfronts.list', compact('sections'));
     }
 
     /**
@@ -85,6 +87,8 @@ class WebFrontController extends Controller
                 $story->addToSectionWebfront($priority);
             }
         });
+
+        $frontPage ? null : CacheRepository::updateSectionWebFront($section);
         return redirect("/admin/core/web-fronts");
     }
 }

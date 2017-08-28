@@ -32,6 +32,7 @@ class WebFront extends Model
         })->whereNotNull('front_page_webfront_priority')
             ->orderBy('front_page_webfront_priority')
             ->get()
+            ->load(['section'])
             ->keyBy('front_page_webfront_priority');
     }
 

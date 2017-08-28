@@ -54,7 +54,7 @@ class Staffer extends Model
      */
     public function getWriterPositionAttribute()
     {
-        return $this->positions()->get()->first(function($value, $key){
+        return $this->positions->first(function($value, $key){
            return collect(['Reporter', 'Staff Writer', 'Senior Staff Writer'])->contains($value->title);
         })->title;
     }
@@ -65,7 +65,7 @@ class Staffer extends Model
      */
     public function getPhotographerPositionAttribute()
     {
-        return $this->positions()->get()->first(function($value, $key){
+        return $this->positions->first(function($value, $key){
             return collect(['Photographer', 'Staff Photographer', 'Senior Staff Photographer'])->contains($value->title);
         })->title;
     }

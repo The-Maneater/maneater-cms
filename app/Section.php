@@ -52,7 +52,8 @@ class Section extends Model
     {
         return $this->stories()
             ->with('section')
-            ->latest();
+            ->orderBy('publish_date', 'DESC')
+            ->take(6);
     }
 
     /**
@@ -81,7 +82,9 @@ class Section extends Model
             ->sortByDesc(function ($item, $key){
                 return count($item);
             })
-            ->take(10);
+            ->take(10)
+            ->values()
+            ->all();
     }
 
     /**

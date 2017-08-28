@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Position;
 use App\Http\Requests\CreateStafferRequest;
+use App\Repositories\CacheRepository;
 use App\Staffer;
 use Illuminate\Http\Request;
 
@@ -60,6 +61,8 @@ class StafferController extends Controller
             $staffer->positions()->attach($ids);
         }
 
+        count($staffer->edBoardPositions) > 0 ? CacheRepository::updateEditorialBoard() : null ;
+
         return redirect('/admin/staff/staffers');
     }
 
@@ -113,6 +116,8 @@ class StafferController extends Controller
         $staffer->positions()->sync($ids);
 
         $staffer->save();
+
+        count($staffer->edBoardPositions) > 0 ? CacheRepository::updateEditorialBoard() : null ;
 
         return redirect('/admin/staff/staffers');
     }

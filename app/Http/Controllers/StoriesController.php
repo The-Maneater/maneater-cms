@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ad;
 use App\Http\Requests\CreateStoryRequest;
 use App\Repositories\AdRepository;
+use App\Repositories\CacheRepository;
 use App\Staffer;
 use App\Story;
 use Illuminate\Http\Request;
@@ -20,10 +21,11 @@ class StoriesController extends Controller
     {
         $this->authorize('index', Story::class);
         if(request()->has('search')){
-            $articles = Story::search(request('search'))->paginate(25);
+            $articles = Story::with(['issue', 'section'])->search(request('search'))->paginate(25);
         }else{
-            $articles = Story::orderBy('publish_date', "DESC")->paginate(25);
+            $articles = Story::with(['issue', 'section'])->orderBy('publish_date', "DESC")->paginate(25);
         }
+
         return view('admin.articles.list', compact('articles'));
     }
 
@@ -77,6 +79,9 @@ class StoriesController extends Controller
         $story->photos()->sync($photos);
         $story->graphics()->sync($request->input('graphics', []));
 
+        CacheRepository::updateLatestStories();
+        CacheRepository::updateSectionTopTags($story);
+
         return redirect('/admin/core/stories');
     }
 
@@ -89,7 +94,7 @@ class StoriesController extends Controller
      */
     public function show($section, $slug)
     {
-        $story = Story::findBySectionAndSlug($section, $slug);
+        $story = Story::findBySectionAndSlug($section, $slug)->load(['writers']);
         $inlinePhotos = $story->inlinePhotos()->get();
         $append = "";
         $inlinePhotos->each(function($item, $key) use(&$append){
@@ -101,7 +106,8 @@ class StoriesController extends Controller
         $relatedArticles = Story::withAnyTags($story->tags)
             ->inRandomOrder()
             ->take(5)
-            ->get();
+            ->get()
+            ->load(['section']);
         return view('stories.show', compact('story', 'ads', 'relatedArticles'));
     }
 
@@ -150,6 +156,10 @@ class StoriesController extends Controller
         $article->graphics()->sync($request->input('graphics', []));
         $article->section()->associate($request->input('section'));
         $article->syncTags($request->input('tags'));
+
+        CacheRepository::updateLatestStories();
+        CacheRepository::updateSectionTopTags($article);
+        $article->section_webfront_priority !== null ? CacheRepository::updateSectionWebFront($article->section) : null;
 
         return redirect('/admin/core/stories');
     }

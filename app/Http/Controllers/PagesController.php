@@ -43,13 +43,15 @@ class PagesController extends Controller
 
     public function editorialBoard()
     {
-        $staffers = Staffer::with(['edBoardPositions'])->whereHas('edBoardPositions', function($p){
-            $p->where('current', true);
-        })->get()
-            ->sortBy(function($item, $key){
-                return $item->edBoardPositions()->where('current', true)->first()->priority;
-            })
-        ->values();
+        $staffers = Cache::remember('editorialBoard', 720, function(){
+            return Staffer::with(['edBoardPositions'])->whereHas('edBoardPositions', function($p){
+                $p->where('current', true);
+            })->get()
+                ->sortBy(function($item, $key){
+                    return $item->edBoardPositions()->where('current', true)->first()->priority;
+                })
+                ->values();
+        });
         $titles = $staffers->map(function($item,$key){
             return $item->edBoardPositions()->where('current', true)->first()->title;
         });

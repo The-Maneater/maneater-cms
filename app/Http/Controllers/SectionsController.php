@@ -6,8 +6,10 @@ use App\Ad;
 use App\Http\Requests;
 use App\Http\Requests\CreateSectionRequest;
 use App\Repositories\AdRepository;
+use App\Repositories\CacheRepository;
 use App\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SectionsController extends Controller
 {
@@ -60,9 +62,15 @@ class SectionsController extends Controller
     public function show($slug)
     {
         $section = Section::findBySlug($slug);
-        $stories = $section->stories()->latest()->take(10)->get();
-        $priorityStories = $section->webFrontStories()->get();
-        $tags = $section->latestTags();
+        $stories = $section->stories()->latest()->take(10)->get()->load(['section']);
+        $priorityStories = Cache::remember('section.' . $slug . 'web-front-stories', 720, function() use ($section) {
+           return $section->webFrontStories()->get()->load(['section']);
+        });
+        //$priorityStories = $section->webFrontStories()->get();
+        $tags = Cache::remember('section.' . $slug . '.latest-tags', 720, function() use($section){
+           return  $section->latestTags();
+        });
+        //$tags = $section->latestTags();
         $ads = AdRepository::cubes(2);
         return view('sections.index', compact('stories', 'priorityStories', 'tags', 'ads'));
     }

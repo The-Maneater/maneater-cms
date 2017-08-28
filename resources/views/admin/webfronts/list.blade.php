@@ -26,7 +26,7 @@
                 <td><a href="{{ route('edit-web-front', [0]) }}">Front Page</a></td>
                 <td>The Maneater</td>
             </tr>
-            @foreach(\App\Section::all() as $section)
+            @foreach($sections as $section)
                 <tr>
                     <td><a href="{{ route('edit-web-front', [$section->id]) }}">{{ $section->name }}</a></td>
                     <td>{{ $section->publication->name }}</td>
