@@ -17,12 +17,12 @@ class CreatePhotosTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->longtext('description');
-            $table->dateTime('dateTaken');
             $table->dateTime('publish_date');
             $table->string('location');
             $table->integer('section_id');
             $table->integer('issue_id');
-            $table->integer('staffer_id');
+            $table->integer('staffer_id')->nullable();
+            $table->string('static_byline')->nullable();
             $table->nullableTimestamps();
         });
     }

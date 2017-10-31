@@ -48,6 +48,7 @@ class StoriesController extends Controller
     public function store(CreateStoryRequest $request)
     {
         $story = new Story($request->except(['tags', 'issue', 'section', 'byline', 'topPhotos', 'inlinePhotos', 'graphics']));
+        $story->slug = $story->getUniqueSlug();
         $story->issue()->associate($request->input('issue'));
         $story->section()->associate($request->input('section'));
 
@@ -65,11 +66,15 @@ class StoriesController extends Controller
         $story->save();
 
         $writers = collect($request->input('byline'));
+
         $writers->each(function($staffer, $key){
             /** @var \App\Staffer $staffer  */
             $staffer = Staffer::find($staffer);
-            if($staffer->stories()->count() > 10 && $staffer->isA('Reporter')){
-                $staffer->makeA('Staff Writer', 'Reporter');
+            //dd($staffer);
+            if($staffer->stories()->count() > 10 && $staffer->writer_pos == "Reporter"){
+                //$staffer->makeA('Staff Writer', 'Reporter');
+                $staffer->writer_pos = "Staff Writer";
+                $staffer->save();
             }
         });
         $tags = $request->input('tags');
@@ -95,6 +100,10 @@ class StoriesController extends Controller
     public function show($section, $slug)
     {
         $story = Story::findBySectionAndSlug($section, $slug)->load(['writers']);
+        $urls = array();
+        $urls['facebook'] = "https://www.facebook.com/sharer/sharer.php?u=" . request()->fullUrl();
+        $urls['twitter'] = "http://www.twitter.com/share?url=" . request()->fullUrl();
+        $urls['google'] = "https://plus.google.com/share?url=" . request()->fullUrl();
         $inlinePhotos = $story->inlinePhotos()->get();
         $append = "";
         $inlinePhotos->each(function($item, $key) use(&$append){
@@ -108,7 +117,7 @@ class StoriesController extends Controller
             ->take(5)
             ->get()
             ->load(['section']);
-        return view('stories.show', compact('story', 'ads', 'relatedArticles'));
+        return view('stories.show', compact('story', 'ads', 'relatedArticles', 'urls'));
     }
 
     /**

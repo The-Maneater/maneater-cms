@@ -15,7 +15,9 @@ class Staffer extends Model
 	protected $fillable = [
 		'first_name',
 		'last_name',
-		'is_active'
+		'is_active',
+        'writer_pos',
+        'photo_pos'
 	];
 
 	protected $casts = ['is_active' => 'boolean'];
@@ -54,9 +56,10 @@ class Staffer extends Model
      */
     public function getWriterPositionAttribute()
     {
-        return $this->positions->first(function($value, $key){
-           return collect(['Reporter', 'Staff Writer', 'Senior Staff Writer'])->contains($value->title);
-        })->title;
+        return $this->writer_position;
+//        return $this->positions->first(function($value, $key){
+//           return collect(['Reporter', 'Staff Writer', 'Senior Staff Writer'])->contains($value->title);
+//        })->title;
     }
 
     /**
@@ -65,9 +68,10 @@ class Staffer extends Model
      */
     public function getPhotographerPositionAttribute()
     {
-        return $this->positions->first(function($value, $key){
-            return collect(['Photographer', 'Staff Photographer', 'Senior Staff Photographer'])->contains($value->title);
-        })->title;
+        return $this->photo_position;
+//        return $this->positions->first(function($value, $key){
+//            return collect(['Photographer', 'Staff Photographer', 'Senior Staff Photographer'])->contains($value->title);
+//        })->title;
     }
 
     /**
@@ -90,7 +94,7 @@ class Staffer extends Model
            return $value->title == $positionTitle;
         });
 
-        return $position->title == $positionTitle;
+        return $position != null && $position->title == $positionTitle;
     }
 
     /**

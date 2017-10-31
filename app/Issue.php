@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Issue extends Model
 {
     protected $fillable = [
-    	'issue_number'
+    	'issue_number',
+        'issu_url'
     ];
 
     protected $with = ['volume'];
@@ -45,5 +46,10 @@ class Issue extends Model
      */
     public function volume(){
     	return $this->belongsTo('App\Volume');
+    }
+
+    public function layout()
+    {
+        return $this->belongsTo('App\Layout');
     }
 }

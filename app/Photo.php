@@ -13,7 +13,7 @@ class Photo extends Model
 	protected $fillable = [
 		'title',
         'description',
-        'dateTaken',
+        'static_byline',
         'location',
         'subjects',
         'publish_date',
@@ -22,7 +22,7 @@ class Photo extends Model
         'staffer_id'
 	];
 
-	protected $dates = ['dateTaken', 'publish_date'];
+	protected $dates = ['publish_date'];
 
     /**
      * Returns the associated photographers

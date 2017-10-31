@@ -20,6 +20,8 @@ class CreateStaffersTable extends Migration
             $table->boolean('is_active');
             $table->string('slug');
             $table->integer('user_id')->unsigned()->nullable();
+            $table->string("writer_pos")->nullable();
+            $table->string("photo_pos")->nullable();
             $table->timestamps();
         });
     }

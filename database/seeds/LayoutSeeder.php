@@ -17,9 +17,12 @@ class LayoutSeeder extends Seeder
             'link'       => '/media/layouts/layout1.jpg',
             'date_published' => \Carbon\Carbon::now()
         	]);
-        $layout->staffer()->associate(\App\Staffer::find(2));
+
+
         $layout->issue()->associate(\App\Issue::first());
         $layout->section()->associate(\App\Section::first());
+        $layout->save();
+        $layout->staffers()->attach(\App\Staffer::find(2));
         $layout->save();
     }
 }

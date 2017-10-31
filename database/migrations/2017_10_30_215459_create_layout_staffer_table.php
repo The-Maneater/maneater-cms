@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIssueTable extends Migration
+class CreateLayoutStafferTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateIssueTable extends Migration
      */
     public function up()
     {
-        Schema::create('issues', function (Blueprint $table) {
+        Schema::create('layout_staffer', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('issue_number');
-            $table->string("issu_url")->nullable();
-            $table->integer('volume_id')->unsigned();
-            $table->integer('layout_id')->unsigned()->nullable();
+            $table->integer('layout_id')->unsigned();
+            $table->integer('staffer_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateIssueTable extends Migration
      */
     public function down()
     {
-        Schema::drop('issues');
+        Schema::dropIfExists('layout_staffer');
     }
 }

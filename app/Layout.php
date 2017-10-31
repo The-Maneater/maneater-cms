@@ -17,10 +17,10 @@ class Layout extends Model
 
     /**
      * Returns the associated staffer
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function staffer(){
-    	return $this->belongsTo('App\Staffer');
+    public function staffers(){
+    	return $this->belongsToMany('App\Staffer');
     }
 
     /**

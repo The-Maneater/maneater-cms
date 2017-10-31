@@ -22,5 +22,9 @@ class IssueSeeder extends Seeder
             $volume->issues()->save($issue);
         }
 
+        $issue = Issue::find(5);
+        $issue->issu_url = "http://issuu.com/themaneater/docs/vol84issue10";
+        $issue->save();
+
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Http\Requests\CreateLayoutRequest;
 use App\Layout;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class LayoutsController extends Controller
@@ -41,13 +42,17 @@ class LayoutsController extends Controller
      */
     public function store(CreateLayoutRequest $request)
     {
+        $carbon = Carbon::now();
+        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/pages";
         $layout = new Layout;
         $layout->fill($request->except(['section', 'issue', 'staffer', 'layout']));
-        $file = $request->file('layout')->move(public_path('layouts/'), $request->file('layout')->getClientOriginalName());
-        $layout->link = '/layouts/' . $file->getFilename();
+        $file = $request->file('layout')
+            ->storeAs($filePath, $request->file('layout')->getClientOriginalName(), 'media');
+        $layout->link = '/media/'.$file;
         $layout->section()->associate($request->input('section'));
         $layout->issue()->associate($request->input('issue'));
-        $layout->staffer()->associate($request->input('staffer'));
+        $layout->save();
+        $layout->staffers()->attach($request->input('staffer'));
         $layout->save();
 
         return redirect('/admin/core/layouts');
@@ -86,7 +91,7 @@ class LayoutsController extends Controller
     public function update(Request $request, Layout $layout)
     {
         $layout->update($request->except(['section', 'issue', 'staffer']));
-        $layout->staffer()->associate($request->input('staffer'));
+        $layout->staffers()->attach($request->input('staffer'));
         $layout->section()->associate($request->input('section'));
         $layout->issue()->associate($request->input('issue'));
 

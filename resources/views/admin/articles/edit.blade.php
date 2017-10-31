@@ -69,8 +69,8 @@
                 </b-field>
                 <b-field label="Header Photos:">
                     <select2 name="topPhotos[]" id="topPhotos" multiple="true">
-                        @foreach (\App\Photo::all() as $photo)
-                            <option value="{{ $photo->id }}" {{ ($article->headerPhotos->contains($photo->id) ? "selected":"") }}>{{ $photo->title }}</option>
+                        @foreach ($article->headerPhotos as $photo)
+                            <option value="{{ $photo->id }}" selected>{{ $photo->title }}</option>
                         @endforeach
                     </select2>
                 </b-field>
@@ -94,9 +94,7 @@
                                         <td class="photoSelect">
                                             <select name="inlinePhotos[{{$loop->index}}][photo]" class="inline-photo">
                                                 <option></option>
-                                                @foreach (\App\Photo::all() as $photo)
-                                                    <option value="{{ $photo->id }}" {{ $inlinePhoto->id == $photo->id ? "selected" : "" }}>{{ $photo->title }}</option>
-                                                @endforeach
+                                                <option value="{{ $inlinePhoto->id }}" selected>{{ $inlinePhoto->title }}</option>
                                             </select>
                                         </td>
                                         <td class="reference">
@@ -104,29 +102,29 @@
                                         </td>
                                     </tr>
                                     @endforeach
-                                    @else
-                                        <tr class="firstRow" id="firstRow">
-                                            <td class="photoSelect">
-                                                <select name="inlinePhotos[0][photo]" class="inline-photo">
-                                                    <option></option>
-                                                    @foreach (\App\Photo::latest()->take(30)->get() as $photo)
-                                                        <option value="{{ $photo->id }}" >{{ $photo->title }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td class="reference">
-                                                <input type="text" class="input" name="inlinePhotos[0][reference]" value="">
-                                            </td>
-                                        </tr>
-                                    @endif
+                        @else
+                            <tr class="firstRow" id="firstRow">
+                                <td class="photoSelect">
+                                    <select name="inlinePhotos[0][photo]" class="inline-photo">
+                                        <option></option>
+                                        @foreach (\App\Photo::latest()->take(30)->get() as $photo)
+                                            <option value="{{ $photo->id }}" >{{ $photo->title }}</option>
+                                        @endforeach
+                                    </select>
+                                </td>
+                                <td class="reference">
+                                    <input type="text" class="input" name="inlinePhotos[0][reference]" value="">
+                                </td>
+                            </tr>
+                            @endif
                         </tbody>
                     </table>
                     <a onclick="addTableRow()" class="button">Add Row</a>
                 </div>
                 <b-field label="Graphics:">
                     <select2 name="graphics[]" id="graphics" multiple="true">
-                        @foreach (\App\Graphic::all() as $graphic)
-                            <option value="{{ $graphic->id }}" {{ ($article->graphics->contains($graphic->id) ? "selected":"") }}>{{ $graphic->title }}</option>
+                        @foreach ($article->graphics as $graphic)
+                            <option value="{{ $graphic->id }}" selected>{{ $graphic->title }}</option>
                         @endforeach
                     </select2>
                 </b-field>
@@ -152,6 +150,65 @@
 @section('scripts')
     <script>
         let inlineIndex = {{ count($article->inlinePhotos()) }} + 1;
+
+        let config = {
+            ajax: {
+                url: 'http://maneater-cms.dev/photos/search',
+                dataType: 'json',
+                processResults: function (data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+                    var mappedData = $.map(data.data, function (obj) {
+                        obj.text = obj.text || obj.title; // replace name with the property used for the text
+
+                        return obj;
+                    });
+
+                    return {
+                        results: mappedData,
+                        pagination: {
+                            more: (params.page * 25) < data.total
+                        }
+                    };
+                },
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            },
+            minimumInputLength: 4,
+            placeholder: 'Select an option',
+            allowClear: true
+        };
+        let graphicsConfig = {
+            ajax: {
+                url: 'http://maneater-cms.dev/graphics/search',
+                dataType: 'json',
+                processResults: function (data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+                    var mappedData = $.map(data.data, function (obj) {
+                        obj.text = obj.text || obj.title; // replace name with the property used for the text
+
+                        return obj;
+                    });
+
+                    return {
+                        results: mappedData,
+                        pagination: {
+                            more: (params.page * 25) < data.total
+                        }
+                    };
+                },
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            },
+            minimumInputLength: 4,
+            placeholder: 'Select an option',
+            allowClear: true
+        };
 
         function addTableRow(){
             $(".inline-photo").select2("destroy");
@@ -181,6 +238,10 @@
             $('#tags').select2({
                 tags: true
             });
+
+            $("#topPhotos").select2(config);
+            $(".inline-photo").select2(config);
+            $("#graphics").select2(graphicsConfig);
         })
 
     </script>

@@ -45,7 +45,7 @@
                 </div>
                 <b-field label="Issue:">
                     <select2 name="issue" id="issue">
-                        @foreach (\App\Issue::all() as $issue)
+                        @foreach (\App\Issue::latest()->take(10)->get() as $issue)
                             <option value="{{ $issue->id }}">{{ $issue->issueName }}</option>
                         @endforeach
                     </select2>
@@ -68,9 +68,9 @@
                 </b-field>
                 <b-field label="Header Photos:">
                     <select2 name="topPhotos[]" id="topPhotos" multiple="true">
-                        @foreach (\App\Photo::all() as $photo)
-                            <option value="{{ $photo->id }}">{{ $photo->title }}</option>
-                        @endforeach
+                        {{--@foreach (\App\Photo::all() as $photo)--}}
+                            {{--<option value="{{ $photo->id }}">{{ $photo->title }}</option>--}}
+                        {{--@endforeach--}}
                     </select2>
                 </b-field>
                 <div class="field">
@@ -85,11 +85,11 @@
                         <tbody>
                             <tr class="firstRow">
                                 <td class="photoSelect">
-                                    <select name="inlinePhotos[0][photo]" class="inline-photo">
+                                    <select name="inlinePhotos[0][photo]" id="first-inline" class="inline-photo">
                                         <option></option>
-                                        @foreach (\App\Photo::all() as $photo)
-                                            <option value="{{ $photo->id }}">{{ $photo->title }}</option>
-                                        @endforeach
+                                        {{--@foreach (\App\Photo::all() as $photo)--}}
+                                            {{--<option value="{{ $photo->id }}">{{ $photo->title }}</option>--}}
+                                        {{--@endforeach--}}
                                     </select>
                                 </td>
                                 <td class="reference">
@@ -102,9 +102,9 @@
                 </div>
                 <b-field label="Graphics:">
                     <select2 name="graphics[]" id="graphics" multiple="true">
-                        @foreach (\App\Graphic::all() as $graphic)
-                            <option value="{{ $graphic->id }}">{{ $graphic->title }}</option>
-                        @endforeach
+                        {{--@foreach (\App\Graphic::all() as $graphic)--}}
+                            {{--<option value="{{ $graphic->id }}">{{ $graphic->title }}</option>--}}
+                        {{--@endforeach--}}
                     </select2>
                 </b-field>
                 <b-field label="Tags:">
@@ -133,6 +133,65 @@
             $("#storyForm").submit();
         }
 
+        let config = {
+            ajax: {
+                url: 'http://maneater-cms.dev/photos/search',
+                dataType: 'json',
+                processResults: function (data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+                    var mappedData = $.map(data.data, function (obj) {
+                        obj.text = obj.text || obj.title; // replace name with the property used for the text
+
+                        return obj;
+                    });
+
+                    return {
+                        results: mappedData,
+                        pagination: {
+                            more: (params.page * 25) < data.total
+                        }
+                    };
+                },
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            },
+            minimumInputLength: 4,
+            placeholder: 'Select an option',
+            allowClear: true
+        };
+        let graphicsConfig = {
+            ajax: {
+                url: 'http://maneater-cms.dev/graphics/search',
+                dataType: 'json',
+                processResults: function (data, params) {
+                    // parse the results into the format expected by Select2
+                    // since we are using custom formatting functions we do not need to
+                    // alter the remote JSON data, except to indicate that infinite
+                    // scrolling can be used
+                    params.page = params.page || 1;
+                    var mappedData = $.map(data.data, function (obj) {
+                        obj.text = obj.text || obj.title; // replace name with the property used for the text
+
+                        return obj;
+                    });
+
+                    return {
+                        results: mappedData,
+                        pagination: {
+                            more: (params.page * 25) < data.total
+                        }
+                    };
+                },
+                // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
+            },
+            minimumInputLength: 4,
+            placeholder: 'Select an option',
+            allowClear: true
+        };
+
         function addTableRow(){
             $(".inline-photo").select2("destroy");
             let el = $(".firstRow").clone();
@@ -142,7 +201,9 @@
             $("tbody").append(el);
             $('.inline-photo').select2({
                 placeholder: 'Select an option',
-                allowClear: true
+                allowClear: true,
+                ajax: config.ajax,
+                minimumInputLength: config.minimumInputLength
             });
             inlineIndex++;
         }
@@ -155,6 +216,9 @@
             $('#tags').select2({
                 tags: true
             });
+            $('#topPhotos').select2(config);
+            $('#first-inline').select2(config);
+            $('#graphics').select2(graphicsConfig);
         })
 
     </script>

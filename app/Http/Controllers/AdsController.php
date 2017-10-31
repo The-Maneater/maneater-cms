@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Ad;
 use App\Http\Requests\CreateAdRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AdsController extends Controller
@@ -40,11 +41,13 @@ class AdsController extends Controller
      */
     public function store(CreateAdRequest $request)
     {
+        $carbon = Carbon::now();
+        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/ads";
         $ad = new Ad;
         $ad->fill($request->except('adFile'));
         $image = $request->file('adFile')
-            ->storeAs('ads', $request->file('adFile')->getClientOriginalName(), 'media');
-        $ad->image_url = '/media' . $image;
+            ->storeAs($filePath, $request->file('adFile')->getClientOriginalName(), 'media');
+        $ad->image_url = '/media/' . $image;
         $ad->times_served = 0;
         $ad->save();
 

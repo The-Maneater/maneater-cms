@@ -16,7 +16,6 @@ class PhotoSeeder extends Seeder
             $photo = new Photo([
                 'title'       => 'Michael Scherer ' . $index,
                 'description' => 'Redshirt senior Michael Scherer watches the game on Oct. 22 after leaving the game with a knee injury.',
-                'dateTaken'   => \Carbon\Carbon::now(),
                 'location'    => 'images/scherer.jpg',
                 'publish_date' => \Carbon\Carbon::now(),
                 'section_id' => 1,
@@ -31,7 +30,6 @@ class PhotoSeeder extends Seeder
         $photo = Photo::create([
             'title'       => '350 * 150 Placeholder',
             'description' => "This doesn't actually do anything.",
-            'dateTaken'   => \Carbon\Carbon::now(),
             'location'    => 'http://placehold.it/350x150',
             'publish_date' => \Carbon\Carbon::now(),
             'section_id' => 1,
@@ -42,7 +40,6 @@ class PhotoSeeder extends Seeder
         $photo = Photo::create([
             'title'       => '250 * 150 Placeholder',
             'description' => "This doesn't actually do anything.",
-            'dateTaken'   => \Carbon\Carbon::now(),
             'location'    => 'http://placehold.it/250x100',
             'publish_date' => \Carbon\Carbon::now(),
             'section_id' => 1,

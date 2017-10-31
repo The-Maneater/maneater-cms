@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Graphic;
 use App\Http\Requests;
 use App\Http\Requests\CreateGraphicRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class GraphicsController extends Controller
@@ -41,10 +42,13 @@ class GraphicsController extends Controller
      */
     public function store(CreateGraphicRequest $request)
     {
+        $carbon = Carbon::now();
+        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/graphics";
         $graphic = new Graphic();
         $graphic->fill($request->except(['issue', 'section', 'byline', 'graphic']));
-        $image = $request->file('graphic')->move(public_path('graphics/'), $request->file('graphic')->getClientOriginalName());
-        $graphic->link = "/graphics/" . $image->getFilename();
+        $image = $request->file('graphic')
+            ->storeAs($filePath, $request->file('graphic')->getClientOriginalName(), 'media');
+        $graphic->link = '/media/'.$image;
         $graphic->issue()->associate($request->input('issue'));
         $graphic->section()->associate($request->input('section'));
         $graphic->staffer()->associate($request->input('byline'));

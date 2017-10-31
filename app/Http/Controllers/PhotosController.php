@@ -44,11 +44,13 @@ class PhotosController extends Controller
      */
     public function store(CreatePhotoRequest $request)
     {
+        $carbon = Carbon::now();
+        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/photos";
         $photo = new Photo;
         $photo->fill($request->except(['byline', 'photo', 'tags']));
         //$image = $request->file('photo')->move(public_path('images/'), $request->file('photo')->getClientOriginalName());
         $image = $request->file('photo')
-            ->storeAs('images', $request->file('photo')->getClientOriginalName(), 'media');
+            ->storeAs($filePath, $request->file('photo')->getClientOriginalName(), 'media');
         $photo->location = $image;
         $photo->dateTaken = Carbon::now();
         $photo->staffer_id = request('byline');
@@ -61,8 +63,10 @@ class PhotosController extends Controller
         $photographers->each(function($staffer, $key){
             /** @var \App\Staffer $staffer  */
             $staffer = Staffer::find($staffer);
-           if($staffer->photos()->count() > 10 && $staffer->isA('Photographer')){
-               $staffer->makeA('Staff Photographer', 'Photographer');
+           if($staffer->photos()->count() > 10 && $staffer->photo_pos == "Photographer"){
+               //$staffer->makeA('Staff Photographer', 'Photographer');
+               $staffer->photo_pos = "Staff Photographer";
+               $staffer->save();
            }
         });
 

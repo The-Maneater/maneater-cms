@@ -170,5 +170,13 @@ class Story extends Model
             ->withPivot('reference');
     }
 
+    function getUniqueSlug()
+    {
+        $slug = $this->slug;
+        $slugCount = count(Story::whereRaw("slug REGEXP '^{$slug}(-[0-9]+)?$'")->get());
+
+        return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug;
+    }
+
 
 }

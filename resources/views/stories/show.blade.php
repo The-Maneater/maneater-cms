@@ -7,7 +7,24 @@
             <h3 class="h3-content">{{ $story->cDeck }}</h3>
             <div class="main-picture">
                 @if(count($story->headerPhotos) > 0)
-                    <img src="{{ $story->headerPhotos[0]->path() }}" alt="">
+                    <div class="main-picture-wrap">
+                        <img src="{{ $story->headerPhotos[0]->path() }}" alt="">
+                    </div>
+                    @if($story->headerPhotos[0]->static_byline === null)
+                        <div class="caption">
+                            <span>{{ $story->headerPhotos[0]->description }}</span>
+                            <span class="all-caps">
+                                <a href="{{$story->headerPhotos[0]->photographer->path()}}">{{ $story->headerPhotos[0]->photographer->fullName }}</a> / {{ $story->headerPhotos[0]->photographer->photo_pos }}
+                            </span>
+                        </div>
+                    @else
+                        <div class="caption">
+                            <span>{{ $story->headerPhotos[0]->description }}</span>
+                            <span class="all-caps">
+                                {{ $story->headerPhotos[0]->static_byline }}
+                            </span>
+                        </div>
+                    @endif
                 @endif
             </div>
             <div class="columns">
@@ -39,9 +56,9 @@
                             <div class="share">
                                 <ul>
                                     <li class="sharevia">Share via</li>
-                                    <li><a onclick="fbShare()">Facebook</a></li>
-                                    <li><a onclick="twShare()">Twitter</a></li>
-                                    <li><a onclick="gpShare()">Google+</a></li>
+                                    <li><a href="{{ $urls['facebook'] }}" target="_blank">Facebook</a></li>
+                                    <li><a href="{{ $urls['twitter'] }}" target="_blank">Twitter</a></li>
+                                    <li><a href="{{ $urls['google'] }}" target="_blank">Google+</a></li>
                                 </ul>
                             </div>
                     </section>
@@ -51,7 +68,7 @@
                         {!! Markdown::parse(nl2br($story->body)) !!}
                     </div>
                     <div id="bottomshare">
-                        <p>Share: <a onclick="fbShare()">Facebook</a> / <a onclick="twShare()">Twitter</a> / <a onclick="gpShare()">Google+</a></p>
+                        <p>Share: <a href="{{ $urls['facebook'] }}" target="_blank">Facebook</a> / <a href="{{ $urls['twitter'] }}" target="_blank">Twitter</a> / <a href="{{ $urls['google'] }}" target="_blank">Google+</a></p>
                     </div>
                     @if(isset($ads['banner'][0]))
                         <img src="{{ $ads['banner'][0]->image_url }}" alt="" class="top-ad">

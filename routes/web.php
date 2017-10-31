@@ -24,9 +24,11 @@ Route::get('/', 'PagesController@frontpage');
 Route::get('/search', 'SearchController@show');
 
 Route::get('/photos', 'PagesController@photos');
+Route::get('/photos/search', 'SearchController@photosRaw');
 Route::get('/photos/{id}', 'PhotosController@show');
 
 Route::get('/graphics', 'PagesController@graphics');
+Route::get('/graphics/search', 'SearchController@graphicsRaw');
 Route::get('/graphics/{graphic}', 'GraphicsController@show');
 Route::get('/layouts', 'PagesController@layouts');
 Route::get('/layouts/{id}', 'LayoutsController@show');

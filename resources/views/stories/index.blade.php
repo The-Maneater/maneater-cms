@@ -97,7 +97,12 @@
                     <a class="sectionlabel" href="/section/campus/">Campus</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li ><a href="{{ $sections['campus'][$i]->path() }}" class="is-info is-black">{{ $sections['campus'][$i]->title }}</a></li>
+                            <li >
+                                @if($i == 0 && count($sections['campus'][$i]->headerPhotos) > 0 )
+                                    <img src="{{ $sections['campus'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @endif
+                                <a href="{{ $sections['campus'][$i]->path() }}" class="is-info is-black">{{ $sections['campus'][$i]->title }}</a>
+                            </li>
                         @endfor
                     </ul>
                 </div>
@@ -105,7 +110,12 @@
                     <a class="sectionlabel" href="/section/unews/">UWire</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections['unews'][$i]->path() }}" class="is-black">{{ $sections['unews'][$i]->title }}</a></li>
+                            <li>
+                                @if($i == 0 && count($sections['unews'][$i]->headerPhotos) > 0 )
+                                    <img src="{{ $sections['unews'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @endif
+                                <a href="{{ $sections['unews'][$i]->path() }}" class="is-black">{{ $sections['unews'][$i]->title }}</a>
+                            </li>
                         @endfor
                     </ul>
                 </div>
@@ -113,7 +123,12 @@
                     <a class="sectionlabel" href="/section/sports/">Sports</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections['sports'][$i]->path() }}" class="is-black">{{ $sections['sports'][$i]->title }}</a></li>
+                            <li>
+                                @if($i == 0 && count($sections['sports'][$i]->headerPhotos) > 0 )
+                                    <img src="{{ $sections['sports'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @endif
+                                <a href="{{ $sections['sports'][$i]->path() }}" class="is-black">{{ $sections['sports'][$i]->title }}</a>
+                            </li>
                         @endfor
                     </ul>
                 </div>
@@ -123,7 +138,12 @@
                     <a class="sectionlabel" href="/section/projects/">Projects</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections['projects'][$i]->path() }}" class="is-black">{{ $sections['projects'][$i]->title }}</a></li>
+                            <li>
+                                @if($i == 0 && count($sections['projects'][$i]->headerPhotos) > 0 )
+                                    <img src="{{ $sections['projects'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @endif
+                                <a href="{{ $sections['projects'][$i]->path() }}" class="is-black">{{ $sections['projects'][$i]->title }}</a>
+                            </li>
                         @endfor
                     </ul>
                 </div>
@@ -131,7 +151,12 @@
                     <a class="sectionlabel" href="/section/opinion/">Opinion</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ $sections['opinion'][$i]->path() }}" class="is-black">{{ $sections['opinion'][$i]->title }}</a></li>
+                            <li>
+                                @if($i == 0 && count($sections['opinion'][$i]->headerPhotos) > 0 )
+                                    <img src="{{ $sections['opinion'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @endif
+                                <a href="{{ $sections['opinion'][$i]->path() }}" class="is-black">{{ $sections['opinion'][$i]->title }}</a>
+                            </li>
                         @endfor
                     </ul>
                 </div>
@@ -139,7 +164,12 @@
                     <a class="sectionlabel" href="{{ config('app.move_url') }}">MOVE</a>
                     <ul class="sectionlist">
                         @for($i = 0; $i<5; $i++)
-                            <li><a href="{{ config('app.move_url') . $sections['move'][$i]->path() }}" class="is-black">{{ $sections['move'][$i]->title }}</a></li>
+                            <li>
+                                @if($i == 0 && count($sections['move'][$i]->headerPhotos) > 0 )
+                                    <img src="{{ $sections['move'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @endif
+                                <a href="{{ config('app.move_url') . $sections['move'][$i]->path() }}" class="is-black">{{ $sections['move'][$i]->title }}</a>
+                            </li>
                         @endfor
                     </ul>
                 </div>

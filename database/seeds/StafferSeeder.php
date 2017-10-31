@@ -40,17 +40,29 @@ class StafferSeeder extends Seeder
         $reiker->save();
         $jd->save();
         $jad->save();
-        $michael->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
-        $reiker->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
-        $jad->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
-        $jd->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
-        $michael->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
-        $reiker->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
-        $jad->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
-        $jd->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+        $michael->writer_pos = "Reporter";
+        $reiker->writer_pos = "Reporter";
+        $jd->writer_pos = "Reporter";
+        $jad->writer_pos = "Reporter";
+        $michael->photo_pos = "Photographer";
+        $reiker->photo_pos = "Photographer";
+        $jd->photo_pos = "Photographer";
+        $jad->photo_pos = "Photographer";
+        $michael->save();
+        $reiker->save();
+        $jd->save();
+        $jad->save();
+//        $michael->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+//        $reiker->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+//        $jad->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+//        $jd->positions()->attach(2, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+//        $michael->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+//        $reiker->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+//        $jad->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
+//        $jd->positions()->attach(5, ['start_date' => \Carbon\Carbon::now(), 'end_date' => null]);
         $michael->positions()->attach(\App\Position::findByTitle('Online Development Editor'), ['start_date' => \Carbon\Carbon::now(), 'period' => 'Summer 2017 - Current']);
 
 
-        $reiker->positions()->attach(\App\Position::findByTitle('Online Development Editor'),  ['start_date' => \Carbon\Carbon::now(), 'end_date' => \Carbon\Carbon::now()]);
+        $reiker->positions()->attach(\App\Position::findByTitle('Online Development Editor'),  ['start_date' => \Carbon\Carbon::now(), 'end_date' => \Carbon\Carbon::now(), 'period' => 'Summer 2016 - May 2017']);
     }
 }

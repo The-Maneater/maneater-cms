@@ -22,7 +22,7 @@
             @permission('manage-graphics')<li><a href="{{ url('/admin/core/graphics') }}">Graphics</a></li>@endpermission
             @permission('manage-polls')<li><a href="{{ url('/admin/core/polls') }}">Polls</a></li>@endpermission
             @permission('manage-issues')<li><a href="{{ url('/admin/core/issues') }}">Issues</a></li>@endpermission
-            @permission('manage-volumtes')<li><a href="{{ url('/admin/core/volumes') }}">Volumes</a></li>@endpermission
+            @permission('manage-volumes')<li><a href="{{ url('/admin/core/volumes') }}">Volumes</a></li>@endpermission
             @permission('manage-sections')<li><a href="{{ url('/admin/core/sections') }}">Sections</a></li>@endpermission
             {{--<li>--}}
                 {{--<a class="is-active">Manage Your Team</a>--}}

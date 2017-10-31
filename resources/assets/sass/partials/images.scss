@@ -1,6 +1,18 @@
 .main-picture{
   padding-top: 10px;
   padding-bottom: 20px;
+  display: flex;
+  flex-flow: column;
+
+}
+
+.main-picture-wrap{
+  display: flex;
+  justify-content: center;
+  img{
+    max-height: 450px;
+    max-width: 900px;
+  }
 }
 
 .centerImage{
