@@ -36,7 +36,8 @@ As you transform a new space into home, try not to replicate where you’re from
 There may be no place like home, but there’s also no place like Mizzou. Through these simple steps, you may find that the home you’ll never want to leave is right here in front of you.
 
 _Edited by Katie Rosso | krosso@themaneater.com_",
-            'priority'      => 10
+            'priority'      => 10,
+            'type' => 'online'
         ]);
 
         $story = App\Story::find(1);

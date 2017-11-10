@@ -104,7 +104,8 @@ $factory->define(App\Story::class, function (Faker\Generator $faker) {
         },
         'section_id' => function(){
             return create('App\Section')->id;
-        }
+        },
+        'type' => 'online'
     ];
 });
 
