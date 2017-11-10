@@ -188,5 +188,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
         });
     });
 });
+Route::get("/stories/{year}/{month}/{day}/{slug}", 'RedirectController@old');
 Route::get('{image_pattern}', 'Folklore\Image\ImageController@serve')->name('image.serve');
 Route::get('/{param?}', 'FlatpageController@show')->where(['param' => '.*']);;

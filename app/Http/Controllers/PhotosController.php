@@ -45,7 +45,7 @@ class PhotosController extends Controller
     public function store(CreatePhotoRequest $request)
     {
         $carbon = Carbon::now();
-        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/photos";
+        $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/photos";
         $photo = new Photo;
         $photo->fill($request->except(['byline', 'photo', 'tags']));
         //$image = $request->file('photo')->move(public_path('images/'), $request->file('photo')->getClientOriginalName());

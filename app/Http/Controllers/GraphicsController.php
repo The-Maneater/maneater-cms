@@ -43,7 +43,7 @@ class GraphicsController extends Controller
     public function store(CreateGraphicRequest $request)
     {
         $carbon = Carbon::now();
-        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/graphics";
+        $filePath = config('app.upload_path') .$carbon->year . "/" . $carbon->month . $carbon->day . "/graphics";
         $graphic = new Graphic();
         $graphic->fill($request->except(['issue', 'section', 'byline', 'graphic']));
         $image = $request->file('graphic')

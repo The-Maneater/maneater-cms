@@ -42,7 +42,7 @@ class AdsController extends Controller
     public function store(CreateAdRequest $request)
     {
         $carbon = Carbon::now();
-        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/ads";
+        $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/ads";
         $ad = new Ad;
         $ad->fill($request->except('adFile'));
         $image = $request->file('adFile')

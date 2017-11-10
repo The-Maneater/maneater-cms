@@ -23,41 +23,41 @@ class EmailController extends Controller
     public function workForUs()
     {
         $to = "";
-//        switch(request('area_of_interest')){
-//            case "news":
-//                $to = "news@themaneater.com";
-//                break;
-//
-//            case "arts":
-//                $to = "move@themaneater.com";
-//                break;
-//
-//            case "sports":
-//                $to = "sports@themaneater.com";
-//                break;
-//
-//            case "photo":
-//                $to = "photos@themaneater.com";
-//                break;
-//
-//            case "design":
-//                $to = "design@themaneater.com";
-//                break;
-//
-//            case "copy":
-//                $to = "copy@themaneater.com";
-//                break;
-//
-//            case "web":
-//                $to = "online@themaneater.com";
-//                break;
-//
-//            case "business":
-//                $to = "business@themaneater.com";
-//                break;
-//        }
+        switch(request('area_of_interest')){
+            case "news":
+                $to = "news@themaneater.com";
+                break;
 
-        $to = "msmith@themaneater.com";
+            case "arts":
+                $to = "move@themaneater.com";
+                break;
+
+            case "sports":
+                $to = "sports@themaneater.com";
+                break;
+
+            case "photo":
+                $to = "photos@themaneater.com";
+                break;
+
+            case "design":
+                $to = "design@themaneater.com";
+                break;
+
+            case "copy":
+                $to = "copy@themaneater.com";
+                break;
+
+            case "web":
+                $to = "online@themaneater.com";
+                break;
+
+            case "business":
+                $to = "advertising@themaneater.com";
+                break;
+        }
+
+        //$to = "msmith@themaneater.com";
         Mail::to($to)
             ->send(new WorkForUs(request('name'), request('class_title'), request('self_email'), request('previous_experience')));
 
@@ -66,7 +66,7 @@ class EmailController extends Controller
 
     public function orderPhoto()
     {
-        $to = "msmith@themaneater.com";
+        $to = "photos@themaneater.com";
         Mail::to($to)
             ->send(new OrderAPhoto(request('name'), request('self_email'), request('photo_url'), request('print_size'), request('comments')));
 
@@ -75,7 +75,7 @@ class EmailController extends Controller
 
     public function advertising()
     {
-        $to = "msmith@themaneater.com";
+        $to = "advertising@themaneater.com";
         Mail::to($to)
             ->send(new InterestedInAdvertising(request('contact_name'),
                 request('contact_company'),
