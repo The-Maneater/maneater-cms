@@ -63,7 +63,7 @@ return [
         ],
         'media' => [
             'driver' => 'local',
-            'root'   => public_path('media'),
+            'root'   => config('app.upload_path'),
         ],
     ],
 

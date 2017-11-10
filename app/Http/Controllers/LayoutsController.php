@@ -43,7 +43,7 @@ class LayoutsController extends Controller
     public function store(CreateLayoutRequest $request)
     {
         $carbon = Carbon::now();
-        $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/pages";
+        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/pages";
         $layout = new Layout;
         $layout->fill($request->except(['section', 'issue', 'staffer', 'layout']));
         $file = $request->file('layout')
