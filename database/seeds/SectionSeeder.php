@@ -19,7 +19,7 @@ class SectionSeeder extends Seeder
         ]);
         $unews = Section::create([
             'name' => 'UNews',
-            'slug' => 'unews',
+            'slug' => 'uwire',
             'publication_id' => 1
         ]);
         $sports = Section::create([
