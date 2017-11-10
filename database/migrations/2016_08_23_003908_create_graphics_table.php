@@ -15,8 +15,6 @@ class CreateGraphicsTable extends Migration
     {
         Schema::create('graphics', function (Blueprint $table) {
             $table->increments('id');
-//            $table->string('title');
-//            $table->string('description');
             $table->string('link');
             $table->dateTime('publish_date');
             $table->string('static_byline')->nullable();
