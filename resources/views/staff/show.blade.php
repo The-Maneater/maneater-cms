@@ -62,10 +62,10 @@
                     @foreach($staffer->graphics as $graphic)
                         <div class="columns resultset">
                             <div class="column is-8">
-                                {{ $graphic->description }} ({{ $graphic->created_at->format('M. d, Y') }})
+                                ({{ $graphic->created_at->format('M. d, Y') }})
                             </div>
                             <div class="column is-4">
-                                <img src="{{ $graphic->link }}" alt="">
+                                <img src="{{ $graphic->linkPath() }}" alt="">
                             </div>
                         </div>
                     @endforeach

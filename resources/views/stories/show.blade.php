@@ -25,14 +25,37 @@
                             </span>
                         </div>
                     @endif
+                @elseif(count($story->graphics) > 0)
+                    <div class="main-picture-wrap">
+                        <img src="{{ $story->graphics[0]->path() }}" alt="">
+                    </div>
+                    @if($story->graphics[0]->static_byline === null)
+                        <div class="caption">
+                            {{--<span>{{ $story->graphics[0]->description }}</span>--}}
+                            <span class="all-caps">
+                                <a href="{{$story->graphics[0]->staffer->path()}}">{{ $story->graphics[0]->staffer->fullName }}</a> / Graphic Designer
+                            </span>
+                        </div>
+                    @else
+                        <div class="caption">
+                            <span>{{ $story->graphics[0]->description }}</span>
+                            <span class="all-caps">
+                                {{ $story->grahpics[0]->static_byline }}
+                            </span>
+                        </div>
+                    @endif
                 @endif
             </div>
             <div class="columns">
                 <div class="column is-2">
                     <section class='articleInfo is-flex'>
-                        @if (count($story->writers) == 1)
+                        @if($story->type === "editorial")
+                            <p class="disclaimer">Editorials represent the majority opinion of The Maneater editorial board.</p>
+                        @elseif($story->static_byline !== null && $story->static_byline !== "")
+                            <p class="byline">{{ $story->static_byline }}</p>
+                        @elseif (count($story->writers) == 1)
                             <p class="byline">By <a href="{{ $story->writers[0]->path() }}" class="is-m-green">{{ $story->writers[0]->first_name }} {{ $story->writers[0]->last_name }}</a></p>
-                            @else
+                        @else
                                 <p class="byline">By
                                     @foreach ($story->writers as $writer)
                                         {{ $writer->first_name }} {{ $writer->last_name }}
@@ -41,8 +64,13 @@
                                             @endif
                                     @endforeach
                                 </p>
-                            @endif
+                        @endif
                         <p class="published"> {{ $story->formattedPublishDate->format('M. d, Y') }} </p>
+                        @if($story->type === "column")
+                                <p class="disclaimer">The opinions expressed by The Maneater columnists do not represent the opinions of The Maneater editorial board.</p>
+                        @elseif($story->type === "letter")
+                                <p class="disclaimer">The Maneater reserves the right to edit letters and columns for style and length.</p>
+                        @endif
                             <div class="tags">
                                 <ul>
                                     @if(count($story->tags) > 0)
@@ -65,7 +93,7 @@
                 </div>
                 <div class="column is-10">
                     <div class="body">
-                        {!! Markdown::parse(nl2br($story->body)) !!}
+                        {!! Markdown::parse($story->body) !!}
                     </div>
                     <div id="bottomshare">
                         <p>Share: <a href="{{ $urls['facebook'] }}" target="_blank">Facebook</a> / <a href="{{ $urls['twitter'] }}" target="_blank">Twitter</a> / <a href="{{ $urls['google'] }}" target="_blank">Google+</a></p>
@@ -75,7 +103,9 @@
                     @endif
                 </div>
             </div>
+            @if(count($relatedArticles) > 0)
             <div class="related">
+
                 <h2 class="sectionlabel">Related articles</h2>
                 <ol>
                     @foreach($relatedArticles as $article)
@@ -83,6 +113,7 @@
                     @endforeach
                 </ol>
             </div>
+            @endif
 
             <div id="comments">
                 <h5>Article comments</h5>
@@ -114,6 +145,7 @@
             </div>
         </div>
         <div class="column is-4">
+            @if(count($relatedArticles) > 0)
             <div class="related">
                 <h2 class="sectionlabel">Related articles</h2>
                 <ol>
@@ -122,6 +154,7 @@
                     @endforeach
                 </ol>
             </div>
+            @endif
             @if(isset($ads['cubes'][0]))
                 <img src="{{ $ads['cubes'][0]->image_url }}" alt="" class="bottom-ad">
             @endif

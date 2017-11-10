@@ -50,6 +50,11 @@ h2.sectionlabel {
   padding: 0.75em 0 0;
 }
 
+.sectionlist-short{
+  max-height: 484px;
+  overflow: hidden;
+}
+
 .tags, .share{
   font-weight: bold;
   margin: 1em 0;

@@ -41,7 +41,7 @@ class WebFrontController extends Controller
                 $sectionArticles = Story::whereHas('section', function($query){
                     $publication = Publication::findByString('MOVE');
                     $query->where('publication_id', $publication->id);
-                })->orderBy('publish_date')->limit(25)->get();
+                })->orderBy('publish_date', 'DESC')->limit(25)->get();
                 $spots = 4;
                 break;
 
@@ -51,7 +51,7 @@ class WebFrontController extends Controller
                 $sectionArticles = Story::whereHas('section', function($query){
                     $publication = Publication::findByString('The Maneater');
                     $query->where('publication_id', $publication->id);
-                })->orderBy('publish_date')->limit(25)->get();
+                })->orderBy('publish_date', 'DESC')->limit(25)->get();
                 break;
 
             default:
@@ -60,7 +60,7 @@ class WebFrontController extends Controller
                 $sectionTitle = $section->name;
                 $sectionArticles = $section
                     ->stories()
-                    ->orderBy('publish_date')
+                    ->orderBy('publish_date', 'DESC')
                     ->limit(25)
                     ->get();
                 break;

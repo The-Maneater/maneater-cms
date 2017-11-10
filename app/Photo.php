@@ -37,7 +37,7 @@ class Photo extends Model
         if(preg_match('/^(http|https)/', $this->location)){
             return $this->location;
         }
-        return '/media/'.$this->location;
+        return 'http://themaneater.com/media/'.$this->location;
     }
 
     /**

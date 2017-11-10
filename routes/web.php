@@ -42,6 +42,8 @@ Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 Route::get('/classifieds', 'PagesController@classifieds');
 Route::get('/tags/{slug}', 'TagsController@show');
+Route::get('/email/success', 'EmailController@emailSuccess');
+//Route::post('/email/feedback', 'EmailController@feedback');
 
 Auth::routes();
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {

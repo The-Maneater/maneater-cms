@@ -9,19 +9,29 @@
             <div class="columns">
                 <div class="column is-8">
                     <div id="top_story_0" class="ui-tabs-panel">
-                        <img src="{{ $frontPageStories[1]->headerPhotos[0]->path() }}" alt="">
+                        @if(count($frontPageStories[1]->headerPhotos) > 0)
+                            <img class="front-page-images" src="{{ $frontPageStories[1]->headerPhotos[0]->path() }}" alt="">
+                        @endif
                         <h1><a href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h1>
                         <div class="topcaption">{{ $frontPageStories[1]->cDeck }}</div>
                     </div>
                     <div id="top_story_3" class="ui-tabs-panel">
-                        <img src="{{ $frontPageStories[4]->headerPhotos[0]->path() }}" alt="">
-                        <h1><a href="{{ $frontPageStories[4]->path() }}">{{ $frontPageStories[4]->title }}</a></h1>
-                        <div class="topcaption">{{ $frontPageStories[4]->cDeck }}</div>
+                        @if(count($frontPageStories[4]->headerPhotos) > 0)
+                            <img class="smaller-front-image" src="{{ $frontPageStories[4]->headerPhotos[0]->path() }}" alt="">
+                        @endif
+                        <div>
+                            <h1><a href="{{ $frontPageStories[4]->path() }}">{{ $frontPageStories[4]->title }}</a></h1>
+                            <div class="topcaption">{{ $frontPageStories[4]->cDeck }}</div>
+                        </div>
                     </div>
                     <div id="top_story_4" class="ui-tabs-panel">
-                        <img src="{{ $frontPageStories[5]->headerPhotos[0]->path() }}" alt="">
-                        <h1><a href="{{ $frontPageStories[5]->path() }}">{{ $frontPageStories[5]->title }}</a></h1>
-                        <div class="topcaption">{{ $frontPageStories[5]->cDeck }}</div>
+                        @if(count($frontPageStories[5]->headerPhotos) > 0)
+                            <img class="smaller-front-image" src="{{ $frontPageStories[5]->headerPhotos[0]->path() }}" alt="">
+                        @endif
+                        <div>
+                            <h1><a href="{{ $frontPageStories[5]->path() }}">{{ $frontPageStories[5]->title }}</a></h1>
+                            <div class="topcaption">{{ $frontPageStories[5]->cDeck }}</div>
+                        </div>
                     </div>
                     {{--<div id="top_story_0" class="ui-tabs-panel">--}}
                         {{--<a href="http://www.themaneater.com/stories/2017/4/2/center-responsibility-and-discovery-halls-will-clo/"><img class="topphoto" src="http://www.themaneater.com/media/2017/0402/photos/Centerkaitlin_jpg_900x600_q85_jpg_600x400_crop_q85.jpg" alt="Center, Responsibility and Discovery halls will close next year"></a>--}}
@@ -41,12 +51,17 @@
                 </div>
                 <div class="column is-4">
                     <div id="top_story_1" class="ui-tabs-panel">
-                        <img src="{{ $frontPageStories[2]->headerPhotos[0]->path() }}" alt="">
+                        @if(count($frontPageStories[2]->headerPhotos) > 0)
+                            <img class="front-page-images" src="{{ $frontPageStories[2]->headerPhotos[0]->path() }}" alt="">
+                        @endif
                         <h1><a href="{{ $frontPageStories[2]->path() }}">{{ $frontPageStories[2]->title }}</a></h1>
                         <div class="topcaption">{{ $frontPageStories[2]->cDeck }}</div>
                     </div>
                     <div id="top_story_2" class="ui-tabs-panel">
-                        <h1><a href="{{ $frontPageStories[3]->path() }}">{{ $frontPageStories[3]->title }}</a></h1>
+                        @if(count($frontPageStories[3]->headerPhotos) > 0)
+                            <img class="front-page-images" src="{{ $frontPageStories[3]->headerPhotos[0]->path() }}" alt="">
+                        @endif
+                            <h1><a href="{{ $frontPageStories[3]->path() }}">{{ $frontPageStories[3]->title }}</a></h1>
                         <div class="topcaption">{{ $frontPageStories[3]->cDeck }}</div>
                     </div>
                     {{--<div id="top_story_1" class="ui-tabs-panel">--}}
@@ -95,11 +110,13 @@
             <div class="columns sectionArticles">
                 <div class="column is-4">
                     <a class="sectionlabel" href="/section/campus/">Campus</a>
-                    <ul class="sectionlist">
+                    <ul class="sectionlist sectionlist-short">
                         @for($i = 0; $i<5; $i++)
                             <li >
                                 @if($i == 0 && count($sections['campus'][$i]->headerPhotos) > 0 )
-                                    <img src="{{ $sections['campus'][$i]->headerPhotos[0]->path() }}" alt="">
+                                    <img class="front-page-image" src="{{ $sections['campus'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @elseif($i == 0 && count($sections['opinion'][$i]->graphics) > 0 )
+                                    <img class="front-page-image" src="{{ $sections['campus'][$i]->graphics[0]->linkPath() }}" alt="">
                                 @endif
                                 <a href="{{ $sections['campus'][$i]->path() }}" class="is-info is-black">{{ $sections['campus'][$i]->title }}</a>
                             </li>
@@ -107,12 +124,14 @@
                     </ul>
                 </div>
                 <div class="column is-4">
-                    <a class="sectionlabel" href="/section/unews/">UWire</a>
-                    <ul class="sectionlist">
+                    <a class="sectionlabel" href="/section/uwire/">UWire</a>
+                    <ul class="sectionlist sectionlist-short">
                         @for($i = 0; $i<5; $i++)
                             <li>
                                 @if($i == 0 && count($sections['unews'][$i]->headerPhotos) > 0 )
-                                    <img src="{{ $sections['unews'][$i]->headerPhotos[0]->path() }}" alt="">
+                                    <img class="front-page-image" src="{{ $sections['unews'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @elseif($i == 0 && count($sections['opinion'][$i]->graphics) > 0 )
+                                    <img class="front-page-image" src="{{ $sections['unews'][$i]->graphics[0]->linkPath() }}" alt="">
                                 @endif
                                 <a href="{{ $sections['unews'][$i]->path() }}" class="is-black">{{ $sections['unews'][$i]->title }}</a>
                             </li>
@@ -121,11 +140,13 @@
                 </div>
                 <div class="column is-4">
                     <a class="sectionlabel" href="/section/sports/">Sports</a>
-                    <ul class="sectionlist">
+                    <ul class="sectionlist sectionlist-short">
                         @for($i = 0; $i<5; $i++)
                             <li>
                                 @if($i == 0 && count($sections['sports'][$i]->headerPhotos) > 0 )
-                                    <img src="{{ $sections['sports'][$i]->headerPhotos[0]->path() }}" alt="">
+                                    <img class="front-page-image" src="{{ $sections['sports'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @elseif($i == 0 && count($sections['opinion'][$i]->graphics) > 0 )
+                                    <img class="front-page-image" src="{{ $sections['sports'][$i]->graphics[0]->linkPath() }}" alt="">
                                 @endif
                                 <a href="{{ $sections['sports'][$i]->path() }}" class="is-black">{{ $sections['sports'][$i]->title }}</a>
                             </li>
@@ -136,11 +157,13 @@
             <div class="columns sectionArticles">
                 <div class="column is-4">
                     <a class="sectionlabel" href="/section/projects/">Projects</a>
-                    <ul class="sectionlist">
+                    <ul class="sectionlist sectionlist-short">
                         @for($i = 0; $i<5; $i++)
                             <li>
                                 @if($i == 0 && count($sections['projects'][$i]->headerPhotos) > 0 )
-                                    <img src="{{ $sections['projects'][$i]->headerPhotos[0]->path() }}" alt="">
+                                    <img class="front-page-image" src="{{ $sections['projects'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @elseif($i == 0 && count($sections['opinion'][$i]->graphics) > 0 )
+                                    <img class="front-page-image" src="{{ $sections['projects'][$i]->graphics[0]->linkPath() }}" alt="">
                                 @endif
                                 <a href="{{ $sections['projects'][$i]->path() }}" class="is-black">{{ $sections['projects'][$i]->title }}</a>
                             </li>
@@ -149,11 +172,13 @@
                 </div>
                 <div class="column is-4">
                     <a class="sectionlabel" href="/section/opinion/">Opinion</a>
-                    <ul class="sectionlist">
+                    <ul class="sectionlist ectionlist-short">
                         @for($i = 0; $i<5; $i++)
                             <li>
                                 @if($i == 0 && count($sections['opinion'][$i]->headerPhotos) > 0 )
-                                    <img src="{{ $sections['opinion'][$i]->headerPhotos[0]->path() }}" alt="">
+                                    <img class="front-page-image" src="{{ $sections['opinion'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @elseif($i == 0 && count($sections['opinion'][$i]->graphics) > 0 )
+                                    <img class="front-page-image" src="{{ $sections['opinion'][$i]->graphics[0]->linkPath() }}" alt="">
                                 @endif
                                 <a href="{{ $sections['opinion'][$i]->path() }}" class="is-black">{{ $sections['opinion'][$i]->title }}</a>
                             </li>
@@ -162,11 +187,13 @@
                 </div>
                 <div class="column is-4">
                     <a class="sectionlabel" href="{{ config('app.move_url') }}">MOVE</a>
-                    <ul class="sectionlist">
+                    <ul class="sectionlist sectionlist-short">
                         @for($i = 0; $i<5; $i++)
                             <li>
                                 @if($i == 0 && count($sections['move'][$i]->headerPhotos) > 0 )
-                                    <img src="{{ $sections['move'][$i]->headerPhotos[0]->path() }}" alt="">
+                                    <img class="front-page-image" src="{{ $sections['move'][$i]->headerPhotos[0]->path() }}" alt="">
+                                @elseif($i == 0 && count($sections['opinion'][$i]->graphics) > 0 )
+                                    <img class="front-page-image" src="{{ $sections['move'][$i]->graphics[0]->linkPath() }}" alt="">
                                 @endif
                                 <a href="{{ config('app.move_url') . $sections['move'][$i]->path() }}" class="is-black">{{ $sections['move'][$i]->title }}</a>
                             </li>
@@ -181,10 +208,10 @@
             <h2 class="sectionlabel is-primary">Current issue</h2>
             <div class="sectionbox issu">
                 <div id="issue-link">
-                    <a href="http://issuu.com/themaneater/docs/vol83issue24"><img src="http://www.themaneater.com/media/2017/0322/pages/01page01_pdf_250x500_q85.jpg" alt="Maneater front page"></a>
+                    <a href="{{ $issue->issu_url }}"><img src="{{ $issue->layout->img_link }}" alt="Maneater front page"></a>
                 </div>
                 <ul>
-                    <li class="bullet"><a href="/issues/1961/">Maneater v. 83, Issue 24</a></li>
+                    <li class="bullet"><a href="/issues/{{ $issue->id }}/">{{ $issue->issue_name }}</a></li>
                     <li class="bullet"><a href="http://themaneater.com/layouts/">Sort by page</a></li>
                     <li class="bullet"><a href="http://themaneater.com/games/">Game Answers</a></li>
                 </ul>

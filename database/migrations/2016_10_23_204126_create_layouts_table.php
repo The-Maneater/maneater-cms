@@ -17,6 +17,7 @@ class CreateLayoutsTable extends Migration
             $table->increments('id');
             $table->string("title");
             $table->string('link');
+            $table->string('img_link')->nullable();
             $table->integer('staffer_id')->unsigned()->nullable();
             $table->timestamp('date_published');
             $table->integer('issue_id')->unsigned()->nullable();

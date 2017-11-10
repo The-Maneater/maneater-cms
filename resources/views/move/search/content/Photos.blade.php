@@ -3,9 +3,11 @@
         <b>{{ \Carbon\Carbon::parse($data->publish_date)->format('M. d, Y') }}</b>: <span>
        {{ $data->description }}
        </span>
-        <p>{{ $data->photographer->fullName }}</p>
+        @if($data->staffer_id !== null)
+            <p>{{ $data->photographer->fullName }}</p>
+        @endif
     </div>
     <div class="is-2">
-        <img src="{{ $data->location }}" alt="">
+        <img src="{{ $data->path() }}" alt="">
     </div>
 </div>

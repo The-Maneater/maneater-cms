@@ -18,8 +18,6 @@ class CreatePositionStafferTable extends Migration
             $table->integer('position_id')->unsigned();
             $table->integer('staffer_id')->unsigned();
             $table->string("period")->nullable();
-            $table->dateTime('start_date')->nullable();
-            $table->dateTime('end_date')->nullable();
             $table->boolean('current')->nullable();
             $table->timestamps();
         });

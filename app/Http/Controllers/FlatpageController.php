@@ -76,7 +76,11 @@ class FlatpageController extends Controller
      */
     public function update(Request $request, Flatpage $flatpage)
     {
-        //
+        $flatpage->update($request->except('publication'));
+        $flatpage->publication()->associate($request->get('publication'));
+        $flatpage->save();
+
+        return redirect('/admin/site/flatpages');
     }
 
     /**

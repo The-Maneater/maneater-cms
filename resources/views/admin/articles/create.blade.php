@@ -31,6 +31,16 @@
                 <b-field label="Static Byline:">
                     <b-input name="static_byline" id="static_byline" value="{{ old('static_byline') }}"></b-input>
                 </b-field>
+                <b-field label="Type:">
+                    <select2 name="type" id="type">
+                        <option value="online">Online</option>
+                        <option value="editorial">Editorial</option>
+                        <option value="letter">Letter to the Editor</option>
+                        <option value="column">Column</option>
+                        <option value="gallery">Gallery</option>
+                        <option value="feature">Feature</option>
+                    </select2>
+                </b-field>
             </div>
             <div class="box">
                 <h4>Publication Information:</h4>
@@ -102,9 +112,9 @@
                 </div>
                 <b-field label="Graphics:">
                     <select2 name="graphics[]" id="graphics" multiple="true">
-                        {{--@foreach (\App\Graphic::all() as $graphic)--}}
-                            {{--<option value="{{ $graphic->id }}">{{ $graphic->title }}</option>--}}
-                        {{--@endforeach--}}
+                        @foreach (\App\Graphic::latest('id')->take(50)->get() as $graphic)
+                            <option value="{{ $graphic->id }}">{{ $graphic->name }}</option>
+                        @endforeach
                     </select2>
                 </b-field>
                 <b-field label="Tags:">
@@ -135,7 +145,7 @@
 
         let config = {
             ajax: {
-                url: 'http://maneater-cms.dev/photos/search',
+                url: '{{ config('app.url') }}/photos/search',
                 dataType: 'json',
                 processResults: function (data, params) {
                     // parse the results into the format expected by Select2
@@ -144,7 +154,8 @@
                     // scrolling can be used
                     params.page = params.page || 1;
                     var mappedData = $.map(data.data, function (obj) {
-                        obj.text = obj.text || obj.title; // replace name with the property used for the text
+                        var filename = obj.location.split('/').pop();
+                        obj.text = obj.title || filename; // replace name with the property used for the text
 
                         return obj;
                     });
@@ -164,7 +175,7 @@
         };
         let graphicsConfig = {
             ajax: {
-                url: 'http://maneater-cms.dev/graphics/search',
+                url: '{{ config('app.url') }}/graphics/search',
                 dataType: 'json',
                 processResults: function (data, params) {
                     // parse the results into the format expected by Select2

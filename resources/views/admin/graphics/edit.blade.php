@@ -14,9 +14,9 @@
             {{ csrf_field() }}
             {{ method_field('PATCH') }}
             <div class="box">
-                <b-field label="Title:">
-                    <b-input name="title" id="title" value="{{ $graphic->title }}"></b-input>
-                </b-field>
+                {{--<b-field label="Title:">--}}
+                    {{--<b-input name="title" id="title" value="{{ $graphic->title }}"></b-input>--}}
+                {{--</b-field>--}}
                 <b-field label="Publish Date">
                     <flatpickr name="publish_date" default-value="{{ old('publish_date') === null ? $graphic->publish_date : old('publish_date') }}"></flatpickr>
                 </b-field>
@@ -49,9 +49,9 @@
                 <b-field>
                     <a href="{{ $graphic->link }}" target="_blank">Graphic Link</a>
                 </b-field>
-                <b-field label="Description">
-                    <b-input type="textarea" name="description" id="description" value="{{ $graphic->description }}"></b-input>
-                </b-field>
+                {{--<b-field label="Description">--}}
+                    {{--<b-input type="textarea" name="description" id="description" value="{{ $graphic->description }}"></b-input>--}}
+                {{--</b-field>--}}
             </div>
         </form>
     </div>

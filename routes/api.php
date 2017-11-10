@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 //Route::get('/user', function (Request $request) {
 //    return $request->user();
 //})->middleware('auth:api');
+Route::post('/email/feedback', 'EmailController@feedback');
+Route::post('/email/work-for-us', 'EmailController@workForUs');
+Route::post('/email/order-photo', 'EmailController@orderPhoto');
+Route::post('/email/advertising', 'EmailController@advertising');

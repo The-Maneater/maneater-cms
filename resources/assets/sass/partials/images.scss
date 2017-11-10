@@ -23,3 +23,72 @@
 .nameplate{
   width: 50%;
 }
+
+.archive-image{
+  max-width: 293px;
+  max-height: 293px;
+}
+
+.front-page-image{
+  max-width: 300px;
+  max-height: 200px;
+  display: block;
+}
+
+#first-image{
+  max-width: 600px;
+  max-height: 400px;
+}
+
+.smaller-front-image{
+  max-width: 180px;
+  max-height: 180px;
+}
+
+.med-front-image{
+  max-width: 280px;
+  max-height: 190px;
+}
+
+#top_story_3{
+  display: flex;
+  align-items: center;
+  img{
+    margin-right: 10px;
+  }
+  padding-right: 2%;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-right: 1px solid #e6e6e6;
+}
+
+#top_story_4{
+  display: flex;
+  align-items: center;
+  img{
+    margin-right: 10px;
+  }
+  padding-right: 2%;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-right: 1px solid #e6e6e6;
+}
+
+#top_story_0{
+  padding-right: 2%;
+  border-right: 1px solid #e6e6e6;
+  padding-bottom: 1em;
+}
+
+#top_story_2{
+  margin-left: 2%;
+  margin-top: 1em;
+  border-top: 1px solid #e6e6e6;
+  padding-top: 1em;
+}
+
+.front-page-images{
+  object-fit: cover
+}

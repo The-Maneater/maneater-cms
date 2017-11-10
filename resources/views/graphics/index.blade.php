@@ -11,7 +11,7 @@
                         @php
                             $graphic = new App\Graphic($story);
                         @endphp
-                        <img src="{{ $graphic->link }}" alt="">
+                        <img src="{{ $graphic->linkPath() }}" alt="">
                     </div>
                 @endforeach
             @endforeach

@@ -13,9 +13,9 @@
         <form action="{{ route('store-graphic') }}" method="POST" enctype="multipart/form-data" id="storyForm">
             {{ csrf_field() }}
             <div class="box">
-                <b-field label="Title">
-                    <b-input name="title" id="title" value="{{ old('title') }}"></b-input>
-                </b-field>
+                {{--<b-field label="Title">--}}
+                    {{--<b-input name="title" id="title" value="{{ old('title') }}"></b-input>--}}
+                {{--</b-field>--}}
                 <b-field label="Publish Date:">
                     <flatpickr name="publish_date" default-value="{{ old('publish_date') === null ? \Carbon\Carbon::now() : old('publish_date') }}"></flatpickr>
                 </b-field>
@@ -35,7 +35,7 @@
                 </b-field>
             </div>
             <div class="box">
-                <b-field label="BylineL">
+                <b-field label="Byline">
                     <select2 name="byline" id="byline">
                         @foreach (\App\Staffer::all() as $staffer)
                             <option value="{{ $staffer->id }}">{{ $staffer->fullname }}</option>
@@ -48,9 +48,9 @@
                 <b-field label="Graphic:">
                     <b-input type="file" name="graphic" id="graphic"></b-input>
                 </b-field>
-                <b-field label="Description:">
-                    <b-input type="textarea" name="description" id="description" value="{{ old('description') }}"></b-input>
-                </b-field>
+                {{--<b-field label="Description:">--}}
+                    {{--<b-input type="textarea" name="description" id="description" value="{{ old('description') }}"></b-input>--}}
+                {{--</b-field>--}}
             </div>
         </form>
     </div>

@@ -15,6 +15,7 @@ class Story extends Model
 		'slug',
 		'runsheet_slug',
 		'title',
+        'type',
 		'issue',
 		'publish_date',
 		'cDeck',

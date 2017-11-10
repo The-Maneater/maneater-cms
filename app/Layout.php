@@ -10,10 +10,15 @@ class Layout extends Model
     use Searchable;
 
     protected $fillable = [
-    	'title', 'link', 'date_published'
+    	'title', 'link', 'date_published', 'img_link'
     ];
 
     protected $dates = ['date_published'];
+
+    public function path()
+    {
+        return "http://themaneater.com/media/" . $this->link;
+    }
 
     /**
      * Returns the associated staffer

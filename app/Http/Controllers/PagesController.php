@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Ad;
 use App\Classified;
 use App\Graphic;
+use App\Issue;
 use App\Layout;
 use App\Paginators\PublishDatePaginator;
 use App\Photo;
@@ -14,10 +15,12 @@ use App\Section;
 use App\Staffer;
 use App\Story;
 use App\WebFront;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Cache;
+use Spatie\PdfToImage\Pdf;
 
 class PagesController extends Controller
 {
@@ -32,13 +35,24 @@ class PagesController extends Controller
         //dd($sections);
         $minutes = 720;
         $latest = Cache::remember('latestStories', $minutes, function () {
-            return Story::with(['section'])->latest()->take(10)->get();
+            return Story::with(['section'])->latest('publish_date')->take(10)->get();
         });
         //$latest = Story::with(['section'])->latest()->take(10)->get();
         $frontPageStories = WebFront::frontPage();
         $ads = AdRepository::cubesAndBanner(2,1);
+        $issue = Issue::with(['layout'])->latest('id')->first();
+//        if($issue->layout->img_link === null){
+//            $pdf = new Pdf($issue->layout->link);
+//            $now = Carbon::now();
+//            $filename = pathinfo($issue->layout->link)['basename'];
+//            $pdf->saveImage("/home/themaneater/webapps/media/pages/$now->year/$now->month$now->day/$filename");
+//            $issue->layout->img_link = "/media/pages/$now->year/$now->month$now->day/$filename";
+//            $issue->layout->save();
+//        }
+        //dd($issue);
+        //dd($frontPageStories);
 
-        return view('stories.index', compact('sections', 'latest', 'frontPageStories', 'ads'));
+        return view('stories.index', compact('sections', 'latest', 'frontPageStories', 'ads', 'issue'));
     }
 
     public function editorialBoard()
@@ -68,7 +82,7 @@ class PagesController extends Controller
 
     public function allStaff()
     {
-        $staff = Staffer::orderBy('first_name')->paginate(1);
+        $staff = Staffer::orderBy('first_name')->paginate(75);
         //dd($staff);
         return view('staff.all', compact('staff'));
     }

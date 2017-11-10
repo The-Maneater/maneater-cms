@@ -37,8 +37,17 @@
         <div class="column is-8">
             @foreach($stories as $story)
                 <div class="story">
-                    <h2><a href="{{ $story->path() }}">{{ $story->title }}</a></h2>
-                    <p>{{ $story->cDeck }}</p>
+                    <div class="columns archive-columns">
+                        <div class="is-8">
+                            <h2><a href="{{ $story->path() }}">{{ $story->title }}</a></h2>
+                            <p>{{ $story->cDeck }}</p>
+                        </div>
+                        <div class="is-4 archive-column">
+                            @if(count($story->headerPhotos) > 0)
+                                <img class="archive-image" src="{{ $story->headerPhotos[0]->path() }}" alt="">
+                            @endif
+                        </div>
+                    </div>
                 </div>
             @endforeach
 

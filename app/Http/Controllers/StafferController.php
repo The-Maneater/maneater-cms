@@ -49,9 +49,11 @@ class StafferController extends Controller
         if($request->input('user') !== null && is_numeric(request('user'))){
             $staffer->user()->associate($request->input('user'));
         }
+        $staffer->writer_pos = "Reporter";
+        $staffer->photo_pos = "Photographer";
         $staffer->save();
-        $staffer->positions()->attach(Position::findByTitle('Reporter'), ['start_date' => \Carbon\Carbon::now()]);
-        $staffer->positions()->attach(Position::findByTitle('Photographer'), ['start_date' => \Carbon\Carbon::now()]);
+        //$staffer->positions()->attach(Position::findByTitle('Reporter'), ['start_date' => \Carbon\Carbon::now()]);
+        //$staffer->positions()->attach(Position::findByTitle('Photographer'), ['start_date' => \Carbon\Carbon::now()]);
         if(request('positions') !== null){
             $positions = collect(request('positions'));
             $ids = $positions->pluck('position');

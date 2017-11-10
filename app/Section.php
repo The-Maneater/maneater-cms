@@ -69,6 +69,7 @@ class Section extends Model
     {
         return $this->stories()
             ->whereNotNull('section_webfront_priority')
+            ->limit(5)
             ->orderBy('section_webfront_priority');
     }
 

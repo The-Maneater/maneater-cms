@@ -19,6 +19,11 @@ class Graphic extends Model
         return '/graphics/' . $this->id;
     }
 
+    public function linkPath()
+    {
+        return 'http://themaneater.com/media/'.$this->link;
+    }
+
     /**
      * Returns the associated staffers
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -43,6 +48,11 @@ class Graphic extends Model
     public function section()
     {
         return $this->belongsTo(Section::class);
+    }
+
+    public function getNameAttribute()
+    {
+            return pathinfo($this->link)['filename'];
     }
 
     /**

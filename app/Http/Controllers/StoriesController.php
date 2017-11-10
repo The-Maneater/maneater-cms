@@ -21,7 +21,7 @@ class StoriesController extends Controller
     {
         $this->authorize('index', Story::class);
         if(request()->has('search')){
-            $articles = Story::with(['issue', 'section'])->search(request('search'))->paginate(25);
+            $articles = Story::search(request('search'))->paginate(25);
         }else{
             $articles = Story::with(['issue', 'section'])->orderBy('publish_date', "DESC")->paginate(25);
         }
@@ -111,13 +111,15 @@ class StoriesController extends Controller
         });
         $story->body .= $append;
         $ads = AdRepository::cubesAndBanner(4,1);
-
-        $relatedArticles = Story::withAnyTags($story->tags)
-            ->inRandomOrder()
+        $relatedArticles = count($story->tags) > 0 ?
+        Story::withAllTags([$story->tags[0]])
+            ->orderBy('publish_date', 'DESC')
             ->take(5)
             ->get()
-            ->load(['section']);
-        return view('stories.show', compact('story', 'ads', 'relatedArticles', 'urls'));
+            ->load(['section']) : collect();
+        return $story->type === "gallery" ?
+            view('stories.gallery', compact('story', 'ads', 'relatedArticles', 'urls')) :
+            view('stories.show', compact('story', 'ads', 'relatedArticles', 'urls'));
     }
 
     /**

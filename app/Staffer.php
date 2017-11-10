@@ -108,7 +108,7 @@ class Staffer extends Model
         if($oldPosition != null){
             $this->positions()->detach(Position::findByTitle($oldPosition));
         }
-        $this->positions()->attach(Position::findByTitle($newPosition), ['start_date' => Carbon::now()]);
+        $this->positions()->attach(Position::findByTitle($newPosition));
 
         return $this;
     }
@@ -132,7 +132,7 @@ class Staffer extends Model
     public function positions()
     {
         return $this->belongsToMany(Position::class)
-            ->withPivot('start_date', 'end_date', 'period', 'current');
+            ->withPivot('period', 'current', 'id');
     }
 
     /**
@@ -151,7 +151,7 @@ class Staffer extends Model
     public function edBoardPositions(){
         return $this->positions()
             ->where('is_editorial_board', '=', true)
-            ->orderBy('pivot_start_date', 'DESC');
+            ->orderBy('pivot_id', 'DESC');
     }
 
     /**

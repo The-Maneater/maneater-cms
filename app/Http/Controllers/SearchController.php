@@ -32,7 +32,7 @@ class SearchController extends Controller
         $search = request('q');
         $page = 0;
         if(request()->has('page')) $page = request('page') - 1;
-        $results = Photo::search($search)->get()
+        $results = Photo::search($search)->orderBy('publish_date', 'DESC')->get()
             ->load(['section'])
             ->filter(function ($story){
                 return $story->section->publication_id === 1;

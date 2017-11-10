@@ -29,7 +29,7 @@
             @foreach($sections as $section)
                 <tr>
                     <td><a href="{{ route('edit-web-front', [$section->id]) }}">{{ $section->name }}</a></td>
-                    <td>{{ $section->publication->name }}</td>
+                    <td>@if($section->publication !== null){{ $section->publication->name }}@endif</td>
                 </tr>
             @endforeach
             </tbody>

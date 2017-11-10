@@ -32,6 +32,16 @@
                 <b-field label="Static Byline:">
                     <b-input name="static_byline" id="static_byline" value="{{ $article->static_byline }}"></b-input>
                 </b-field>
+                <b-field label="Type:">
+                    <select2 name="type" id="type">
+                        <option value="online" {{ $article->type === "online" ? "selected" : "" }}>Online</option>
+                        <option value="editorial" {{ $article->type === "editorial" ? "selected" : "" }}>Editorial</option>
+                        <option value="letter" {{ $article->type === "letter" ? "selected" : "" }}>Letter to the Editor</option>
+                        <option value="column" {{ $article->type === "column" ? "selected" : "" }}>Column</option>
+                        <option value="gallery" {{ $article->type === "gallery" ? "selected" : "" }}>Gallery</option>
+                        <option value="feature" {{ $article->type === "feature" ? "selected" : "" }}>Feature</option>
+                    </select2>
+                </b-field>
             </div>
             <div class="box">
                 <h4>Publication Information:</h4>
@@ -123,8 +133,8 @@
                 </div>
                 <b-field label="Graphics:">
                     <select2 name="graphics[]" id="graphics" multiple="true">
-                        @foreach ($article->graphics as $graphic)
-                            <option value="{{ $graphic->id }}" selected>{{ $graphic->title }}</option>
+                        @foreach (\App\Graphic::latest('id')->take(50)->get() as $graphic)
+                            <option value="{{ $graphic->id }}" {{ ($article->graphics->contains($graphic->id) ? "selected":"") }}>{{ $graphic->name }}</option>
                         @endforeach
                     </select2>
                 </b-field>
@@ -153,7 +163,7 @@
 
         let config = {
             ajax: {
-                url: 'http://maneater-cms.dev/photos/search',
+                url: '{{ config('app.url') }}/photos/search',
                 dataType: 'json',
                 processResults: function (data, params) {
                     // parse the results into the format expected by Select2
@@ -182,7 +192,7 @@
         };
         let graphicsConfig = {
             ajax: {
-                url: 'http://maneater-cms.dev/graphics/search',
+                url: '{{ config('app.url') }}/graphics/search',
                 dataType: 'json',
                 processResults: function (data, params) {
                     // parse the results into the format expected by Select2

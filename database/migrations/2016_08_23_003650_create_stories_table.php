@@ -18,6 +18,7 @@ class CreateStoriesTable extends Migration
             $table->string('slug');
             $table->string('runsheet_slug');
             $table->string('title');
+            $table->string('type');
             $table->integer('issue_id')->unsigned();
             $table->dateTime('publish_date');
             $table->string('cDeck');

@@ -18,7 +18,7 @@ class StoryRepository
     public static function getFrontPageSectionStories()
     {
         $campus = Section::findBySlug('campus')->latestStories()->get();
-        $unews = Section::findBySlug('unews')->latestStories()->get();
+        $unews = Section::findBySlug('uwire')->latestStories()->get();
         $sports = Section::findBySlug('sports')->latestStories()->get();
         $projects = Section::findBySlug('projects')->latestStories()->get();
         $opinion = Section::findBySlug('opinion')->latestStories()->get();

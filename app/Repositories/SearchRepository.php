@@ -28,7 +28,8 @@ class SearchRepository
 
     public function photos($search)
     {
-        return Photo::search($search)->get()
+        return Photo::search($search)->orderBy('publish_date', 'DESC')
+            ->get()
             ->load(['section'])
             ->filter(function ($story){
                 return $story->section->publication_id === 1;

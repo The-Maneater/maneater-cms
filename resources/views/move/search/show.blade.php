@@ -28,9 +28,9 @@
                                 <label class="radio"><input type="radio" name="type"
                                                             value="Staff" {{ $type == 'Staff' ? 'checked' : '' }}>
                                     <span>Staff Members</span></label>
-                                <label class="radio"><input type="radio" name="type"
-                                                            value="Graphics" {{ $type == 'Graphics' ? 'checked' : '' }}>
-                                    <span>Graphics</span></label>
+                                {{--{{--<label class="radio"><input type="radio" name="type"--}}{{--
+                                                            --}}{{--value="Graphics" {{ $type == 'Graphics' ? 'checked' : '' }}>--}}{{--
+                                    --}}{{--<span>Graphics</span></label>--}}--}}
                             </div>
                         </div>
                     </form>

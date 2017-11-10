@@ -62,7 +62,7 @@ class SectionsController extends Controller
     public function show($slug)
     {
         $section = Section::findBySlug($slug);
-        $stories = $section->stories()->latest()->take(10)->get()->load(['section']);
+        $stories = $section->stories()->latest('publish_date')->take(10)->get()->load(['section']);
         $priorityStories = Cache::remember('section.' . $slug . 'web-front-stories', 720, function() use ($section) {
            return $section->webFrontStories()->get()->load(['section']);
         });
