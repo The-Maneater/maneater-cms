@@ -106,7 +106,7 @@ _Edited by Katie Rosso | krosso@themaneater.com_",
 
 
         //$section = Section::findBySlug("unews");
-        $sections = ['unews', 'on-campus'];
+        $sections = ['uwire', 'on-campus'];
         $tags = collect(['Homecoming', 'Mizzou in Review', 'School of Music', 'MSA']);
 
         foreach($sections as $slug) {
