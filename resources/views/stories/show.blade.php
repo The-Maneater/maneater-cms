@@ -3,7 +3,7 @@
 @section('content')
 	<div class="columns">
         <div class="column is-8">
-            <h1 class="h1-content">{{ $story->title }}</h1>
+            <h1 class="h1-content">{{ $story->full_title }}</h1>
             <h3 class="h3-content">{{ $story->cDeck }}</h3>
             <div class="main-picture">
                 @if(count($story->headerPhotos) > 0)
