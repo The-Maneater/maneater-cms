@@ -81,7 +81,7 @@
             <a class="sectionlabel" href="/stories/">Latest</a>
             <ul class="sectionlist">
                 @foreach($latest as $story)
-                    <li><a class="is-m-green" href="{{ $story->path() }}">{{ $story->title }}</a></li>
+                    <li><a class="is-m-green" href="{{ $story->path() }}">{{ $story->full_title }}</a></li>
                 @endforeach
             </ul>
             <div class="clippingfade"></div>
@@ -180,7 +180,7 @@
                                 @elseif($i == 0 && count($sections['opinion'][$i]->graphics) > 0 )
                                     <img class="front-page-image" src="{{ $sections['opinion'][$i]->graphics[0]->linkPath() }}" alt="">
                                 @endif
-                                <a href="{{ $sections['opinion'][$i]->path() }}" class="is-black">{{ $sections['opinion'][$i]->title }}</a>
+                                <a href="{{ $sections['opinion'][$i]->path() }}" class="is-black">{{ $sections['opinion'][$i]->full_title }}</a>
                             </li>
                         @endfor
                     </ul>

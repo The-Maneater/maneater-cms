@@ -36,6 +36,18 @@ class Story extends Model
 
 	//protected $with = ['photos', 'corrections', 'graphics', 'tags', 'writers', 'issue', 'section'];
 
+    public function getFullTitleAttribute()
+    {
+        if($this->type === "column"){
+            return "Column: " . $this->title;
+        }else if($this->type === "letter"){
+            return "Letter to the Editor: " . $this->title;
+        }else if($this->type === "editorial"){
+            return "Editorial: " . $this->title;
+        }
+        return $this->title;
+    }
+
     public function path()
     {
         return '/stories/' . $this->section->slug . '/' . $this->slug;
