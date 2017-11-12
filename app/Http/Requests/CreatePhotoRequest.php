@@ -26,7 +26,8 @@ class CreatePhotoRequest extends FormRequest
         return [
             'title'       => 'required',
             'description' => 'required',
-            'publish_date'   => 'required|date'
+            'publish_date'   => 'required|date',
+            'byline' => 'required'
         ];
     }
 }
