@@ -39,7 +39,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $user = User::create($request->except('roles'));
         $user->roles()->sync(request('roles'));
 

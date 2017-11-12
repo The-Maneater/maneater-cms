@@ -22,7 +22,7 @@ class SectionsController extends Controller
     {
         $sections = request()->has('search') ?
             Section::search(request('search'))->paginate(15) :
-            Section::orderBy('name')->paginate(15);
+            Section::orderBy('id')->paginate(15);
         $sections->load('publication');
         return view('admin.sections.list', compact('sections'));
     }
