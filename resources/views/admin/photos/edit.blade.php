@@ -43,6 +43,7 @@
                                 <option value="{{ $staffer->id }}" {{ ($photo->photographer->id == $staffer->id ? "selected":"") }}>{{ $staffer->fullname }}</option>
                             @endforeach
                         @else
+                            <option value=""></option>
                             @foreach (\App\Staffer::all() as $staffer)
                                 <option value="{{ $staffer->id }}">{{ $staffer->fullname }}</option>
                             @endforeach
@@ -79,7 +80,10 @@
         }
 
         $(document).ready(function(){
-            $('select').select2();
+            $('select').select2({
+                placeholder: 'Select an option',
+                allowClear: true
+            });
         })
 
     </script>
