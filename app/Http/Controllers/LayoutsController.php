@@ -19,8 +19,8 @@ class LayoutsController extends Controller
     {
         $layouts = request()->has('search') ?
             Layout::search(request('search'))->paginate(25) :
-            Layout::orderBy('date_published')->paginate(25);
-        $layouts->load(['staffer', 'issue', 'section']);
+            Layout::orderBy('id', 'DESC')->paginate(25);
+        $layouts->load(['staffers', 'issue', 'section']);
         return view('admin.layouts.list', compact('layouts'));
     }
 

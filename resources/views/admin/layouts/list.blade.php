@@ -41,7 +41,11 @@
                     <td><a href="{{ route('edit-layout', [$layout->id]) }}">{{ $layout->title }}</a></td>
                     <td>{{ $layout->date_published->format('M j, Y g:i A') }}</td>
                     <td>{{ $layout->issue->issueName }}</td>
-                    <td>{{ $layout->staffer->fullName }}</td>
+                    @if(count($layout->staffers) > 0)
+                        <td>{{ $layout->staffers[0]->fullName }}</td>
+                    @else
+                        <td></td>
+                    @endif
                     <td>{{ $layout->section->name }}</td>
                 </tr>
             @endforeach

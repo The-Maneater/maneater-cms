@@ -40,8 +40,8 @@
                 <tr>
                     <td><a href="{{ route('edit-staffer', [$staffer->id]) }}">{{ $staffer->fullname }}</a></td>
                     <td></td>
-                    <td>{{ $staffer->writerPosition }}</td>
-                    <td>{{ $staffer->photographerPosition }}</td>
+                    <td>{{ $staffer->writer_pos }}</td>
+                    <td>{{ $staffer->photo_pos }}</td>
                     <td>{{ $staffer->is_active ? "Yes" : "No" }}</td>
                 </tr>
             @endforeach

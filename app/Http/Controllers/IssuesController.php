@@ -16,7 +16,7 @@ class IssuesController extends Controller
      */
     public function index()
     {
-        $issues = Issue::orderBy('created_at')->paginate(15);
+        $issues = Issue::orderBy('id', 'DESC')->paginate(15);
         return view('admin.issues.list', compact('issues'));
     }
 

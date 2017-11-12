@@ -19,7 +19,7 @@ class VolumesController extends Controller
     {
         $volumes = request()->has('search') ?
             Volume::search(request('search'))->orderBy('first_issue_date')->paginate(15) :
-            Volume::orderBy('first_issue_date')->paginate(15);
+            Volume::orderBy('id', 'DESC')->paginate(15);
         return view('admin.volumes.list', compact('volumes'));
     }
 
