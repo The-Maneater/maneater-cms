@@ -57,7 +57,7 @@
                 </div>
             </div>
             <div class="column is-8 story-body">
-                {{ $story->body }}
+                {!! Markdown::parse($story->body) !!}
                 <div class="meta-box"></div>
                 {{--<div id="article-share" class="meta-box">--}}
                     {{--<!-- AddThis Button BEGIN -->--}}

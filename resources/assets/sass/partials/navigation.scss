@@ -88,3 +88,9 @@
 .menu-list li a:hover{
   color: $m-green;
 }
+
+.active-nav{
+  border-bottom: 2px solid #2F7A32 !important;
+  border-top: 2px solid #2F7A32 !important;
+  background: #2F7A32 !important;
+}

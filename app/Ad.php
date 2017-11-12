@@ -32,6 +32,11 @@ class Ad extends Model
     	$this->save();
     }
 
+    public function url()
+    {
+        return "http://themaneater.com/media/" . $this->image_url;
+    }
+
     public function toSearchableArray()
     {
         $array = $this->toArray();

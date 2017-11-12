@@ -48,7 +48,7 @@ class GraphicsController extends Controller
         $graphic->fill($request->except(['issue', 'section', 'byline', 'graphic']));
         $image = $request->file('graphic')
             ->storeAs($filePath, $request->file('graphic')->getClientOriginalName(), 'media');
-        $graphic->link = '/media/'.$image;
+        $graphic->link = $image;
         $graphic->issue()->associate($request->input('issue'));
         $graphic->section()->associate($request->input('section'));
         $graphic->staffer()->associate($request->input('byline'));

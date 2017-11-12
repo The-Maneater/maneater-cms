@@ -75,8 +75,10 @@ class Section extends Model
 
     public function latestTags()
     {
-        return $this->stories
-            ->load(['tags'])
+        return $this->stories()
+            ->orderBy('id', 'desc')
+            ->take(200)
+            ->get()
             ->pluck('tags')
             ->flatten()
             ->groupBy('id')

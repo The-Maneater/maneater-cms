@@ -40,7 +40,7 @@ class PagesController extends Controller
         //$latest = Story::with(['section'])->latest()->take(10)->get();
         $frontPageStories = WebFront::frontPage();
         $ads = AdRepository::cubesAndBanner(2,1);
-        $issue = Issue::with(['layout'])->latest('id')->first();
+        $issue = Issue::with(['layout'])->latest('id')->whereNotNull('issu_url')->first();
 //        if($issue->layout->img_link === null){
 //            $pdf = new Pdf($issue->layout->link);
 //            $now = Carbon::now();

@@ -17,13 +17,17 @@ class MoveController extends Controller
     public function index()
     {
         $articles = Webfront::moveFrontPage();
-        $latestStories = Story::orderBy('publish_date', 'DESC')
+        $latestStories = Story::orderBy('id', 'DESC')
+            ->take(100)
             ->get()
             ->load(['section'])
             ->filter(function ($story){
                 return $story->section->publication_id === 2;
             })
             ->take(10);
+        //dd($articles);
+        //dd($latestStories);
+
         return view('move.index', compact('articles', 'latestStories'));
     }
 
@@ -33,7 +37,7 @@ class MoveController extends Controller
         if(!$section){
             throw new ModelNotFoundException;
         }
-        $stories = $section->stories()->paginate(20);
+        $stories = $section->stories()->latest('id')->paginate(20);
         return view('move.section', compact('section', 'stories'));
     }
 

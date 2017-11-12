@@ -37,14 +37,14 @@
     <nav class="nav has-shadow" id="topNav">
         <div class="container">
             <div class="nav-left">
-                <a class="nav-item is-tab is-hidden-mobile" href="/section/campus">CAMPUS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/section/projects">PROJECTS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/section/unews">UNEWS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/section/sports">SPORTS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/section/opinion">OPINION</a>
+                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'campus') !== false ? "active-nav" : "" }}" href="/section/campus">CAMPUS</a>
+                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'projects') !== false ? "active-nav" : "" }}" href="/section/projects">PROJECTS</a>
+                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'uwire') !== false ? "active-nav" : "" }}" href="/section/uwire">UNEWS</a>
+                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'sports') !== false ? "active-nav" : "" }}" href="/section/sports">SPORTS</a>
+                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'opinion') !== false ? "active-nav" : "" }}" href="/section/opinion">OPINION</a>
                 <a class="nav-item is-tab is-hidden-mobile move" href="{{ config('app.move_url') }}">MOVE</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/photos">PHOTOS</a>
-                <a class="nav-item is-tab is-hidden-mobile" href="/classifieds">CLASSIFIEDS</a>
+                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'photos') !== false ? "active-nav" : "" }}" href="/photos">PHOTOS</a>
+                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'classifieds') !== false ? "active-nav" : "" }}" href="/classifieds">CLASSIFIEDS</a>
             </div>
             <span class="nav-toggle">
           <span></span>

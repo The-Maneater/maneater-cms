@@ -27,7 +27,7 @@
                     @endif
                 @elseif(count($story->graphics) > 0)
                     <div class="main-picture-wrap">
-                        <img src="{{ $story->graphics[0]->path() }}" alt="">
+                        <img src="{{ $story->graphics[0]->linkPath() }}" alt="">
                     </div>
                     @if($story->graphics[0]->static_byline === null)
                         <div class="caption">
@@ -99,7 +99,7 @@
                         <p>Share: <a href="{{ $urls['facebook'] }}" target="_blank">Facebook</a> / <a href="{{ $urls['twitter'] }}" target="_blank">Twitter</a> / <a href="{{ $urls['google'] }}" target="_blank">Google+</a></p>
                     </div>
                     @if(isset($ads['banner'][0]))
-                        <img src="{{ $ads['banner'][0]->image_url }}" alt="" class="top-ad">
+                        <img src="{{ $ads['banner'][0]->url() }}" alt="" class="top-ad">
                     @endif
                 </div>
             </div>
@@ -156,21 +156,21 @@
             </div>
             @endif
             @if(isset($ads['cubes'][0]))
-                <img src="{{ $ads['cubes'][0]->image_url }}" alt="" class="bottom-ad">
+                <img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad">
             @endif
             @if(isset($ads['cubes'][1]))
-                <img src="{{ $ads['cubes'][1]->image_url }}" alt="" class="bottom-ad">
+                <img src="{{ $ads['cubes'][1]->url() }}" alt="" class="bottom-ad">
             @endif
             <div class="twitter-box">
                 <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
                 <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
             </div>
             @if(isset($ads['cubes'][2]))
-                <img src="{{ $ads['cubes'][2]->image_url }}" alt="" class="bottom-ad">
+                <img src="{{ $ads['cubes'][2]->url() }}" alt="" class="bottom-ad">
             @endif
 
             @if(isset($ads['cubes'][3]))
-                <img src="{{ $ads['cubes'][3]->image_url }}" alt="" class="bottom-ad">
+                <img src="{{ $ads['cubes'][3]->url() }}" alt="" class="bottom-ad">
             @endif
         </div>
 	</div>

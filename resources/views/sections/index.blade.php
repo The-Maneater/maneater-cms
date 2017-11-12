@@ -4,30 +4,55 @@
     <div class="columns">
         <div class="column is-5">
             <div class="substory">
+                @if(count($priorityStories[0]->headerPhotos) > 0)
+                    <img class="front-page-images" src="{{ $priorityStories[0]->headerPhotos[0]->path() }}" alt="">
+                @elseif(count($priorityStories[0]->graphics) > 0)
+                    <img class="front-page-images" src="{{ $priorityStories[0]->graphics[0]->linkPath() }}" alt="">
+                @endif
                 <h1><a href="{{ $priorityStories[0]->path() }}">{{ $priorityStories[0]->title }}</a></h1>
-                <p>{{ $priorityStories[0]->title }}</p>
+                <p>{{ $priorityStories[0]->cDeck }}</p>
             </div>
         </div>
         <div class="column is-7">
             <div class="columns">
                 <div class="column is-6">
                     <div class="substory">
+                        @if(count($priorityStories[1]->headerPhotos) > 0)
+                            <img class="section-image" src="{{ $priorityStories[1]->headerPhotos[0]->path() }}" alt="">
+                        @elseif(count($priorityStories[1]->graphics) > 0)
+                            <img class="section-image" src="{{ $priorityStories[1]->graphics[0]->linkPath() }}" alt="">
+                        @endif
                         <h1><a href="{{ $priorityStories[1]->path() }}">{{ $priorityStories[1]->title }}</a></h1>
-                        <p>{{ $priorityStories[1]->title }}</p>
+                        <p>{{ $priorityStories[1]->cDeck }}</p>
                     </div>
                     <div class="substory">
+                        @if(count($priorityStories[3]->headerPhotos) > 0)
+                            <img class="section-image" src="{{ $priorityStories[3]->headerPhotos[0]->path() }}" alt="">
+                        @elseif(count($priorityStories[3]->graphics) > 0)
+                            <img class="section-image" src="{{ $priorityStories[3]->graphics[0]->linkPath() }}" alt="">
+                        @endif
                         <h1><a href="{{ $priorityStories[3]->path() }}">{{ $priorityStories[3]->title }}</a></h1>
-                        <p>{{ $priorityStories[3]->title }}</p>
+                        <p>{{ $priorityStories[3]->cDeck }}</p>
                     </div>
                 </div>
                 <div class="column is-6">
                     <div class="substory">
+                        @if(count($priorityStories[2]->headerPhotos) > 0)
+                            <img class="section-image" src="{{ $priorityStories[2]->headerPhotos[0]->path() }}" alt="">
+                        @elseif(count($priorityStories[2]->graphics) > 0)
+                            <img class="section-image" src="{{ $priorityStories[2]->graphics[0]->linkPath() }}" alt="">
+                        @endif
                         <h1><a href="{{ $priorityStories[2]->path() }}">{{ $priorityStories[2]->title }}</a></h1>
-                        <p>{{ $priorityStories[2]->title }}</p>
+                        <p>{{ $priorityStories[2]->cDeck }}</p>
                     </div>
                     <div class="substory">
+                        @if(count($priorityStories[4]->headerPhotos) > 0)
+                            <img class="section-image" src="{{ $priorityStories[4]->headerPhotos[0]->path() }}" alt="">
+                        @elseif(count($priorityStories[4]->graphics) > 0)
+                            <img class="section-image" src="{{ $priorityStories[4]->graphics[0]->linkPath() }}" alt="">
+                        @endif
                         <h1><a href="{{ $priorityStories[4]->path() }}">{{ $priorityStories[4]->title }}</a></h1>
-                        <p>{{ $priorityStories[4]->title }}</p>
+                        <p>{{ $priorityStories[4]->cDeck }}</p>
                     </div>
                 </div>
             </div>
@@ -68,11 +93,11 @@
             </div>
 
             @if(isset($ads['cubes'][0]))
-                <img src="{{ $ads['cubes'][0]->image_url }}" alt="" class="top-ad">
+                <img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad">
             @endif
 
             @if(isset($ads['cubes'][1]))
-                <img src="{{ $ads['cubes'][1]->image_url }}" alt="" class="top-ad">
+                <img src="{{ $ads['cubes'][1]->url() }}" alt="" class="top-ad">
             @endif
         </div>
     </div>

@@ -48,7 +48,7 @@ class LayoutsController extends Controller
         $layout->fill($request->except(['section', 'issue', 'staffer', 'layout']));
         $file = $request->file('layout')
             ->storeAs($filePath, $request->file('layout')->getClientOriginalName(), 'media');
-        $layout->link = '/media/'.$file;
+        $layout->link = $file;
         $layout->section()->associate($request->input('section'));
         $layout->issue()->associate($request->input('issue'));
         $layout->save();

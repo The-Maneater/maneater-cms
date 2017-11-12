@@ -38,7 +38,7 @@
             </div>
             @if(isset($ads['banner'][0]))
                 <div class="center-ad">
-                    <img src="{{ $ads['banner'][0]->image_url }}" alt="" class="top-ad">
+                    <img src="{{ $ads['banner'][0]->url() }}" alt="" class="top-ad">
                 </div>
             @endif
             <div id="comments">

@@ -38,7 +38,7 @@
                     <b-input name="duration" value="{{ $ad->duration }}"></b-input>
                 </b-field>
                 <b-field label="Ad">
-                    <img src="{{ Image::url($ad->image_url,300,300,array('crop')) }}" alt="">
+                    <img src="{{ Image::url($ad->url(),300,300,array('crop')) }}" alt="">
                 </b-field>
             </div>
         </form>

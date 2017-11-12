@@ -13,9 +13,18 @@
                         <div class="newsreel big-third">
                             <p class="category">{{ $story->formattedPublishDate->format('M. d, Y') }}</p>
                             {{--<a href="http://move.themaneater.com/stories/2017/5/7/thisisamerica-fashion-diversity/"><img src="http://move.themaneater.com/media/2017/0508/photos/thisisamerica3_jpg_300x200_crop_q85.jpg" width="100%" alt="'#ThisIsAmerica': Fashion for diversity"></a>--}}
-                            <h4><a href="{{ $story->path() }}" class="is-black is-move-hover-red"><p>{{ $story->title }}</p></a></h4>
-                            <div class="cdeck">
-                                <p>{{ $story->cDeck }}</p>
+                            <div class="columns">
+                                <div class="column {{ count($story->headerPhotos) > 0 ? "is-8" : "" }}">
+                                    <h4><a href="{{ $story->path() }}" class="is-black is-move-hover-red"><p>{{ $story->title }}</p></a></h4>
+                                    <div class="cdeck">
+                                        <p>{{ $story->cDeck }}</p>
+                                    </div>
+                                </div>
+                                @if(count($story->headerPhotos) > 0)
+                                    <div class="column is-4">
+                                        <img class="front-page-images" src="{{ $story->headerPhotos[0]->path() }}" alt="">
+                                    </div>
+                                @endif
                             </div>
                             <div class="clear"></div>
                         </div>

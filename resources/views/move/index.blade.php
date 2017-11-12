@@ -5,9 +5,11 @@
         <div class="columns">
             <div class="column is-12">
                 <div class="columns">
+                    @if(count($articles[1]->headerPhotos) > 0 )
                     <div class="column is-6">
-                        <img src="http://via.placeholder.com/700x466" alt="">
+                        <img src="{{ $articles[1]->headerPhotos[0]->path() }}" alt="">
                     </div>
+                    @endif
                     <div class="column story-details">
                         <p class="category"><a href="{{ $articles[1]->section->path() }}" class="is-move-red">{{ $articles[1]->section->name }}</a></p>
                         <h2><a href="{{ $articles[1]->path() }}">{{ $articles[1]->title }}</a></h2>
@@ -21,7 +23,9 @@
         <div class="columns">
             <div class="column is-4">
                 <p class="category"><a href="{{ $articles[2]->section->path() }}" class="is-move-red">{{ $articles[2]->section->name }}</a></p>
-                <img src="http://via.placeholder.com/400x266" alt="">
+                @if(count($articles[2]->headerPhotos) > 0)
+                    <img src="{{ $articles[2]->headerPhotos[0]->path() }}" alt="">
+                @endif
                 <div class="story-details">
                     <h2>{{ $articles[2]->title }}</h2>
                     <div class="cdeck">
@@ -31,7 +35,9 @@
             </div>
             <div class="column is-4">
                 <p class="category"><a href="{{ $articles[3]->section->path() }}" class="is-move-red">{{ $articles[3]->section->name }}</a></p>
-                <img src="http://via.placeholder.com/400x266" alt="">
+                @if(count($articles[3]->headerPhotos) > 0)
+                    <img src="{{ $articles[3]->headerPhotos[0]->path() }}" alt="">
+                @endif
                 <div class="story-details">
                     <h2>{{ $articles[3]->title }}</h2>
                     <div class="cdeck">
@@ -41,7 +47,9 @@
             </div>
             <div class="column is-4">
                 <p class="category"><a href="{{ $articles[4]->section->path() }}" class="is-move-red">{{ $articles[4]->section->name }}</a></p>
-                <img src="http://via.placeholder.com/400x266" alt="">
+                @if(count($articles[4]->headerPhotos) > 0)
+                    <img src="{{ $articles[4]->headerPhotos[0]->path() }}" alt="">
+                @endif
                 <div class="story-details">
                     <h2>{{ $articles[4]->title }}</h2>
                     <div class="cdeck">
@@ -61,7 +69,11 @@
                 @endif
                 <div class="newsreel big-third">
                     <p class="category"><a href="{{ $story->path() }}" class="is-move-red">{{ $story->section->name }}</a></p>
-                    <a href=""><img src="http://via.placeholder.com/120x80" alt="photo" data-caption="#1"></a>
+                    <a href="">
+                        @if(count($story->headerPhotos) > 0)
+                            <img src="{{ $story->headerPhotos[0]->path() }}" alt="">
+                        @endif
+                    </a>
                     <h4><a href="{{ $story->path() }}" class="is-black"><p>{{ $story->title }}</p></a></h4>
                     <div class="cdeck"><p>{{ $story->cDeck }}</p></div>
                     <div class="clear"></div>

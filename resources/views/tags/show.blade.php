@@ -20,11 +20,11 @@
             </div>
 
             @if(isset($ads['cubes'][0]))
-                <img src="{{ $ads['cubes'][0]->image_url }}" alt="" class="top-ad">
+                <img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad">
             @endif
 
             @if(isset($ads['cubes'][1]))
-                <img src="{{ $ads['cubes'][1]->image_url }}" alt="" class="top-ad">
+                <img src="{{ $ads['cubes'][1]->url() }}" alt="" class="top-ad">
             @endif
         </div>
     </div>

@@ -13,6 +13,6 @@ class RedirectController extends Controller
         if(count($stories) == 1){
             return redirect($stories[0]->path()) ;
         }
-        return $slug;
+        return view('stories.error', compact('stories'));
     }
 }
