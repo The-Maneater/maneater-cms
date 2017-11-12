@@ -38,9 +38,15 @@
                 </b-field>
                 <b-field label="Byline:">
                     <select2 name="byline" id="byline">
-                        @foreach (\App\Staffer::all() as $staffer)
-                            <option value="{{ $staffer->id }}" {{ ($photo->photographer->id == $staffer->id ? "selected":"") }}>{{ $staffer->fullname }}</option>
-                        @endforeach
+                        @if($photo->static_byline === null)
+                            @foreach (\App\Staffer::all() as $staffer)
+                                <option value="{{ $staffer->id }}" {{ ($photo->photographer->id == $staffer->id ? "selected":"") }}>{{ $staffer->fullname }}</option>
+                            @endforeach
+                        @else
+                            @foreach (\App\Staffer::all() as $staffer)
+                                <option value="{{ $staffer->id }}">{{ $staffer->fullname }}</option>
+                            @endforeach
+                        @endif
                     </select2>
                 </b-field>
                 <b-field label="Static Byline:">
