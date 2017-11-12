@@ -19,7 +19,7 @@
                 </b-field>
                 <b-field label="Issue:">
                     <select2 name="issue_id" id="issue">
-                        @foreach(\App\Issue::all() as $issue)
+                        @foreach(\App\Issue::latest('id')->get() as $issue)
                             <option value="{{ $issue->id }}" {{ ($photo->issue->id === $issue->id ? "selected":"") }}>{{ $issue->issueName }}</option>
                         @endforeach
                     </select2>
