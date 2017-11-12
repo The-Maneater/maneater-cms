@@ -147,6 +147,7 @@ class StoriesController extends Controller
      */
     public function update(CreateStoryRequest $request, $section, $slug)
     {
+        //dd($request->all());
         $article = Story::findBySectionAndSlug($section, $slug);
         $article->update($request->except(['issue', 'byline', 'topPhotos', 'inlinePhotos' , 'graphics', 'section', 'tags']));
         $article->writers()->sync($request->input('byline'));
@@ -167,6 +168,7 @@ class StoriesController extends Controller
         $article->graphics()->sync($request->input('graphics', []));
         $article->section()->associate($request->input('section'));
         $article->syncTags($request->input('tags'));
+        $article->save();
 
         CacheRepository::updateLatestStories();
         CacheRepository::updateSectionTopTags($article);
