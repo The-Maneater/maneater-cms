@@ -77,7 +77,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update($request->except('roles'));
+        $user->update($request->except('roles', 'password', 'password_confirmation'));
+        if(request('password') !== ""){
+            $user->password = bcrypt(request("password"));
+            $user->save();
+        }
         $user->roles()->sync(request('roles'));
 
         return redirect('/admin/staff/users');
