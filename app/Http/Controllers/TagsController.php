@@ -14,7 +14,7 @@ class TagsController extends Controller
         $tag = Tag::where('slug->en', $slug)
             ->first();
         $stories = Story::withAllTags([$tag->name])
-            ->orderBy('publish_date', 'DESC')
+            ->orderBy('id', 'DESC')
             ->paginate(20);
         $ads = AdRepository::cubes(2);
 
