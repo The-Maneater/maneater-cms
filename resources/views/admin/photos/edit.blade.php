@@ -54,7 +54,8 @@
                     <b-input name="static_byline" id="static_byline" value="{{ $photo->static_byline }}"></b-input>
                 </b-field>
                 <b-field label="Photo:">
-                    <img src="{{ Image::url($photo->path(), 300, 300, array('crop')) }}" alt="" id="image">
+                    {{--<img src="{{ Image::url($photo->path(), 300, 300, array('crop')) }}" alt="" id="image">--}}
+                    <img src="{{ $photo->path() }}" id="image" alt="">
                 </b-field>
                 <b-field label="Cutline:">
                     <b-input name="description" id="description" value="{{ $photo->description }}"></b-input>
