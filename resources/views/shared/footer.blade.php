@@ -11,7 +11,7 @@
                 <li><a class="footer" href="{{env('APP_URL')}}/section/opinion/">Opinion</a></li>
                 <li><a class="footer" href="{{env('APP_URL')}}/section/projects/">Projects</a></li>
                 <li><a class="footer" href="{{env('APP_URL')}}/section/sports/">Sports</a></li>
-                <li><a class="footer" href="{{env('APP_URL')}}/section/unews/">UNews</a></li>
+                <li><a class="footer" href="{{env('APP_URL')}}/section/uwire/">UNews</a></li>
             </ul>
             <br>
             <h3 class="footer">The Maneater</h3>

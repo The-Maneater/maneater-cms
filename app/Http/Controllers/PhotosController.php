@@ -54,6 +54,17 @@ class PhotosController extends Controller
         $photo->location = $image;
         if(request('byline') !== null && request('byline') !== ""){
             $photo->staffer_id = request('byline');
+            $photographers = collect($request->input('byline'));
+
+            $photographers->each(function($staffer, $key){
+                /** @var \App\Staffer $staffer  */
+                $staffer = Staffer::find($staffer);
+                if($staffer->photos()->count() > 10 && $staffer->photo_pos == "Photographer"){
+                    //$staffer->makeA('Staff Photographer', 'Photographer');
+                    $staffer->photo_pos = "Staff Photographer";
+                    $staffer->save();
+                }
+            });
         }else{
             $photo->static_byline = request('static_byline');
         }
@@ -61,18 +72,6 @@ class PhotosController extends Controller
         $photo->save();
 //        $photo->photographer()->associate($request->input('byline'));
         $photo->attachTags($request->input('tags'));
-
-        $photographers = collect($request->input('byline'));
-
-        $photographers->each(function($staffer, $key){
-            /** @var \App\Staffer $staffer  */
-            $staffer = Staffer::find($staffer);
-           if($staffer->photos()->count() > 10 && $staffer->photo_pos == "Photographer"){
-               //$staffer->makeA('Staff Photographer', 'Photographer');
-               $staffer->photo_pos = "Staff Photographer";
-               $staffer->save();
-           }
-        });
 
         return redirect('/admin/core/photos');
     }
