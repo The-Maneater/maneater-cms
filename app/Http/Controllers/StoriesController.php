@@ -107,7 +107,7 @@ class StoriesController extends Controller
         $inlinePhotos = $story->inlinePhotos()->get();
         $append = "";
         $inlinePhotos->each(function($item, $key) use(&$append){
-            $append .= "\n [" . $item->pivot->reference . "]: " . env('APP_URL') . $item->location;
+            $append .= "\n [" . $item->pivot->reference . "]: " . $item->path();
         });
         $story->body .= $append;
         $ads = AdRepository::cubesAndBanner(4,1);

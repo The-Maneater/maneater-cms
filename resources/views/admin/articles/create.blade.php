@@ -155,7 +155,7 @@
                     params.page = params.page || 1;
                     var mappedData = $.map(data.data, function (obj) {
                         var filename = obj.location.split('/').pop();
-                        obj.text = obj.title || filename; // replace name with the property used for the text
+                        obj.text = filename; // replace name with the property used for the text
 
                         return obj;
                     });

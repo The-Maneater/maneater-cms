@@ -172,7 +172,8 @@
                     // scrolling can be used
                     params.page = params.page || 1;
                     var mappedData = $.map(data.data, function (obj) {
-                        obj.text = obj.text || obj.title; // replace name with the property used for the text
+                        var filename = obj.location.split('/').pop();
+                        obj.text = filename; // replace name with the property used for the text
 
                         return obj;
                     });

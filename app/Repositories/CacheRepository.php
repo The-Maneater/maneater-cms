@@ -18,7 +18,7 @@ class CacheRepository
 {
     public static function updateLatestStories()
     {
-        $stories = Story::with(['section'])->latest()->take(10)->get();
+        $stories = Story::with(['section'])->latest('id')->take(10)->get();
         Cache::put('latestStories', $stories, 720);
     }
 
