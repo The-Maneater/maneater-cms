@@ -52,7 +52,12 @@ class PhotosController extends Controller
         $image = $request->file('photo')
             ->storeAs($filePath, $request->file('photo')->getClientOriginalName(), 'media');
         $photo->location = $image;
-        $photo->staffer_id = request('byline');
+        if(request('byline') !== null && request('byline') !== ""){
+            $photo->staffer_id = request('byline');
+        }else{
+            $photo->static_byline = request('static_byline');
+        }
+
         $photo->save();
 //        $photo->photographer()->associate($request->input('byline'));
         $photo->attachTags($request->input('tags'));

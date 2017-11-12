@@ -27,7 +27,8 @@ class CreatePhotoRequest extends FormRequest
             'title'       => 'required',
             'description' => 'required',
             'publish_date'   => 'required|date',
-            'byline' => 'required'
+            'byline' => 'required_without:static_byline',
+            'static_byline' => 'required_without:byline'
         ];
     }
 }
