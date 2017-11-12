@@ -113,7 +113,7 @@ class StoriesController extends Controller
         $ads = AdRepository::cubesAndBanner(4,1);
         $relatedArticles = count($story->tags) > 0 ?
         Story::withAllTags([$story->tags[0]])
-            ->orderBy('publish_date', 'DESC')
+            ->orderBy('id', 'DESC')
             ->take(5)
             ->get()
             ->load(['section']) : collect();
