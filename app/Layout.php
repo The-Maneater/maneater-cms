@@ -20,6 +20,11 @@ class Layout extends Model
         return "http://themaneater.com/media/" . $this->link;
     }
 
+    public function getPubDate()
+    {
+        return $this->date_published->toDateTimeString();
+    }
+
     /**
      * Returns the associated staffer
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -115,9 +115,9 @@ class PagesController extends Controller
     {
         $page = 0;
         if(request()->has('page')) $page = request('page') - 1;
-        $graphics = Layout::latest()->get();
+        $graphics = Layout::latest('id')->offset($page * 20)->take(20)->get();
 
-        $paginator = (new PublishDatePaginator($graphics))->paginate(25, $page)->withPath('/layouts');
+        $paginator = (new PublishDatePaginator($graphics, Layout::count()))->paginate(25, $page, 'pub_date')->withPath('/layouts');
 //        dd($paginator);
         $ads = AdRepository::cubes(2);
 
@@ -128,9 +128,9 @@ class PagesController extends Controller
     {
         $page = 0;
         if(request()->has('page')) $page = request('page') - 1;
-        $graphics = Photo::latest()->get();
+        $graphics = Photo::latest('id')->offset($page * 20)->take(20)->get();
 
-        $paginator = (new PublishDatePaginator($graphics))->paginate(25, $page)->withPath('/photos');
+        $paginator = (new PublishDatePaginator($graphics, Photo::count()))->paginate(25, $page, 'pub_date')->withPath('/photos');
 //        dd($paginator);
         $ads = AdRepository::cubes(2);
 

@@ -8,10 +8,7 @@
                 <h5 class="search-results-header archive-pubdate">{{ Carbon\Carbon::parse($key)->format('M. d, Y') }}</h5>
                 @foreach($date as $story)
                     <div class="story">
-                        @php
-                            $graphic = new App\Layout($story);
-                        @endphp
-                        <img class="layout" src="{{ $graphic->link }}" alt="">
+                        <img class="layout" src="{{ $story->path() }}" alt="">
                     </div>
                 @endforeach
             @endforeach

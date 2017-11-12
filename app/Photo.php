@@ -32,6 +32,11 @@ class Photo extends Model
     	return $this->belongsTo('App\Staffer', 'staffer_id');
     }
 
+    public function getPubDate()
+    {
+        return $this->publish_date->toDateTimeString();
+    }
+
     public function path()
     {
         if(preg_match('/^(http|https)/', $this->location)){

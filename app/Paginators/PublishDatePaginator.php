@@ -27,11 +27,11 @@ class PublishDatePaginator
         $this->count = $count;
     }
 
-    public function paginate($perPage = 20, $page = 0)
+    public function paginate($perPage = 20, $page = 0, $column='publish_date')
     {
 //        $paginatedItems = collect(array_slice($this->items->toArray(), $perPage * $page, $perPage, true))
 //            ->groupBy('publish_date');
-        $paginatedItems = $this->items->groupBy('publish_date');
+        $paginatedItems = $this->items->groupBy($column);
         return new LengthAwarePaginator($paginatedItems, $this->count, $perPage, $page + 1);
     }
 }

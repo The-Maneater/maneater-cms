@@ -13,7 +13,7 @@ class TagsController extends Controller
     {
         $tag = Tag::where('slug->en', $slug)
             ->first();
-        $stories = Story::withAnyTags([$tag->name])
+        $stories = Story::withAllTags([$tag->name])
             ->orderBy('publish_date', 'DESC')
             ->paginate(20);
         $ads = AdRepository::cubes(2);

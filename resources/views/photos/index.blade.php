@@ -8,14 +8,11 @@
                 <h5 class="search-results-header archive-pubdate">{{ Carbon\Carbon::parse($key)->format('M. d, Y') }}</h5>
                 @foreach($date as $story)
                     <div class="story columns">
-                        @php
-                            $photo = new App\Photo($story);
-                        @endphp
                         <div class="column is-3">
-                            <img class="layout" src="{{ $photo->path() }}" alt="">
+                            <img class="layout" src="{{ $story->path() }}" alt="">
                         </div>
                         <div class="column is-9">
-                            <p>{{ $photo->description }}</p>
+                            <p>{{ $story->description }}</p>
                         </div>
                     </div>
                 @endforeach
