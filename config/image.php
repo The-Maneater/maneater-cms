@@ -36,7 +36,7 @@ return array(
     |
     */
     'src_dirs' => array(
-        public_path()
+        config('app.upload_path')
     ),
 
     /*
