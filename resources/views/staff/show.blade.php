@@ -48,7 +48,7 @@
                     @foreach($staffer->photos as $photo)
                         <div class="columns resultset">
                             <div class="column is-8">
-                                {{ $photo->description }} ({{ $photo->created_at->format('M. d, Y') }})
+                                {{ $photo->description }} ({{ $photo->publish_date->format('M. d, Y') }})
                             </div>
                             <div class="column is-4">
                                 <img src="{{ $photo->path() }}" alt="">
@@ -62,7 +62,7 @@
                     @foreach($staffer->graphics as $graphic)
                         <div class="columns resultset">
                             <div class="column is-8">
-                                ({{ $graphic->created_at->format('M. d, Y') }})
+                                ({{ $graphic->publish_date->format('M. d, Y') }})
                             </div>
                             <div class="column is-4">
                                 <img src="{{ $graphic->linkPath() }}" alt="">
@@ -76,7 +76,7 @@
                     @foreach($staffer->layouts as $layout)
                         <div class="columns resultset">
                             <div class="column is-8">
-                                {{ $layout->title }} ({{ $layout->created_at->format('M. d, Y') }})
+                                {{ $layout->title }} ({{ $layout->date_published->format('M. d, Y') }})
                             </div>
                             <div class="column is-4">
                                 <img src="{{ $layout->link }}" alt="">
