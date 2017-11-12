@@ -56,7 +56,7 @@
                 </div>
                 <b-field label="Issue:">
                     <select2 name="issue" id="issue">
-                        @foreach (\App\Issue::all() as $issue)
+                        @foreach (\App\Issue::latest('id')->take(10)->get() as $issue)
                             <option value="{{ $issue->id }}" {{ ($article->issue->id === $issue->id ? "selected":"") }}>{{ $issue->issueName }}</option>
                         @endforeach
                     </select2>
