@@ -4,7 +4,7 @@
     <div class="columns">
         <div class="column is-8">
             @if(isset($ads['banner'][0]))
-                <img src="{{ $ads['banner'][0]->url() }}" alt="" class="bottom-ad">
+                <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="bottom-ad"></a>
             @endif
             <div class="columns">
                 <div class="column is-8">
@@ -86,7 +86,7 @@
             </ul>
             <div class="clippingfade"></div>
             @if(isset($ads['cubes'][0]))
-                <img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad">
+                <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad"></a>
             @endif
         </div>
         <div class="column is-2">
@@ -221,7 +221,7 @@
                 <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
             </div>
             @if(isset($ads['cubes'][1]))
-                <img src="{{ $ads['cubes'][1]->url() }}" alt="" class="top-ad">
+                <a href="{{ $ads['cubes'][1]->provider_url }}"><img src="{{ $ads['cubes'][1]->url() }}" alt="" class="top-ad"></a>
             @endif
         </div>
     </div>

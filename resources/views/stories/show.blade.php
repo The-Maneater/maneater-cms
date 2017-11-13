@@ -99,7 +99,7 @@
                         <p>Share: <a href="{{ $urls['facebook'] }}" target="_blank">Facebook</a> / <a href="{{ $urls['twitter'] }}" target="_blank">Twitter</a> / <a href="{{ $urls['google'] }}" target="_blank">Google+</a></p>
                     </div>
                     @if(isset($ads['banner'][0]))
-                        <img src="{{ $ads['banner'][0]->url() }}" alt="" class="top-ad">
+                        <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="top-ad"></a>
                     @endif
                 </div>
             </div>
@@ -156,21 +156,21 @@
             </div>
             @endif
             @if(isset($ads['cubes'][0]))
-                <img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad">
+                    <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad"></a>
             @endif
             @if(isset($ads['cubes'][1]))
-                <img src="{{ $ads['cubes'][1]->url() }}" alt="" class="bottom-ad">
+                    <a href="{{ $ads['cubes'][1]->provider_url }}"><img src="{{ $ads['cubes'][1]->url() }}" alt="" class="bottom-ad"></a>
             @endif
             <div class="twitter-box">
                 <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
                 <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
             </div>
             @if(isset($ads['cubes'][2]))
-                <img src="{{ $ads['cubes'][2]->url() }}" alt="" class="bottom-ad">
+                    <a href="{{ $ads['cubes'][2]->provider_url }}"><img src="{{ $ads['cubes'][2]->url() }}" alt="" class="bottom-ad"></a>
             @endif
 
             @if(isset($ads['cubes'][3]))
-                <img src="{{ $ads['cubes'][3]->url() }}" alt="" class="bottom-ad">
+                    <a href="{{ $ads['cubes'][3]->provider_url }}"><img src="{{ $ads['cubes'][3]->url() }}" alt="" class="bottom-ad"></a>
             @endif
         </div>
 	</div>
