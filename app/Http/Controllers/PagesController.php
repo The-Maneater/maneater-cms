@@ -91,8 +91,8 @@ class PagesController extends Controller
     {
         $page = 0;
         if(request()->has('page')) $page = request('page') - 1;
-        $stories = Story::latest()->get()->load(['writers']);
-        $paginator = (new PublishDatePaginator($stories))->paginate(25, $page)->withPath('/stories');
+        $stories = Story::latest('id')->offset($page * 20)->take(20)->get()->load(['writers']);
+        $paginator = (new PublishDatePaginator($stories, Story::count()))->paginate(20, $page)->withPath('/stories');
         $ads = AdRepository::cubes(2);
 
         return view('stories.latest', compact('paginator', 'ads'));
@@ -102,9 +102,9 @@ class PagesController extends Controller
     {
         $page = 0;
         if(request()->has('page')) $page = request('page') - 1;
-        $graphics = Graphic::latest()->get();
+        $graphics = Graphic::latest('id')->offset($page * 20)->take(20)->get();
 
-        $paginator = (new PublishDatePaginator($graphics))->paginate(25, $page)->withPath('/graphics');
+        $paginator = (new PublishDatePaginator($graphics, Graphic::count()))->paginate(20, $page)->withPath('/graphics');
 //        dd($paginator);
         $ads = AdRepository::cubes(2);
 
@@ -117,7 +117,7 @@ class PagesController extends Controller
         if(request()->has('page')) $page = request('page') - 1;
         $graphics = Layout::latest('id')->offset($page * 20)->take(20)->get();
 
-        $paginator = (new PublishDatePaginator($graphics, Layout::count()))->paginate(25, $page, 'pub_date')->withPath('/layouts');
+        $paginator = (new PublishDatePaginator($graphics, Layout::count()))->paginate(20, $page, 'pub_date')->withPath('/layouts');
 //        dd($paginator);
         $ads = AdRepository::cubes(2);
 
@@ -130,7 +130,7 @@ class PagesController extends Controller
         if(request()->has('page')) $page = request('page') - 1;
         $graphics = Photo::latest('id')->offset($page * 20)->take(20)->get();
 
-        $paginator = (new PublishDatePaginator($graphics, Photo::count()))->paginate(25, $page, 'pub_date')->withPath('/photos');
+        $paginator = (new PublishDatePaginator($graphics, Photo::count()))->paginate(20, $page, 'pub_date')->withPath('/photos');
 //        dd($paginator);
         $ads = AdRepository::cubes(2);
 

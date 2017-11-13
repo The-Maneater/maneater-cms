@@ -63,7 +63,7 @@ class SectionsController extends Controller
     {
         $section = Section::findBySlug($slug);
         $stories = $section->stories()->latest('id')->take(10)->get()->load(['section']);
-        $priorityStories = Cache::remember('section.' . $slug . 'web-front-stories', 720, function() use ($section) {
+        $priorityStories = Cache::remember('section.' . $slug . '.web-front-stories', 720, function() use ($section) {
            return $section->webFrontStories()->get()->load(['section']);
         });
         //$priorityStories = $section->webFrontStories()->get();
