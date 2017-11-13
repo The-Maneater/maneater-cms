@@ -4,7 +4,7 @@
     <div class="columns">
         <div class="column is-8">
             @if(isset($ads['banner'][0]))
-                <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="bottom-ad"></a>
+                <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-bottom-ad"></a>
             @endif
             <div class="columns">
                 <div class="column is-8">
@@ -77,30 +77,34 @@
                 </div>
             </div>
         </div>
-        <div class="column is-2">
-            <a class="sectionlabel" href="/stories/">Latest</a>
-            <ul class="sectionlist">
-                @foreach($latest as $story)
-                    <li><a class="is-m-green" href="{{ $story->path() }}">{{ $story->full_title }}</a></li>
-                @endforeach
-            </ul>
-            <div class="clippingfade"></div>
+        <div class="column is-4">
+            <div class="columns">
+                <div class="column is-6">
+                    <a class="sectionlabel" href="/stories/">Latest</a>
+                    <ul class="sectionlist">
+                        @foreach($latest as $story)
+                            <li><a class="is-m-green" href="{{ $story->path() }}">{{ $story->full_title }}</a></li>
+                        @endforeach
+                    </ul>
+                    <div class="clippingfade"></div>
+                </div>
+                <div class="column is-6">
+                    <div id="followus">
+                        <a class="sectionlabel">Follow us</a>
+                        <div>
+                            <div class="sm-logos">
+                                <a href="https://www.facebook.com/themaneaterMU" target="_blank"><img src="http://themaneater.com/media/style/2014-redesign/fb-logo.png"></a>
+                                <a href="https://twitter.com/TheManeater" target="_blank"><img src="http://themaneater.com/media/style/2014-redesign/tw-logo.png"></a>
+                            </div>
+
+                            <a class="lg-logos" href="http://themaneater.us11.list-manage.com/subscribe?u=081984b99094be57218546c7f&amp;id=92c6334ec3" target="_blank"><img src="http://www.themaneater.com/media/frontpage/ManeaterWebAd.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @if(isset($ads['cubes'][0]))
                 <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad"></a>
             @endif
-        </div>
-        <div class="column is-2">
-            <div id="followus">
-                <a class="sectionlabel">Follow us</a>
-                <div>
-                    <div class="sm-logos">
-                        <a href="https://www.facebook.com/themaneaterMU" target="_blank"><img src="http://themaneater.com/media/style/2014-redesign/fb-logo.png"></a>
-                        <a href="https://twitter.com/TheManeater" target="_blank"><img src="http://themaneater.com/media/style/2014-redesign/tw-logo.png"></a>
-                    </div>
-
-                    <a class="lg-logos" href="http://themaneater.us11.list-manage.com/subscribe?u=081984b99094be57218546c7f&amp;id=92c6334ec3" target="_blank"><img src="http://www.themaneater.com/media/frontpage/ManeaterWebAd.png"></a>
-                </div>
-            </div>
         </div>
 
     </div>

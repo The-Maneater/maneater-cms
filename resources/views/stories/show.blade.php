@@ -99,7 +99,7 @@
                         <p>Share: <a href="{{ $urls['facebook'] }}" target="_blank">Facebook</a> / <a href="{{ $urls['twitter'] }}" target="_blank">Twitter</a> / <a href="{{ $urls['google'] }}" target="_blank">Google+</a></p>
                     </div>
                     @if(isset($ads['banner'][0]))
-                        <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="top-ad"></a>
+                        <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-top-ad"></a>
                     @endif
                 </div>
             </div>
