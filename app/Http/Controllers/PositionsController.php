@@ -82,8 +82,8 @@ class PositionsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $position = new Position;
-        $position->fill($request->only(['title', 'priority']));
+        $position = Position::find($id);
+        $position->update($request->only(['title', 'priority']));
         $position->title = $request->input('title');
         $position->is_editorial_board = $request->input('is_editorial_board') !== null;
         $position->is_exec = $request->input('is_exec') !== null;

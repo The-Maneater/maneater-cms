@@ -27,7 +27,7 @@
                     <img src="{{ $articles[2]->headerPhotos[0]->path() }}" alt="">
                 @endif
                 <div class="story-details">
-                    <h2>{{ $articles[2]->title }}</h2>
+                    <h2><a href="{{ $articles[2]->path() }}">{{ $articles[2]->title }}</a></h2>
                     <div class="cdeck">
                         <p>{{ $articles[2]->cDeck }}</p>
                     </div>
@@ -39,7 +39,7 @@
                     <img src="{{ $articles[3]->headerPhotos[0]->path() }}" alt="">
                 @endif
                 <div class="story-details">
-                    <h2>{{ $articles[3]->title }}</h2>
+                    <h2><a href="{{ $articles[3]->path() }}">{{ $articles[3]->title }}</a></h2>
                     <div class="cdeck">
                         <p>{{ $articles[3]->cDeck }}</p>
                     </div>
@@ -51,7 +51,7 @@
                     <img src="{{ $articles[4]->headerPhotos[0]->path() }}" alt="">
                 @endif
                 <div class="story-details">
-                    <h2>{{ $articles[4]->title }}</h2>
+                    <h2><a href="{{ $articles[4]->path() }}">{{ $articles[4]->title }}</a></h2>
                     <div class="cdeck">
                         <p>{{ $articles[4]->cDeck }}</p>
                     </div>
