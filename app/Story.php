@@ -50,7 +50,12 @@ class Story extends Model
 
     public function path()
     {
-        return '/stories/' . $this->section->slug . '/' . $this->slug;
+        if($this->section->publication_id == 2){
+            return config('app.move_url').'/stories/' . $this->section->slug . '/' . $this->slug;
+        }else{
+            return '/stories/' . $this->section->slug . '/' . $this->slug;
+        }
+
     }
 
     public function getFormattedPublishDateAttribute()
