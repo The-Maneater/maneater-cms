@@ -6,12 +6,16 @@
         <span class="byline">By <a href="{{ $data->writers[0]->path() }}" class="is-m-green">{{ $data->writers[0]->fullName }}</a></span>
     @else
         <span class="byline">By
-            @foreach ($data->writers as $writer)
-                {{ $writer->first_name }} {{ $writer->last_name }}
-                @if (!$loop->last)
-                    and
-                @endif
-            @endforeach
+            @if(count($data->writers) > 0)
+                @foreach ($data->writers as $writer)
+                    <a href="{{ $writer->path() }}" class="is-m-green">{{ $writer->first_name }} {{ $writer->last_name }}</a>
+                    @if (!$loop->last)
+                        and
+                    @endif
+                @endforeach
+            @elseif($data->static_byline !== null)
+                {{ $data->static_byline }}
+            @endif
         </span>
     @endif
     <span class="published"> | {{ \Carbon\Carbon::parse($data->publish_date)->format('M. d, Y') }} </span>

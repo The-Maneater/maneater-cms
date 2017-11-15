@@ -16,12 +16,13 @@ class SearchController extends Controller
         $type = request('type');
         $search = request('search');
         $page = 0;
-        if(request()->has('page')) $page = request('page') - 1;
+        if(request()->has('page')) $page = request('page');
+        //dd($page);
         $results = $repository->{$type}($search);
         if(! $results instanceof LengthAwarePaginator){
             //$paginatedResults = collect(array_slice($results->toArray(), 25 * $page, 25, true));
             $paginatedResults = $results->slice(25 * $page, 25);
-            $results = new LengthAwarePaginator($paginatedResults, count($results), 25, $page);
+            $results = (new LengthAwarePaginator($paginatedResults, count($results), 25, $page))->withPath("search");
         }
         return view('search.index', compact('results', 'search', 'type'));
 
