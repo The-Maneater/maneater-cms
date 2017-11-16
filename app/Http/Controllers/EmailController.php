@@ -55,6 +55,10 @@ class EmailController extends Controller
             case "business":
                 $to = "advertising@themaneater.com";
                 break;
+
+            default:
+                $to = "online@themaneater.com";
+                break;
         }
 
         //$to = "msmith@themaneater.com";
