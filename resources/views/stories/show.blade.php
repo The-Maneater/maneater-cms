@@ -51,19 +51,19 @@
                     <section class='articleInfo is-flex'>
                         @if($story->type === "editorial")
                             <p class="disclaimer">Editorials represent the majority opinion of The Maneater editorial board.</p>
-                        @elseif($story->static_byline !== null && $story->static_byline !== "")
-                            <p class="byline">{{ $story->static_byline }}</p>
-                        @elseif (count($story->writers) == 1)
+                        @elseif(count($story->writers) == 1)
                             <p class="byline">By <a href="{{ $story->writers[0]->path() }}" class="is-m-green">{{ $story->writers[0]->first_name }} {{ $story->writers[0]->last_name }}</a></p>
+                        @elseif (count($story->writers) > 1)
+                            <p class="byline">By
+                                @foreach ($story->writers as $writer)
+                                    {{ $writer->first_name }} {{ $writer->last_name }}
+                                    @if (!$loop->last)
+                                        and
+                                    @endif
+                                @endforeach
+                            </p>
                         @else
-                                <p class="byline">By
-                                    @foreach ($story->writers as $writer)
-                                        {{ $writer->first_name }} {{ $writer->last_name }}
-                                            @if (!$loop->last)
-                                                and
-                                            @endif
-                                    @endforeach
-                                </p>
+                            <p class="byline">{{ $story->static_byline }}</p>
                         @endif
                         <p class="published"> {{ $story->formattedPublishDate->format('M. d, Y') }} </p>
                         @if($story->type === "column")
