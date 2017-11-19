@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Correction extends Model
 {
 	protected $fillable = [
-		'storyId', 'date', 'content'
+		'story_id', 'date', 'content'
 	];
 
 	protected $dates = ['date'];

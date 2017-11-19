@@ -93,6 +93,11 @@
                 </div>
                 <div class="column is-10">
                     <div class="body">
+                        @if(count($story->corrections) > 0)
+                            @foreach($story->corrections as $correction)
+                                <p class="disclaimer">{{ $correction->content }}</p>
+                            @endforeach
+                        @endif
                         {!! Markdown::parse($story->body) !!}
                     </div>
                     <div id="bottomshare">

@@ -93,7 +93,7 @@
                             <th>Reference</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="inline-body">
                         @if(count($article->inlinePhotos) > 0)
                             @foreach($article->inlinePhotos as $inlinePhoto)
                                 @if($loop->first)
@@ -146,6 +146,38 @@
                     </select2>
                 </b-field>
                 <div class="field">
+                    <label class="label">Corrections:</label>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Content</th>
+                        </tr>
+                        </thead>
+                        <tbody class="correction-body">
+                        @if(count($article->corrections) > 0)
+                            @foreach($article->corrections as $correction)
+                                @if($loop->first)
+                                    <tr class="firstRow" id="correctionFirstRow">
+                                @else
+                                    <tr class="firstRow">
+                                @endif
+                                        <td class="photoSelect">
+                                            <input type="text" class="input" name="corrections[{{$loop->index}}" value="{{ $correction->content }}">
+                                        </td>
+                                    </tr>
+                            @endforeach
+                        @else
+                            <tr class="firstRow" id="correctionFirstRow">
+                                <td class="correction">
+                                    <input type="text" class="input" name="corrections[0]" placeholder="Correction Content">
+                                </td>
+                            </tr>
+                        @endif
+                        </tbody>
+                    </table>
+                    <a onclick="addCorrectionTableRow()" class="button">Add Row</a>
+                </div>
+                <div class="field">
                     <label for="slug" class="label">Slug:</label>
                     <p class="control">
                         <input type="text" name="slug" id="slug" class="wideTextField input" value="{{ $article->slug }}">
@@ -160,6 +192,7 @@
 @section('scripts')
     <script>
         let inlineIndex = {{ count($article->inlinePhotos()) }} + 1;
+        let correctionIndex = {{ count($article->corrections) }} +1;
 
         let config = {
             ajax: {
@@ -227,12 +260,21 @@
             $(el).find('td.photoSelect select').attr("name", "inlinePhotos[" + inlineIndex + "][photo]").val([]);
             $(el).find('td.reference input').attr("name", "inlinePhotos[" + inlineIndex + "][reference]").val("");
             $(el).attr('id', '');
-            $("tbody").append(el);
+            $("tbody.inline-body").append(el);
             $('.inline-photo').select2({
                 placeholder: 'Select an option',
                 allowClear: true
             });
             inlineIndex++;
+            console.log("hi");
+        }
+
+        function addCorrectionTableRow(){
+            let el = $("#correctionFirstRow").clone();
+            $(el).find('td.correction input').attr("name", "corrections[" + correctionIndex + "]").val("");
+            $(el).attr('id', '');
+            $("tbody.correction-body").append(el);
+            correctionIndex++;
             console.log("hi");
         }
 

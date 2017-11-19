@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Ad;
+use App\Correction;
 use App\Http\Requests\CreateStoryRequest;
 use App\Repositories\AdRepository;
 use App\Repositories\CacheRepository;
 use App\Staffer;
 use App\Story;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class StoriesController extends Controller
@@ -148,8 +150,9 @@ class StoriesController extends Controller
     public function update(CreateStoryRequest $request, $section, $slug)
     {
         //dd($request->all());
+        //dd(request('corrections'));
         $article = Story::findBySectionAndSlug($section, $slug);
-        $article->update($request->except(['issue', 'byline', 'topPhotos', 'inlinePhotos' , 'graphics', 'section', 'tags']));
+        $article->update($request->except(['issue', 'byline', 'topPhotos', 'inlinePhotos' , 'graphics', 'section', 'tags', 'corrections']));
         $article->writers()->sync($request->input('byline'));
         $article->issue()->associate($request->input('issue'));
 
@@ -169,7 +172,15 @@ class StoriesController extends Controller
         $article->section()->associate($request->input('section'));
         $article->syncTags($request->input('tags'));
         $article->save();
-
+        foreach(request('corrections') as $correction){
+//           $correction = new Correction;
+//           $correction->date = Carbon::now();
+//           $correction->content = $correction;
+           $article->corrections()->create([
+               'date' => Carbon::now(),
+               'content' => $correction
+           ]);
+        }
         CacheRepository::updateLatestStories();
         CacheRepository::updateSectionTopTags($article);
         $article->section_webfront_priority !== null ? CacheRepository::updateSectionWebFront($article->section) : null;
