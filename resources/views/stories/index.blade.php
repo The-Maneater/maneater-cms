@@ -9,29 +9,35 @@
             <div class="columns">
                 <div class="column is-8">
                     <div id="top_story_0" class="ui-tabs-panel">
-                        @if(count($frontPageStories[1]->headerPhotos) > 0)
-                            <img class="front-page-images" src="{{ $frontPageStories[1]->headerPhotos[0]->path() }}" alt="">
+                        @if(isset($frontPageStories[1]))
+                            @if(count($frontPageStories[1]->headerPhotos) > 0)
+                                <img class="front-page-images" src="{{ $frontPageStories[1]->headerPhotos[0]->path() }}" alt="">
+                            @endif
+                            <h1><a href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h1>
+                            <div class="topcaption">{{ $frontPageStories[1]->cDeck }}</div>
                         @endif
-                        <h1><a href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h1>
-                        <div class="topcaption">{{ $frontPageStories[1]->cDeck }}</div>
                     </div>
                     <div id="top_story_3" class="ui-tabs-panel">
-                        @if(count($frontPageStories[4]->headerPhotos) > 0)
-                            <img class="smaller-front-image" src="{{ $frontPageStories[4]->headerPhotos[0]->path() }}" alt="">
+                        @if(isset($frontPageStories[4]))
+                            @if(count($frontPageStories[4]->headerPhotos) > 0)
+                                    <img class="smaller-front-image" src="{{ $frontPageStories[4]->headerPhotos[0]->path() }}" alt="">
+                                @endif
+                                <div>
+                                    <h1><a href="{{ $frontPageStories[4]->path() }}">{{ $frontPageStories[4]->title }}</a></h1>
+                                    <div class="topcaption">{{ $frontPageStories[4]->cDeck }}</div>
+                                </div>
                         @endif
-                        <div>
-                            <h1><a href="{{ $frontPageStories[4]->path() }}">{{ $frontPageStories[4]->title }}</a></h1>
-                            <div class="topcaption">{{ $frontPageStories[4]->cDeck }}</div>
-                        </div>
                     </div>
                     <div id="top_story_4" class="ui-tabs-panel">
-                        @if(count($frontPageStories[5]->headerPhotos) > 0)
-                            <img class="smaller-front-image" src="{{ $frontPageStories[5]->headerPhotos[0]->path() }}" alt="">
+                        @if(isset($frontPageStories[5]))
+                            @if(count($frontPageStories[5]->headerPhotos) > 0)
+                                <img class="smaller-front-image" src="{{ $frontPageStories[5]->headerPhotos[0]->path() }}" alt="">
+                            @endif
+                            <div>
+                                <h1><a href="{{ $frontPageStories[5]->path() }}">{{ $frontPageStories[5]->title }}</a></h1>
+                                <div class="topcaption">{{ $frontPageStories[5]->cDeck }}</div>
+                            </div>
                         @endif
-                        <div>
-                            <h1><a href="{{ $frontPageStories[5]->path() }}">{{ $frontPageStories[5]->title }}</a></h1>
-                            <div class="topcaption">{{ $frontPageStories[5]->cDeck }}</div>
-                        </div>
                     </div>
                     {{--<div id="top_story_0" class="ui-tabs-panel">--}}
                         {{--<a href="http://www.themaneater.com/stories/2017/4/2/center-responsibility-and-discovery-halls-will-clo/"><img class="topphoto" src="http://www.themaneater.com/media/2017/0402/photos/Centerkaitlin_jpg_900x600_q85_jpg_600x400_crop_q85.jpg" alt="Center, Responsibility and Discovery halls will close next year"></a>--}}
@@ -51,18 +57,22 @@
                 </div>
                 <div class="column is-4">
                     <div id="top_story_1" class="ui-tabs-panel">
-                        @if(count($frontPageStories[2]->headerPhotos) > 0)
-                            <img class="front-page-images" src="{{ $frontPageStories[2]->headerPhotos[0]->path() }}" alt="">
+                        @if(isset($frontPageStories[2]))
+                            @if(count($frontPageStories[2]->headerPhotos) > 0)
+                                <img class="front-page-images" src="{{ $frontPageStories[2]->headerPhotos[0]->path() }}" alt="">
+                            @endif
+                            <h1><a href="{{ $frontPageStories[2]->path() }}">{{ $frontPageStories[2]->title }}</a></h1>
+                            <div class="topcaption">{{ $frontPageStories[2]->cDeck }}</div>
                         @endif
-                        <h1><a href="{{ $frontPageStories[2]->path() }}">{{ $frontPageStories[2]->title }}</a></h1>
-                        <div class="topcaption">{{ $frontPageStories[2]->cDeck }}</div>
                     </div>
                     <div id="top_story_2" class="ui-tabs-panel">
-                        @if(count($frontPageStories[3]->headerPhotos) > 0)
-                            <img class="front-page-images" src="{{ $frontPageStories[3]->headerPhotos[0]->path() }}" alt="">
+                        @if(isset($frontPageStories[3]))
+                            @if(count($frontPageStories[3]->headerPhotos) > 0)
+                                <img class="front-page-images" src="{{ $frontPageStories[3]->headerPhotos[0]->path() }}" alt="">
+                            @endif
+                                <h1><a href="{{ $frontPageStories[3]->path() }}">{{ $frontPageStories[3]->title }}</a></h1>
+                            <div class="topcaption">{{ $frontPageStories[3]->cDeck }}</div>
                         @endif
-                            <h1><a href="{{ $frontPageStories[3]->path() }}">{{ $frontPageStories[3]->title }}</a></h1>
-                        <div class="topcaption">{{ $frontPageStories[3]->cDeck }}</div>
                     </div>
                     {{--<div id="top_story_1" class="ui-tabs-panel">--}}
                         {{--<a href="http://www.themaneater.com/stories/2017/3/23/whats-photo/"><img class="topphoto" src="http://www.themaneater.com/media/2017/0323/photos/_MG_0321_1_JPG_600x400_crop_q85.jpg" alt="What's up in photo?"></a>--}}
