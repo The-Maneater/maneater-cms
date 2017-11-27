@@ -55,8 +55,14 @@ class Ad extends Model
      */
     public function scopeActive(Builder $builder)
     {
-        return $builder->where('campaign_start', '<=', Carbon::now()->toDateString())
-           ->where('campaign_end', '>=', Carbon::now()->toDateString());
+        $c = Carbon::now()->toDateTimeString();
+        //where([['campaign_start', '<=', $c],['campaign_end', '>=', $c]])
+        /*return $builder->where('campaign_start', '<=', Carbon::now()->toDateString())
+           ->where('campaign_end', '>=', Carbon::now()->toDateString());*/
+        return $builder->where([
+            ['campaign_start', '<=', $c],
+            ['campaign_end', '>=', $c]
+        ]);
     }
 
     public function scopeCube(Builder $builder)

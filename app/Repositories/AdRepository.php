@@ -22,6 +22,7 @@ class AdRepository
 
     public static function banner($times)
     {
+        //Ad::banner()->active()->inRandomOrder()->take(1)->get();
         $banner = Ad::banner()->active()->inRandomOrder()->take($times)->get();
         $banner->each->serve();
         return ['banner' => $banner];
