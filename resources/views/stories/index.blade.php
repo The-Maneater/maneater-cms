@@ -4,7 +4,7 @@
     <div class="columns">
         <div class="column is-8">
             @if(isset($ads['banner'][0]))
-                <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-bottom-ad"></a>
+                <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-bottom-ad"></a>
             @endif
             <div class="columns">
                 <div class="column is-8">
