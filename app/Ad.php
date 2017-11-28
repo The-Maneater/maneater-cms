@@ -81,6 +81,6 @@ class Ad extends Model
             return $this->provider_url;
         }
 
-        return "https://" . $this->provider_url;
+        return "http://" . $this->provider_url;
     }
 }
