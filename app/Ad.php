@@ -74,4 +74,13 @@ class Ad extends Model
     {
         return $builder->where('size', 'banner');
     }
+
+    public function provider()
+    {
+        if(preg_match('/^(http|https)/', $this->location)){
+            return $this->provider_url;
+        }
+
+        return "http://" . $this->provider_url;
+    }
 }
