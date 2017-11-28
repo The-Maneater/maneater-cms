@@ -77,10 +77,10 @@ class Ad extends Model
 
     public function provider()
     {
-        if(preg_match('/^(http|https)/', $this->location)){
+        if(preg_match('/^(http:|https:)/', $this->provider_url)){
             return $this->provider_url;
         }
 
-        return "http://" . $this->provider_url;
+        return "https://" . $this->provider_url;
     }
 }
