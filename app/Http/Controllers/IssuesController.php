@@ -78,6 +78,10 @@ class IssuesController extends Controller
     public function update(Request $request, Issue $issue)
     {
         $issue->issue_number = $request->input('name');
+        $issue->issu_url = $request->input('issu_url');
+        if($request->has('layout')){
+            $issue->layout()->associate($request->input('layout'));
+        }
         $issue->volume()->associate($request->input('volume'));
         $issue->save();
 
