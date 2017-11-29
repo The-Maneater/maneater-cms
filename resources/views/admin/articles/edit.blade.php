@@ -162,7 +162,7 @@
                                     <tr class="firstRow">
                                 @endif
                                         <td class="photoSelect">
-                                            <input type="text" class="input" name="corrections[{{$loop->index}}" value="{{ $correction->content }}">
+                                            <input type="text" class="input" name="corrections[{{$loop->index}}]" value="{{ $correction->content }}">
                                         </td>
                                     </tr>
                             @endforeach

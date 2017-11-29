@@ -174,13 +174,16 @@ class StoriesController extends Controller
         $article->save();
         if(request()->has('corrections')){
             foreach(request('corrections') as $correction){
+                if($correction !== null && $correction !== ""){
+                    $article->corrections()->create([
+                        'date' => Carbon::now(),
+                        'content' => $correction
+                    ]);
+                }
 //           $correction = new Correction;
 //           $correction->date = Carbon::now();
 //           $correction->content = $correction;
-                $article->corrections()->create([
-                    'date' => Carbon::now(),
-                    'content' => $correction
-                ]);
+
             }
         }
 
