@@ -222,7 +222,11 @@
             <h2 class="sectionlabel is-primary">Current issue</h2>
             <div class="sectionbox issu">
                 <div id="issue-link">
-                    <a href="{{ $issue->issu_url }}"><img src="{{ $issue->layout->img_link }}" alt="Maneater front page"></a>
+                    <a href="{{ $issue->issu_url }}">
+                     @if(isset($issue->layout))
+                        <img src="{{ $issue->layout->img_link }}" alt="Maneater front page" />
+                    @endif
+                    </a>
                 </div>
                 <ul>
                     <li class="bullet"><a href="/issues/{{ $issue->id }}/">{{ $issue->issue_name }}</a></li>
