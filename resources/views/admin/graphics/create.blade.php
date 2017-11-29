@@ -21,13 +21,14 @@
                 </b-field>
                 <b-field label="Issue:">
                     <select2 name="issue" id="issue">
-                        @foreach(\App\Issue::all() as $issue)
+                        @foreach(\App\Issue::latest('id')->take(10)->get() as $issue)
                             <option value="{{ $issue->id }}">{{ $issue->issueName }}</option>
                         @endforeach
                     </select2>
                 </b-field>
                 <b-field label="Section:">
                     <select2 name="section" id="section">
+                        <option value=""></option>
                         @foreach (\App\Section::all() as $section)
                             <option value="{{ $section->id }}">{{ $section->name }}</option>
                         @endforeach
