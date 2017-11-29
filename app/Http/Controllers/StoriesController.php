@@ -172,15 +172,18 @@ class StoriesController extends Controller
         $article->section()->associate($request->input('section'));
         $article->syncTags($request->input('tags'));
         $article->save();
-        foreach(request('corrections') as $correction){
+        if(request()->has('corrections')){
+            foreach(request('corrections') as $correction){
 //           $correction = new Correction;
 //           $correction->date = Carbon::now();
 //           $correction->content = $correction;
-           $article->corrections()->create([
-               'date' => Carbon::now(),
-               'content' => $correction
-           ]);
+                $article->corrections()->create([
+                    'date' => Carbon::now(),
+                    'content' => $correction
+                ]);
+            }
         }
+
         CacheRepository::updateLatestStories();
         CacheRepository::updateSectionTopTags($article);
         $article->section_webfront_priority !== null ? CacheRepository::updateSectionWebFront($article->section) : null;
