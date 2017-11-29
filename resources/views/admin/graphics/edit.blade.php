@@ -47,7 +47,7 @@
                     <b-input name="static_byline" id="static_byline" value="{{ $graphic->static_byline }}"></b-input>
                 </b-field>
                 <b-field>
-                    <a href="{{ $graphic->link }}" target="_blank">Graphic Link</a>
+                    <a href="{{ $graphic->linkPath() }}" target="_blank">Graphic Link</a>
                 </b-field>
                 {{--<b-field label="Description">--}}
                     {{--<b-input type="textarea" name="description" id="description" value="{{ $graphic->description }}"></b-input>--}}

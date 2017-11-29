@@ -28,7 +28,7 @@
         <table class="table is-striped is-bordered">
             <thead>
             <tr>
-                <th>Title</th>
+                <th>ID</th>
                 <th>Date Published</th>
                 <th>Issue</th>
                 <th>Section</th>
@@ -37,7 +37,7 @@
             <tbody>
             @foreach($graphics as $graphic)
                 <tr>
-                    <td><a href="{{ route('edit-graphic', [$graphic->id]) }}">{{ $graphic->title }}</a></td>
+                    <td><a href="{{ route('edit-graphic', [$graphic->id]) }}">{{ $graphic->id }}</a></td>
                     <td>{{ $graphic->publish_date->format('M j, Y g:i A') }}</td>
                     <td>{{ $graphic->issue->issueName }}</td>
                     <td>{{ $graphic->section->name }}</td>
