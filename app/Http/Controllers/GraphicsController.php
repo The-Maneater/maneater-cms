@@ -40,7 +40,7 @@ class GraphicsController extends Controller
      * @param CreateGraphicRequest|Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateGraphicRequest $request)
+    public function store(Request $request)
     {
         $carbon = Carbon::now();
         $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/graphics";
