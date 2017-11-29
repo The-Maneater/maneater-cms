@@ -40,7 +40,7 @@
                 <b-field label="Designer:">
                     <select2 name="staffer" id="staffer">
                         @foreach (\App\Staffer::all() as $staffer)
-                            <option value="{{ $staffer->id }}" {{ $layout->staffer->id == $staffer->id ? "selected" : "" }}>{{ $staffer->fullname }}</option>
+                            <option value="{{ $staffer->id }}" {{ $layout->staffers[0]->id == $staffer->id ? "selected" : "" }}>{{ $staffer->fullname }}</option>
                         @endforeach
                     </select2>
                 </b-field>
