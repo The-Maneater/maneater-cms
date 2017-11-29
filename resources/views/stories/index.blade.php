@@ -224,7 +224,7 @@
                 <div id="issue-link">
                     <a href="{{ $issue->issu_url }}">
                      @if(isset($issue->layout))
-                        <img src="{{ $issue->layout->link }}" alt="Maneater front page" />
+                        <img src="{{ $issue->layout->path() }}" alt="Maneater front page" />
                     @endif
                     </a>
                 </div>
