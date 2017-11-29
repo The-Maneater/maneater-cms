@@ -45,6 +45,7 @@ class GraphicsController extends Controller
         $carbon = Carbon::now();
         $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/graphics";
         $graphic = new Graphic();
+        $graphic->title = "";
         $graphic->fill($request->except(['issue', 'section', 'byline', 'graphic']));
         $image = $request->file('graphic')
             ->storeAs($filePath, $request->file('graphic')->getClientOriginalName(), 'media');
