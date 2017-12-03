@@ -71,7 +71,7 @@
                     @endforeach
                 @endif
 
-                @if(count($staffer->graphics) > 0)
+                @if(count($staffer->layouts) > 0)
                     <h5 class="search-results-header">LAYOUTS ({{ count($staffer->layouts) }})</h5>
                     @foreach($staffer->layouts as $layout)
                         <div class="columns resultset">

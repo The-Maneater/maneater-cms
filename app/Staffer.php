@@ -173,10 +173,10 @@ class Staffer extends Model
 
     /**
      * Returns the layouts the user has designed
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function layouts(){
-        return $this->hasMany(Layout::class);
+        return $this->belongsToMany(Layout::class);
     }
 
     /**
