@@ -58,7 +58,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
             Route::get('/', 'StoriesController@index');
             Route::get('/edit/{section}/{slug}', 'StoriesController@edit')->name('edit-story');
             Route::patch('/edit/{section}/{slug}', 'StoriesController@update')->name('update-story');
-            Route::delete('/{section}/{slug}', 'StoriesController@destroy')->name('story.delete');
+            Route::delete('/{id}', 'StoriesController@destroy')->name('story.delete');
         });
 
         Route::group(['prefix' => 'web-fronts'], function(){

@@ -34,6 +34,7 @@
                <th>Issue</th>
                <th>Priority</th>
                <th>Section</th>
+               <th></th>
            </tr>
            </thead>
            <tbody>
@@ -45,6 +46,7 @@
                 <td>{{ $article->issue->issueName }}</td>
                 <td>{{ $article->priority }}</td>
                 <td>{{ $article->section->name }}</td>
+                <td><button class="button is-danger" onclick="showDeleteModal({{ $article->id }})">Delete</button></td>
               </tr>
            @endforeach
            </tbody>
@@ -53,5 +55,42 @@
             {{ $articles->links() }}
         </div>
 
+        <div class="modal" id="delete-modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <p>Are you sure you wish to delete this story?</p>
+                    <button class="confirm-delete button is-danger">Yes</button>
+                    <button class="button is-info" onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
    </div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(document).ready(function(){
+            $('.modal-close').attr('onClick', 'closeModal()')
+        });
+
+        function closeModal(){
+            $('#delete-modal').removeClass('is-active');
+        }//$($0).parent().parent().children("td:first")[0].innerText;
+
+        function showDeleteModal(id){
+            $('#delete-modal').addClass("is-active");
+            $('.confirm-delete').attr('onClick', "deleteStory(" + id + ")");
+        }
+
+        function deleteStory(id){
+            console.log(id);
+            $.post('/admin/core/stories/' + id, {_method: "delete", _token: window.Laravel.csrfToken}, function(data){
+                closeModal();
+                location.reload();
+            });
+
+        }
+    </script>
 @endsection

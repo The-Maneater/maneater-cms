@@ -197,19 +197,22 @@ class StoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param $section
-     * @param $slug
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return bool|\Illuminate\Http\Response
      * @internal param int $id
      */
-    public function destroy($section, $slug)
+    public function destroy($id)
     {
-        $story = Story::findBySectionAndSlug($section, $slug);
-        $this->authorize('delete', $story);
+        $story = Story::find($id);
+        $story->writers()->sync([]);
+        $story->graphics()->sync([]);
+        $story->corrections()->delete();
+        $story->photos()->sync([]);
+        //$this->authorize('delete', $story);
 
         $story->delete();
 
-        return redirect('/admin/core/stories');
+        return response('', 200);
     }
 
     /**

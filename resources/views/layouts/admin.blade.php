@@ -16,6 +16,11 @@
             color: #2F7A32;
         }
     </style>
+    <script>
+        window.Laravel = <?php echo json_encode([
+            'csrfToken' => csrf_token(),
+        ]); ?>
+    </script>
 </head>
 <body>
     @include('admin.navigation.top')
