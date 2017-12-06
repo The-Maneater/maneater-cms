@@ -29,7 +29,7 @@
                     <div class="main-picture-wrap">
                         <img src="{{ $story->graphics[0]->linkPath() }}" alt="">
                     </div>
-                    @if($story->graphics[0]->static_byline === null)
+                    @if($story->graphics[0]->static_byline === null || $story->graphics[0]->static_byline === "")
                         <div class="caption">
                             {{--<span>{{ $story->graphics[0]->description }}</span>--}}
                             <span class="all-caps">

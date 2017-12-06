@@ -8,9 +8,6 @@
                 <h5 class="search-results-header archive-pubdate">{{ Carbon\Carbon::parse($key)->format('M. d, Y') }}</h5>
                 @foreach($date as $story)
                     <div class="story columns">
-                        @php
-                            $story = new App\Story($story);
-                        @endphp
                         <div class="column is-10">
                             <h2><a href="{{ $story->path() }}">{{ $story->title }}</a></h2>
                             <h6>Published by <a href="{{ url('/staff/' . $story->writers[0]['slug']) }}" class="is-m-green">{{ $story->writers[0]['fullname'] }}</a></h6>
