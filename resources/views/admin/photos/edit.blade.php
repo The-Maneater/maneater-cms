@@ -67,6 +67,9 @@
                         @endforeach
                     </select2>
                 </b-field>
+                <b-field label="Embed Code">
+                    <b-input value="{{ $photo->embedCode() }}" readonly></b-input>
+                </b-field>
             </div>
         </form>
     </div>

@@ -84,4 +84,9 @@ class Photo extends Model
         return $exists ? "selected" : "";
     }
 
+    public function embedCode()
+    {
+        return "<img src='" . $this->path() . "'>";
+    }
+
 }

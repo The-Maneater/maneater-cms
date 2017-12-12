@@ -34,7 +34,9 @@
                <th>Issue</th>
                <th>Priority</th>
                <th>Section</th>
+               @ability('ed-board,super', '')
                <th></th>
+               @endrole
            </tr>
            </thead>
            <tbody>
@@ -46,7 +48,9 @@
                 <td>{{ $article->issue->issueName }}</td>
                 <td>{{ $article->priority }}</td>
                 <td>{{ $article->section->name }}</td>
+                  @ability('ed-board,super', '')
                 <td><button class="button is-danger" onclick="showDeleteModal({{ $article->id }})">Delete</button></td>
+                  @endrole
               </tr>
            @endforeach
            </tbody>

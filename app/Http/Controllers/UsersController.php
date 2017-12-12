@@ -40,7 +40,12 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
-        $user = User::create($request->except('roles'));
+        $user = new User;
+        $user->fill($request->except('roles', 'password'));
+        if(request('password') !== ""){
+            $user->password = bcrypt(request("password"));
+            $user->save();
+        }
         $user->roles()->sync(request('roles'));
 
         return redirect('/admin/staff/users');
