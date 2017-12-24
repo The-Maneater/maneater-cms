@@ -18,6 +18,7 @@ Route::domain('move.' . config('app.base'))->group(function(){
     Route::get('/staff/{slug}', 'MoveController@staffShow');
     Route::get('/stories/{section}/{slug}', 'MoveController@storyShow');
     Route::get('/search', 'MoveController@search');
+    Route::get('/{param?}', 'MoveController@flatpage')->where(['param' => '.*']);
 });
 
 Route::get('/', 'PagesController@frontpage');
@@ -190,4 +191,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 });
 Route::get("/stories/{year}/{month}/{day}/{slug}", 'RedirectController@old');
 Route::get('{image_pattern}', 'Folklore\Image\ImageController@serve')->name('image.serve');
-Route::get('/{param?}', 'FlatpageController@show')->where(['param' => '.*']);;
+Route::get('/{param?}', 'FlatpageController@show')->where(['param' => '.*']);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Flatpage;
 use App\Repositories\MoveSearchRepository;
 use App\Repositories\SearchRepository;
 use App\Section;
@@ -80,5 +81,11 @@ class MoveController extends Controller
             $results->withPath('search');
         }
         return view('move.search.show', compact('results', 'search', 'type'));
+    }
+
+    public function flatpage($param)
+    {
+        $flatpage = Flatpage::where('path', $param)->firstOrFail();
+        return view('move.flatpage', compact('flatpage'));
     }
 }
