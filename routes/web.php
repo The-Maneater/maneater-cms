@@ -39,7 +39,7 @@ Route::get('/staff/editors', 'PagesController@editorialBoard');
 Route::get('/staff', 'PagesController@allStaff');
 Route::get('/staff/{slug}', 'StafferController@show');
 Route::get('/stories', 'PagesController@latest');
-Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
+//Route::get('/special-sections/{slug}', 'SpecialSectionsController@show');
 Route::get('/stories/{section}/{slug}', 'StoriesController@show');
 Route::get('/classifieds', 'PagesController@classifieds');
 Route::get('/tags/{slug}', 'TagsController@show');
