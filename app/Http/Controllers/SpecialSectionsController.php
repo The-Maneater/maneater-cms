@@ -44,12 +44,14 @@ class SpecialSectionsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $path
      * @return \Illuminate\Http\Response
+     * @internal param int $id
      */
-    public function show($id)
+    public function show($path)
     {
-        //
+        $data = file_get_contents(public_path("special-sections/".$path . ".html"));
+        return view('stories.special', compact('data'));
     }
 
     /**
