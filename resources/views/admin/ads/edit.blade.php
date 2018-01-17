@@ -26,7 +26,7 @@
                 <b-field label="Size:">
                     <select2 name="size">
                         <option value="banner" {{ $ad->size == "banner" ? "selected" : "" }}>Banner</option>
-                        <option value="sidebar" {{ $ad->size == "sidebar" ? "selected" : "" }}>Sidebar</option>
+                        <option value="cube" {{ $ad->size == "cube" ? "selected" : "" }}>Cubed</option>
                     </select2>
                 </b-field>
             </div>

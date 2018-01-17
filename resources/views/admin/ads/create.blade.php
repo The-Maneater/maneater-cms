@@ -25,7 +25,7 @@
                 <b-field label="Size:">
                     <select2 name="size">
                         <option value="banner">Banner</option>
-                        <option value="sidebar">Sidebar</option>
+                        <option value="cube">Cubed</option>
                     </select2>
                 </b-field>
             </div>
