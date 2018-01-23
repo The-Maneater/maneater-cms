@@ -229,7 +229,7 @@
             });
             $('#topPhotos').select2(config);
             $('#first-inline').select2(config);
-            $('#graphics').select2(graphicsConfig);
+            //$('#graphics').select2(graphicsConfig);
         })
 
     </script>
