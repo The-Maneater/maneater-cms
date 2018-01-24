@@ -34,10 +34,7 @@ class SearchController extends Controller
         $page = 0;
         if(request()->has('page')) $page = request('page') - 1;
         $results = Photo::search($search)->orderBy('publish_date', 'DESC')->get()
-            ->load(['section'])
-            ->filter(function ($story){
-                return $story->section->publication_id === 1;
-            });
+            ->load(['section']);
         //dd($results);
         if(! $results instanceof LengthAwarePaginator){
             //$paginatedResults = collect(array_slice($results->toArray(), 25 * $page, 25, true));
