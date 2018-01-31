@@ -112,6 +112,7 @@ class PhotosController extends Controller
         $photo->update($request->except(['byline', 'photo', 'tags']));
         $photo->photographer()->associate($request->input('byline'));
         $photo->syncTags($request->input('tags'));
+        $photo->save();
 
         return redirect('/admin/core/photos');
     }
