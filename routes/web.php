@@ -18,6 +18,7 @@ Route::domain('move.' . config('app.base'))->group(function(){
     Route::get('/staff/{slug}', 'MoveController@staffShow');
     Route::get('/stories/{section}/{slug}', 'MoveController@storyShow');
     Route::get('/search', 'MoveController@search');
+    Route::get("/stories/{year}/{month}/{day}/{slug}", 'RedirectController@old');
     Route::get('/{param?}', 'MoveController@flatpage')->where(['param' => '.*']);
 });
 
