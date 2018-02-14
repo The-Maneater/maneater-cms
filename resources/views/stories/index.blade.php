@@ -209,7 +209,7 @@
                                 @elseif($i == 0 && count($sections['opinion'][$i]->graphics) > 0 )
                                     <img class="front-page-image" src="{{ $sections['move'][$i]->graphics[0]->linkPath() }}" alt="">
                                 @endif
-                                <a href="{{ config('app.move_url') . $sections['move'][$i]->path() }}" class="is-black">{{ $sections['move'][$i]->title }}</a>
+                                <a href="{{$sections['move'][$i]->path() }}" class="is-black">{{ $sections['move'][$i]->title }}</a>
                             </li>
                         @endfor
                     </ul>

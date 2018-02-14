@@ -34,7 +34,7 @@ class StoryRepository
 
         $move = Story::whereHas('section', function($query){
             $query->where('publication_id', 2);
-        })->take(6)->get()->load(['section']);
+        })->orderBy('publish_date', 'DESC')->take(6)->get()->load(['section']);
 
         return [
           'campus' => $campus,
