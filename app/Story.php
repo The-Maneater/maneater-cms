@@ -191,7 +191,9 @@ class Story extends Model
     function getUniqueSlug()
     {
         $slug = $this->slug;
-        $slugCount = count(Story::whereRaw("slug REGEXP '^{$slug}(-[0-9]+)?$'")->get());
+        $slugCount = count(Story::whereRaw("slug REGEXP '^:slug(-[0-9]+)?$'", [
+            'slug' => $slug
+        ])->get());
 
         return ($slugCount > 0) ? "{$slug}-{$slugCount}" : $slug;
     }
