@@ -13,3 +13,5 @@ deploy_rsa.enc
 
 npm-debug\.log
 /public/media/
+
+public/special-sections/flatpages/

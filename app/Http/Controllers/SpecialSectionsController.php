@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\SpecialSection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 
 class SpecialSectionsController extends Controller
@@ -50,7 +51,26 @@ class SpecialSectionsController extends Controller
      */
     public function show($path)
     {
-        $data = file_get_contents(public_path("special-sections/".$path . ".html"));
+        $speicalSection = SpecialSection::whereUrl("/special-sections/".$path . "/")->first();
+        if($speicalSection == null){
+            throw new ModelNotFoundException;
+        }
+        if(!file_exists(public_path("special-sections/" . $speicalSection->template_location))){
+            return response('', 404);
+        }
+        $data = file_get_contents(public_path("special-sections/" . $speicalSection->template_location));
+        $dom = new \DOMDocument();
+        @$dom->loadHTML($data);
+        //dd($dom);
+        //<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        foreach($dom->getElementsByTagName("head") as $head){
+            $first = $head->childNodes[0];
+            $elem = $dom->createElement("meta");
+            $elem->setAttribute("http-equiv", "Content-Security-Policy");
+            $elem->setAttribute("content", "upgrade-insecure-requests");
+            $head->insertBefore($elem, $first);
+        }
+        $data = $dom->saveHTML();
         return view('stories.special', compact('data'));
     }
 
