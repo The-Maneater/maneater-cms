@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     @else
-                        <h2><a href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h2>
+                        <h2><a class="is-black" href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h2>
                         <div class="topcaption">{{ $frontPageStories[1]->cDeck }}</div>
                     @endif
                 </div>
