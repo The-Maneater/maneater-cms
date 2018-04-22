@@ -9,7 +9,7 @@
                 @endif
             </div>
             <div class="is-flex justify-center">
-                <div class="main-photo-wrapper">
+                <div class="main-photo-wrapper {{ count($frontPageStories[0]->headerPhotos) == 0 ? "main-photo-wrapper-fixer" : "" }}">
                     @if(count($frontPageStories[1]->headerPhotos) > 0)
                         <img class="main-photo" src="{{ $frontPageStories[1]->headerPhotos[0]->path() }}" alt="">
                         <div class="photo-caption-wrapper">

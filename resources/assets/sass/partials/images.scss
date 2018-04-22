@@ -111,6 +111,12 @@
   margin-bottom: 25px;
 }
 
+.main-photo-wrapper-fix{
+  display: flex;
+  flex-flow: column;
+  height: auto !important;
+}
+
 .main-photo{
   height:100%;
   max-width: 900px;
