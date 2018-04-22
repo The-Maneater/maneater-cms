@@ -54,7 +54,7 @@
                         @if(count($frontPageStories[5]->headerPhotos) > 0)
                             <img src="{{ $frontPageStories[5]->headerPhotos[0]->path() }}" alt="">
                         @endif
-                        <h2 class="m-t-10-b-10"><a class="is-black" href="{{ $frontPageStories[3]->path() }}">{{ $frontPageStories[5]->title }}</a></h2>
+                        <h2 class="m-t-10-b-10"><a class="is-black" href="{{ $frontPageStories[5]->path() }}">{{ $frontPageStories[5]->title }}</a></h2>
                         <div class="topcaption">{{ $frontPageStories[5]->cDeck }}</div>
                     </div>
                 </div>
