@@ -17,11 +17,20 @@ class StoryRepository
 {
     public static function getFrontPageSectionStories()
     {
-        $campus = Section::findBySlug('campus')->latestStories()->get();
-        $unews = Section::findBySlug('uwire')->latestStories()->get();
+//        $campus = Section::findBySlug('campus')->latestStories()->get();
+//        $unews = Section::findBySlug('uwire')->latestStories()->get();
         $sports = Section::findBySlug('sports')->latestStories()->get();
         $projects = Section::findBySlug('projects')->latestStories()->get();
         $opinion = Section::findBySlug('opinion')->latestStories()->get();
+        $campus = Section::findBySlug('campus');
+        $unews = Section::findBySlug('uwire');
+        $news = Story::whereIn('section_id', [$campus->id, $unews->id])
+            ->with('section')
+            ->orderBy('publish_date', 'DESC')
+            ->take(6)
+            ->get();
+
+
 
 //        $sections = new Collection([
 //            'campus' => $campus,
@@ -37,8 +46,7 @@ class StoryRepository
         })->orderBy('publish_date', 'DESC')->take(6)->get()->load(['section']);
 
         return [
-          'campus' => $campus,
-          'unews' => $unews,
+          'news' => $news,
           'sports' => $sports,
           'projects' => $projects,
           'opinion' => $opinion,

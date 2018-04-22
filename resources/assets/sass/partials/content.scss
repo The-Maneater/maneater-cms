@@ -90,9 +90,14 @@ ul{
 }
 
 .banner-top-ad{
-  width:728px;
-  height:100px;
-  padding-top: 10px;
+  display:flex;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom:10px;
+  img{
+    width:728px;
+    height:100px;
+  }
 }
 
 .banner-bottom-ad{
@@ -212,4 +217,74 @@ div.share{
 .center-ad{
   display: flex;
   justify-content: center;
+}
+
+.header-divider{
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  text-align: center;
+  color:black;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.right-section{
+  border-left: 1px solid black;
+}
+
+.story-grid-block{
+  //width:250px;
+  margin-bottom:25px;
+  max-width:300px;
+}
+
+.flex-column{
+  display:flex;
+  flex-flow: column;
+}
+
+.align-center{
+  align-items: center;
+}
+
+.m-t-10-b-10{
+  margin-top:10px !important;
+  margin-bottom:10px !important;
+}
+
+.m-l-25{
+  //margin-left:25px;
+}
+
+.news-section{
+  display:flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.b-right{
+  border-right: 1px solid black;
+}
+
+.d-inline-block{
+  display:inline-block;
+}
+
+.move-icon{
+  font-size: 3em;
+  text-align: center;
+}
+
+.move-red-hover:hover{
+    color:#8c001a !important;
+}
+
+.center-text{
+  text-align: center;
+}
+
+.clear-line-height{
+  line-height: 0;
 }

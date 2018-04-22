@@ -53,8 +53,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
     'base' => env('APP_BASE_DOMAIN', 'localhost'),
-    'maneater_url' => env('MANEATER_URL', 'http://maneater-cms.dev'),
-    'move_url' => env('MOVE_URL', 'http://move.maneater-cms.dev'),
+    'maneater_url' => env('MANEATER_URL', 'http://maneater-cms.test'),
+    'move_url' => env('MOVE_URL', 'http://move.maneater-cms.test'),
     'upload_path' => env('UPLOAD_PATH', public_path("media")),
 
     /*

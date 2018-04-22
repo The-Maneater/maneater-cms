@@ -79,7 +79,7 @@
                 <a href="{{ url()->current() . '/archives' }}" class="button is-m-green">Archives</a>
         </div>
         <div class="column is-4">
-            <h2 class="sectionlabel">Top tags</h2>
+            <h2 class="header-divider is-bold">Top tags</h2>
             <div class="related-blogs">
                 <ul class="top-tags">
                     @foreach($tags as $tag)
@@ -87,8 +87,8 @@
                     @endforeach
                 </ul>
             </div>
+            <h3 class="header-divider is-bold">GET SOCIAL</h3>
             <div class="twitter-box">
-                <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
                 <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
             </div>
 

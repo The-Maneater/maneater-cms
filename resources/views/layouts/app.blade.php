@@ -25,7 +25,8 @@
 
     <!-- Styles -->
     {{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css">--}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    {{--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">--}}
     {{--<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">--}}
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link href="/css/app.css" rel="stylesheet">
@@ -39,55 +40,73 @@
 </head>
 <body>
 <div class="container" id="main">
-    <div class="centerImage is-flex">
-        <div class="nameplate">
-            <a href="{{ config('app.url') }}">
-                <img src="http://themaneater.com/media/style/2012-08/images/namplates/themaneater-hr.png">
-            </a>
+    <div style="
+    display: flex;
+    align-items: flex-end;
+">
+        {{--<div class="centerImage is-flex">--}}
+            {{--<div class="nameplate">--}}
+                {{--<a href="{{ config('app.url') }}">--}}
+                    {{--<img src="http://themaneater.com/media/style/2012-08/images/namplates/themaneater-hr.png">--}}
+                {{--</a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+        <a class="clear-line-height" href="{{ config('app.url') }}">
+            <img  src="https://themaneater.com/media/style/2012-08/images/namplates/maneaterss-hr.png" alt="">
+        </a>
+        <div style="display: flex;
+        flex-flow: column;
+        align-items: center;
+        width: 100%;
+        ">
+        <h1 style="
+    font-size: 4em;
+    color: black;
+">The Maneater</h1>
+        <div style="width:100%">
+            <nav class="nav has-shadow" id="topNav">
+                    <div class="nav-left">
+                        <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'campus') !== false ? "active-nav" : "" }}" href="/section/campus">CAMPUS</a>
+                        {{--<a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'projects') !== false ? "active-nav" : "" }}" href="/section/projects">PROJECTS</a>--}}
+                        <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'uwire') !== false ? "active-nav" : "" }}" href="/section/uwire">UNEWS</a>
+                        <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'sports') !== false ? "active-nav" : "" }}" href="/section/sports">SPORTS</a>
+                        <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'opinion') !== false ? "active-nav" : "" }}" href="/section/opinion">OPINION</a>
+                        <a class="nav-item is-tab is-hidden-mobile move" href="{{ config('app.move_url') }}">MOVE</a>
+                        <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'photos') !== false ? "active-nav" : "" }}" href="/photos">PHOTOS</a>
+                        <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'classifieds') !== false ? "active-nav" : "" }}" href="/classifieds">CLASSIFIEDS</a>
+                    </div>
+                    <span class="nav-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+                    <div class="nav-right nav-menu">
+                        <a class="nav-item is-tab is-hidden-tablet">CAMPUS</a>
+                        <a class="nav-item is-tab is-hidden-tablet">PROJECTS</a>
+                        <a class="nav-item is-tab is-hidden-tablet">UNEWS</a>
+                        <a class="nav-item is-tab is-hidden-tablet">SPORTS</a>
+                        <a class="nav-item is-tab is-hidden-tablet">OPINION</a>
+                        <a class="nav-item is-tab is-hidden-tablet">MOVE</a>
+                        <a class="nav-item is-tab is-hidden-tablet">PHOTOS</a>
+                        <a class="nav-item is-tab is-hidden-tablet">CLASSIFIEDS</a>
+                        <div class="field has-addons">
+                            <form method="GET" action="/search" class="main-search-form">
+                                <input type="hidden" name="type" value="Articles">
+                                <p class="control">
+                                    <input class="input input-clear" type="text" name="search" placeholder="Search">
+                                </p>
+                                <p class="control">
+                                    <button class="button is-info maneater-search-button" type="submit">
+                                        »
+                                    </button>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+            </nav>
+        </div>
         </div>
     </div>
-    <nav class="nav has-shadow" id="topNav">
-        <div class="container">
-            <div class="nav-left">
-                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'campus') !== false ? "active-nav" : "" }}" href="/section/campus">CAMPUS</a>
-                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'projects') !== false ? "active-nav" : "" }}" href="/section/projects">PROJECTS</a>
-                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'uwire') !== false ? "active-nav" : "" }}" href="/section/uwire">UNEWS</a>
-                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'sports') !== false ? "active-nav" : "" }}" href="/section/sports">SPORTS</a>
-                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'opinion') !== false ? "active-nav" : "" }}" href="/section/opinion">OPINION</a>
-                <a class="nav-item is-tab is-hidden-mobile move" href="{{ config('app.move_url') }}">MOVE</a>
-                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'photos') !== false ? "active-nav" : "" }}" href="/photos">PHOTOS</a>
-                <a class="nav-item is-tab is-hidden-mobile {{ strpos(request()->url(), 'classifieds') !== false ? "active-nav" : "" }}" href="/classifieds">CLASSIFIEDS</a>
-            </div>
-            <span class="nav-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-            <div class="nav-right nav-menu">
-                <a class="nav-item is-tab is-hidden-tablet">CAMPUS</a>
-                <a class="nav-item is-tab is-hidden-tablet">PROJECTS</a>
-                <a class="nav-item is-tab is-hidden-tablet">UNEWS</a>
-                <a class="nav-item is-tab is-hidden-tablet">SPORTS</a>
-                <a class="nav-item is-tab is-hidden-tablet">OPINION</a>
-                <a class="nav-item is-tab is-hidden-tablet">MOVE</a>
-                <a class="nav-item is-tab is-hidden-tablet">PHOTOS</a>
-                <a class="nav-item is-tab is-hidden-tablet">CLASSIFIEDS</a>
-                <div class="field has-addons">
-                    <form method="GET" action="/search" class="main-search-form">
-                        <input type="hidden" name="type" value="Articles">
-                        <p class="control">
-                            <input class="input" type="text" name="search" placeholder="Search">
-                        </p>
-                        <p class="control">
-                            <button class="button is-info" type="submit">
-                                »
-                            </button>
-                        </p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </nav>
     <nav class="nav has-shadow" id="subNav">
         <div class="container">
             <div class="nav-right">

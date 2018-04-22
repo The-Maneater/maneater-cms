@@ -30,6 +30,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <link href="/css/move.css" rel="stylesheet">
 
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -88,6 +91,7 @@
 <!-- Scripts -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.3.1/js/tether.min.js"></script>
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 @yield('scripts')
 {{--<script src="/js/manifest.js"></script>--}}
 {{--<script src="/js/vendor.js"></script>--}}

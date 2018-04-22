@@ -38,6 +38,20 @@ label{
   margin-top: 0;
 }
 
+.input-clear{
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  ::placeholder{
+    color:#2F7A32;
+  }
+}
+
+.maneater-search-button{
+  background: white !important;
+  color: green !important;
+}
+
 //.checkbox input[type=checkbox] {
 //  display: block;
 //}

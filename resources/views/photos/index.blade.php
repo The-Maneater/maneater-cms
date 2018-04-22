@@ -21,8 +21,8 @@
             {{ $paginator->links() }}
         </div>
         <div class="column is-4">
+            <h3 class="header-divider is-bold">GET SOCIAL</h3>
             <div class="twitter-box">
-                <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
                 <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
             </div>
 

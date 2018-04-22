@@ -32,7 +32,7 @@ class PagesController extends Controller
     public function frontpage()
     {
         $sections = StoryRepository::getFrontPageSectionStories();
-        //dd($sections);
+//        dd($sections);
         $minutes = 720;
         $latest = Cache::remember('latestStories', $minutes, function () {
             return Story::with(['section'])->latest('publish_date')->take(10)->get();

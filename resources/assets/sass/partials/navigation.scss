@@ -1,8 +1,8 @@
 #topNav .nav-left a.nav-item{
-  color:white;
-  background: #474747;
-  border-bottom: 2px solid #474747;
-  border-top: 2px solid #474747;
+  color:#2F7A32;
+  //background: #474747;
+  //border-bottom: 2px solid #474747;
+  //border-top: 2px solid #474747;
   display: block;
   font-weight: bold;
   font-family: "Roboto Condensed";
@@ -27,8 +27,8 @@
 #topNav{
   min-height: 38px;
   padding: 0 2.5%;
-  background-color: #474747;
-
+  //background-color: #474747;
+  border-top: 2px black solid;
   .nav-left a.move:hover{
     background: #990033;
     border-bottom: 2px solid #990033;
@@ -93,4 +93,5 @@
   border-bottom: 2px solid #2F7A32 !important;
   border-top: 2px solid #2F7A32 !important;
   background: #2F7A32 !important;
+  color:white !important;
 }

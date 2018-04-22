@@ -152,7 +152,7 @@
         <div class="column is-4">
             @if(count($relatedArticles) > 0)
             <div class="related">
-                <h2 class="sectionlabel">Related articles</h2>
+                <h2 class="header-divider is-bold">Related articles</h2>
                 <ol>
                     @foreach($relatedArticles as $article)
                         <li><a href="{{ $article->path() }}">{{ $article->title }}</a></li>
@@ -166,10 +166,10 @@
             @if(isset($ads['cubes'][1]))
                     <a href="{{ $ads['cubes'][1]->provider_url }}"><img src="{{ $ads['cubes'][1]->url() }}" alt="" class="bottom-ad"></a>
             @endif
-            <div class="twitter-box">
-                <h2 class="sectionlabel is-primary">LATEST TWEETS</h2>
-                <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
-            </div>
+                <h3 class="header-divider is-bold">GET SOCIAL</h3>
+                <div class="twitter-box">
+                    <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
+                </div>
             @if(isset($ads['cubes'][2]))
                     <a href="{{ $ads['cubes'][2]->provider_url }}"><img src="{{ $ads['cubes'][2]->url() }}" alt="" class="bottom-ad"></a>
             @endif
