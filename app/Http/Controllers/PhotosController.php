@@ -51,7 +51,7 @@ class PhotosController extends Controller
         $image = $request->file('photo')->move($filePath, $request->file('photo')->getClientOriginalName());
         //$image = $request->file('photo')
             //->storeAs($filePath, $request->file('photo')->getClientOriginalName());
-        dd($image);
+        //dd($image);
         $photo->location = $carbon->year . "/" . $carbon->month . $carbon->day . "/photos" . $request->file('photo')->getClientOriginalName();
         if(request('byline') !== null && request('byline') !== ""){
             $photo->staffer_id = request('byline');
