@@ -48,9 +48,9 @@ class PhotosController extends Controller
         $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/photos";
         $photo = new Photo;
         $photo->fill($request->except(['byline', 'photo', 'tags']));
-        //$image = $request->file('photo')->move(public_path('images/'), $request->file('photo')->getClientOriginalName());
-        $image = $request->file('photo')
-            ->storeAs($filePath, $request->file('photo')->getClientOriginalName());
+        $image = $request->file('photo')->move($filePath, $request->file('photo')->getClientOriginalName());
+        //$image = $request->file('photo')
+            //->storeAs($filePath, $request->file('photo')->getClientOriginalName());
         dd($image);
         $photo->location = $carbon->year . "/" . $carbon->month . $carbon->day . "/photos" . $request->file('photo')->getClientOriginalName();
         if(request('byline') !== null && request('byline') !== ""){
