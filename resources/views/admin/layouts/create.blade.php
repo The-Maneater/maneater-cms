@@ -31,7 +31,7 @@
                 </b-field>
                 <b-field label="Issue:">
                     <select2 name="issue" id="issue">
-                        @foreach(\App\Issue::all() as $issue)
+                        @foreach(\App\Issue::latest('id')->get() as $issue)
                             <option></option>
                             <option value="{{ $issue->id }}">{{ $issue->issueName }}</option>
                         @endforeach
