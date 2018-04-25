@@ -43,12 +43,16 @@ class LayoutsController extends Controller
     public function store(CreateLayoutRequest $request)
     {
         $carbon = Carbon::now();
-        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/pages";
+        $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/pages";
+        //$filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/photos";
         $layout = new Layout;
         $layout->fill($request->except(['section', 'issue', 'staffer', 'layout']));
-        $file = $request->file('layout')
-            ->storeAs($filePath, $request->file('layout')->getClientOriginalName(), 'media');
-        $layout->link = $file;
+        $file = $request->file('layout')->move($filePath, $request->file('layout')->getClientOriginalName());
+        //$file = $request->file('layout')
+        //    ->storeAs($filePath, $request->file('layout')->getClientOriginalName(), 'media');
+        //$image = $request->file('photo')->move($filePath, $request->file('photo')->getClientOriginalName());
+        //$carbon->year . "/" . $carbon->month . $carbon->day . "/photos/" . $request->file('photo')->getClientOriginalName();
+        $layout->link = $carbon->year . "/" . $carbon->month . $carbon->day . "/pages/" . $request->file('layout')->getClientOriginalName();;
         $layout->section()->associate($request->input('section'));
         $layout->issue()->associate($request->input('issue'));
         $layout->save();
