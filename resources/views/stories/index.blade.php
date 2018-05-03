@@ -162,7 +162,7 @@
             <div id="issue-link" class="is-flex justify-center">
                 <a href="{{ $issue->issu_url }}">
                 @if(isset($issue->layout))
-                    <img class="issu-img" src="http://themaneater.com/media/2018/27/pages/Page01-18.png" alt="Maneater front page" />
+                    <img class="issu-img" src="{{ $issue->layout->path() }}" alt="Maneater front page" />
                 @endif
                 </a>
             </div>
