@@ -16,13 +16,16 @@
                 </div>
                 <div class="meta-box">
                     @if (count($story->writers) == 1)
-                        <p class="byline">By <a href="{{ $story->writers[0]->path() }}" class="is-move-red">{{ $story->writers[0]->fullName }}</a></p>
+                        <p class="byline">By <a href="{{ $story->writers[0]->path() }}" class="is-move-red">{{ $story->writers[0]->fullName }}</a> | Published {{ $story->formattedPublishDate->format('M. d, Y') }} </p>
                     @else
                         <p class="byline">By
                             @foreach ($story->writers as $writer)
                                 <a href="{{ $writer->path() }}" class="is-move-red">{{ $writer->fullName }}</a>
                                 @if (!$loop->last)
                                     and
+                                @endif
+                                @if($loop->last)
+                                   | Published {{ $story->formattedPublishDate->format('M. d, Y') }}
                                 @endif
                             @endforeach
                         </p>

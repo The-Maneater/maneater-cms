@@ -103,11 +103,11 @@
 }
 
 .main-photo-wrapper{
-  position: relative;
-  /* width: 900px; */
-  height: 506px;
-  display: inline-flex;
-  align-items: center;
+  //position: relative;
+  //width: 900px;
+  //height: 506px;
+  //display: inline-flex;
+  max-height:900px;
   margin-bottom: 25px;
 }
 

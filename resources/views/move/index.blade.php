@@ -154,7 +154,7 @@
     <script>
         $(document).ready(function(){
             $('.story-gallery').slick({
-                "autoplay": true,
+                "autoplay": false,
                 "arrows": false,
                 "dots": true,
                 "pauseOnDotsHover": true

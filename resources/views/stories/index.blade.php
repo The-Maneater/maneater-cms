@@ -8,18 +8,18 @@
                     <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-bottom-ad"></a>
                 @endif
             </div>
-            <div class="is-flex justify-center">
+            <div>
                 <div class="main-photo-wrapper {{ count($frontPageStories[1]->headerPhotos) == 0 ? "main-photo-wrapper-fix" : "" }}">
                     @if(count($frontPageStories[1]->headerPhotos) > 0)
                         <img class="main-photo" src="{{ $frontPageStories[1]->headerPhotos[0]->path() }}" alt="">
-                        <div class="photo-caption-wrapper">
-                            <div class="photo-caption">
-                                <a class="is-white" href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a>
+                        <div>
+                            <div>
+                                <h2><a class="is-black" href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h2>
                             </div>
                         </div>
                     @else
                         <h2><a class="is-black" href="{{ $frontPageStories[1]->path() }}">{{ $frontPageStories[1]->title }}</a></h2>
-                        <div class="topcaption">{{ $frontPageStories[1]->cDeck }}</div>
+                        <div class="topcaption is-left">{{ $frontPageStories[1]->cDeck }}</div>
                     @endif
                 </div>
             </div>

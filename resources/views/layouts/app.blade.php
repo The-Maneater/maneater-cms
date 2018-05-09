@@ -62,6 +62,7 @@
         <h1 style="
     font-size: 4em;
     color: black;
+    text-transform: uppercase;
 ">The Maneater</h1>
         <div style="width:100%">
             <nav class="nav has-shadow" id="topNav">
