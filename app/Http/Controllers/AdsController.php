@@ -41,15 +41,30 @@ class AdsController extends Controller
      */
     public function store(CreateAdRequest $request)
     {
+        // $carbon = Carbon::now();
+        // $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/ads";
+        // $ad = new Ad;
+        // $ad->fill($request->except('adFile'));
+        // $image = $request->file('adFile')
+        //     ->storeAs($filePath, $request->file('adFile')->getClientOriginalName(), 'media');
+        // $ad->image_url = $image;
+        // $ad->times_served = 0;
+        // $ad->save();
+
         $carbon = Carbon::now();
-        $filePath = $carbon->year . "/" . $carbon->month . $carbon->day . "/ads";
+        $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/photos";
         $ad = new Ad;
-        $ad->fill($request->except('adFile'));
-        $image = $request->file('adFile')
-            ->storeAs($filePath, $request->file('adFile')->getClientOriginalName(), 'media');
-        $ad->image_url = $image;
+        $ad->fill($request->except('adFile')); //maybe column name instead
+
+        //uploads photo
+        $image = $request->file('adFile')->move(public_path($filePath), $request->file('adFile')->getClientOriginalName());
+
+        //grabs filepath
+        $ad->image_url = $carbon->year . "/" . $carbon->month . $carbon->day . "/photos/" . $request->file('adFile')->getClientOriginalName();
         $ad->times_served = 0;
+
         $ad->save();
+
 
         return redirect('/admin/advertising/ads');
     }
