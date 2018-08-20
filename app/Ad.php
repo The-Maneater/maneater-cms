@@ -38,8 +38,8 @@ class Ad extends Model
             if(preg_match('/^(http|https)/', $this->image_url)){
                 return $this->image_url;
             }
-
-        return "http://localhost:8000/media/" . $this->image_url;
+            
+        return "http://themaneater.com/media/" . $this->image_url;
     }
 
     public function toSearchableArray()

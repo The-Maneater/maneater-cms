@@ -52,7 +52,9 @@ class AdsController extends Controller
         // $ad->save();
 
         $carbon = Carbon::now();
-        $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/photos";
+
+        $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/ads";
+        
         $ad = new Ad;
         $ad->fill($request->except('adFile')); //maybe column name instead
 
@@ -60,7 +62,7 @@ class AdsController extends Controller
         $image = $request->file('adFile')->move(public_path($filePath), $request->file('adFile')->getClientOriginalName());
 
         //grabs filepath
-        $ad->image_url = $carbon->year . "/" . $carbon->month . $carbon->day . "/photos/" . $request->file('adFile')->getClientOriginalName();
+        $ad->image_url = $carbon->year . "/" . $carbon->month . $carbon->day . "/ads/" . $request->file('adFile')->getClientOriginalName();
         $ad->times_served = 0;
 
         $ad->save();
