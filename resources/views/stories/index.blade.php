@@ -5,7 +5,11 @@
         <div class="column is-8">
             <div class="banner-top-ad">
                 @if(isset($ads['banner'][0]))
-                    <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-bottom-ad"></a>
+                    @if(!is_null($ads['banner'][0]->raw_content))
+                       {!! $ads['banner'][0]->raw_content !!}
+                    @else
+                        <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-bottom-ad"></a>
+                    @endif
                 @endif
             </div>
             <div>
@@ -155,7 +159,11 @@
             </div>
 
             @if(isset($ads['cubes'][0]))
-                <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad"></a>
+                @if(!is_null($ads['cubes'][0]->raw_content))
+                    {!! $ads['cubes'][0]->raw_content !!}
+                @else
+                    <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad"></a>
+                @endif
             @endif
 
             <h3 class="header-divider is-bold">LATEST ISSUE</h3>

@@ -37,9 +37,15 @@
                 @endforeach
             </div>
             @if(isset($ads['banner'][0]))
-                <div class="center-ad">
-                    <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-top-ad"></a>
-                </div>
+                @if(!is_null($ads['banner'][0]->raw_content))
+                    <div class="center-ad">
+                        {!! $ads['banner'][0]->raw_content !!}
+                    </div>
+                @else
+                    <div class="center-ad">
+                        <a href="{{ $ads['banner'][0]->provider_url }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-top-ad"></a>
+                    </div>
+                @endif
             @endif
             <div id="comments">
                 <h5>Article comments</h5>
