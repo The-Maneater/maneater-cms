@@ -31,15 +31,33 @@ class PagesController extends Controller
 
     public function frontpage()
     {
+        // gets 6 most recent stories from different sections
         $sections = StoryRepository::getFrontPageSectionStories();
 //        dd($sections);
+
         $minutes = 720;
-        $latest = Cache::remember('latestStories', $minutes, function () {
-            return Story::with(['section'])->latest('publish_date')->take(10)->get();
-        });
+
+
+        $latest =  Story::with(['section'])->latest('publish_date')->take(5)->get();
+
+
+        // $latest = Cache::remember('latestStories', $minutes, function () {
+        //     return Story::with(['section'])->latest('publish_date')->take(7)->get();
+        // });
+
+        
         //$latest = Story::with(['section'])->latest()->take(10)->get();
+
+        // check WebFront.php for result
+        // currently this will return every story with a unique priority... 7/28/2018
         $frontPageStories = WebFront::frontPage();
+
+
+        // returns array of 2 cube ads & 1 banner ad
+        // increases served counters
         $ads = AdRepository::cubesAndBanner(2,1);
+
+        // gets latest issue model
         $issue = Issue::with(['layout'])->latest('id')->whereNotNull('issu_url')->first();
 //        if($issue->layout->img_link === null){
 //            $pdf = new Pdf($issue->layout->link);
@@ -50,7 +68,16 @@ class PagesController extends Controller
 //            $issue->layout->save();
 //        }
         //dd($issue);
-        //dd($frontPageStories);
+
+        // TEST PRINT
+        // foreach($frontPageStories as $thisStory){
+        //     echo $thisStory->id, "\t\t";
+        // }
+
+        // TEST PRINT
+        // foreach( $sections['news'] as $section){
+        //     echo "\n", $section['title'], "\t\t", $section['type'], "\t\t", $section['section']->name, "\t\t", $section['body'], "<br>";
+        // }
 
         return view('stories.index', compact('sections', 'latest', 'frontPageStories', 'ads', 'issue'));
     }

@@ -62,16 +62,23 @@ class SectionsController extends Controller
     public function show($slug)
     {
         $section = Section::findBySlug($slug);
+      
         $stories = $section->stories()->latest('id')->take(10)->get()->load(['section']);
+
         $priorityStories = Cache::remember('section.' . $slug . '.web-front-stories', 720, function() use ($section) {
            return $section->webFrontStories()->get()->load(['section']);
         });
+        
         //$priorityStories = $section->webFrontStories()->get();
+       
         $tags = Cache::remember('section.' . $slug . '.latest-tags', 720, function() use($section){
-           return  $section->latestTags();
+            return  $section->latestTags();
         });
+        
         //$tags = $section->latestTags();
+       
         $ads = AdRepository::cubes(2);
+       
         return view('sections.index', compact('stories', 'priorityStories', 'tags', 'ads'));
     }
 

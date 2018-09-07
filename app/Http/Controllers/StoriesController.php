@@ -49,10 +49,13 @@ class StoriesController extends Controller
      */
     public function store(CreateStoryRequest $request)
     {
-        $story = new Story($request->except(['tags', 'issue', 'section', 'byline', 'topPhotos', 'inlinePhotos', 'graphics']));
-        $story->slug = $story->getUniqueSlug();
+        $story = new Story($request->except(['tags', 'issue', 'section', 'subsection', 'byline', 'topPhotos', 'inlinePhotos', 'graphics']));
+
+        $story->slug = preg_replace('/[^\w-]/', '',$story->getUniqueSlug());
+        
         $story->issue()->associate($request->input('issue'));
         $story->section()->associate($request->input('section'));
+        $story->subsection()->associate($request->input('subsection'));
 
         $topPhotos = collect($request->input('topPhotos', []))
             ->flip()
@@ -152,7 +155,7 @@ class StoriesController extends Controller
         //dd($request->all());
         //dd(request('corrections'));
         $article = Story::findBySectionAndSlug($section, $slug);
-        $article->update($request->except(['issue', 'byline', 'topPhotos', 'inlinePhotos' , 'graphics', 'section', 'tags', 'corrections']));
+        $article->update($request->except(['issue', 'byline', 'topPhotos', 'inlinePhotos' , 'graphics', 'section', 'subsection', 'tags', 'corrections']));
         $article->writers()->sync($request->input('byline'));
         $article->issue()->associate($request->input('issue'));
 
@@ -170,6 +173,7 @@ class StoriesController extends Controller
         $article->photos()->sync($photos);
         $article->graphics()->sync($request->input('graphics', []));
         $article->section()->associate($request->input('section'));
+        $article->subsection()->associate($request->input('subsection'));
         $article->syncTags($request->input('tags'));
         $article->save();
         if(request()->has('corrections')){

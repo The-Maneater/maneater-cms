@@ -33,11 +33,14 @@ class SearchController extends Controller
         $search = request('q');
         $page = 0;
         if(request()->has('page')) $page = request('page') - 1;
-        $results = Photo::search($search)->orderBy('publish_date', 'DESC')->get()
+        // $results = Photo::search($search)->within('title')->get()
+        //     ->load(['section']);
+
+        $results = Photo::where('title','like','%'.$search.'%')->get()
             ->load(['section']);
-        //dd($results);
+
         if(! $results instanceof LengthAwarePaginator){
-            //$paginatedResults = collect(array_slice($results->toArray(), 25 * $page, 25, true));
+            ////$paginatedResults = collect(array_slice($results->toArray(), 25 * $page, 25, true));
             $paginatedResults = $results->slice(25 * $page, 25);
             $results = new LengthAwarePaginator($paginatedResults, count($results), 25, $page);
         }

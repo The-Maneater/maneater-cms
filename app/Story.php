@@ -21,11 +21,13 @@ class Story extends Model
 		'cDeck',
 		'static_byline',
 		'section',
+        'subsection',
 		'body',
 		'priority',
         'section_webfront_priority',
         'front_page_webfront_priority',
         'section_id',
+        'subsection_id',
         'issue_id',
         'writers'
 	];
@@ -122,6 +124,14 @@ class Story extends Model
     public function section()
     {
        return $this->belongsTo('App\Section');
+    }
+
+    /**
+     * Returns the associated section
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subsection(){
+        return $this->belongsTo('App\SubSection');
     }
 
     /**

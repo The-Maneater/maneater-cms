@@ -36,6 +36,7 @@ Route::get('/layouts', 'PagesController@layouts');
 Route::get('/layouts/{id}', 'LayoutsController@show');
 Route::get('/section/{slug}', 'SectionsController@show');
 Route::get('/section/{slug}/archives', 'SectionArchivesController@show');
+Route::get('/section/{slug}/{subSection}', 'SubSectionsController@show');
 Route::get('/staff/editors', 'PagesController@editorialBoard');
 Route::get('/staff', 'PagesController@allStaff');
 Route::get('/staff/{slug}', 'StafferController@show');
@@ -123,6 +124,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
            Route::post('/create', 'SectionsController@store')->name('store-section');
            Route::patch('/edit/{section}', 'SectionsController@update')->name('update-section');
            Route::get('/edit/{section}', 'SectionsController@edit')->name('edit-section');
+        });
+
+        Route::group(['prefix' => 'subsections'], function(){
+            Route::get('/', 'SubSectionsController@index');
+            Route::get('/create', 'SubSectionsController@create')->name('create-subsection');
+            Route::post('/create', 'SubSectionsController@store')->name('store-subsection');
+            Route::patch('/edit/{subSection}', 'SubSectionsController@update')->name('update-subsection');
+            Route::get('/edit/{subSection}', 'SubSectionsController@edit')->name('edit-subsection');
         });
 
         Route::group(['prefix' => 'polls'], function(){

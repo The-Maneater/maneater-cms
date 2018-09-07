@@ -1,25 +1,26 @@
 @extends('layouts.admin')
 
 @section('title')
-    Add New Section
+    Edit Sub Section
 @endsection
 
 @section('content')
     <div>
         <div class="theader">
-            <h2>Add New Section</h2>
+            <h2>Edit Section</h2>
         </div>
         @include("admin.shared.errors")
-        <form action="{{ route('store-section') }}" method="POST" id="storyForm">
+        <form action="{{ route('update-subsection', [$subSection->id]) }}" method="POST" id="storyForm">
             {{ csrf_field() }}
+            {{ method_field('PATCH') }}
             <div class="box">
                 <b-field label="Name:">
-                    <b-input name="name" id="name" value="{{ old('name') }}"></b-input>
+                    <b-input name="name" id="name" value="{{ $subSection->name }}"></b-input>
                 </b-field>
-                <b-field label="Publication:">
-                    <select2 name="publication">
-                        @foreach (\App\Publication::all() as $publication)
-                            <option value="{{ $publication->id }}">{{ $publication->name }}</option>
+                <b-field label="Section:">
+                    <select2 name="section">
+                        @foreach (\App\Section::all() as $section)
+                            <option value="{{ $section->id }}" {{ $subSection->section->id == $section->id ? "selected" : "" }}>{{ $section->name }}</option>
                         @endforeach
                     </select2>
                 </b-field>

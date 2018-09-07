@@ -52,6 +52,7 @@ class WebFrontController extends Controller
                     $publication = Publication::findByString('The Maneater');
                     $query->where('publication_id', $publication->id);
                 })->orderBy('publish_date', 'DESC')->limit(25)->get();
+                $spots = 8;
                 break;
 
             default:

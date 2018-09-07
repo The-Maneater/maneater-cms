@@ -67,6 +67,16 @@
                         @endforeach
                     </select2>
                 </b-field>
+
+                <b-field label="Sub Section:">
+                    <select2 id="subsection" name="subsection">
+                        <option value="0" selected="selected">No Sub Section</option>
+                        @foreach (\App\SubSection::all() as $subsection)
+                            <option value="{{ $subsection->id }}">{{ $subsection->name }}</option>
+                        @endforeach
+                    </select2>
+                </b-field>
+                
                 <b-field label="Priority:">
                     <b-input name="priority" type="number" id="priority" value="{{ old('priority') }}"></b-input>
                 </b-field>
@@ -154,8 +164,10 @@
                     // scrolling can be used
                     params.page = params.page || 1;
                     var mappedData = $.map(data.data, function (obj) {
-                        var filename = obj.location.split('/').pop();
-                        obj.text = filename; // replace name with the property used for the text
+                        // var filename = obj.location.split('/').pop();
+                        // obj.text = filename; // replace name with the property used for the text
+
+                        obj.text = obj.title;
 
                         return obj;
                     });
@@ -169,7 +181,7 @@
                 },
                 // Additional AJAX parameters go here; see the end of this chapter for the full code of this example
             },
-            minimumInputLength: 4,
+            minimumInputLength: 2,
             placeholder: 'Select an option',
             allowClear: true
         };

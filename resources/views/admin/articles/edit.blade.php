@@ -68,6 +68,16 @@
                         @endforeach
                     </select2>
                 </b-field>
+
+                <b-field label="Sub Section:">
+                    <select2 id="subsection" name="subsection">
+                        <option value="0">No Sub Section</option>
+                        @foreach (\App\SubSection::all() as $subsection)
+                            <option value="{{ $subsection->id }}" {{ ($article->subsection_id === $subsection->id ? "selected":"") }}>{{ $subsection->name }}</option>
+                        @endforeach
+                    </select2>
+                </b-field>
+
                 <b-field label="Priority:">
                     <b-input name="priority" type="number" id="priority" value="{{ $article->priority }}"></b-input>
                 </b-field>

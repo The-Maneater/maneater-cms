@@ -24,6 +24,7 @@
             @permission('manage-issues')<li><a href="{{ url('/admin/core/issues') }}">Issues</a></li>@endpermission
             @permission('manage-volumes')<li><a href="{{ url('/admin/core/volumes') }}">Volumes</a></li>@endpermission
             @permission('manage-sections')<li><a href="{{ url('/admin/core/sections') }}">Sections</a></li>@endpermission
+            @permission('manage-sections')<li><a href="{{ url('/admin/core/subsections') }}">Sub Sections</a></li>@endpermission
             {{--<li>--}}
                 {{--<a class="is-active">Manage Your Team</a>--}}
                 {{--<ul>--}}
