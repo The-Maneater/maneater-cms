@@ -104,7 +104,11 @@
                         <p>Share: <a href="{{ $urls['facebook'] }}" target="_blank">Facebook</a> / <a href="{{ $urls['twitter'] }}" target="_blank">Twitter</a> / <a href="{{ $urls['google'] }}" target="_blank">Google+</a></p>
                     </div>
                     @if(isset($ads['banner'][0]))
-                        <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-top-ad"></a>
+                        @if(!is_null($ads['banner'][0]->raw_content))
+                            {!! $ads['banner'][0]->raw_content !!}
+                        @else
+                            <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-top-ad"></a>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -160,23 +164,40 @@
                 </ol>
             </div>
             @endif
-            @if(isset($ads['cubes'][0]))
-                    <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad"></a>
-            @endif
-            @if(isset($ads['cubes'][1]))
-                    <a href="{{ $ads['cubes'][1]->provider_url }}"><img src="{{ $ads['cubes'][1]->url() }}" alt="" class="bottom-ad"></a>
-            @endif
+                @if(isset($ads['cubes'][0]))
+                    @if(!is_null($ads['cubes'][0]->raw_content))
+                        {!! $ads['cubes'][0]->raw_content !!}
+                    @else
+                        <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad"></a>
+                    @endif
+                @endif
+
+                @if(isset($ads['cubes'][1]))
+                    @if(!is_null($ads['cubes'][1]->raw_content))
+                        {!! $ads['cubes'][1]->raw_content !!}
+                    @else
+                        <a href="{{ $ads['cubes'][1]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad"></a>
+                    @endif
+                @endif
                 <h3 class="header-divider is-bold">GET SOCIAL</h3>
                 <div class="twitter-box">
                     <a class="twitter-timeline" data-height="400" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
                 </div>
-            @if(isset($ads['cubes'][2]))
-                    <a href="{{ $ads['cubes'][2]->provider_url }}"><img src="{{ $ads['cubes'][2]->url() }}" alt="" class="bottom-ad"></a>
-            @endif
+                @if(isset($ads['cubes'][2]))
+                    @if(!is_null($ads['cubes'][2]->raw_content))
+                        {!! $ads['cubes'][2]->raw_content !!}
+                    @else
+                        <a href="{{ $ads['cubes'][2]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad"></a>
+                    @endif
+                @endif
 
-            @if(isset($ads['cubes'][3]))
-                    <a href="{{ $ads['cubes'][3]->provider_url }}"><img src="{{ $ads['cubes'][3]->url() }}" alt="" class="bottom-ad"></a>
-            @endif
+                @if(isset($ads['cubes'][3]))
+                    @if(!is_null($ads['cubes'][3]->raw_content))
+                        {!! $ads['cubes'][3]->raw_content !!}
+                    @else
+                        <a href="{{ $ads['cubes'][3]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad"></a>
+                    @endif
+                @endif
         </div>
 	</div>
 @endsection

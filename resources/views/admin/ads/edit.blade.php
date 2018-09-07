@@ -40,6 +40,9 @@
                 <b-field label="Ad">
                     <img src="{{ Image::url($ad->url(),300,300,array('crop')) }}" alt="">
                 </b-field>
+                <b-field label="Raw HTML:">
+                    <b-input name="raw_content" id="raw_content" type="textarea" value="{{ $ad->raw_content }}"></b-input>
+                </b-field>
             </div>
         </form>
     </div>

@@ -50,26 +50,34 @@ class AdsController extends Controller
         // $ad->image_url = $image;
         // $ad->times_served = 0;
         // $ad->save();
-
-        $carbon = Carbon::now();
-
-        $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/ads";
-        
         $ad = new Ad;
-        $ad->fill($request->except('adFile')); //maybe column name instead
+        if($request->has('raw_content')){
+            $ad->fill($request->except('provider_url', 'adFile'));
+            $ad->provider_url = "";
+            $ad->times_served = 0;
+            $ad->image_url = "";
 
-        //uploads photo
-        // $image = $request->file('adFile')->move($filePath, $request->file('adFile')->getClientOriginalName());
+            $ad->save();
+        }else{
+            $carbon = Carbon::now();
 
-        $image = $request->file('adFile')
-            ->storeAs($filePath, $request->file('adFile')->getClientOriginalName(), 'media');
+            $filePath = config('app.upload_path') . $carbon->year . "/" . $carbon->month . $carbon->day . "/ads";
 
-        //grabs filepath
-        $ad->image_url = $carbon->year . "/" . $carbon->month . $carbon->day . "/ads/" . $request->file('adFile')->getClientOriginalName();
-        $ad->times_served = 0;
 
-        $ad->save();
+            $ad->fill($request->except('adFile', 'raw_content')); //maybe column name instead
 
+            //uploads photo
+            // $image = $request->file('adFile')->move($filePath, $request->file('adFile')->getClientOriginalName());
+
+            $image = $request->file('adFile')
+                ->storeAs($filePath, $request->file('adFile')->getClientOriginalName(), 'media');
+
+            //grabs filepath
+            $ad->image_url = $carbon->year . "/" . $carbon->month . $carbon->day . "/ads/" . $request->file('adFile')->getClientOriginalName();
+            $ad->times_served = 0;
+
+            $ad->save();
+        }
 
         return redirect('/admin/advertising/ads');
     }

@@ -27,11 +27,19 @@
             </div>
 
             @if(isset($ads['cubes'][0]))
-                <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad"></a>
+                @if(!is_null($ads['cubes'][0]->raw_content))
+                    {!! $ads['cubes'][0]->raw_content !!}
+                @else
+                    <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad"></a>
+                @endif
             @endif
 
             @if(isset($ads['cubes'][1]))
-                <a href="{{ $ads['cubes'][1]->provider_url }}"><img src="{{ $ads['cubes'][1]->url() }}" alt="" class="top-ad"></a>
+                @if(!is_null($ads['cubes'][1]->raw_content))
+                    {!! $ads['cubes'][1]->raw_content !!}
+                @else
+                    <a href="{{ $ads['cubes'][1]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="top-ad"></a>
+                @endif
             @endif
         </div>
     </div>

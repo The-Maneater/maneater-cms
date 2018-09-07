@@ -49,10 +49,12 @@ class StoriesController extends Controller
      */
     public function store(CreateStoryRequest $request)
     {
+
         $story = new Story($request->except(['tags', 'issue', 'section', 'subsection', 'byline', 'topPhotos', 'inlinePhotos', 'graphics']));
 
         $story->slug = preg_replace('/[^\w-]/', '',$story->getUniqueSlug());
-        
+
+
         $story->issue()->associate($request->input('issue'));
         $story->section()->associate($request->input('section'));
         $story->subsection()->associate($request->input('subsection'));

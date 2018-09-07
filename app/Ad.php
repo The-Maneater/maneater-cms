@@ -18,6 +18,7 @@ class Ad extends Model
         'duration',
         'purchaser',
         'image_url',
+        'raw_content',
         'provider_url',
         'times_served',
         'campaign_start',
@@ -38,7 +39,6 @@ class Ad extends Model
             // if(preg_match('/^(http|https)/', $this->image_url)){
             //     return $this->image_url;
             // }
-            
         return "http://themaneater.com/media/" . $this->image_url;
     }
 

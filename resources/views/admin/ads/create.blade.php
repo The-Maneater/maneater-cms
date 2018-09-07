@@ -39,6 +39,9 @@
                 <b-field label="Ad File:">
                     <b-input type="file" name="adFile"></b-input>
                 </b-field>
+                <b-field label="Raw HTML:">
+                    <b-input name="raw_content" id="raw_content" type="textarea" value="{{ old('raw_content') }}"></b-input>
+                </b-field>
             </div>
         </form>
     </div>
