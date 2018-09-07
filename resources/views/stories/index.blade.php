@@ -50,7 +50,7 @@
             <div class="row px-0 align-items-center h-100">
                 <div class="col-md-auto pl-3 pr-1">
                     <a href="{{ config('app.url') }}">
-                        <img src="/media/images/ManeaterLogo.png" class="logo-size logo">
+                        <img src="/media/2018/97/photos/ManeaterLogo.png" class="logo-size logo">
                    </a>
                 </div>
 
@@ -335,7 +335,7 @@
                                 <div>
                                     <a href="{{ config("app.move_url") }}/section/around-como">
                                         <figure class="crop-move-photos move-container mb-0">
-                                            <img src="/media/images/movelogo.png" alt="">
+                                            <img src="/media/2018/97/photos/movelogo.png" alt="">
                                             <div class="move-bottom-right">Around Town</div>
                                         </figure>
                                     </a>
@@ -345,7 +345,7 @@
                                 <div>
                                     <a href="{{ config("app.move_url") }}/section/on-campus">
                                         <figure class="crop-move-photos move-container mb-0">
-                                            <img src="/media/images/movelogo.png" alt="">
+                                            <img src="/media/2018/97/photos/movelogo.png" alt="">
                                             <div class="move-bottom-right">On Campus</div>
                                         </figure>
                                     </a>
@@ -355,7 +355,7 @@
                                 <div>
                                     <a href="{{ config("app.move_url") }}/section/movies">
                                         <figure class="crop-move-photos move-container">
-                                            <img src="/media/images/movelogo.png" alt="">
+                                            <img src="/media/2018/97/photos/movelogo.png" alt="">
                                             <div class="move-bottom-right">Movies</div>
                                         </figure>
                                     </a>
@@ -365,7 +365,7 @@
                                 <div>
                                     <a href="{{ config("app.move_url") }}/section/music">
                                         <figure class="crop-move-photos move-container">
-                                            <img src="/media/images/movelogo.png" alt="">
+                                            <img src="/media/2018/97/photos/movelogo.png" alt="">
                                             <div class="move-bottom-right">Music</div>
                                         </figure>
                                     </a>
