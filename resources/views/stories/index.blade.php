@@ -156,8 +156,6 @@
 
                 @if(isset($ads['banner'][0]))
 
-                    <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-bottom-ad"></a>
-
                     @if(!is_null($ads['banner'][0]->raw_content))
                        {!! $ads['banner'][0]->raw_content !!}
                     @else
