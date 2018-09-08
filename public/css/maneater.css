@@ -309,15 +309,13 @@ ul.footer-list li a{
 .banner-bottom-ad,.banner-top-ad img {
   width: 728px;
   height: 100px;
+  margin-left: 20%;
+  margin-top: 1%;
 }
 
 .bottom-ad,.top-ad {
   width: 300px;
   height: 260px;
-}
-
-.banner-bottom-ad,.bottom-ad {
-  padding-bottom: 10px;
 }
 
 #mobile-header {
