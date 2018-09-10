@@ -65,7 +65,7 @@ class SubSectionsController extends Controller
         $subsection = SubSection::findBySubSection($subSection);
       
         //$stories = $subsection->stories()->latest('id')->take(2)->get();
-        $stories = Story::where('subsection_id', $subsection->id)->take(2)->get();
+        $stories = Story::where('subsection_id', $subsection->id)->latest('id')->take(10)->get();
 
         // $priorityStories = Cache::remember('section.' . $slug . '.web-front-stories', 720, function() use ($section) {
         //    return $section->webFrontStories()->get()->load(['section']);
