@@ -50,7 +50,7 @@
             <div class="row px-0 align-items-center h-100">
                 <div class="col-md-auto pl-3 pr-1">
                     <a href="{{ config('app.url') }}">
-                        <img src="/media/2018/97/photos/ManeaterLogo.png" class="logo-size logo">
+                        <img src="https://www.themaneater.com/media/2018/97/photos/ManeaterLogo.png" class="logo-size logo">
                    </a>
                 </div>
 
@@ -62,7 +62,6 @@
                         <a href="https://www.facebook.com/themaneaterMU/" class="mr-2"><i class="fab fa-facebook topbar-icon icon-style align-middle"></i></a>
                         <a href="https://www.instagram.com/themaneater/"><i class="fab fa-instagram topbar-icon icon-style align-middle"></i></a>
                         </span>
-                            
                     </div>
 
                     <nav id="navigation-bar" class="navbar navbar-expand-md navbar-light bg-dark navbar-height pl-0">
@@ -94,7 +93,7 @@
                                     <div class="dropdown-menu bg-success remove-top-margin" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="{{ url('/section/sports/baseball') }}">Baseball</a>
                                         <a class="dropdown-item" href="{{ url('/section/sports/club-sports') }}">Club Sports</a>
-                                        <a class="dropdown-item" href="{{ url('/section/sports/university') }}">Cross-Country</a>
+                                        <a class="dropdown-item" href="{{ url('/section/sports/cross-country') }}">Cross-Country</a>
                                         <a class="dropdown-item" href="{{ url('/section/sports/football') }}">Football</a>
                                         <a class="dropdown-item" href="{{ url('/section/sports/golf') }}">Golf</a>
                                         <a class="dropdown-item" href="{{ url('/section/sports/gymnastics') }}">Gymnastics</a>
@@ -127,6 +126,9 @@
 
                                 <li class="nav-item ml-4">
                                     <a class="nav-link text-white" href="{{ url('/photos') }}">PHOTOS</a>
+                                </li>
+                                <li class="nav-item ml-4">
+                                    <a class="nav-link text-white" href="{{ url('/classifieds') }}">CLASSIFIEDS</a>
                                 </li>
                             </ul>
 
@@ -458,7 +460,6 @@
 
             <div class="row border rounded main-content-box shadow pl-lg-3 ml-lg-3 mt-3 mr-lg-0 mx-0">   <!--SPORTS SECTION-->
                 <div class="col-md-7 mx-0 px-0 order-2 order-md-1">
-
                     <ul class="list-unstyled pt-lg-3 mt-lg-5">
                         @for($i = 1; $i<5; $i++)
                         <a href="{{ $sections['sports'][$i]->path() }}">
