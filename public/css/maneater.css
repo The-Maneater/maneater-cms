@@ -327,7 +327,7 @@ ul.footer-list li a{
 .crop-carousel-photos img {
   	width: 100%;
   	height: auto;
-  	margin: -20% 0 0 0;
+  	margin: 0 0 0 0;
   	border-radius: 5px;
 }
 
