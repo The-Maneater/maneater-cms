@@ -13,6 +13,7 @@
   	display: block;
 }
 
+
 .dropdown-toggle::after {
     display:none;
 }
@@ -23,6 +24,10 @@
 
 .navbar-height {
 	height: 40px;
+}
+
+.nav-item {
+	margin-left: 2vw;
 }
 
 .remove-top-margin {
@@ -75,6 +80,7 @@
 
 .searchbox-width {
 	width: 25%;
+	margin-left: auto;
 }
 
 .main-content-box {
@@ -91,12 +97,14 @@
   height: 20vh;
   overflow: hidden;
   margin-bottom: 0;
+  border-radius: 5px;
 }
 
 .crop-right img {
   width: 100%;
   height: auto;
   margin: 0 0 0 0;
+  border-radius: 5px;
 }
 
 .story-description {
@@ -135,12 +143,14 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .crop-move-photos img {
   width: 100%;
   height: 150px;
   margin: 0 0 0 0;
+  border-radius: 5px;
 }
 
 .move-container {
@@ -155,6 +165,8 @@
   font-size: 1.2em;
   bottom: 0;
   right: 0;
+  padding: 2px;
+  border-radius: 5px 0 5px 0;
 }
 
 .move-container:hover .move-bottom-right{
@@ -212,7 +224,14 @@ h3.sidebar-issue-header {
 }
 
 .issu-img {
-  height: 400px;
+  width: 100%;
+  height: 25vh;
+  overflow: hidden;
+}
+
+.issu-img > img{
+  width: 100%;
+  height: auto;
 }
 
 .header-font {
@@ -223,12 +242,14 @@ h3.sidebar-issue-header {
   width: 100%;
   height: 30vh;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .crop-main-section-photo img {
   width: 100%;
   height: auto;
   margin: 0 0 0 0;
+  border-radius: 5px;
 }
 
 .justify-text {
@@ -258,12 +279,14 @@ div.media-body p {
   height: 9vh;
   /*margin-bottom: 0;*/
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .crop-section-photos img {
   width: 100%;
   height: auto;
   margin: 0 0 0 0;
+  border-radius: 5px;
 }
 
 a.right-align-text h1{
@@ -298,58 +321,129 @@ ul.footer-list li a{
   	width: 100%;
   	height: 55vh;
   	overflow: hidden;
+  	border-radius: 5px;
 }
 
 .crop-carousel-photos img {
   	width: 100%;
   	height: auto;
   	margin: -20% 0 0 0;
+  	border-radius: 5px;
 }
 
 .banner-bottom-ad,.banner-top-ad img {
-  width: 728px;
-  height: 100px;
-  margin-left: 20%;
+  width: 55vw;
+  height: 15vh;
+  margin-left: 9%;
   margin-top: 1%;
 }
 
-.bottom-ad,.top-ad {
+.fixed-navbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+/*	opacity: 0;*/
+	width: 100%;
+	margin: auto;
+	z-index: 1000;
+}
+
+.bottom-ad{
   width: 300px;
   height: 260px;
+}
+
+div#sidebar {
+	margin-top: -17vh;
 }
 
 #mobile-header {
 	font-size: 2em;
 }
 
-@media screen and (max-width: 600px) {
-    .logo {
-        margin-top: -20%;
+.navbar-toggler-icon {
+    background-image: url('https://mdbootstrap.com/img/svg/hamburger1.svg?color=5cb85c') !important;
+}
+
+@media screen and (max-width: 992px) {
+
+	#navigation-bar {
+		padding-top: 0;
+		padding-bottom: 0;
+		margin-bottom: 0;
+		margin-top: 0;
+		height: auto;
+		padding-left: 2% !important;
+	}
+	#navigation-bar > a{
+		padding-top: 0;
+		padding-bottom: 0;
+		/*margin-bottom: -10px;*/
+		margin-top: 0;
+	}
+
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+  	.logo {
+        display: none;
+        padding: 0 !important;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #logo-container {
+    	padding-left: 0 !important;
+    	padding-right: 0 !important;
+    }
+
+}
+
+/* When the width is between 600px and 900px OR above 1100px - change the appearance of <div> */
+@media screen and (max-width: 900px) and (min-width: 600px) {
+  	.logo {
+        margin-top: -30%;
         padding-bottom: 2%;
        	padding-right: 5%;
     }
+}
+
+
+@media screen and (max-width: 600px) {
+    .logo {
+        margin-top: -30%;
+        padding-bottom: 2%;
+       	padding-right: 5%;
+    }
+    div#sidebar {
+		margin-top: 0;
+	}
+
+	.nav-item {
+		margin-left: 7vw;
+	}
+
+	.banner-bottom-ad,.banner-top-ad img {
+	  width: 85vw;
+	  height: 15vh;
+	  margin-left: 3.4%;
+	  margin-top: 1%;
+	}
+
     .menu-searchbar {
     	width: 100%;
     }
 
-    .navbar-height{
-    	height: 14vh !important;
-    }
-
-    .collapse-background {
-    	background-color: lightgrey;
-    }
-
     .collapse-margin {
-		margin-top: 3.3%;
+		margin-top: 0%;
 	}
 
 	.collapsed-searchbox {
-		margin-left: 25px;
+		margin-left: 8%;
 	}
 
 	.searchbox-width {
-		width: 90% !important;
+		width: 85% !important;
 	}
 
 	a.right-align-text h1{
@@ -380,12 +474,14 @@ ul.footer-list li a{
 	  	width: 100%;
 	  	height: 100%;
 	  	overflow: hidden;
+	  	border-radius: 5px;
 	}
 
 	.crop-move-photos img {
 	  	width: 100%;
 	  	height: 75px;
 	  	margin: 0 0 0 0;
+	  	border-radius: 5px;
 	}
 
 	ul.footer-list li a{
@@ -405,6 +501,7 @@ ul.footer-list li a{
 	  width: 100%;
 	  height: 30vh;
 	  overflow: hidden;
+	  border-radius: 5px;
 	}
 
 }
