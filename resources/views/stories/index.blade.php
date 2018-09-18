@@ -198,7 +198,7 @@
                                         </div>
                                         <div class="justify-text carousel-sm-item">
                                             <a class="story-style" href="{{ $frontPageStories[1]->path() }}">
-                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[1]->title, 0, 60) }}{{ strlen($frontPageStories[1]->title) > 60 ? "...": "" }}</h4>
+                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[1]->title, 0, 45) }}{{ strlen($frontPageStories[1]->title) > 45 ? "...": "" }}</h4>
                                                 <p class="main-story-cDeck">{{ substr($frontPageStories[1]->cDeck, 0, 80) }} {{ strlen($frontPageStories[1]->cDeck) > 80 ? "...": "" }}</p>
                                             </a>
                                         </div>
@@ -214,7 +214,7 @@
                                         </div>
                                         <div class="justify-text carousel-sm-item">
                                             <a class="story-style" href="{{ $frontPageStories[2]->path() }}">
-                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[2]->title, 0, 60) }}{{ strlen($frontPageStories[2]->title) > 60 ? "...": "" }}</h4>
+                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[2]->title, 0, 45) }}{{ strlen($frontPageStories[2]->title) > 45 ? "...": "" }}</h4>
                                                 <p class="main-story-cDeck">{{ substr($frontPageStories[2]->cDeck, 0, 80) }} {{ strlen($frontPageStories[2]->cDeck) > 80 ? "...": "" }}</p>
                                             </a>
                                         </div>
@@ -229,7 +229,7 @@
                                         </div>
                                         <div class="justify-text carousel-sm-item">
                                             <a class="story-style" href="{{ $frontPageStories[3]->path() }}">
-                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[3]->title, 0, 60) }}{{ strlen($frontPageStories[3]->title) > 60 ? "...": "" }}</h4>
+                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[3]->title, 0, 45) }}{{ strlen($frontPageStories[3]->title) > 45 ? "...": "" }}</h4>
                                                 <p class="main-story-cDeck">{{ substr($frontPageStories[3]->cDeck, 0, 80) }} {{ strlen($frontPageStories[3]->cDeck) > 80 ? "...": "" }}</p>
                                             </a>
                                         </div>
@@ -395,7 +395,7 @@
                         <h3 class="section-list-header header-font mb-md-2 mt-md-2"><a href="/stories/">LATEST</a></h3>
                         <ul class="section-list pl-md-2 mb-md-0">        <!--MAY NEED TO KEEP THIS-->
                             @foreach($latest as $story)
-                                <li class="section-list-item pb-md-3"><a href="{{ $story->path() }}">{{ substr($story->full_title, 0, 70) }} {{ strlen($story->full_title) > 70 ? "...": "" }}</a></li>
+                                <li class="section-list-item pb-md-3"><a href="{{ $story->path() }}">{{ substr($story->full_title, 0, 55) }} {{ strlen($story->full_title) > 55 ? "...": "" }}</a></li>
                             @endforeach
                         </ul>
                     </div>   
