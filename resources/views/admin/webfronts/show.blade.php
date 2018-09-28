@@ -28,18 +28,18 @@
                         <td>
                             <select2 name="articles[{{ $i }}]">
                                 <option></option>
-                                @foreach ($sectionArticles as $sArticle)
+                                @foreach ($sectionArticles as $sArticle)        <!--this won't find the article if it's not one of the 25 most recent-->
                                     <option value="{{ $sArticle->id }}" {{ ( $articles->get($i)->id == $sArticle->id ? "selected" : "") }}>{{ $sArticle->title }}</option>
                                 @endforeach
                             </select2>
                         </td>
                   @else
-                        <td> None </td>
+                        <td> {{ $sectionArticles[$i]->title }} </td>
                         <td>
                             <select2 name="articles[{{ $i }}]">
                                 <option></option>
                                 @foreach ($sectionArticles as $sArticle)
-                                    <option value="{{ $sArticle->id }}">{{ $sArticle->title }}</option>
+                                    <option value="{{ $sArticle->id }}" {{ ($sArticle->id == $sectionArticles[$i]->id ? "selected" : "") }}>{{ $sArticle->title }}</option>
                                 @endforeach
                             </select2>
                         </td>

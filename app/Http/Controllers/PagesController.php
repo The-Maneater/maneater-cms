@@ -11,6 +11,7 @@ use App\Paginators\PublishDatePaginator;
 use App\Photo;
 use App\Repositories\AdRepository;
 use App\Repositories\StoryRepository;
+use App\SubSection;
 use App\Section;
 use App\Staffer;
 use App\Story;
@@ -35,6 +36,53 @@ class PagesController extends Controller
         $sections = StoryRepository::getFrontPageSectionStories();
 //        dd($sections);
 
+        
+
+        foreach ($sections['news'] as $story) {
+            
+            if($story->subsection_id != 0){
+                $subsection = SubSection::with(['section'])->where('id', $story->subsection_id)->first();
+                $story->Asection = $subsection->name;
+                $story->Aurl = "/section/" . $subsection->section->slug . "/" . $subsection->slug;
+            }
+            else{
+                $section = Section::where('id', $story->section_id)->first();
+                $story->Asection = $section->name;
+                $story->Aurl = "/section/" . $section->slug;
+            }
+        }
+
+        foreach ($sections['sports'] as $story) {
+            
+            if($story->subsection_id != 0){
+                $subsection = SubSection::with(['section'])->where('id', $story->subsection_id)->first();
+                $story->Asection = $subsection->name;
+                $story->Aurl = "/section/" . $subsection->section->slug . "/" . $subsection->slug;
+            }
+            else{
+                $section = Section::where('id', $story->section_id)->first();
+                $story->Asection = $section->name;
+                $story->Aurl = "/section/" . $section->slug;
+            }
+        }
+
+        foreach ($sections['opinion'] as $story) {
+            
+            if($story->subsection_id != 0){
+                $subsection = SubSection::with(['section'])->where('id', $story->subsection_id)->first();
+                $story->Asection = $subsection->name;
+                $story->Aurl = "/section/" . $subsection->section->slug . "/" . $subsection->slug;
+            }
+            else{
+                $section = Section::where('id', $story->section_id)->first();
+                $story->Asection = $section->name;
+                $story->Aurl = "/section/" . $section->slug;
+            }
+        }
+
+        // dd($sections);
+
+
         $minutes = 720;
 
 
@@ -52,6 +100,19 @@ class PagesController extends Controller
         // currently this will return every story with a unique priority... 7/28/2018
         $frontPageStories = WebFront::frontPage();
 
+        foreach ($frontPageStories as $story) {
+            
+            if($story->subsection_id != 0){
+                $subsection = SubSection::with(['section'])->where('id', $story->subsection_id)->first();
+                $story->Asection = $subsection->name;
+                $story->Aurl = "/section/" . $subsection->section->slug . "/" . $subsection->slug;
+            }
+            else{
+                $section = Section::where('id', $story->section_id)->first();
+                $story->Asection = $section->name;
+                $story->Aurl = "/section/" . $section->slug;
+            }
+        }
 
         // returns array of 2 cube ads & 1 banner ad
         // increases served counters

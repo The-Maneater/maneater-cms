@@ -79,15 +79,47 @@ class WebFrontController extends Controller
         $frontPage = ($section == 0 || $section == -1);
         WebFront::clearWebFront($section);
         $articles = collect($request->input('articles'));
-        $articles->each(function($story, $priority) use($frontPage){
-            /** @var \App\Story $story */
-            $story = Story::find((int)$story);
+     
+        $index = 0;
+        //makes an array of the id's from the selected articles
+        foreach($articles as $art)
+        {
+            $summ[$index] = $art;
+            $index++;      
+        }
+
+        $summ = array_filter($summ);
+
+        if($frontPage) {
+            $numOfArticlesNeeded = 8 - sizeof($summ);
+            $newArticles = Story::latest()->limit(8)->get();
+        }
+        else {
+            $numOfArticlesNeeded = 5 - sizeof($summ);
+            $newArticles = Story::latest()->where('section_id', $section)->limit(8)->get();
+            dd($newArticles);
+        }
+      
+        $i = 0;     //checks if recent articles are in the selected articles
+        for($x = 1; $x <= $numOfArticlesNeeded; $x++){     
+            while(in_array($newArticles[$i]->id, $summ)){
+                $i++;
+            }
+            $summ[] = $newArticles[$i]->id;
+        }
+
+        $priority = 1;  //changes the webfront priority for the stories with id's in $summ
+        for($j = 0; $j < sizeof($summ); $j++){
+            $story = Story::find($summ[$j]);
             if($frontPage){
                 $story->addToFrontPage($priority);
-            }else{
+            }
+            else{
                 $story->addToSectionWebfront($priority);
             }
-        });
+            
+            $priority++;
+        }
 
         $frontPage ? null : CacheRepository::updateSectionWebFront($section);
         return redirect("/admin/core/web-fronts");
