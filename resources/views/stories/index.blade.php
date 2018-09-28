@@ -8,7 +8,7 @@
                     @if(!is_null($ads['banner'][0]->raw_content))
                        {!! $ads['banner'][0]->raw_content !!}
                     @else
-                        <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="lazy banner-bottom-ad"></a>
+                        <a href="{{ $ads['banner'][0]->provider() }}"><img src="{{ $ads['banner'][0]->url() }}" alt="" class="banner-bottom-ad"></a>
                     @endif
                 @endif
 
