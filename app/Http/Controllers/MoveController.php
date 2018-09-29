@@ -59,10 +59,16 @@ class MoveController extends Controller
     public function storyShow($section, $slug)
     {
         $story = Story::findBySectionAndSlug($section, $slug);
-        $relatedArticles = Story::withAnyTags($story->tags)
-            ->inRandomOrder()
+        // $relatedArticles = Story::withAnyTags($story->tags)
+        //     ->inRandomOrder()
+        //     ->take(5)
+        //     ->get();
+        $relatedArticles = count($story->tags) > 0 ?
+        Story::withAllTags([$story->tags[0]])
+            ->orderBy('id', 'DESC')
             ->take(5)
-            ->get();
+            ->get()
+            ->load(['section']) : collect();
 
         return view('move.story', compact('story', 'relatedArticles'));
     }
