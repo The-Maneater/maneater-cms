@@ -97,7 +97,6 @@ class WebFrontController extends Controller
         else {
             $numOfArticlesNeeded = 5 - sizeof($summ);
             $newArticles = Story::latest()->where('section_id', $section)->limit(8)->get();
-            dd($newArticles);
         }
       
         $i = 0;     //checks if recent articles are in the selected articles
