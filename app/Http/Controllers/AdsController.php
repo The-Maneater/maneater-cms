@@ -69,8 +69,12 @@ class AdsController extends Controller
             //uploads photo
             // $image = $request->file('adFile')->move($filePath, $request->file('adFile')->getClientOriginalName());
 
-            $image = $request->file('adFile')
-                ->storeAs($filePath, $request->file('adFile')->getClientOriginalName(), 'media');
+
+            //current
+            // $image = $request->file('adFile')
+            //     ->storeAs($filePath, $request->file('adFile')->getClientOriginalName(), 'media');
+
+            $image = $request->file('adFile')->move(public_path($filePath), $request->file('adFile')->getClientOriginalName());
 
             //grabs filepath
             $ad->image_url = $carbon->year . "/" . $carbon->month . $carbon->day . "/ads/" . $request->file('adFile')->getClientOriginalName();
