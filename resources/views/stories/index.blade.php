@@ -1,5 +1,9 @@
 @extends('layouts._maneater')
 
+@section('title')
+Maneater | Home
+@endsection
+
 @section('content')
 
             <div>

@@ -9,7 +9,7 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>The Maneater | Home</title>
+        <title>@yield('title')</title>
 
         <!-- Google Analytics -->
         <script>
@@ -55,6 +55,8 @@
             ]); ?>
         </script>
         <script type="text/javascript" src="/js/maneater.js"></script>
+        @yield('scripts')
+
     </head>
     <body id="main" class="page-background">
         <div class="container-fluid w-100 h-100 pl-md-0 pl-xs-3">

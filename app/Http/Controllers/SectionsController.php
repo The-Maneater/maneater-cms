@@ -8,7 +8,10 @@ use App\Http\Requests\CreateSectionRequest;
 use App\Repositories\AdRepository;
 use App\Repositories\CacheRepository;
 use App\Section;
+use App\SubSection;
+use App\Story;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
 
 class SectionsController extends Controller
@@ -62,8 +65,14 @@ class SectionsController extends Controller
     public function show($slug)
     {
         $section = Section::findBySlug($slug);
-      
-        $stories = $section->stories()->latest('id')->take(10)->get()->load(['section']);
+
+        $subsections = DB::table('sub_sections')->where('section_id', $section->id)->get();
+
+        $subsectionsStories = array();
+
+        foreach($subsections as $subsection){
+            $subsectionsStories[] = Story::with('headerPhotos')->where('subsection_id', $subsection->id)->latest()->take(5)->get();
+        }
 
         $priorityStories = Cache::remember('section.' . $slug . '.web-front-stories', 720, function() use ($section) {
            return $section->webFrontStories()->get()->load(['section']);
@@ -71,15 +80,28 @@ class SectionsController extends Controller
         
         //$priorityStories = $section->webFrontStories()->get();
        
-        $tags = Cache::remember('section.' . $slug . '.latest-tags', 720, function() use($section){
-            return  $section->latestTags();
-        });
+        // $tags = Cache::remember('section.' . $slug . '.latest-tags', 720, function() use($section){
+        //     return  $section->latestTags();
+        // });
         
         //$tags = $section->latestTags();
-       
-        $ads = AdRepository::cubes(2);
-       
-        return view('sections.index', compact('stories', 'priorityStories', 'tags', 'ads'));
+
+        //dd($subsections);
+
+        foreach ($subsections as $subsection) {
+            if($subsection->section_id != 0){
+                $section = Section::where('id', $subsection->section_id)->first();
+                $subsection->Aurl = "/section/" . $section->slug . "/" . $subsection->slug;
+            }
+            else{
+                $subsection->Aurl = "";
+            }
+        }
+
+        $ads = AdRepository::cubes(1);
+        $count = 0;
+        
+        return view('sections.index', compact('section', 'priorityStories', 'ads', 'subsections', 'subsectionsStories', 'count'));
     }
 
     /**

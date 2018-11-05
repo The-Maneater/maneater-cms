@@ -13,13 +13,13 @@ $(function(){
         }
     }
 
-    //TODO write to remove and add for changing screen size
+    // TODO write to remove and add for changing screen size
 
     var os = $('#navigation-bar').offset().top; 
     var ht = $('#navigation-bar').height(); 
     var additionalSpacing = 150;
 
-    //help for this scroll function provided by http://jsfiddle.net/5d922roc/
+    // help for this scroll function provided by http://jsfiddle.net/5d922roc/
 
     $(window).scroll(function() {
         var scroll = $(window).scrollTop(); 
@@ -36,11 +36,7 @@ $(function(){
             }
             else {
                 $('#navigation-bar').addClass('fixed-navbar-small-screen');
-            }
-           
-            
-            
-           
+            } 
         }
 
         if(scroll < os + ht + additionalSpacing && navFlag == true){
@@ -59,7 +55,6 @@ $(function(){
     });
 
     if(screen.height < 600) {
-        //document.getElementsByClassName("dropdown-links").setAttribute("data-toggle", "dropdown");
 
         var links = document.querySelectorAll('.dropdown-links');
         for (var i=0; i < links.length; i++) {
@@ -68,7 +63,6 @@ $(function(){
     }
 
     if(screen.height > 600) {
-        //document.getElementsByClassName("dropdown-links").setAttribute("data-toggle", "dropdown");
 
         var rlinks = document.querySelectorAll('.dropdown-links');
         for (var j=0; j < rlinks.length; j++) {
@@ -95,20 +89,3 @@ function opinionClicked() {
 function sportsClicked() {
     window.location = "/section/sports";
 }
-
-
-// $('#navbarDropdownMenuLink').click(function(event) {
-//     // Remember the link href
-//     //var href = this.href;
-
-//     // Don't follow the link
-//     // event.preventDefault();
-
-
-//         // This is the completion callback for the asynchronous thing;
-//         // go to the link
-//         window.location = "https://www.google.com/";
-
-// });
-
-
