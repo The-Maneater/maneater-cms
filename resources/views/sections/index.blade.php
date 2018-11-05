@@ -133,7 +133,7 @@ Maneater | {{ $section->name }}
                                                         
                                                     </div>
                                                     <div class="cardContent">
-                                                        <h1>{{ $subsectionsStories[$count][0]->title }}</h1>
+                                                        <h1>{{ substr($subsectionsStories[$count][0]->title, 0, 30) }} {{ strlen($subsectionsStories[$count][0]->title) > 30 ? "...": "" }}</h1>
                                                         <p>{{ substr($subsectionsStories[$count][0]->cDeck, 0, 65) }} {{ strlen($subsectionsStories[$count][0]->cDeck) > 65 ? "...": "" }}</p>
                                                         <hr>
                                                         <h2>By: <strong>{{ $subsectionsStories[$count][0]->static_byline }}</strong></h2>
@@ -154,7 +154,7 @@ Maneater | {{ $section->name }}
                                                         @endif
                                                     </div>
                                                     <div class="cardContent">
-                                                        <h1>{{ $subsectionsStories[$count][1]->title }}</h1>
+                                                        <h1>{{ substr($subsectionsStories[$count][1]->title, 0, 30) }} {{ strlen($subsectionsStories[$count][1]->title) > 30 ? "...": "" }}</h1>
                                                         <p>{{ substr($subsectionsStories[$count][1]->cDeck, 0, 65) }} {{ strlen($subsectionsStories[$count][1]->cDeck) > 65 ? "...": "" }}</p>
                                                         <hr>
                                                         <h2>By: <strong>{{ $subsectionsStories[$count][1]->static_byline }}</strong></h2>
@@ -175,7 +175,7 @@ Maneater | {{ $section->name }}
                                                         @endif
                                                     </div>
                                                     <div class="cardContent">
-                                                        <h1>{{ $subsectionsStories[$count][2]->title }}</h1>
+                                                        <h1>{{ substr($subsectionsStories[$count][2]->title, 0, 30) }} {{ strlen($subsectionsStories[$count][2]->title) > 30 ? "...": "" }}</h1>
                                                         <p>{{ substr($subsectionsStories[$count][2]->cDeck, 0, 65) }} {{ strlen($subsectionsStories[$count][2]->cDeck) > 65 ? "...": "" }}</p>
                                                         <hr>
                                                         <h2>By: <strong>{{ $subsectionsStories[$count][2]->static_byline }}</strong></h2>
@@ -200,7 +200,7 @@ Maneater | {{ $section->name }}
                                                         @endif
                                                     </div>
                                                     <div class="cardContent">
-                                                        <h1>{{ $subsectionsStories[$count][3]->title }}</h1>
+                                                        <h1>{{ substr($subsectionsStories[$count][3]->title, 0, 30) }} {{ strlen($subsectionsStories[$count][3]->title) > 30 ? "...": "" }}</h1>
                                                         <p>{{ substr($subsectionsStories[$count][3]->cDeck, 0, 65) }} {{ strlen($subsectionsStories[$count][3]->cDeck) > 65 ? "...": "" }}</p>
                                                         <hr>
                                                         <h2>By: <strong>{{ $subsectionsStories[$count][3]->static_byline }}</strong></h2>
@@ -221,7 +221,7 @@ Maneater | {{ $section->name }}
                                                         @endif
                                                     </div>
                                                     <div class="cardContent">
-                                                        <h1>{{ $subsectionsStories[$count][4]->title }}</h1>
+                                                        <h1>{{ substr($subsectionsStories[$count][4]->title, 0, 30) }} {{ strlen($subsectionsStories[$count][4]->title) > 30 ? "...": "" }}</h1>
                                                         <p>{{ substr($subsectionsStories[$count][4]->cDeck, 0, 65) }} {{ strlen($subsectionsStories[$count][4]->cDeck) > 65 ? "...": "" }}</p>
                                                         <hr>
                                                         <h2>By: <strong>{{ $subsectionsStories[$count++][4]->static_byline }}</strong></h2>
