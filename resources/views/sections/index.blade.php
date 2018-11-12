@@ -28,8 +28,8 @@ Maneater | {{ $section->name }}
                         @endif
 
                         <div class="overlay"></div>
-                        <h1 id="mainStoryHeading" class="text">{{ substr($priorityStories[0]->title, 0, 38) }} {{ strlen($priorityStories[0]->title) > 38 ? "...": "" }}</h1>
-                        <h5 id="mainStoryCdeck" class="text">{{ substr($priorityStories[0]->cDeck, 0, 60) }} {{ strlen($priorityStories[0]->cDeck) > 60 ? "...": "" }}</h5>
+                        <h1 id="mainStoryHeading" class="text">{{ substr($priorityStories[0]->title, 0, 35) }} {{ strlen($priorityStories[0]->title) > 35 ? "...": "" }}</h1>
+                        <h5 id="mainStoryCdeck" class="text">{{ substr($priorityStories[0]->cDeck, 0, 55) }} {{ strlen($priorityStories[0]->cDeck) > 55 ? "...": "" }}</h5>
                     </div>
                 </a>
             </div>
@@ -47,7 +47,7 @@ Maneater | {{ $section->name }}
                                     <img src="http://themaneater.com/media/2018/927/photos/placeholder image.jpg"  alt="" class="image">
                                 @endif
                                 <div class="overlay"></div>
-                                <h1 class="text topSideStoryHeading">{{ substr($priorityStories[1]->title, 0, 65) }} {{ strlen($priorityStories[1]->title) > 65 ? "...": "" }}</h1>
+                                <h1 class="text topSideStoryHeading">{{ substr($priorityStories[1]->title, 0, 63) }} {{ strlen($priorityStories[1]->title) > 63 ? "...": "" }}</h1>
                                 <h5 class="text topSideStoryCdeck">{{ substr($priorityStories[1]->cDeck, 0, 75) }} {{ strlen($priorityStories[1]->cDeck) > 75 ? "...": "" }}</h5>
                             </div>
                         </a>
@@ -66,7 +66,7 @@ Maneater | {{ $section->name }}
                                     <img src="http://themaneater.com/media/2018/927/photos/placeholder image.jpg"  alt="" class="image">
                                 @endif
                                 <div class="reverseOverlay"></div>
-                                <h1 class="reverseText reverseTopSideStoryHeading">{{ substr($priorityStories[2]->title, 0, 32) }} {{ strlen($priorityStories[2]->title) > 32 ? "...": "" }}</h1>
+                                <h1 class="reverseText reverseTopSideStoryHeading">{{ substr($priorityStories[2]->title, 0, 30) }} {{ strlen($priorityStories[2]->title) > 30 ? "...": "" }}</h1>
                                 <h5 class="reverseText reverseTopSideStoryCdeck">{{ substr($priorityStories[2]->cDeck, 0, 35) }} {{ strlen($priorityStories[2]->cDeck) > 35 ? "...": "" }}</h5>
                             </div>
                         </a>
@@ -83,7 +83,7 @@ Maneater | {{ $section->name }}
                                     <img src="http://themaneater.com/media/2018/927/photos/placeholder image.jpg"  alt="" class="image">
                                 @endif
                                 <div class="overlay"></div>
-                                <h1 class="text topSideStoryHeading">{{ substr($priorityStories[3]->title, 0, 32) }} {{ strlen($priorityStories[3]->title) > 32 ? "...": "" }}</h1>
+                                <h1 class="text topSideStoryHeading">{{ substr($priorityStories[3]->title, 0, 30) }} {{ strlen($priorityStories[3]->title) > 30 ? "...": "" }}</h1>
                                 <h5 class="text topSideStoryCdeck">{{ substr($priorityStories[3]->cDeck, 0, 35) }} {{ strlen($priorityStories[3]->cDeck) > 35 ? "...": "" }}</h5>
                             </div>
                         </a>
