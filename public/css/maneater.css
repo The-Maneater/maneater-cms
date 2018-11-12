@@ -534,6 +534,22 @@ div#sidebar {
 	  border-radius: 5px;
 	}
 
+	div#sectionContainer h1#mainStoryHeading {
+		font-size: 13px !important;
+	}
+
+	div#sectionContainer h5#mainStoryCdeck {
+		font-size: 9px !important;
+	}
+
+	div#sectionContainer h1.topSideStoryHeading {
+		font-size: 13px !important;
+	}
+
+	div#sectionContainer h5.topSideStoryCdeck {
+		font-size: 9px !important;
+	}
+
 }
 
 div#sectionContainer {
@@ -619,7 +635,6 @@ div#sectionContainer .container:hover .text {
 div#sectionContainer .text {
 	opacity: .5;
   	color: white;
-  	font-size: 20px;
   	position: absolute;
   	z-index: 100;
   	-webkit-transition: opacity 1s; /* For Safari 3.1 to 6.0 */
@@ -628,20 +643,20 @@ div#sectionContainer .text {
 }
 
 div#sectionContainer h1#mainStoryHeading {
-	font-size: 40px;
+	font-size: 35px;
 	bottom: 7%;
   	right: 2%;
 }
 
 div#sectionContainer h5#mainStoryCdeck {
-	font-size: 30px;
+	font-size: 25px;
 	bottom: 0;
   	right: 2%;
   	font-style: italic;
 }
 
 div#sectionContainer h1.topSideStoryHeading {
-	font-size: 18px;
+	font-size: 15px;
 	bottom: 7%;
   	right: 2%;
 }
@@ -680,17 +695,16 @@ div#sectionContainer .reverseOverlay {
 }
 
 div#sectionContainer .reverseContainer:hover .reverseOverlay {
-  	opacity: .3;
+  	opacity: .35;
 }
 
-div#sectionContainer .reverseContainer:hover .reverseText {
-  	opacity: .6;
-}
+/*div#sectionContainer .reverseContainer:hover .reverseText {
+  	opacity: .96;
+}*/
 
 div#sectionContainer .reverseText {
 	opacity: 1;
   	color: white;
-  	font-size: 20px;
   	position: absolute;
   	z-index: 100;
   	-webkit-transition: opacity 1s; /* For Safari 3.1 to 6.0 */
@@ -699,7 +713,7 @@ div#sectionContainer .reverseText {
 }
 
 div#sectionContainer h1.reverseTopSideStoryHeading {
-	font-size: 18px;
+	font-size: 15px;
 	bottom: 7%;
   	right: 2%;
 }
@@ -710,6 +724,8 @@ div#sectionContainer h5.reverseTopSideStoryCdeck {
   	right: 2%;
   	font-style: italic;
 }
+
+
 
 div#sectionContainer button#seeMoreButton {
 	background-color: black;
@@ -773,39 +789,6 @@ div#sectionContainer div.customCardContainer .cardContent button{
 	float: right;
 	border: none;
 }
-
-div#sectionContainer div.subSectionRow .seeMoreCard {
-	height: 47vh;
-	padding-top: 15%;
-	text-align: center;
-}
-
-div#sectionContainer div.subSectionRow .seeMoreCard:hover .cardCirlce{
-	box-shadow: 0 0 15px 0px #3B5323;
-}
-
-div#sectionContainer div.subSectionRow .seeMoreCard h2{
-	color: gray;
-	padding-top: 32%;
-}
-
-/*div#sectionContainer div.subSectionRow .seeMoreCard i{
-	font-size: 40px;
-	margin-top: 1%;
-	font-size: 100px;
-	margin-bottom: 20%;
-	color: darkgray;
-}*/
-
-div#sectionContainer div.subSectionRow .seeMoreCard .cardCirlce {
-	border: 3px solid darkgray;
-	height: 75%;
-	border-radius: 100%;
-}
-
-/*div#sectionContainer div.customCardContainer:hover{
-	box-shadow: 0px 0px 15px 0px #3B5323;
-}*/
 
 div#sectionContainer div.subSectionRow {
 	margin-top: 2vh;
@@ -877,10 +860,24 @@ div#sectionContainer div.subSectionRow .carousel {
 div#sectionContainer h1#sectionHeading {
 	position: absolute;
 	z-index: 12;
-	background-color: forestgreen;
+	left: 10px;
+	background-color: gray;
 	color: white;
 	padding: 3px 10px;
 	font-size: 6vh;
+	border: 2px goldenrod solid;
+	border-style: none none solid none;
+}
+
+div#ads-container{
+	position: -webkit-sticky;
+	position: sticky;
+	top: 225px;
+}
+
+div#sectionContainer img.mediaImage {
+	height: 21vh;
+	width: 15vw;
 }
 
 .cubedAd {

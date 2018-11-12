@@ -71,7 +71,7 @@ class SectionsController extends Controller
         $subsectionsStories = array();
 
         foreach($subsections as $subsection){
-            $subsectionsStories[] = Story::with('headerPhotos')->where('subsection_id', $subsection->id)->latest()->take(5)->get();
+            $subsectionsStories[] = Story::with('headerPhotos')->where('subsection_id', $subsection->id)->latest()->take(6)->get();
         }
 
         $priorityStories = Cache::remember('section.' . $slug . '.web-front-stories', 720, function() use ($section) {
@@ -100,8 +100,13 @@ class SectionsController extends Controller
 
         $ads = AdRepository::cubes(1);
         $count = 0;
-        
-        return view('sections.index', compact('section', 'priorityStories', 'ads', 'subsections', 'subsectionsStories', 'count'));
+
+
+        //need to add aurl
+        $sectionStories = Story::with('headerPhotos')->where('section_id', $section->id)->latest()->take(7)->get();
+
+        //dd($sectionStories);
+        return view('sections.index', compact('section', 'priorityStories', 'ads', 'subsections', 'subsectionsStories', 'count', 'sectionStories'));
     }
 
     /**
