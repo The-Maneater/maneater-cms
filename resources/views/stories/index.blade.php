@@ -43,7 +43,7 @@ Maneater | Home
                                         </div>
                                         <div class="justify-text carousel-sm-item">
                                             <a class="story-style" href="{{ $frontPageStories[1]->path() }}">
-                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[1]->title, 0, 45) }}{{ strlen($frontPageStories[1]->title) > 45 ? "...": "" }}</h4>
+                                                <h4 class="mb-0 mt-2">{{ $frontPageStories[1]->title }}</h4>
                                                 <p class="main-story-cDeck">{{ substr($frontPageStories[1]->cDeck, 0, 80) }} {{ strlen($frontPageStories[1]->cDeck) > 80 ? "...": "" }}</p>
                                             </a>
                                         </div>
@@ -64,7 +64,7 @@ Maneater | Home
                                         </div>
                                         <div class="justify-text carousel-sm-item">
                                             <a class="story-style" href="{{ $frontPageStories[2]->path() }}">
-                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[2]->title, 0, 45) }}{{ strlen($frontPageStories[2]->title) > 45 ? "...": "" }}</h4>
+                                                <h4 class="mb-0 mt-2">{{ $frontPageStories[2]->title }}</h4>
                                                 <p class="main-story-cDeck">{{ substr($frontPageStories[2]->cDeck, 0, 80) }} {{ strlen($frontPageStories[2]->cDeck) > 80 ? "...": "" }}</p>
                                             </a>
                                         </div>
@@ -84,7 +84,7 @@ Maneater | Home
                                         </div>
                                         <div class="justify-text carousel-sm-item">
                                             <a class="story-style" href="{{ $frontPageStories[3]->path() }}">
-                                                <h4 class="mb-0 mt-2">{{ substr($frontPageStories[3]->title, 0, 45) }}{{ strlen($frontPageStories[3]->title) > 45 ? "...": "" }}</h4>
+                                                <h4 class="mb-0 mt-2">{{ $frontPageStories[3]->title }}</h4>
                                                 <p class="main-story-cDeck">{{ substr($frontPageStories[3]->cDeck, 0, 80) }} {{ strlen($frontPageStories[3]->cDeck) > 80 ? "...": "" }}</p>
                                             </a>
                                         </div>
@@ -123,7 +123,7 @@ Maneater | Home
                                     </figure>
                                 @endif
                                 <a class="story-style" href="{{ $frontPageStories[4]->path() }}">
-                                    <h6 class="story-sm-title mt-1 mb-1">{{ substr($frontPageStories[4]->title, 0, 60) }}{{ strlen($frontPageStories[4]->title) > 60 ? "...": "" }}</h6>
+                                    <h6 class="story-sm-title mt-1 mb-1">{{ $frontPageStories[4]->title }}</h6>
                                     <p class="story-description text-secondary justify-text pr-md-3 story-sm-cDeck">{{ substr($frontPageStories[4]->cDeck, 0, 100) }} {{ strlen($frontPageStories[4]->cDeck) > 100 ? "...": "" }}</p>
                                 </a>
                             </div>
@@ -148,7 +148,7 @@ Maneater | Home
                                     </figure>
                                 @endif
                                 <a class="story-style" href="{{ $frontPageStories[5]->path() }}">
-                                    <h6 class="story-sm-title mt-1 mb-1">{{ substr($frontPageStories[5]->title, 0, 60) }}{{ strlen($frontPageStories[5]->title) > 60 ? "...": "" }}</h6>
+                                    <h6 class="story-sm-title mt-1 mb-1">{{ $frontPageStories[5]->title }}</h6>
                                     <p class="story-description text-secondary justify-text pr-md-3 story-sm-cDeck">{{ substr($frontPageStories[5]->cDeck, 0, 100) }} {{ strlen($frontPageStories[5]->cDeck) > 100 ? "...": "" }}</p>
                                 </a>
                             </div>
@@ -177,7 +177,7 @@ Maneater | Home
                                     </figure>
                                 @endif
                                 <a class="story-style" href="{{ $frontPageStories[6]->path() }}">
-                                    <h6 class="story-sm-title mt-1 mb-1">{{ substr($frontPageStories[6]->title, 0, 60) }}{{ strlen($frontPageStories[6]->title) > 60 ? "...": "" }}</h6>
+                                    <h6 class="story-sm-title mt-1 mb-1">{{ $frontPageStories[6]->title }}</h6>
                                     <p class="story-description text-secondary justify-text pr-md-3 story-sm-cDeck">{{ substr($frontPageStories[6]->cDeck, 0, 100) }} {{ strlen($frontPageStories[6]->cDeck) > 100 ? "...": "" }}</p>
                                 </a>
                             </div><!--END OF STORY 6-->
@@ -203,7 +203,7 @@ Maneater | Home
                                     </figure>
                                 @endif
                                 <a class="story-style" href="{{ $frontPageStories[7]->path() }}">
-                                    <h6 class="story-sm-title mt-1 mb-1">{{ substr($frontPageStories[7]->title, 0, 60) }}{{ strlen($frontPageStories[7]->title) > 60 ? "...": "" }}</h6>
+                                    <h6 class="story-sm-title mt-1 mb-1">{{ $frontPageStories[7]->title }}</h6>
                                     <p class="story-description text-secondary justify-text pr-md-3 story-sm-cDeck">{{ substr($frontPageStories[7]->cDeck, 0, 100) }} {{ strlen($frontPageStories[7]->cDeck) > 100 ? "...": "" }}</p>
                                 </a>
                             </div><!--END OF STORY 7-->
@@ -231,7 +231,7 @@ Maneater | Home
                                     </figure>
                                 @endif
                                 <a class="story-style" href="{{ $frontPageStories[8]->path() }}">
-                                    <h6 class="story-sm-title mt-1 mb-1">{{ substr($frontPageStories[8]->title, 0, 60) }}{{ strlen($frontPageStories[8]->title) > 60 ? "...": "" }}</h6>
+                                    <h6 class="story-sm-title mt-1 mb-1">{{ $frontPageStories[8]->title }}</h6>
                                     <p class="story-description text-secondary justify-text pr-md-3 story-sm-cDeck">{{ substr($frontPageStories[8]->cDeck, 0, 100) }} {{ strlen($frontPageStories[8]->cDeck) > 100 ? "...": "" }}</p>
                                 </a>
                             </div><!--END OF STORY 8-->
@@ -291,7 +291,7 @@ Maneater | Home
                         <h3 class="section-list-header header-font mb-md-2 mt-md-2"><a href="/stories/">LATEST</a></h3>
                         <ul class="section-list pl-md-2 mb-md-0">        <!--MAY NEED TO KEEP THIS-->
                             @foreach($latest as $story)
-                                <li class="section-list-item pb-md-3"><a href="{{ $story->path() }}">{{ substr($story->full_title, 0, 55) }} {{ strlen($story->full_title) > 55 ? "...": "" }}</a></li>
+                                <li class="section-list-item pb-md-3"><a href="{{ $story->path() }}">{{ $story->full_title }}</a></li>
                             @endforeach
                         </ul>
                     </div>  
@@ -302,13 +302,25 @@ Maneater | Home
                         <a class="twitter-timeline" data-height="350" data-theme="dark" data-border-color="#2F7A32" data-link-color="#2F7A32" href="https://twitter.com/TheManeater">Tweets by TheManeater</a>
                     </div>
 
-                    @if(isset($ads['cubes'][0]))
+                    {{-- @if(isset($ads['cubes'][0]))
                         @if(!is_null($ads['cubes'][0]->raw_content))
                             {!! $ads['cubes'][0]->raw_content !!}
                         @else
                             <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="bottom-ad lazy"></a>
                         @endif
+                    @endif --}}
+
+
+                    @if(isset($ads['cubes'][0]))
+                        @if(!is_null($ads['cubes'][0]->raw_content))
+                            {!! $ads['cubes'][0]->raw_content !!}
+                        @else
+                            <a href="{{ $ads['cubes'][0]->provider_url }}"><img src="{{ $ads['cubes'][0]->url() }}" alt="" class="cubeAd"></a>
+                        @endif
+                    @else
+                        <a href="https://www.themaneater.com/about/advertising"><img class="cubedAd" src="https://themaneater.com/media/2018/37/ads/cube%20house%20ad%20design.jpg" alt=""></a>
                     @endif
+                   
 
                     <div class="border rounded main-content-box shadow p-2 mt-md-2">
                         <h3 class="sidebar-issue-header header-font mb-md-2 mt-md-2">LATEST ISSUE</h3>
