@@ -19,16 +19,15 @@ class StoryRepository
     {
 //        $campus = Section::findBySlug('campus')->latestStories()->get();
 //        $unews = Section::findBySlug('uwire')->latestStories()->get();
+
+      // grabs 6 most recent articles from sections sports, projects, opinion, campus
+      // grabs 6 most recent articles from combo of campus and uwire sections
         $sports = Section::findBySlug('sports')->latestStories()->get();
         $projects = Section::findBySlug('projects')->latestStories()->get();
         $opinion = Section::findBySlug('opinion')->latestStories()->get();
         $campus = Section::findBySlug('campus');
         $unews = Section::findBySlug('uwire');
-        $news = Story::whereIn('section_id', [$campus->id, $unews->id])
-            ->with('section')
-            ->orderBy('publish_date', 'DESC')
-            ->take(6)
-            ->get();
+        $news = Section::findBySlug('news')->latestStories()->get();
 
 
 
@@ -41,6 +40,7 @@ class StoryRepository
 //        ]);
 //        $sections->load(['latestStories']);
 
+            // grabs the 6 most recent MOVE articles, publication id == 2 ~ MOVE id
         $move = Story::whereHas('section', function($query){
             $query->where('publication_id', 2);
         })->orderBy('publish_date', 'DESC')->take(6)->get()->load(['section']);
