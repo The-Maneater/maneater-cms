@@ -172,7 +172,12 @@
 
 
             <footer class="row footer-style mt-3 pt-md-3 p-3">
-                <div class="col-4">
+
+                <div id="footerLogo" class="col-md-2 offset-1">
+                    <img src="http://themaneater.com/media/style/2012-08/images/namplates/footer.png" alt="maneater logo">
+                    <p>© 2017 The Maneater Student Newspaper</p>
+                </div>
+                <div class="col-md-2">
                     <div>
                         <h3>Sections</h3>
                         <ul class="footer-list mb-0">
@@ -191,18 +196,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-4">
-                    <div>
-                        <h3>MOVE Magazine</h3>
-                        <ul class="footer-list mb-0">
-                            <li><a href="http://move.themaneater.com/section/angles/">Columns</a></li>
-                            <li><a href="http://move.themaneater.com/section/guide/">Guides</a></li>
-                            <li><a href="http://move.themaneater.com/section/community/">In Town</a></li>
-                            <li><a href="http://move.themaneater.com/section/music/">Music</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-4">
+                <div class="col-md-2 p-0">
                     <div>
                         <h3>Information</h3>
                         <ul class="footer-list mb-0">
@@ -219,6 +213,18 @@
                         </ul>
                     </div>
                 </div>
+                <div class="col-md-2">
+                    <div>
+                        <h3>MOVE Magazine</h3>
+                        <ul class="footer-list mb-0">
+                            <li><a href="http://move.themaneater.com/section/angles/">Columns</a></li>
+                            <li><a href="http://move.themaneater.com/section/guide/">Guides</a></li>
+                            <li><a href="http://move.themaneater.com/section/community/">In Town</a></li>
+                            <li><a href="http://move.themaneater.com/section/music/">Music</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
             </footer>
         </div>  <!--END OF CONTAINER-->
     </body>
