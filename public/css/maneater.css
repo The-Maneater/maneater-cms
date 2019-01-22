@@ -957,7 +957,7 @@ div#sectionContainer img.mediaImage {
 .crop-article-photo {
 	margin: auto;
 	width: 60%;
-	height: 80vh;
+	max-height: 80vh;
 	overflow: hidden;
 	margin-bottom: 0;
 }
