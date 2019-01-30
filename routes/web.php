@@ -37,6 +37,7 @@ Route::get('/layouts/{id}', 'LayoutsController@show');
 Route::get('/section/{slug}', 'SectionsController@show');
 Route::get('/section/{slug}/archives', 'SectionArchivesController@show');
 Route::get('/section/{slug}/{subSection}', 'SubSectionsController@show');
+Route::get('/section/{slug}/{subSection}/archives', 'SubSectionsArchivesController@show');
 Route::get('/staff/editors', 'PagesController@editorialBoard');
 Route::get('/staff', 'PagesController@allStaff');
 Route::get('/staff/{slug}', 'StafferController@show');
