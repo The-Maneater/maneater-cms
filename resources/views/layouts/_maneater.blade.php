@@ -9,6 +9,8 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <meta name="description" content="University of Missouri - Columbia's student-run newspaper since 1955">
+
         <title>@yield('title')</title>
 
         <!-- Google Analytics -->
