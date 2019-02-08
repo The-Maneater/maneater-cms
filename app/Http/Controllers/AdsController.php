@@ -67,14 +67,6 @@ class AdsController extends Controller
             $ad->fill($request->except('adFile', 'raw_content')); //maybe column name instead
 
             //uploads photo
-            // $image = $request->file('adFile')->move($filePath, $request->file('adFile')->getClientOriginalName());
-
-
-            //current
-            // $image = $request->file('adFile')
-            //     ->storeAs($filePath, $request->file('adFile')->getClientOriginalName(), 'media');
-
-            // $image = $request->file('adFile')->move(public_path($filePath), $request->file('adFile')->getClientOriginalName());
 
             $image = $request->file('adFile')->move($filePath, $request->file('adFile')->getClientOriginalName());
 

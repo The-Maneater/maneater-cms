@@ -114,31 +114,16 @@ class PagesController extends Controller
             }
         }
 
+        //dd($frontPageStories);
+
         // returns array of 2 cube ads & 1 banner ad
         // increases served counters
         $ads = AdRepository::cubesAndBanner(2,1);
 
         // gets latest issue model
         $issue = Issue::with(['layout'])->latest('id')->whereNotNull('issu_url')->first();
-//        if($issue->layout->img_link === null){
-//            $pdf = new Pdf($issue->layout->link);
-//            $now = Carbon::now();
-//            $filename = pathinfo($issue->layout->link)['basename'];
-//            $pdf->saveImage("/home/themaneater/webapps/media/pages/$now->year/$now->month$now->day/$filename");
-//            $issue->layout->img_link = "/media/pages/$now->year/$now->month$now->day/$filename";
-//            $issue->layout->save();
-//        }
-        //dd($issue);
 
-        // TEST PRINT
-        // foreach($frontPageStories as $thisStory){
-        //     echo $thisStory->id, "\t\t";
-        // }
-
-        // TEST PRINT
-        // foreach( $sections['news'] as $section){
-        //     echo "\n", $section['title'], "\t\t", $section['type'], "\t\t", $section['section']->name, "\t\t", $section['body'], "<br>";
-        // }
+        //dd($ads);
 
         return view('stories.index', compact('sections', 'latest', 'frontPageStories', 'ads', 'issue'));
     }

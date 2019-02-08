@@ -36,10 +36,11 @@ class Ad extends Model
     public function url()
     {
 
-            // if(preg_match('/^(http|https)/', $this->image_url)){
-            //     return $this->image_url;
-            // }
+        if(preg_match('/^(http|https)/', $this->image_url)){
+            return $this->image_url;
+        }
         return "http://themaneater.com/media/" . $this->image_url;
+        // return "http://localhost:8000/media/" . $this->image_url;
     }
 
     public function toSearchableArray()

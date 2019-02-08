@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>@yield('title')</title>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!--<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">-->
     <!-- Google Analytics -->
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

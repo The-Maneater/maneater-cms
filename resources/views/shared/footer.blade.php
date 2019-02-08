@@ -1,5 +1,4 @@
 <footer>
-
     <div id="footer" class="columns">
         <div id="f1" class="is-2">
             <p>© 2017 The Maneater Student Newspaper</p>

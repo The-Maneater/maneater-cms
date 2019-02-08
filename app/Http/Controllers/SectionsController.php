@@ -70,6 +70,7 @@ class SectionsController extends Controller
 
         $subsectionsStories = array();
 
+        // gets 6 most recent stories for each sub-section of the given section
         foreach($subsections as $subsection){
             $subsectionsStories[] = Story::with('headerPhotos')->where('subsection_id', $subsection->id)->latest()->take(6)->get();
         }

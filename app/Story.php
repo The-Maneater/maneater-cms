@@ -74,6 +74,9 @@ class Story extends Model
     static function findBySectionAndSlug($sectionSlug, $slug){
     	$section = Section::where('slug', '=', $sectionSlug)->first();
     	$sectionID = $section->id;
+
+
+        //this could be what's slowing it down
     	return Story::where('section_id', '=', $sectionID)->where('slug', '=', $slug)->first();
     }
 

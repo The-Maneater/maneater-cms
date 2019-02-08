@@ -26,6 +26,13 @@ class WebFront extends Model
      */
     public static function frontPage()
     {
+
+        // loads story photo if story->type == header
+        // gets story if it has relationship with a section and section's publication_id column matches the publication id of The Maneater from the Publications table
+        // story->front_page_webfront_priority cannot equal null
+        // results orderedBy front_page_webfront_priority asc
+        // loads corresponding section row from Sections table
+        // sets result's key to front_page_webfront_priority
         return Story::with('headerPhotos')->whereHas('section', function($query){
             $publication = Publication::findByString('The Maneater');
             $query->where('publication_id', $publication->id);
