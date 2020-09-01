@@ -19,7 +19,7 @@
     "vue": "^2.1.10"
   },
   "dependencies": {
-    "buefy": "^0.1.4",
+    "buefy": "^0.7.2",
     "flatpickr": "^2.4.8"
   }
 }
